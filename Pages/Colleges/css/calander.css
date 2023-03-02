@@ -1,0 +1,32 @@
+nav.collageListNav
+{  /* position:relative;
+	border: 1px;
+	text-align:center;
+	height: 491px;
+	overflow:scroll;
+	padding-top:12px;*/
+	margin-right: 3%;
+    margin-left: -1%;
+}
+
+nav.collageListNav ul
+{
+	list-style:none;
+	position:relative;
+	margin-right:5%;
+	padding-bottom: 50px;
+}
+
+nav.collageListNav li a
+{
+	text-decoration:none;
+	color:rgb(255,255,99);
+}
+
+nav.collageListNav li
+{
+	border:2px solid green;
+	border-radius:25px;
+	padding:10px;
+	background-color:rgb(100,200,100);
+}

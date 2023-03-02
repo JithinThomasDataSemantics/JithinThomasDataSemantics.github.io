@@ -1,0 +1,380 @@
+
+body {
+    font-family: 'Times New Roman','Verdana',sans-serif, Arial, Helvetica;
+    font-size: 16px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;	
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+	width:100%;
+    padding:0px;
+    text-align:center;
+}
+
+#mainContainer2
+{
+	width: 100%;
+	background-color:#FBFBAB;
+}
+
+#mainContainer3
+{
+	width: 100%;
+	background-color:#FACBF0;	
+}
+#mainContainer4
+{
+	width: 100%;
+	background-color:#C4FAB6;	
+}
+
+#scroll
+{
+    overflow: scroll;
+    position: relative;
+    top: 72px;
+	padding-bottom:25%;
+    z-index: 1;
+
+}
+#scroll1
+{
+    overflow: scroll;
+    position: relative;
+    top: 100px;
+	padding-bottom:23px;
+    z-index: 1;
+
+}
+
+
+#headspan 
+{
+padding-top:15px;
+font-size:25px;}
+
+#header
+{
+background-color: #6BCA95;
+height: 72px;
+padding-left:10px;
+top:0px;
+position:fixed;
+width:100%;
+font-family:'Times New Roman', Helvetica, Arial, sans-serif; 
+z-index: 2;
+}
+
+#headerSaint
+{
+background-color: #f7c67c;
+height: 72px;
+padding-left:10px;
+top:0px;
+position:fixed;
+width:100%;
+font-family:'Times New Roman', Helvetica, Arial, sans-serif; 
+z-index: 2;
+}
+
+
+#headerWog
+{
+background-color: #9c2031;
+height: 72px;
+padding-left:10px;
+top:0px;
+position:fixed;
+color:white;
+width:100%;
+font-family:'Times New Roman', Helvetica, Arial, sans-serif; 
+z-index: 2;
+}
+
+#headerMm
+{
+background-color: #07D1D8;
+height: 72px;
+padding-left:10px;
+top:0px;
+position:fixed;
+width:100%;
+font-family:'Times New Roman', Helvetica, Arial, sans-serif; 
+z-index: 2;
+}
+
+#header1
+{
+background-color: #6BCA95;
+height: 100px;
+padding-left:10px;
+top:0px;
+position:fixed;
+width:100%;
+font-family:'Times New Roman', Helvetica, Arial, sans-serif; 
+z-index: 2;
+}
+#footer
+{
+ position:fixed;
+ bottom:0px;
+ background-color: #6BCA95;
+ text-align:center;	
+ width : 100%;
+ height: 15%;
+ padding: 1%;
+ z-index: 2;
+}
+
+#footerPara
+{
+	padding: 0px 5px 13px 5px;
+}
+#footerSaint
+{
+ position:fixed;
+ bottom:0px;
+ background-color: #f7c67c;
+ text-align:center;	
+ width : 100%;
+ height: 72px;
+ z-index: 2;
+}
+
+ #footer1Saint
+{
+ position:fixed;
+ bottom:0px;
+ width:100%;
+ background-color: #f7c67c;
+ text-align:center;	
+ height: 100px;
+ z-index: 2;
+} 
+ #footer2Saint
+{
+ position:fixed;
+ bottom:0px;
+ width:100%;
+ background-color:#f7c67c;
+ text-align:center;	
+ height: 85px;
+ z-index: 2;
+} 
+
+#footerWog
+{
+position:fixed;
+bottom:0px;
+background-color: #9c2031;
+color:white;
+text-align:center;	
+width : 100%;
+font-size: small;
+height: 72px;
+z-index: 2;
+}
+
+#footerMm
+{
+ position:fixed;
+ bottom:0px;
+ background-color: #6BCA95;
+ text-align:center;	
+ width : 100%;
+ height: 72px;
+ z-index: 2;	
+}
+ #footer1
+{
+ position:fixed;
+ bottom:0px;
+ width:100%;
+ background-color: #6BCA95;
+ text-align:center;	
+ height: 100px;
+ z-index: 2;
+} 
+
+#footer1Mm {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: #07D1D8;
+    text-align: center;
+    font-size: small;
+    height: 72px;
+    z-index: 2;
+}
+
+
+#footerWogMm
+{
+ position:fixed;
+ bottom:0px;
+ background-color: #07D1D8;
+ text-align:center;	
+ width : 100%;
+ height: 72px;
+ z-index: 2;
+}
+
+ #footer2
+{
+ position:fixed;
+ bottom:0px;
+ width:100%;
+ background-color: #6BCA95;
+ text-align:center;	
+ height: 85px;
+ z-index: 2;
+} 
+
+#blueDiv
+{
+	 background-color: #ACEFFA;
+	 padding:3%;
+}
+#yellowDiv
+{
+	 background-color: #FBFBAB;
+	 padding:3%;
+}
+
+#pinkDiv
+{
+	 background-color: #FACBF0;
+	 padding:3%;
+}
+#skyDiv
+{
+    background-color: #C5F4EF;
+	 padding:3%;
+}
+#purpleDiv
+{
+	 background-color: #D6BDE6;
+	 padding:3%;
+}
+
+#greenDiv
+{
+	background-color: #C4FAB6;
+	padding:3%;
+}
+#cont1Div
+{
+	background-color:#FDD2B6;
+	padding-top:30px;
+}
+#cont2Div
+{
+	background-color:#FBFBAB;
+	padding-top:65px;
+}
+
+#name
+{
+	float:right;
+}
+#scroll2   
+{
+    overflow: scroll;
+    position: relative;
+	margin-top: 72px;
+	padding-bottom:72px;
+    z-index: 1;
+}
+
+
+/*for all phones*/
+
+#mainContainerBlue
+{
+	width: 100%;
+	background-color:#B3F9FC;
+	background-image:url(../../../img/BGM.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: fixed;
+    height: 100%;
+    overflow: scroll;
+	background-attachment: fixed;	
+	background-position: center center;
+
+}
+
+#mainContainerSaint
+{
+	width: 100%;
+	background-color:#ddc7f9;
+	background-image:url(../../../img/Backsaints.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: fixed;
+    height: 100%;
+    overflow: scroll;
+	background-position: center center; 
+	background-attachment: fixed;
+	
+}
+#mainContainer
+{
+
+    width: 100%;
+    background-color: #e498a2;
+    background-image: url(../../../img/BGbib.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+	position: fixed;
+    height: 100%;
+    overflow: scroll;
+    background-position: center center;
+    background-attachment: fixed; 
+}
+
+
+
+/*for nokia x*/
+/*
+#mainContainerBlue
+{
+	width: 100%;
+	background-color:#B3F9FC;
+	background-image:url(../../../img/BGM.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;	
+	background-position: center center;
+
+}
+
+#mainContainerSaint
+{
+	width: 100%;
+	background-color:#ddc7f9;
+	background-image:url(../../../img/Backsaints.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center; 
+	background-attachment: fixed;
+	
+}
+#mainContainer
+{
+    width: 100%;
+    background-color: #e498a2;
+    background-image: url(../../../img/BGbib.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed; 
+}
+/**/

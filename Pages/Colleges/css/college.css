@@ -1,0 +1,453 @@
+body {
+    font-family: 'Times New Roman','Verdana', 'Times New Roman', Helvetica, Arial, sans-serif;
+    font-size:17px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;	
+}
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+	width:100%;
+    padding:0px;
+    text-align:center;
+}
+
+#mainContainer
+{
+	width: 100%;
+	background-color: #C2FAEC;
+	}
+
+
+
+#headspan 
+{
+font-size:20px; 
+text-align: center;
+padding:3%}
+
+#header
+{
+  background-color: #07D1D8;
+ font-weight: bolder;
+ font-style:Italic;
+    height: 72px;
+    padding-left: 10px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    font-family: 'Times New Roman', Helvetica, Arial, sans-serif;
+	z-index: 2; 
+}
+
+
+
+#headerRed
+{
+  background-color: #6BCA95;
+ font-weight: bolder;
+ font-style:Italic;
+    height: 72px;
+    padding-left: 10px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    font-family: 'Times New Roman', Helvetica, Arial, sans-serif;
+	z-index: 2; 
+}
+
+#headerGreen
+{
+  background-color: #6BCA95;
+ font-weight: bolder;
+ font-style:Italic;
+    height: 72px;
+    padding-left: 10px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    font-family: 'Times New Roman', Helvetica, Arial, sans-serif;
+	z-index: 2; 
+}
+
+#headerWog
+{
+    background-color: #9c2031;
+	color:white;
+    height: 72px;
+    padding-left: 10px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+	color:white;
+    font-family: 'Times New Roman', Helvetica, Arial, sans-serif;
+	z-index: 2;
+}
+
+#headerYellow
+{
+  background-color: #6BCA95;
+ font-weight: bolder;
+ font-style:Italic;
+    height: 72px;
+    padding-left: 10px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    font-family: 'Times New Roman', Helvetica, Arial, sans-serif;
+	z-index: 2; 
+}
+#footer
+{
+ background-image: #6BCA95;
+ text-align:center;	
+ height:53px;
+}
+
+#address
+{
+padding-top:10px;
+padding-left:10px;	
+}
+
+#collegeMap1
+{
+	padding-left:10px;
+    width: 225px;
+    height: 225px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+#litany
+{
+	    text-decoration: none;
+		color:blue;
+}
+
+
+#subContainerColl
+{
+	background-color: #ece6c6;
+	overflow: scroll;
+    position: relative;
+    margin-top: 72px;
+	padding-bottom: 5%;
+    z-index: 1;
+}
+
+
+
+#header1
+{
+  background-color: #fdbc46;
+  position:fixed;
+  width :100%;
+ height: 71px;
+ font-weight: bolder;
+ font-style:Italic;
+ top: 0px;
+ font-family:'Times New Roman', Helvetica, Arial, sans-serif; 
+ z-index: 2;
+}
+
+#headspan 
+{
+padding-top:15px;
+font-size:25px;}
+#footerS
+{
+    position: fixed;
+    background-color: #fdbc46;
+    text-align: center;
+    bottom: 0px;
+    width: 100%;
+    height: 55px;
+    padding: 3%;	
+	z-index: 2;
+}
+
+#footerSM
+{
+    position: fixed;
+    background-color: #fdbc46;
+    text-align: center;
+    bottom: 0px;
+    font-size:10px;
+    width: 100%;
+    height: 55px;
+    padding: 3%;	
+	z-index: 2;
+}
+
+#footerPara
+{
+	padding:5px;
+}
+
+#song
+{
+
+    margin-top: 71px;
+	margin-bottom:55px;
+	font-size: medium;
+	z-index: 1;
+		color:black;
+    font-weight: bold;
+
+}
+
+ #body
+{
+	padding-left:15px;
+	padding-right:15px;
+}
+
+#headerSaint
+{
+  background-color: #f7c67c;
+ font-weight: bolder;
+ font-style:Italic;
+
+    height: 72px;
+    padding-left: 10px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    font-family: 'Times New Roman', Helvetica, Arial, sans-serif;
+	z-index: 2; 
+}
+
+#SwitchSaint
+{
+
+    position: fixed;
+    top: 10px;
+	left : 10px;
+	height : 26px;
+	width : 26px;
+	z-index: 3; 
+	
+}
+#mainSaint
+{
+	width: 100%
+	}
+
+
+/* for all phones*/
+
+
+#subSaint
+{
+    background-image: url(../../../img/Backsaints.jpg);
+    margin-top: 72px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	position: fixed;
+	height: calc(100% - 72px);
+    overflow: scroll;
+    padding-bottom: 5%;
+    z-index: 1;
+	background-position: center center;
+}
+#subContainer
+{
+	background-image:url(../../../img/BGM.jpg);
+	background-color: #B3F9FC;
+    margin-top: 72px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;		
+	position: fixed;
+	height: calc(100% - 72px);
+    overflow: scroll;
+	padding-bottom: 5%;
+    z-index: 1;
+	background-position: center center;
+
+}
+#subContainerYellow
+{
+    margin-top: 72px;
+    z-index: 1;
+    background-image: url(../../../img/BackHS.jpg);
+    background-size: cover;
+	position: fixed;
+	height: calc(100% - 72px);
+    overflow: scroll;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+}
+#subContainerRed
+{
+    margin-top: 72px;
+    z-index: 1;
+    background-image: url(../../../img/BackHS.jpg);
+    background-size: cover;
+	position: fixed;
+	height: calc(100% - 72px);
+    overflow: scroll;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+#subContainerGreen
+{
+    margin-top: 72px;
+    z-index: 1;
+    background-image: url(../../../img/BackHS.jpg);
+    background-size: cover;
+    width: 100%;
+	position: fixed;
+	height: calc(100% - 72px);
+    overflow: scroll;
+	background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+}
+#mainContainer2
+{
+	width: 100%;
+	background-color:#FCF59F;
+	position: fixed;
+	height: calc(100% - 72px);
+    overflow: scroll;
+	font-family:'Times New Roman', Arial, sans-serif,'Verdana';
+	background-image:url(../../../img/Backclg.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;	
+	background-position: center center; 
+	background-size: cover;
+
+	}
+#mainContainerWog
+{
+	
+    width: 100%;
+    background-image: url(../../../img/BGbib.jpg);
+    background-size: cover;
+	color: white;
+    margin-top: 72px;	
+	position: fixed;
+	height: calc(100% - 72px);
+    overflow: scroll;
+    background-attachment: fixed;
+    background-position: center center;	
+    z-index: 1;
+	}	
+	#Switch
+		{
+		position: fixed;
+		z-index: 1;
+		bottom: 83px;
+		right: 6px;
+		width: 40px;
+		height: 40px;
+		}		
+
+  
+
+	
+/* for Nokia x*/
+/*
+#subContainer
+{
+	background-color: #B3F9FC;
+    margin-top: 72px;
+	padding-bottom: 5%;
+    z-index: 1;
+	background-image:url(../../../img/BGM.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;		
+	background-position: center center;
+
+}
+
+#subContainerYellow
+{
+    margin-top: 72px;
+    z-index: 1;
+    background-image: url(../../../img/BackHS.jpg);
+    background-size: cover;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+#mainContainerWog
+{
+	
+    width: 100%;
+    background-image: url(../../../img/BGbib.jpg);
+    background-size: cover;
+    margin-top: 72px;
+    background-attachment: fixed;
+	color: white;
+    background-position: center center;	
+    z-index: 1;
+	}
+
+#subContainerRed
+{
+    margin-top: 72px;
+    z-index: 1;
+    background-image: url(../../../img/BackHS.jpg);
+    background-size: cover;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+#subContainerGreen
+{
+    margin-top: 72px;
+    z-index: 1;
+    background-image: url(../../../img/BackHS.jpg);
+    background-size: cover;
+    width: 100%;
+	background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+
+}
+#mainContainer2
+{
+	width: 100%;
+	background-color:#FCF59F;
+	font-family:'Times New Roman', Arial, sans-serif,'Verdana';
+	background-image:url(../../../img/Backclg.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;	
+	background-position: center center; 
+	background-size: cover;
+
+	}
+#subSaint
+{
+    background-image: url(../../../img/Backsaints.jpg);
+    margin-top: 72px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 5%;
+    z-index: 1;
+	background-position: center center;
+}
+
+	
+
+/**/
