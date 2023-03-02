@@ -278,3 +278,12 @@ padding: 14px 16px;
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+.center{
+    text-align: center;
+    display: block;
+    float: right;
+    width: 31%;
+    height: 43%;
+    margin-right: 33%;
+}
