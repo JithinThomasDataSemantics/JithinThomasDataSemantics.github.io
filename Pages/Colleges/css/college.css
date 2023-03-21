@@ -26,7 +26,7 @@ h1 {
 
 #headspan 
 {
-font-size:20px; 
+font-size:35px; 
 text-align: center;
 padding:3%}
 
@@ -268,6 +268,7 @@ font-size:25px;}
 	height: calc(100% - 72px);
     overflow: scroll;
 	padding-bottom: 5%;
+    font-size: 20px;
     z-index: 1;
 	background-position: center center;
 

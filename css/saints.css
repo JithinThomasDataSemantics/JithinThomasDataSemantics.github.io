@@ -1,0 +1,86 @@
+
+
+
+#header {
+    background-color: #f7c67c;
+}
+
+#subContainer{
+background-image: url(../img/Backsaints.jpg);
+}
+
+
+#footerMm {
+    background-color: #f7c67c;
+}
+
+#appbody{
+    padding: 20px;
+    padding-top: 10px;
+}
+
+
+#controls{
+    display: flex;
+    justify-content: space-evenly;
+    width: 200px;
+}
+
+#control-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+
+}
+@media (max-width: 500px) {
+    #subContainer{
+        font-size: 25px;
+    }       }
+
+@media (min-width: 500px) {
+    #subContainer{
+        font-size: 20px;
+    }       }
+
+
+.common-flex{
+border: 2px solid #f5ad40;
+box-shadow: 0px 0px 8px #606060;
+color: white;
+background-color: #f7c67c;
+}
+
+.common-flex:hover
+{
+    background-color: #f5ad40;
+    color: firebrick;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+.titles{
+    width: 100%;
+    margin: 6px;
+}
+
+.yellowDiv{
+    background-color: #FBFBAB;
+    padding: 2%;
+    flex: auto;
+}
+
+.greenDiv{
+    background-color: #C4FAB6;
+    padding: 2%;
+    flex: auto;
+}
+
+
+.list-nav{
+    margin-bottom: 50px;
+}
+
+.copy-item{
+    
+    float: right;
+
+}

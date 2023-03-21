@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../../../css/mmary.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+		<title>Marian Calander</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		  
+	</head>
+	
+	<body>
+		<div id="mainContainer1">
+			<div id="header">
+			<center id="headspan"><i><b>Marian Calander</b></i></center>
+			</div>	
+			<div id="subContainer">
+			<nav class="ListNav list-nav">
+				<div class="cal-month mmary-flex common-flex" id="today">Today</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-jan">Jan</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-feb">Feb</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-mar">Mar</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-apr">Apr</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-may">May</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-jun">Jun</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-jul">Jul</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-aug">Aug</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-sept">Sept</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-oct">Oct</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-nov">Nov</div>
+				<div class="cal-month mmary-flex common-flex" id="cal-dec">Dec</div>
+							<!-- <a href="January.html" id="jit"><li li id="mary">Today</li></a><br/>
+							<a href="January.html" ><li id="mary">January</li></a><br/>
+							<a href="February.html" ><li id="mary">February</li></a><br/>
+							<a href="March.html" ><li id="mary">March</li></a><br/>
+							<a href="April.html" ><li id="mary">April</li></a><br/>
+							<a href="May.html" ><li id="mary">May</li></a><br/>
+							        
+							<a href="June.html" ><li id="mary">June</li></a><br/>
+							<a href="July.html" ><li id="mary">July</li></a><br/>	
+							<a href="August.html" ><li id="mary">August</li></a><br/>
+							<a href="September.html" ><li id="mary">September</li></a><br/>							
+							<a href="October.html" ><li id="mary">October</li></a><br/>	
+							        
+							<a href="November.html" ><li id="mary">November</li></a><br/>
+							<a href="December.html" ><li id="mary">December</li></a><br/>	 -->
+				
+			</nav>
+			</div>
+            <div id="footerMm" class="footer">Do not be afraid to become the saints of the new millennium!<strong><br/>Saint John Paul II</strong>
+			</div>			
+		</div>		
+		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/data/calendar.js"></script>
+		<script type="text/javascript" src="../../../js/mmary.js"></script>
+		<script>
+			$(document).on("click", ".cal-month", function () {
+				
+				
+				month_name=$(this).text()
+				if (month_name=='Today')
+				{
+				const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+				const d = new Date();
+				let month_name=monthNames[d.getMonth()]
+				let today = new Date();
+				let day = today.getDate().toString().padStart(2, '0');
+				let title_name=mm_calendar[month_name].find(item => item[day])
+				window.location ="mothermary.html?title="+title_name[day]
+				}
+				else{
+					window.location ="calendarmonth.html?month="+month_name
+				}
+				
+				// create calendarmonth.html
+				// This can be used in calendarmonth.html
+				// dates=mm_calendar[$(this).text()]
+				// let daycount = mm_calendar[$(this).text()].length;
+				// alert(daycount)
+				// for (var i = 0; i < daycount; i++) {
+				// 	console.log(myStringArray[i]);
+				// 	//Do something
+				// }
+				// mm_calendar
+			});
+			
+		</script>
+	</body>
+</html>

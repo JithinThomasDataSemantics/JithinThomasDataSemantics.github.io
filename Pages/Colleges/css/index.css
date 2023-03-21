@@ -287,3 +287,25 @@ padding: 14px 16px;
     height: 43%;
     margin-right: 33%;
 }
+
+#dash {
+ 
+    display: flex;
+    -webkit-box-pack: space-evenly;
+    justify-content: space-evenly;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* width: 300px; */
+    /* height: 300px; */
+    /* display: grid; */
+    /* grid-template-columns: 1fr minmax(auto, 305px); */
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+    grid-gap: 100px;
+    margin-top: 50px;
+}
+}

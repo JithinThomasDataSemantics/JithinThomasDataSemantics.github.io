@@ -1,0 +1,86 @@
+
+
+
+#header {
+    background-color: #07D1D8;
+}
+
+#subContainer{
+background-image: url(../img/BGM.jpg);
+background-color: #B3F9FC;
+}
+
+
+#footerMm {
+    background-color: #07D1D8;
+}
+
+#appbody{
+    padding: 20px;
+    padding-top: 10px;
+}
+
+
+#controls{
+    display: flex;
+    justify-content: space-evenly;
+    width: 200px;
+}
+
+#control-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+
+}
+@media (max-width: 500px) {
+    #subContainer{
+        font-size: 25px;
+    }       }
+
+@media (min-width: 500px) {
+    #subContainer{
+        font-size: 20px;
+    }       }
+
+.mmary-flex{
+border: 2px solid #007a80;
+box-shadow: 0px 0px 8px #606060;
+color: #19a0f3;
+}
+
+.mmary-flex:hover
+{
+    background: #19a0f3;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+.mary-titles{
+    width: 100%;
+    margin: 6px;
+}
+
+
+.yellowDiv{
+    background-color: #FBFBAB;
+    padding: 2%;
+    flex: auto;
+}
+
+.greenDiv{
+    background-color: #C4FAB6;
+    padding: 2%;
+    flex: auto;
+}
+
+
+.list-nav{
+    margin-bottom: 50px;
+}
+
+.copy-item{
+    
+    float: right;
+
+}

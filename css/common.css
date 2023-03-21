@@ -1,0 +1,124 @@
+
+
+
+#header {
+    width: 100%;
+    position: fixed;
+    padding: 5px;
+    height: 50px;
+    text-align: center;
+    top: 0px;
+    font-weight: bolder;
+    font-style: Italic;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#subContainer{
+margin-top: 50px;
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+position: fixed;
+height: calc(100% - 72px);
+overflow: scroll;
+z-index: 1;
+padding-bottom: 110px;
+background-position: center center;
+}
+
+
+
+.footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    padding: 2%;
+    z-index: 2;
+    font-size: 20px;
+}
+
+#appbody{
+    padding: 20px;
+    padding-top: 10px;
+}
+
+
+#controls{
+    display: flex;
+    justify-content: space-evenly;
+    width: 200px;
+}
+
+#control-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+
+}
+@media (max-width: 500px) {
+    #subContainer{
+        font-size: 25px;
+    }       }
+
+@media (min-width: 500px) {
+    #subContainer{
+        font-size: 20px;
+    }       }
+
+
+.list-nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    justify-content: space-evenly;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 2%;
+}
+
+.common-flex{
+border-radius: 25px;
+padding: 10px;
+
+-webkit-transition: 0.3s all ease-in-out;
+transition: 0.3s all ease-in-out;
+position: relative;
+display: flex;
+justify-content: center;
+align-content: center;
+align-items: center;
+font-weight: bold;
+cursor: pointer;
+font-size: 20px;
+}
+
+
+.cal-month{
+width: 50px;
+height: 50px;
+border-radius: 10px;
+margin: 20px;
+font-size: 18px;
+}
+
+.cal-day{
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    margin: 10px;
+    font-size: 32px;
+}
+
+.common-titles{
+    width: 100%;
+    margin: 6px;
+}

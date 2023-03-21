@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../../../css/mmary.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+		<title>Marian Calander</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		  
+	</head>
+	
+	<body>
+		<div id="mainContainer1">
+			<div id="header">
+			<center id="headspan"><i><b id="mcal-head">Marian Calander-</b></i></center>
+			</div>	
+			<div id="subContainer">
+			<nav class="ListNav list-nav" >
+							<!-- <a href="January.html" id="jit"><li li id="mary">Today</li></a><br/>
+							<a href="January.html" ><li id="mary">January</li></a><br/>
+							<a href="February.html" ><li id="mary">February</li></a><br/>
+							<a href="March.html" ><li id="mary">March</li></a><br/>
+							<a href="April.html" ><li id="mary">April</li></a><br/>
+							<a href="May.html" ><li id="mary">May</li></a><br/>
+							        
+							<a href="June.html" ><li id="mary">June</li></a><br/>
+							<a href="July.html" ><li id="mary">July</li></a><br/>	
+							<a href="August.html" ><li id="mary">August</li></a><br/>
+							<a href="September.html" ><li id="mary">September</li></a><br/>							
+							<a href="October.html" ><li id="mary">October</li></a><br/>	
+							        
+							<a href="November.html" ><li id="mary">November</li></a><br/>
+							<a href="December.html" ><li id="mary">December</li></a><br/>	 -->
+				
+			</nav>
+			</div>
+
+            <div id="footerMm" class="footer">Do not be afraid to become the saints of the new millennium!<strong><br/>Saint John Paul II</strong>
+			</div>			
+		</div>		
+		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/data/calendar.js"></script>
+		<script type="text/javascript" src="../../../js/mmary.js"></script>
+		<script>
+            let url_string =document.documentURI;
+            let url = new URL(url_string);
+            let month = url.searchParams.get("month");
+
+			$("#mcal-head").html("Marian Calander-"+month)
+            let daycount = mm_calendar[month].length;
+            console.log(daycount)
+            html_content=""
+            for (var i = 0; i < daycount; i++) {
+                console.log(mm_calendar[month][i]);
+                html_content+=`<div class="cal-day mmary-flex common-flex" data-name="`+Object.entries(mm_calendar[month][i])[0][1]+`">`+Object.entries(mm_calendar[month][i])[0][0]+`</div>`
+                
+				}
+            
+            $('.maryListNav').html(html_content)
+
+            
+			$(document).on("click", ".cal-day", function () {
+				
+				
+				let title=$(this).data("name")
+				window.location ="mothermary.html?title="+title
+				
+            });
+			// 	// create calendarmonth.html
+			// 	// This can be used in calendarmonth.html
+			// 	// dates=mm_calendar[$(this).text()]
+			// 	// let daycount = mm_calendar[$(this).text()].length;
+			// 	// alert(daycount)
+			// 	// for (var i = 0; i < daycount; i++) {
+			// 	// 	console.log(myStringArray[i]);
+			// 	// 	//Do something
+			// 	// }
+			// 	// mm_calendar
+			// });
+			
+		</script>
+	</body>
+</html>
