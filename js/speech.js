@@ -61,6 +61,8 @@ document.querySelector("#start").addEventListener("click", () => {
   $('#start').hide()
   $('#cancel').show()
   text=document.querySelector("#appbody").innerHTML
+  text=text.replace('/<p>/g','')
+  text=text.replace('/</p>/g','')
   text=text.replace(/\t/g, '');
   text=text.replace(/\n/g, '');
   
