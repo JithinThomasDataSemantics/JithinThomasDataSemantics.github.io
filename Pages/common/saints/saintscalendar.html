@@ -3,7 +3,7 @@
 
 	<head>
 		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
-		<link rel="stylesheet" type="text/css" href="../../../css/mmary.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/saints.css" />
 		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
 		<title>Marian Calander</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
 	<body>
 		<div id="mainContainer1">
 			<div id="header">
-			<center id="headspan"><i><b>Marian Calander</b></i></center>
+			<center id="headspan"><i><b>Saints Calander</b></i></center>
 			</div>	
 			<div id="subContainer">
 			<nav class="ListNav list-nav">
@@ -52,7 +52,7 @@
 			</div>			
 		</div>		
 		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
-		<script type="text/javascript" src="../../../js/data/calendar.js"></script>
+		<script type="text/javascript" src="../../../js/data/saintscalendar.js"></script>
 		<script>
 			$(document).on("click", ".cal-month", function () {
 				
@@ -65,8 +65,8 @@
 				let month_name=monthNames[d.getMonth()]
 				let today = new Date();
 				let day = today.getDate().toString().padStart(2, '0');
-				let title_name=mm_calendar[month_name].find(item => item[day])
-				window.location ="mothermary.html?title="+title_name[day]
+				let title_name=saintsCalendar[month_name].find(item => item[day])
+				window.location ="saint.html?title="+title_name[day]
 				}
 				else{
 					window.location ="calendarmonth.html?month="+month_name

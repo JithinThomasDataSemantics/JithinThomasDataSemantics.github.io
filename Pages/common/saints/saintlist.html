@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../../../css/saints.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+		<title>All Saints</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		  
+	</head>
+	
+	<body>
+		<div id="mainContainer1">
+			<div id="header">
+			<center id="headspan"><i><b>All Saints</b></i></center>
+            <input placeholder="search" id="searchitem">
+			</div>	
+			<div id="subContainer">
+			<nav class="ListNav list-nav">
+				
+			</nav>
+			</div>
+
+            <div id="footerMm" class="footer">Do not be afraid to become the saints of the new millennium!<strong><br/>Saint John Paul II</strong>
+			</div>			
+		</div>		
+		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/data/saintsdata.js"></script>
+		<script>
+
+
+            
+            html_content=""
+            items=Object.keys(saintsdata['eng']).sort()
+
+            for (var i = 0; i < items.length; i++) {
+                html_content+=`<div class="saint-titles saint-flex common-flex" data-name="`+items[i]+`">`+items[i]+`</div>`
+				}
+            
+            $('.ListNav').html(html_content)
+            
+			$(document).on("click", ".saint-titles", function () {
+				
+				
+				let title=$(this).data("name")
+				window.location ="saint.html?title="+title
+				
+            });
+
+            $("#searchitem").on("input", function() {
+                const inputValue = $(this).val();
+                if (inputValue==""){
+                    html_content=""
+                    for (var i = 0; i < items.length; i++) {
+                    html_content+=`<div class="saint-titles saint-flex common-flex" data-name="`+items[i]+`">`+items[i]+`</div>`
+                    }
+                    $('.ListNav').html("")
+                    $('.ListNav').html(html_content)
+				
+                }
+
+                else{
+                    const filtereditems = items.filter(i => i.toLowerCase().includes(inputValue.toLowerCase()));
+                    html_content=""
+                    for (var i = 0; i < filtereditems.length; i++) {
+                    html_content+=`<div class="saint-titles saint-flex common-flex" data-name="`+filtereditems[i]+`">`+filtereditems[i]+`</div>`
+                    }
+                    $('.ListNav').html("")
+                    $('.ListNav').html(html_content)
+                }
+
+            });
+		</script>
+	</body>
+</html>

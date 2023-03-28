@@ -3,9 +3,9 @@
 
 	<head>
 		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
-		<link rel="stylesheet" type="text/css" href="../../../css/mmary.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/saints.css" />
 		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
-		<title>Mother Mary-Titles</title>
+		<title>Patron Saints</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		  
 	</head>
@@ -13,8 +13,8 @@
 	<body>
 		<div id="mainContainer1">
 			<div id="header">
-			<center id="headspan"><i><b>Titles of Mary</b></i></center>
-			<input placeholder="search" id="searchitem">
+			<center id="headspan"><i><b>Patron Saints</b></i></center>
+            <input placeholder="search" id="searchitem">
 
 			</div>	
 			<div id="subContainer">
@@ -38,39 +38,39 @@
 			</nav>
 			</div>
 
-            <div id="footerMm" class="footer">Do not be afraid to become the saints of the new millennium!<strong><br/>Saint John Paul II</strong>
+            <div id="footerMm"  class="footer">"Be still, and know that I am God"<br/><strong>Psalm 46:10</strong>
 			</div>			
 		</div>		
 		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
-		<script type="text/javascript" src="../../../js/data/mother.js"></script>
-		<script type="text/javascript" src="../../../js/mmary.js"></script>
+		<script type="text/javascript" src="../../../js/data/patronsaints.js"></script>
+		<!-- <script type="text/javascript" src="../../../js/mmary.js"></script> -->
 		<script>
-
-
-
             html_content=""
-            items=Object.keys(mom).sort()
+            sorted=patronsaints.sort((a, b) => a.key_eng - b.key_eng);
 
-            for (var i = 0; i < items.length; i++) {
-                html_content+=`<div class="mary-titles mmary-flex common-flex" data-name="`+items[i]+`">`+items[i]+`</div>`
+
+            for (var i = 0; i < sorted.length; i++) {
+                html_content+=`<div class="titles multi-grid" data-name="`+sorted[i]["saint"]+`"><div class="patron-item sub-list-item">`+sorted[i]['key_eng']+`</div><div class="patron-saint sub-list-item">`+sorted[i]['saint']+`</div></div>`
 				}
             
             $('.ListNav').html(html_content)
             
-			$(document).on("click", ".mary-titles", function () {
+			$(document).on("click", ".titles", function () {
 				
 				
 				let title=$(this).data("name")
-				window.location ="mothermary.html?title="+title
+				window.location ="saint.html?title="+title
 				
             });
 			
-			$("#searchitem").on("input", function() {
+
+            
+            $("#searchitem").on("input", function() {
                 const inputValue = $(this).val();
                 if (inputValue==""){
                     html_content=""
                     for (var i = 0; i < items.length; i++) {
-						html_content+=`<div class="mary-titles mmary-flex common-flex" data-name="`+items[i]+`">`+items[i]+`</div>`
+                        html_content+=`<div class="titles multi-grid" data-name="`+sorted[i]["saint"]+`"><div class="patron-item sub-list-item">`+sorted[i]['key_eng']+`</div><div class="patron-saint sub-list-item">`+sorted[i]['saint']+`</div></div>`
                     }
                     $('.ListNav').html("")
                     $('.ListNav').html(html_content)
@@ -78,17 +78,18 @@
                 }
 
                 else{
-                    const filtereditems = items.filter(i => i.toLowerCase().includes(inputValue.toLowerCase()));
+                    const filtereditems = sorted.filter(i => (i["key_eng"].toLowerCase().includes(inputValue.toLowerCase()) ||i["saint"].toLowerCase().includes(inputValue.toLowerCase())));
                     html_content=""
                     for (var i = 0; i < filtereditems.length; i++) {
-						html_content+=`<div class="mary-titles mmary-flex common-flex" data-name="`+filtereditems[i]+`">`+filtereditems[i]+`</div>`
+                        html_content+=`<div class="titles multi-grid" data-name="`+filtereditems[i]["saint"]+`"><div class="patron-item sub-list-item">`+filtereditems[i]['key_eng']+`</div><div class="patron-saint sub-list-item">`+filtereditems[i]['saint']+`</div></div>`
                     }
                     $('.ListNav').html("")
                     $('.ListNav').html(html_content)
+				
+
                 }
 
-            });			
-			
+            });
 		</script>
 	</body>
 </html>

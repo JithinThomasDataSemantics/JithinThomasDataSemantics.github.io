@@ -5,15 +5,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 		<link rel="stylesheet" type="text/css" href="../../../css/bootstrap/css/bootstrap.5.0.2.css" />
-		<link rel="stylesheet" type="text/css" href="../../../css/mmary.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/saints.css" />
 		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
 
-		<title>Mother Mary-Titles</title>
+		<title>Saint Details</title>
 	</head>
     <body>
-		<div id="mainContainer">
+		<div id="mainContainer1">
 			<div id="header">
-				<span id="headspan">Abbey de la Couronne</span>
+				<span id="headspan">Saint Details</span>
 			</div>	
 
 
@@ -35,14 +35,13 @@
 		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
 
 		<script type="text/javascript" src="../../../js/speech.js"></script>
-		<script type="text/javascript" src="../../../js/data/mother.js"></script>
-		<script type="text/javascript" src="../../../js/mmary.js"></script>
+		<script type="text/javascript" src="../../../js/data/saintsdata.js"></script>
 		
 		<script>
 				var url_string =document.documentURI;
 				var url = new URL(url_string);
 				var c = url.searchParams.get("title");
-				$('#appbody').html(mom[c]['eng'])
+				$('#appbody').html(saintsdata['eng'][c]['content'])
 				$('#headspan').html(c)
 		</script>
 	</body>

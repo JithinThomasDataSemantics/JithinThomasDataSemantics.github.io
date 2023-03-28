@@ -43,14 +43,14 @@ background-image: url(../img/Backsaints.jpg);
     }       }
 
 
-.common-flex{
+.common-flex, .multi-grid{
 border: 2px solid #f5ad40;
 box-shadow: 0px 0px 8px #606060;
 color: white;
 background-color: #f7c67c;
 }
 
-.common-flex:hover
+.common-flex:hover, .multi-grid:hover
 {
     background-color: #f5ad40;
     color: firebrick;
@@ -83,4 +83,58 @@ background-color: #f7c67c;
     
     float: right;
 
+}
+
+.sub-list-item{
+    display: flex;
+}
+
+.multi-grid{
+    border-radius: 34px;
+    padding: 10px;
+    -webkit-transition: 0.3s all ease-in-out;
+    transition: 0.3s all ease-in-out;
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 20px;
+    display: grid;
+}
+
+.patron-item{
+    color: black;
+    font-size: 19px;
+}
+.patron-saint{
+    font-weight: 100;
+}
+
+.multi-grid:hover .patron-item, .multi-grid.hover .patron-item {color: white; }
+
+
+.saint-flex{
+    border: 2px solid #f5ad40;
+    box-shadow: 0px 0px 8px #606060;
+    color: white;
+    }
+    
+.saint-flex:hover
+{
+    background: #f5ad40;
+    color: firebrick;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+.saint-titles{
+    width: 100%;
+    margin: 6px;
+}
+    
+#searchitem{
+    right: 18px;
+    background: #f7c67c;
+    width: 20%;
 }

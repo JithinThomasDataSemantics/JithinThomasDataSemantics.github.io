@@ -3,9 +3,9 @@
 
 	<head>
 		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
-		<link rel="stylesheet" type="text/css" href="../../../css/mmary.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/saints.css" />
 		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
-		<title>Mother Mary-Titles</title>
+		<title>Marian Calander</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		  
 	</head>
@@ -13,12 +13,10 @@
 	<body>
 		<div id="mainContainer1">
 			<div id="header">
-			<center id="headspan"><i><b>Titles of Mary</b></i></center>
-			<input placeholder="search" id="searchitem">
-
+			<center id="headspan"><i><b id="mcal-head">Saints Calander-</b></i></center>
 			</div>	
 			<div id="subContainer">
-			<nav class="ListNav list-nav">
+			<nav class="ListNav list-nav" >
 							<!-- <a href="January.html" id="jit"><li li id="mary">Today</li></a><br/>
 							<a href="January.html" ><li id="mary">January</li></a><br/>
 							<a href="February.html" ><li id="mary">February</li></a><br/>
@@ -42,52 +40,42 @@
 			</div>			
 		</div>		
 		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
-		<script type="text/javascript" src="../../../js/data/mother.js"></script>
-		<script type="text/javascript" src="../../../js/mmary.js"></script>
+		<script type="text/javascript" src="../../../js/data/saintscalendar.js"></script>
 		<script>
+            let url_string =document.documentURI;
+            let url = new URL(url_string);
+            let month = url.searchParams.get("month");
 
-
-
+			$("#mcal-head").html("Saints Calander-"+month)
+            let daycount = saintsCalendar[month].length;
+            console.log(daycount)
             html_content=""
-            items=Object.keys(mom).sort()
-
-            for (var i = 0; i < items.length; i++) {
-                html_content+=`<div class="mary-titles mmary-flex common-flex" data-name="`+items[i]+`">`+items[i]+`</div>`
+            for (var i = 0; i < daycount; i++) {
+                html_content+=`<div class="cal-day mmary-flex common-flex" data-name="`+Object.entries(saintsCalendar[month][i])[0][1]+`">`+Object.entries(saintsCalendar[month][i])[0][0]+`</div>`
+                
 				}
             
             $('.ListNav').html(html_content)
+
             
-			$(document).on("click", ".mary-titles", function () {
+			$(document).on("click", ".cal-day", function () {
 				
 				
 				let title=$(this).data("name")
-				window.location ="mothermary.html?title="+title
+				window.location ="saint.html?title="+title
 				
             });
-			
-			$("#searchitem").on("input", function() {
-                const inputValue = $(this).val();
-                if (inputValue==""){
-                    html_content=""
-                    for (var i = 0; i < items.length; i++) {
-						html_content+=`<div class="mary-titles mmary-flex common-flex" data-name="`+items[i]+`">`+items[i]+`</div>`
-                    }
-                    $('.ListNav').html("")
-                    $('.ListNav').html(html_content)
-				
-                }
-
-                else{
-                    const filtereditems = items.filter(i => i.toLowerCase().includes(inputValue.toLowerCase()));
-                    html_content=""
-                    for (var i = 0; i < filtereditems.length; i++) {
-						html_content+=`<div class="mary-titles mmary-flex common-flex" data-name="`+filtereditems[i]+`">`+filtereditems[i]+`</div>`
-                    }
-                    $('.ListNav').html("")
-                    $('.ListNav').html(html_content)
-                }
-
-            });			
+			// 	// create calendarmonth.html
+			// 	// This can be used in calendarmonth.html
+			// 	// dates=mm_calendar[$(this).text()]
+			// 	// let daycount = mm_calendar[$(this).text()].length;
+			// 	// alert(daycount)
+			// 	// for (var i = 0; i < daycount; i++) {
+			// 	// 	console.log(myStringArray[i]);
+			// 	// 	//Do something
+			// 	// }
+			// 	// mm_calendar
+			// });
 			
 		</script>
 	</body>

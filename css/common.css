@@ -27,6 +27,7 @@ overflow: scroll;
 z-index: 1;
 padding-bottom: 110px;
 background-position: center center;
+width: 100%;
 }
 
 
@@ -77,7 +78,7 @@ background-position: center center;
     align-content: space-around;
     margin-right: auto;
     margin-left: auto;
-    width: 100%;
+    width: 95%;
     justify-content: space-evenly;
     -webkit-box-align: center;
     align-items: center;
@@ -121,4 +122,8 @@ font-size: 18px;
 .common-titles{
     width: 100%;
     margin: 6px;
+}
+
+#searchitem{
+    position: fixed;
 }
