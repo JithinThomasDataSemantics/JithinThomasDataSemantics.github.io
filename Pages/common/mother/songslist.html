@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+		<link rel="stylesheet" type="text/css" href="../../../css/mmary.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+		<title>Mother Mary-Titles</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		  
+	</head>
+	
+	<body>
+		<div id="mainContainer1">
+			<div id="header">
+			<center id="headspan"><i><b id="songheader">Songs</b></i></center>
+			            <input placeholder="search" id="searchitem">
+
+			</div>	
+			<div id="subContainer">
+			<nav class="ListNav list-nav">
+			</nav>
+			</div>
+
+            <div id="footerMm"  class="footer">"Be still, and know that I am God"<br/><strong>Psalm 46:10</strong>
+			</div>			
+		</div>		
+		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/data/songsdata.js"></script>
+		<!-- <script type="text/javascript" src="../../../js/mmary.js"></script> -->
+		<script>
+            html_content=""
+            let url_string =document.documentURI;
+            let url = new URL(url_string);
+            let title = url.searchParams.get("title");
+            $('#songheader').html('<i class="fa fa-music" style="color: chartreuse;" aria-hidden="true"></i> '+title)   
+            subitems=["മലയാളം","Manglish", "Holy Spirit", "Holy Mass", "Christmas", "God's Love", "Gospel as Song", "Healing", "Holy Week", "Mother Mary", "Praise and Worship", "Saints"]
+            subitems2=["Entrance","Offering", "Communion", "Others"]
+            if(title=="Malayalam"){
+				items=subitems
+            }
+			else if(title=="Holy Mass"){
+				items=subitems2
+
+            }
+			else if(subitems.includes(title)  || subitems2.includes(title)){
+					items=getItems(title)
+				
+                }
+            else{
+                items=Object.keys(allsongs[title]).sort()
+            }
+			        
+            
+
+            for (var i = 0; i < items.length; i++) {
+                html_content+=`<div class="mary-titles titles common-flex mmary-flex" data-title="`+title+`" data-name="`+items[i]+`">`+items[i]+`</div>`
+				}
+            
+            $('.ListNav').html(html_content)
+            
+			$(document).on("click", ".titles", function () {
+				let title=$(this).data("name")
+                if (subitems.includes(title) || subitems2.includes(title) ){
+					window.location ="songslist.html?title="+title
+                }else{
+					window.location ="song.html?title="+title+'&context='+$(this).data("title")
+                }
+				
+				
+            });
+			
+			function getItems(title){
+				console.log(title)
+				if (title=="മലയാളം"){
+					return Object.keys(allsongs["Malayalam"]["mal"]).sort()
+				}
+				else if(title=="Manglish"){
+					return Object.keys(allsongs["Malayalam"]["manglish"]).sort()
+				}
+				else {
+					return songgroups[title]
+				}
+				
+			}
+
+
+			$("#searchitem").on("input", function() {
+                const inputValue = $(this).val();
+                if (inputValue==""){
+                    html_content=""
+                    for (var i = 0; i < items.length; i++) {
+						html_content+=`<div class="mary-titles titles common-flex mmary-flex" data-title="`+title+`" data-name="`+items[i]+`">`+items[i]+`</div>`
+                    }
+                    $('.ListNav').html("")
+                    $('.ListNav').html(html_content)
+				
+                }
+
+                else{
+                    const filtereditems = items.filter(i => i.toLowerCase().includes(inputValue.toLowerCase()));
+                    html_content=""
+                    for (var i = 0; i < filtereditems.length; i++) {
+						html_content+=`<div class="mary-titles titles common-flex mmary-flex" data-title="`+title+`" data-name="`+filtereditems[i]+`">`+filtereditems[i]+`</div>`
+                    }
+                    $('.ListNav').html("")
+                    $('.ListNav').html(html_content)
+                }
+
+            });
+		</script>
+	</body>
+</html>

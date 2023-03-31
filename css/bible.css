@@ -2,16 +2,18 @@
 
 
 #header {
-    background-color: #f7c67c;
+    background-color: #9c2031;
+    color: white;
 }
 
 #subContainer{
-background-image: url(../img/Backsaints.jpg);
+background-image: url(../img/BGbib.jpg);
 }
 
 
 #footerMm {
-    background-color: #f7c67c;
+    background-color: #9c2031;
+    color: white;
 }
 
 #appbody{
@@ -44,16 +46,16 @@ background-image: url(../img/Backsaints.jpg);
 
 
 .common-flex, .multi-grid{
-border: 2px solid #f5ad40;
 box-shadow: 0px 0px 8px #606060;
-color: white;
-background-color: #f7c67c;
+background-color: #fde3e3;
+color: #9c2031;
+border: 2px solid #9c2031;
 }
 
 .common-flex:hover, .multi-grid:hover
 {
-    background-color: #f5ad40;
-    color: firebrick;
+    background-color: firebrick;
+    color: #fde3e3;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
 }
 
@@ -62,8 +64,8 @@ background-color: #f7c67c;
     margin: 6px;
 }
 
-.yellowDiv{
-    background-color: #FBFBAB;
+.skyDiv{
+    background-color: #C5F4EF;
     padding: 2%;
     flex: auto;
 }
@@ -135,19 +137,7 @@ background-color: #f7c67c;
     
 #searchitem{
     right: 5px;
-    background: #f7c67c;
+    background: #9c2031;
     width: 20%;
 }
 
-#appbodysong {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    padding-top: 10px;
-}
-
-.skyDiv{
-    background-color: #C5F4EF;
-    padding: 2%;
-    flex: auto;
-}

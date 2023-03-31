@@ -2,21 +2,29 @@
 
 
 #header {
-    background-color: #f7c67c;
+    background-color: #0909b9;
+    color: white;
+}
+
+#mainSaint{
+background-image: url(../img/BackSong.jpg);
 }
 
 #subContainer{
-background-image: url(../img/Backsaints.jpg);
-}
+    background-image: url(../img/BackSong.jpg);
+    }
 
 
 #footerMm {
-    background-color: #f7c67c;
+    background-color: #0909b9;
+    color: white;
 }
 
 #appbody{
     padding: 20px;
     padding-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -44,16 +52,16 @@ background-image: url(../img/Backsaints.jpg);
 
 
 .common-flex, .multi-grid{
-border: 2px solid #f5ad40;
-box-shadow: 0px 0px 8px #606060;
-color: white;
-background-color: #f7c67c;
+    border: 2px solid #0909b9;
+    box-shadow: 0px 0px 8px #606060;
+    color: rgba(0, 0, 0, 0.8);
+    background-color: #a7cced;
 }
 
 .common-flex:hover, .multi-grid:hover
 {
-    background-color: #f5ad40;
-    color: firebrick;
+    background-color: #0909b9;
+    color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
 }
 
@@ -135,19 +143,6 @@ background-color: #f7c67c;
     
 #searchitem{
     right: 5px;
-    background: #f7c67c;
+    background: #0909b9;
     width: 20%;
-}
-
-#appbodysong {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    padding-top: 10px;
-}
-
-.skyDiv{
-    background-color: #C5F4EF;
-    padding: 2%;
-    flex: auto;
 }

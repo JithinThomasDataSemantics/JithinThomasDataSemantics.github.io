@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../../../css/bible.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<title>Saints Quotes</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		  
+	</head>
+	
+	<body>
+		<div id="mainContainer1">
+			<div id="header">
+			<center id="headspan"><i><b id="bibleheader">Bible Quotes</b></i></center>
+			</div>	
+			<div id="subContainer">
+			<nav class="ListNav list-nav">
+				
+	
+			</nav>
+			</div>
+
+            <div id="footerMm" class="footer">"Be still, and know that I am God"<br/><strong>Psalm 46:10</strong>
+			</div>			
+		</div>		
+		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/data/biblequotes.js"></script>
+		<!-- <script type="text/javascript" src="../../../js/mmary.js"></script> -->
+		<script>
+
+
+			let url_string =document.documentURI;
+            let url = new URL(url_string);
+            let title = url.searchParams.get("title");
+
+			$('#bibleheader').html(title)
+            html_content=""
+            
+			let items=biblequotes[title] 
+
+
+            for (var i = 0; i < items.length; i++) {
+				if(i%2==0){divclass="greenDiv"} else {divclass="skyDiv"}
+                html_content+=`<p class="`+divclass+`">`+items[i]['eng']['quote']+`
+					<br>
+					<strong>
+						<em>--`+items[i]['eng']['words']+`</em>
+					</strong>
+					<i class="fa fa-copy copy-item" data-eng='`+items[i]['eng']['quote']+`' data-mal="`+items[i]['mal']['quote']+`" data-steng="`+items[i]['eng']['words']+`" data-steng="`+items[i]['mal']['words']+`"></i>
+				</p>`
+				}
+            
+            $('.ListNav').html(html_content)
+            
+			$(document).on("click", ".copy-item", function () {
+				let content=$(this).data('eng')
+				let saint=$(this).data("steng")
+				let data=content+'\n'+'--'+saint
+				copyToClipboard(data)
+				
+            });
+
+			function copyToClipboard(text) {
+					const textarea = document.createElement("textarea");
+					textarea.value = text;
+					document.body.appendChild(textarea);
+					textarea.select();
+					document.execCommand("copy");
+					document.body.removeChild(textarea);
+					}
+
+		</script>
+	</body>
+</html>

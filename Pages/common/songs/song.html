@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/bootstrap/css/bootstrap.5.0.2.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/songs.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+
+		<title>Saint Details</title>
+	</head>
+    <body>
+		<div id="mainContainer1">
+			<div id="header">
+				<span id="headspan">Saint Details</span>
+			</div>	
+
+
+			<div id= "subContainer">
+				<!-- <div id="control-container">
+				<div id="controls">
+				<i class="fa fa-play" id="start"  aria-hidden="true"></i>			
+				<i class="fa fa-pause" id="pause" aria-hidden="true" style="display: none;"></i>
+				<i class="fa fa-play" id="resume" aria-hidden="true" style="display: none;"></i>
+				<i class="fa fa-stop" id="cancel" aria-hidden="true" style="display: none;"></i>
+				</div>
+				</div> -->
+				<div id="appbody">
+
+				</div>	
+	
+			<footer id="footerMm" class="footer">For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. <strong>John:3/16</strong></footer>		
+		</div>
+		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
+
+		<script type="text/javascript" src="../../../js/speech.js"></script>
+		<script type="text/javascript" src="../../../js/data/songsdata.js"></script>
+		
+		<script>
+				var url_string =document.documentURI;
+				var url = new URL(url_string);
+				var title = url.searchParams.get("title");
+                var context=url.searchParams.get("context");
+
+                if (context=="English"||context=="Hindi"||context=="Action Songs"){
+                    $('#appbody').html(allsongs[context][title])
+                }
+				else if(context=="മലയാളം" ){
+                    $('#appbody').html(allsongs['Malayalam']["mal"][title])
+                }
+                else {
+                    $('#appbody').html(allsongs['Malayalam']["manglish"][title])
+                }
+                // if ( context=="Manglish") 
+				$('#headspan').html(title)
+		</script>
+	</body>
+</html>
+	
