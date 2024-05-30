@@ -3,6 +3,7 @@
 
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="UTF-8">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 		<link rel="stylesheet" type="text/css" href="../../../css/bootstrap/css/bootstrap.5.0.2.css" />
 		<link rel="stylesheet" type="text/css" href="../../../css/mmary.css" />
@@ -42,7 +43,20 @@
 				var url_string =document.documentURI;
 				var url = new URL(url_string);
 				var c = url.searchParams.get("title");
-				$('#appbody').html(mom[c]['eng'])
+
+				if ('mal' in mom[c])
+					{var lan = url.searchParams.get("lan");
+					 if(lan=="mal"){
+						$('#appbody').html(mom[c]['mal'])
+					 }
+					 else{
+						$('#appbody').html(mom[c]['eng'])
+					 }
+					}
+				else{
+					$('#appbody').html(mom[c]['eng'])
+				}
+				
 				$('#headspan').html(c)
 		</script>
 	</body>
