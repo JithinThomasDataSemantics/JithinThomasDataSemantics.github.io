@@ -19,7 +19,11 @@
 	<body>
 		<div id="mainContainer1">
 			<div id="header">
-			<center id="headspan"><i><b id="bibleheader">Bible Quotes</b></i></center>
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<center id="headspan"><i><b id="title">Logos Quiz</b></i></center>
+			<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<i class="fa fa-home"  id="logoshome"></i>
+
 			</div>	
 			<div id="subContainer">
 			<nav class="ListNav list-nav">
@@ -40,12 +44,13 @@
 			let url_string =document.documentURI;
             let url = new URL(url_string);
             let title = url.searchParams.get("title");
+            let maintitle = url.searchParams.get("maintitle");
             let titlestring=titles[title]
 
-			$('#bibleheader').html(titlestring)
+			$('#title').html(titlestring)
             html_content=""
             
-			let items=quiz[title] 
+			let items=quiz[maintitle][title] 
 
 
             for (var i = 0; i < items.length; i++) {
@@ -60,7 +65,12 @@
 				}
             
             $('.ListNav').html(html_content)
-         
+ 
+			$(document).on("click", "#logoshome", function () {
+				
+				window.location ="logoshome.html"
+				
+            });        
 			$(document).on("click", ".view-item", function () {
 				let dataid=$(this).data('id')
                 $('.view-item').show()
