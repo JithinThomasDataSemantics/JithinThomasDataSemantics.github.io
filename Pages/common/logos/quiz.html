@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../../../css/bible.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<title>Logos Quiz</title>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		  <style>
+            .ans {
+                display: none;
+            }
+          </style>
+	</head>
+	
+	<body>
+		<div id="mainContainer1">
+			<div id="header">
+			<center id="headspan"><i><b id="bibleheader">Bible Quotes</b></i></center>
+			</div>	
+			<div id="subContainer">
+			<nav class="ListNav list-nav">
+				
+	
+			</nav>
+			</div>
+
+            <div id="footerMm" class="footer">"Be still, and know that I am God"<br/><strong>Psalm 46:10</strong>
+			</div>			
+		</div>		
+		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/data/logos.js"></script>
+		<!-- <script type="text/javascript" src="../../../js/mmary.js"></script> -->
+		<script>
+
+
+			let url_string =document.documentURI;
+            let url = new URL(url_string);
+            let title = url.searchParams.get("title");
+            let titlestring=titles[title]
+
+			$('#bibleheader').html(titlestring)
+            html_content=""
+            
+			let items=quiz[title] 
+
+
+            for (var i = 0; i < items.length; i++) {
+				if(i%2==0){divclass="greenDiv"} else {divclass="skyDiv"}
+                html_content+=`<p class="`+divclass+`">`+items[i]['Que']+`
+					<br>
+					<strong>
+						<em class="ans" id="que`+i+`" >Ans: `+items[i]['Ans']+`</em>
+					</strong>
+					<i class="fa fa-eye view-item" data-id='que`+i+`'>Answer</i>
+				</p>`
+				}
+            
+            $('.ListNav').html(html_content)
+         
+			$(document).on("click", ".view-item", function () {
+				let dataid=$(this).data('id')
+                $('.view-item').show()
+                $(this).hide()
+                $(".ans").hide()
+                $('#'+dataid).show()
+				
+            });
+		</script>
+	</body>
+</html>
