@@ -15,7 +15,6 @@
             }
 
 			#quizdiv {
-				position: fixed;
 				height: 100%;
 				overflow: scroll;
 				z-index: 1;
@@ -101,13 +100,13 @@
 			// 	}
 
 		function set_content(i){
-			html_content=`<p class="skyDiv" id="skyDiv">`+items[i]['Que']+`
-					<br>
+			html_content=`<div class="skyDiv"><p id="skyDiv">`+items[i]['Que']+`
+					</p>
 					<strong>
 						<em class="ans" id="que`+i+`" >Ans: `+items[i]['Ans']+`</em>
 					</strong>
 					<i class="fa fa-eye view-item" data-id='que`+i+`'>Answer</i>
-				</p>`
+				</div>`
             
             $('.ListNav').html(html_content)
 		}
