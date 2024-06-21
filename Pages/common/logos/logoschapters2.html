@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- <link rel="stylesheet" type="text/css" href="../../Colleges/css/college list.css" /> -->
+		<link rel="stylesheet" type="text/css" href="../../../css/bible.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<title>Bible Quotes</title>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		  
+	</head>
+	
+	<body>
+		<div id="mainContainer1">
+			<div id="header">
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<center id="headspan"><i><b id="title">Logos Quiz</b></i></center>
+			<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<i class="fa fa-home"  id="logoshome"></i>
+
+			</div>	
+			<div id="subContainer">
+			<nav class="ListNav list-nav">
+							<!-- <a href="January.html" id="jit"><li li id="mary">Today</li></a><br/>
+							<a href="January.html" ><li id="mary">January</li></a><br/>
+							<a href="February.html" ><li id="mary">February</li></a><br/>
+							<a href="March.html" ><li id="mary">March</li></a><br/>
+							<a href="April.html" ><li id="mary">April</li></a><br/>
+							<a href="May.html" ><li id="mary">May</li></a><br/>
+							        
+							<a href="June.html" ><li id="mary">June</li></a><br/>
+							<a href="July.html" ><li id="mary">July</li></a><br/>	
+							<a href="August.html" ><li id="mary">August</li></a><br/>
+							<a href="September.html" ><li id="mary">September</li></a><br/>							
+							<a href="October.html" ><li id="mary">October</li></a><br/>	
+							        
+							<a href="November.html" ><li id="mary">November</li></a><br/>
+							<a href="December.html" ><li id="mary">December</li></a><br/>	 -->
+				
+			</nav>
+			</div>
+
+            <div id="footerMm" class="footer">Do not be afraid to become the saints of the new millennium!<strong><br/>Saint John Paul II</strong>
+			</div>			
+		</div>		
+		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/data/logos.js"></script>
+		<script>
+
+
+			let url_string =document.documentURI;
+            let url = new URL(url_string);
+            let title = url.searchParams.get("title");
+			$('#title').text(maintitles[title])
+
+            html_content=""
+			headertext=
+            items=Object.keys(quiz[title]).sort()
+
+            for (var i = 0; i < items.length; i++) {
+                html_content+=`<div class="titles mmary-flex common-flex" data-name="`+items[i]+`">`+titles[items[i]]+`</div>`
+				}
+            
+            $('.ListNav').html(html_content)
+            
+			$(document).on("click", ".titles", function () {
+				
+				
+				let title1=$(this).data("name")
+				window.location ="quiz2.html?title="+title1+"&maintitle="+title
+				
+            });
+
+			$(document).on("click", "#logoshome", function () {
+				
+				window.location ="logoshome.html"
+				
+            });
+			
+			
+			$("#searchitem").on("input", function() {
+                const inputValue = $(this).val();
+                if (inputValue==""){
+                    html_content=""
+                    for (var i = 0; i < items.length; i++) {
+						html_content+=`<div class="titles mmary-flex common-flex" data-name="`+items[i]+`">`+items[i]+`</div>`
+                    }
+                    $('.ListNav').html("")
+                    $('.ListNav').html(html_content)
+				
+                }
+
+                else{
+                    const filtereditems = items.filter(i => i.toLowerCase().includes(inputValue.toLowerCase()));
+                    html_content=""
+                    for (var i = 0; i < filtereditems.length; i++) {
+						html_content+=`<div class="titles mmary-flex common-flex" data-name="`+filtereditems[i]+`">`+filtereditems[i]+`</div>`
+                    }
+                    $('.ListNav').html("")
+                    $('.ListNav').html(html_content)
+                }
+
+            });			
+			
+		</script>
+	</body>
+</html>
