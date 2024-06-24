@@ -69,11 +69,22 @@
 				<i class="fa fa-caret-square-o-right"  id="next"></i>
 			</div>			
 		</div>		
+		
 		<script type="text/javascript" src="../../../js/jquery/js/jquery-3.6.1.min.js"></script>
+		<!-- <script type="text/javascript" src="../../../js/speech.js"></script> -->
+
 		<script type="text/javascript" src="../../../js/data/logos.js"></script>
 		<!-- <script type="text/javascript" src="../../../js/mmary.js"></script> -->
 		<script>
 
+			let speech = new SpeechSynthesisUtterance();
+
+			speech.lang = "ml-IN";
+			let voices = []; // global array of available voices
+			window.speechSynthesis.onvoiceschanged = () => {
+			voices = window.speechSynthesis.getVoices();
+			speech.voice = voices[0];
+			};
 
 			let url_string =document.documentURI;
             let url = new URL(url_string);
@@ -98,7 +109,7 @@
 			// 		<i class="fa fa-eye view-item" data-id='que`+i+`'>Answer</i>
 			// 	</p>`
 			// 	}
-
+		
 		function set_content(i){
 			html_content=`<div class="skyDiv"><p id="skyDiv">`+items[i]['Que']+`
 					</p>
@@ -108,7 +119,12 @@
 					<i class="fa fa-eye view-item" data-id='que`+i+`'>Answer</i>
 				</div>`
             
-            $('.ListNav').html(html_content)
+            $('.ListNav').html(html_content);
+			text=items[i]['Que']+'   '+items[i]['Ans'];
+			
+			speech.text = text;
+			window.speechSynthesis.speak(speech);
+
 		}
 			
 
@@ -164,16 +180,17 @@
 
 
 			$(document).on("click", "#next", function () {
+				
+				if(i!=0){
+					prevpage()
+				}
+            });
+
+			$(document).on("click", "#prev", function () {
 				if(i!=items.length){
 					nextpage()
 			}
 				
-            });
-
-			$(document).on("click", "#prev", function () {
-				if(i!=0){
-					prevpage()
-				}
 				
             });
 
@@ -205,6 +222,12 @@
                     }
                 }
             });
+
+
+        // speakButton.addEventListener('click', function() {
+        //     const text = textInput.value;
+        //     speak(text);
+        // });
 
 
 
