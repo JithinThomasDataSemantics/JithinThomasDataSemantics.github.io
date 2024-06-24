@@ -132,15 +132,6 @@ var startX, startY, endX, endY;
 
           if (Math.abs(deltaX) > Math.abs(deltaY)) {
               if (deltaX > 50) { // Threshold for swipe right
-                if(i==items.length){
-                  $("#next").hide()
-                }
-                else{
-                  nextpage();
-                }
-                  
-                  // Add your code to handle swipe right action here
-              } else if (deltaX < -50) { // Threshold for swipe left
                 if(i==0){
                   $("#prev").hide()
                 }
@@ -148,6 +139,15 @@ var startX, startY, endX, endY;
                   prevpage();
                 }
                   
+                  // Add your code to handle swipe right action here
+              } else if (deltaX < -50) { // Threshold for swipe left
+                
+                if(i==items.length){
+                  $("#next").hide()
+                }
+                else{
+                  nextpage();
+                }
                   // Add your code to handle swipe left action here
               }
           }
