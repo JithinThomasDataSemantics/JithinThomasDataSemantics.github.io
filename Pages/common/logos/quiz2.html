@@ -111,7 +111,37 @@
             $('.ListNav').html(html_content)
 		}
 			
+
+		function nextpage()
+		{
+			$("#prev").show()
+			i=i+1;
+			if(i==items.length){
+				$("#next").hide()
+			}
+			set_content(i)
+			const container = document.getElementById('skyDiv');
+			container.style.overflowX = 'auto';
+			container.style.wordWrap = 'break-word';
+			container.style.wordBreak = 'break-all';
+			container.style.whiteSpace = 'pre-wrap';
+		}
  
+		function prevpage()
+		{
+			$("#next").show()
+				i=i-1;
+				if(i==0){
+					$("#prev").hide()
+				}
+                set_content(i)
+				const container = document.getElementById('skyDiv');
+				container.style.overflowX = 'auto';
+				container.style.wordWrap = 'break-word';
+				container.style.wordBreak = 'break-all';
+				container.style.whiteSpace = 'pre-wrap';
+		}
+
 			$(document).on("click", "#logoshome", function () {
 				
 				window.location ="logoshome2.html"
@@ -134,32 +164,44 @@
 
 
 			$(document).on("click", "#next", function () {
-				$("#prev").show()
-				i=i+1;
-				if(i==items.length){
-					$("#next").hide()
-				}
-                set_content(i)
-				const container = document.getElementById('skyDiv');
-				container.style.overflowX = 'auto';
-				container.style.wordWrap = 'break-word';
-				container.style.wordBreak = 'break-all';
-				container.style.whiteSpace = 'pre-wrap';
+				nextpage()
             });
 
 			$(document).on("click", "#prev", function () {
-				$("#next").show()
-				i=i-1;
-				if(i==0){
-					$("#prev").hide()
-				}
-                set_content(i)
-				const container = document.getElementById('skyDiv');
-				container.style.overflowX = 'auto';
-				container.style.wordWrap = 'break-word';
-				container.style.wordBreak = 'break-all';
-				container.style.whiteSpace = 'pre-wrap';
+				prevpage()
             });
+
+			var startX, startY, endX, endY;
+
+            $('#swipeArea').on('touchstart', function(event) {
+                var touch = event.originalEvent.touches[0];
+                startX = touch.pageX;
+                startY = touch.pageY;
+            });
+
+            $('#swipeArea').on('touchmove', function(event) {
+                var touch = event.originalEvent.touches[0];
+                endX = touch.pageX;
+                endY = touch.pageY;
+            });
+
+            $('#swipeArea').on('touchend', function(event) {
+                var deltaX = endX - startX;
+                var deltaY = endY - startY;
+
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (deltaX > 50) { // Threshold for swipe right
+                        nextpage();
+                        // Add your code to handle swipe right action here
+                    } else if (deltaX < -50) { // Threshold for swipe left
+                        prevpage();
+                        // Add your code to handle swipe left action here
+                    }
+                }
+            });
+
+
+
 		</script>
 	</body>
 </html>
