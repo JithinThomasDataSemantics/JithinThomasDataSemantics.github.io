@@ -23,6 +23,9 @@
 			<center id="headspan"><i><b id="title">Logos Quiz</b></i></center>
 			<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 			<i class="fa fa-home"  id="logoshome"></i>
+			<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+			<i class="fa fa-eye"  id="viewallans"></i>
 
 			</div>	
 			<div id="subContainer">
@@ -79,6 +82,22 @@
                 $('#'+dataid).show()
 				
             });
+
+			$(document).on("click", ".fa-eye", function () {
+                $('.ans').show();
+                $('.view-item').hide();
+				$("#viewallans").removeClass("fa-eye");
+				$("#viewallans").addClass("fa fa-eye-slash");
+
+
+            });
+			
+			$(document).on("click", ".fa-eye-slash", function () {
+                $('.ans').hide()
+                $('.view-item').show()
+				$("#viewallans").removeClass("fa-eye-slash");
+				$("#viewallans").addClass("fa fa-eye");
+            });		
 		</script>
 	</body>
 </html>
