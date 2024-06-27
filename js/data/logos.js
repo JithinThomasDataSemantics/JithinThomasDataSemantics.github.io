@@ -40,7 +40,8 @@ titles={"judges01":"ന്യായാധിപന്മാർ 1"
     ,"corinthians13":"2 കോറിന്തോസ് 13"
 
     ,"qjudges0":"ന്യായാധിപന്മാർ ആമുഖം"
-    ,"qjudges1":"ന്യായാധിപന്മാർ 1"
+    ,"qjudges1":"ന്യായാധിപന്മാർ 1",
+    "qjudges2":"ന്യായാധിപന്മാർ 2"
 
     }
 
@@ -13816,7 +13817,8 @@ quiz={"judges":{
 },
 "mocktests":{
     "qjudges0": "judges0",
-    "qjudges1": "judges1"
+    "qjudges1": "judges1",
+    "qjudges2":"judges2"
     
 }
 
