@@ -25,7 +25,7 @@
 			<i class="fa fa-home"  id="logoshome"></i>
 			<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 
-			<i class="fa fa-eye"  id="viewallans"></i>
+			<i class="fa fa-eye viewallans"  id="viewallans"></i>
 
 			</div>	
 			<div id="subContainer">
@@ -83,10 +83,11 @@
 				
             });
 
-			$(document).on("click", ".fa-eye", function () {
+			$(document).on("click", ".viewallans", function () {
                 $('.ans').show();
                 $('.view-item').hide();
 				$("#viewallans").removeClass("fa-eye");
+				$("#viewallans").removeClass("viewallans");
 				$("#viewallans").addClass("fa fa-eye-slash");
 
 
@@ -97,6 +98,7 @@
                 $('.view-item').show()
 				$("#viewallans").removeClass("fa-eye-slash");
 				$("#viewallans").addClass("fa fa-eye");
+				$("#viewallans").addClass("viewallans");
             });		
 		</script>
 	</body>

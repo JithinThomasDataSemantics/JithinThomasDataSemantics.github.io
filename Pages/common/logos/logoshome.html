@@ -54,7 +54,8 @@
             for (var i = 0; i < items.length; i++) {
                 html_content+=`<div class="titles mmary-flex common-flex" data-name="`+items[i]+`">`+maintitles[items[i]]+`</div>`
 				}
-            
+				html_content+=`<div class="titles mmary-flex common-flex" data-name="mocktests">Mock Test</div>`
+
             $('.ListNav').html(html_content)
             
 			$(document).on("click", ".titles", function () {

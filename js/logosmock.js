@@ -10,7 +10,7 @@ html_content=""
       
 let items=quizes[title] 
 var i=0;
-
+var score=0;
 set_content(i)
       // for (var i = 0; i < items.length; i++) {
 // 	if(i%2==0){divclass="greenDiv"} else {divclass="skyDiv"}
@@ -24,46 +24,69 @@ set_content(i)
 // 	}
 
 function set_content(i){
-html_content=`<div class="skyDiv" id="skyDiv"><p>`+items[i]['Que']+`
+html_content=`<div id="sub"><div class="skyDiv" id="skyDiv"><p id="que">`+items[i]['Que']+`
     </p>
     <p id="ans">
-        <form>
+        <form id="form">
         <ul style="list-style-type: none;">
-            <li>
+            <li id="ansA">
                 <label>
                     <input type="radio" name="item" value="A">
                     `+items[i]['A']+`
                 </label>
             </li>
-            <li>
+            <li id="ansB">
                 <label>
                     <input type="radio" name="item" value="B">
                      `+items[i]['B']+`
                 </label>
             </li>
-            <li>
+            <li id="ansC">
                 <label>
                     <input type="radio" name="item" value="C">
                      `+items[i]['C']+`
                 </label>
             </li>
-            <li>
+            <li id="ansD">
                 <label>
                     <input type="radio" name="item" value="D">
                      `+items[i]['D']+`
                 </label>
             </li>
         </ul>
-        <button type="submit">Submit</button>
+        <div id="buttondiv">
+        <button type="button" id="submitans">Submit</button>
+        </div>
     </form>
     </p>
-  </div>`
+  </div></div>`
       
       $('.ListNav').html(html_content);
 
-      
+      if (!("D" in items[i])){
+        var element = document.getElementById("ansD");
+        if (element) {
+            element.remove();
+        }
+      }
 
 };
+
+/* <p id="que">`+items[i]['Que']+`
+        </p> */
+
+function set_score(){
+    html_content=`<div id="sub"><div class="skyDiv" style="padding:0%" id="skyDiv">
+        <p id="que1" style="font-size:25px">Total Questions: `+items.length+`</p>
+        <p id="que2" style="font-size:25px">Correct Answers: `+score+`</p>
+        <p id="que3" style="font-size:25px">Score: `+score+`</p>
+      </div></div>`
+          
+          $('.ListNav').html(html_content);
+    
+          
+    
+    };
 
 
 function nextpage()
@@ -78,7 +101,7 @@ set_content(i)
     container.style.overflowX = 'auto';
     container.style.wordWrap = 'break-word';
     container.style.wordBreak = 'break-all';
-    container.style.whiteSpace = 'pre-wrap';
+
 };
 
 function prevpage()
@@ -93,12 +116,13 @@ $("#next").show()
   container.style.overflowX = 'auto';
   container.style.wordWrap = 'break-word';
   container.style.wordBreak = 'break-all';
-  container.style.whiteSpace = 'pre-wrap';
+  const container3 = document.getElementById('skyDiv');
+  container3.style.whiteSpace = 'pre-wrap';
 
   const container2 = document.getElementById(dataid);
   container2.style.wordWrap = 'break-word';
   container2.style.wordBreak = 'break-all';
-  container2.style.whiteSpace = 'pre-wrap';
+//   container2.style.whiteSpace = 'pre-wrap';
   container2.style.overflowX = 'auto';
 };
 
@@ -108,6 +132,51 @@ $(document).on("click", "#logoshome", function () {
   window.location ="logoshome2.html"
   
       }); 
+
+      $(document).on("click", "#submitans", function () {
+
+        if($(this).text()=="Submit"){
+            var radios = document.getElementsByName('item');
+            var selectedValue;
+            
+            // Loop through the radio buttons to find the selected one
+            for (var j = 0; j < radios.length; j++) {
+                if (radios[j].checked) {
+                    selectedValue = radios[j].value;
+                    break;
+                }
+            }
+            if(selectedValue==null){
+                return;
+            }
+            if (selectedValue!=items[i]['Ans']){
+                $('#ans'+selectedValue).addClass('wrongans')
+                    
+            }else{
+                score=score+1;
+            }
+            $('#ans'+items[i]['Ans']).addClass('rightans')
+
+            var radios = document.getElementsByName('item');
+            for (var j = 0; j < radios.length; j++) {
+                radios[j].disabled = true;
+            }
+
+
+            $("#submitans").text("Next")
+
+        }
+
+        else{
+            i=i+1
+            if (i==items.length){
+                set_score()
+            }else{
+                set_content(i)
+            }
+            
+            }
+            }); 
 
 // $(document).on("click", ".view-item", function () {
 //   let dataid=$(this).data('id')

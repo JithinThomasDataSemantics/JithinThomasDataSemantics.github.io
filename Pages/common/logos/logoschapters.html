@@ -10,7 +10,11 @@
 		<title>Bible Quotes</title>
         <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		  
+		<style>
+			.titles{
+				font-size: 19px;
+			}
+					  </style>
 	</head>
 	
 	<body>
@@ -70,7 +74,13 @@
 				
 				
 				let title1=$(this).data("name")
-				window.location ="quiz.html?title="+title1+"&maintitle="+title
+				if (title=="mocktests"){
+					window.location ="quiz3.html?title="+title1
+
+				}
+				else{
+					window.location ="quiz.html?title="+title1+"&maintitle="+title
+				}
 				
             });
 
