@@ -39,13 +39,21 @@ titles={"judges01":"ന്യായാധിപന്മാർ 1"
     ,"corinthians12":"2 കോറിന്തോസ് 12"
     ,"corinthians13":"2 കോറിന്തോസ് 13"
 
-    ,"qjudges0":"ന്യായാധിപന്മാർ ആമുഖം"
-    ,"qjudges1":"ന്യായാധിപന്മാർ 1",
-    "qjudges2":"ന്യായാധിപന്മാർ 2"
-
+    ,"qjudges00":"ന്യായാധിപന്മാർ ആമുഖം"
+    ,"qjudges01":"ന്യായാധിപന്മാർ 1",
+    "qjudges02":"ന്യായാധിപന്മാർ 2",
+    "qjudges03":"ന്യായാധിപന്മാർ 3",
+    "qjudges04":"ന്യായാധിപന്മാർ 4",
+    "qjudges05":"ന്യായാധിപന്മാർ 5",
+    "qjudges06":"ന്യായാധിപന്മാർ 6",
+    "qjudges07":"ന്യായാധിപന്മാർ 7",
+    "qjudges08":"ന്യായാധിപന്മാർ 8",
+    "qjudges09":"ന്യായാധിപന്മാർ 9",
+    "qjudges10":"ന്യായാധിപന്മാർ 10"
     }
 
-quiz={"judges":{
+quiz={
+    "judges":{
     "judges01":[
 {
 "Que": "1. ന്യായാധിപന്മാരുടെ ഗ്രന്ഥത്തിൽ ആകെ എത്ര അദ്ധ്യായങ്ങൾ ഉണ്ട്?"
@@ -13816,10 +13824,17 @@ quiz={"judges":{
 }]
 },
 "mocktests":{
-    "qjudges0": "judges0",
-    "qjudges1": "judges1",
-    "qjudges2":"judges2"
-    
+    "qjudges00": "judges0",
+    "qjudges01": "judges1",
+    "qjudges02":"judges2",
+    "qjudges03":"judges3",
+    "qjudges04":"judges4",
+    "qjudges05":"judges5",
+    "qjudges06":"judges6",
+    "qjudges07":"judges7",
+    "qjudges08":"judges8",
+    "qjudges09":"judges9",
+    "qjudges10":"judges10"    
 }
 
 }
