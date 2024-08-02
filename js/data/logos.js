@@ -49,7 +49,19 @@ titles={"judges01":"ന്യായാധിപന്മാർ 1"
     "qjudges07":"ന്യായാധിപന്മാർ 7",
     "qjudges08":"ന്യായാധിപന്മാർ 8",
     "qjudges09":"ന്യായാധിപന്മാർ 9",
-    "qjudges10":"ന്യായാധിപന്മാർ 10"
+    "qjudges10":"ന്യായാധിപന്മാർ 10",
+
+
+
+    "qluke09":"ലൂക്ക 9",
+    "qluke10":"ലൂക്ക 10",
+    "qluke11":"ലൂക്ക 11"
+    // ,
+    // "qluke12":"ലൂക്ക 12",
+    // "qluke13":"ലൂക്ക 9",
+    // "qluke11":"ലൂക്ക 9",
+    // "qluke11":"ലൂക്ക 9",
+    
     }
 
 quiz={
@@ -13834,7 +13846,10 @@ quiz={
     "qjudges07":"judges7",
     "qjudges08":"judges8",
     "qjudges09":"judges9",
-    "qjudges10":"judges10"    
+    "qjudges10":"judges10",
+    "qluke09":"luke9",
+    "qluke10":"luke10",
+    "qluke11":"luke11"    
 }
 
 }
