@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Subgroups</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 id="group-title">📚 Subgroups</h1>
+    <div id="subgroups-list"></div>
+  </div>
+
+  <script src="groups.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const groupKey = urlParams.get("group");
+      const group = groupsData[groupKey];
+
+      const title = document.getElementById("group-title");
+      if (group) {
+        title.textContent = group.display;
+        const subgroupsList = document.getElementById("subgroups-list");
+        group.subgroups.forEach(sub => {
+          const btn = document.createElement("button");
+          btn.className = "list-btn";
+          btn.textContent = "അധ്യായം " + sub;
+          btn.onclick = () => {
+            // go to quiz page
+            window.location.href = `quiz.html?group=${groupKey}&subgroup=${sub}`;
+          };
+          subgroupsList.appendChild(btn);
+        });
+      } else {
+        title.textContent = "Group not found!";
+      }
+    });
+  </script>
+</body>
+</html>

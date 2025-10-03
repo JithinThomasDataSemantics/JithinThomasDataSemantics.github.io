@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Groups</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="groups.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>📖 Quiz Groups</h1>
+    <div id="groups-list"></div>
+  </div>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const groupsList = document.getElementById("groups-list");
+      for (const key in groupsData) {
+        const group = groupsData[key];
+        const btn = document.createElement("button");
+        btn.className = "list-btn";
+        btn.textContent = group.display;
+        btn.onclick = () => {
+          window.location.href = `subgroups.html?group=${key}`;
+        };
+        groupsList.appendChild(btn);
+      }
+    });
+  </script>
+</body>
+</html>

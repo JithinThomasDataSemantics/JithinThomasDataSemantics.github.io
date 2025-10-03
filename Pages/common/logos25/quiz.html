@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quiz - സഭാപ്രസംഗകൻ (Ecclesiastes)</title>
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--correct:#16a34a;--wrong:#dc2626}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans Malayalam',"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,#071129 0%,#071827 100%);display:flex;align-items:center;justify-content:center;padding:20px}
+    .container{width:100%;max-width:760px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:14px;padding:18px;box-shadow:0 10px 30px rgba(2,6,23,0.6);}
+    header{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:#012;box-shadow:0 6px 18px rgba(3,7,18,0.6)}
+    h1{font-size:1.05rem;margin:0}
+    p.desc{margin:0;color:var(--muted);font-size:0.9rem}
+
+    .card{background:var(--card);padding:14px;border-radius:12px;margin-top:10px}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+    .progress{height:10px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;flex:1;margin-left:10px}
+    .progress > span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#7c3aed);width:0%}
+    .qnum{font-size:0.85rem;color:var(--muted)}
+
+    .question{font-size:1.05rem;margin:6px 0 12px}
+    .options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    button.opt{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;font-size:0.98rem;text-align:left;cursor:pointer;box-shadow:0 4px 14px rgba(2,6,23,0.45);min-height:58px}
+    button.opt .label{display:inline-block;width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;margin-right:10px;font-weight:700}
+    button.opt:active{transform:translateY(1px)}
+
+    .hint{margin-top:10px;color:var(--muted);font-size:0.88rem}
+
+    .footer{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:14px}
+    button.primary{background:var(--accent);color:#022;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+    .result{padding:14px;border-radius:10px;margin-top:10px;background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:none}
+    .result.show{display:block}
+    .score{font-weight:700;font-size:1.15rem}
+
+    /* feedback styles */
+    .correct{border-color:rgba(34,197,94,0.25);background:linear-gradient(90deg,rgba(34,197,94,0.06),rgba(34,197,94,0.02))}
+    .wrong{border-color:rgba(220,38,38,0.25);background:linear-gradient(90deg,rgba(220,38,38,0.06),rgba(220,38,38,0.02))}
+
+    footer.small{margin-top:8px;color:var(--muted);font-size:0.82rem;text-align:center}
+
+    /* responsive */
+    @media (max-width:520px){
+      .options{grid-template-columns:1fr}
+      .logo{width:44px;height:44px}
+      .question{font-size:1rem}
+    }
+  </style>
+  <script src="questions.js"></script>
+</head>
+<body>
+  <div class="container" role="application" aria-labelledby="quiztitle">
+    <header>
+      <div class="logo">ക്വിസ്</div>
+      <div>
+        <h1 id="quiztitle">സഭാപ്രസംഗകൻ — Quiz</h1>
+        <p class="desc">മലയാളം — തെറ്റില്ലാതെ ക്ലിക്കുചെയ്യുക</p>
+      </div>
+    </header>
+
+    <div class="card" id="quizCard">
+      <div class="meta">
+        <div class="qnum" id="qNumber">Question 1 / 75</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+        </div>
+      </div>
+
+      <div class="question" id="questionText">...</div>
+
+      <div class="options" id="options"></div>
+
+      <div class="hint" id="hintText">Tap an option to answer. Correct answer is shown after you pick.</div>
+
+      <div class="footer">
+        <div style="display:flex;gap:8px">
+          <button class="ghost" id="prevBtn" disabled>Previous</button>
+          <button class="primary" id="nextBtn" disabled>Next</button>
+        </div>
+        <div>
+          <button class="ghost" id="showScoreBtn">Show score</button>
+        </div>
+      </div>
+
+      <div class="result" id="resultBox" aria-live="polite">
+        <div class="score" id="scoreText">You scored 0 / 75</div>
+        <div class="small" style="margin-top:8px;color:var(--muted)">Tap Restart to try again.</div>
+        <div style="margin-top:10px;display:flex;gap:8px">
+          <button class="primary" id="restartBtn">Restart</button>
+          <button class="ghost" id="reviewBtn">Review answers</button>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="small">Built for quick mobile quizzes — tap options to answer. All text preserved exactly as provided.</footer>
+  </div>
+
+  <script>
+	const queryString = window.location.search; 
+	const urlParams = new URLSearchParams(queryString);
+
+	// Get a specific parameter's value
+	const group = urlParams.get('group'); 
+	const subgroup = urlParams.get('subgroup'); 
+    // JSON data (kept exactly as provided) -------------------------------------------------
+    const QUESTIONS = quizData[group][subgroup];
+    // ------------------------------------------------------------------------------------
+
+    // App state
+    let current = 0;
+    let score = 0;
+    const total = QUESTIONS.length;
+    const userAnswers = new Array(total).fill(null);
+
+    // DOM refs
+    const qNumber = document.getElementById('qNumber');
+    const progressBar = document.getElementById('progressBar');
+    const questionText = document.getElementById('questionText');
+    const optionsWrap = document.getElementById('options');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const resultBox = document.getElementById('resultBox');
+    const scoreText = document.getElementById('scoreText');
+    const restartBtn = document.getElementById('restartBtn');
+    const showScoreBtn = document.getElementById('showScoreBtn');
+    const reviewBtn = document.getElementById('reviewBtn');
+
+    function renderQuestion(index){
+      const q = QUESTIONS[index];
+      qNumber.textContent = `Question ${index+1} / ${total}`;
+      const pct = Math.round(((index)/total)*100);
+      progressBar.style.width = pct + '%';
+      questionText.textContent = q.Question;
+
+      // build options A..D
+      optionsWrap.innerHTML = '';
+      ['A','B','C','D'].forEach(key => {
+        const btn = document.createElement('button');
+        btn.className = 'opt';
+        btn.type = 'button';
+        btn.dataset.key = key;
+        btn.innerHTML = `<span class="label">${key}</span><span class="optText">${q[key]}</span>`;
+        btn.addEventListener('click', onOptionClick);
+        optionsWrap.appendChild(btn);
+      });
+
+      // if already answered, show feedback
+      if(userAnswers[index]){
+        applyFeedback(index);
+      }
+
+      prevBtn.disabled = index === 0 ? true : false;
+      nextBtn.disabled = index === total - 1 ? true : false;
+      resultBox.classList.remove('show');
+    }
+
+    function onOptionClick(e){
+      const btn = e.currentTarget;
+      const chosen = btn.dataset.key;
+      // prevent re-answering
+      if(userAnswers[current]) return;
+      userAnswers[current] = chosen;
+
+      const correct = QUESTIONS[current].Ans;
+      if(chosen === correct){
+        score += 1;
+      }
+
+      applyFeedback(current);
+
+      // auto-enable Next when not last
+      if(current < total -1){
+        nextBtn.disabled = false;
+      } else {
+        // last question -> show results
+        showResults();
+      }
+    }
+
+    function applyFeedback(index){
+      const q = QUESTIONS[index];
+      const nodes = optionsWrap.querySelectorAll('button.opt');
+      nodes.forEach(node => {
+        const k = node.dataset.key;
+        if(userAnswers[index] === k){
+          // user's choice
+          if(k === q.Ans){
+            node.classList.add('correct');
+            node.setAttribute('aria-label', `${k} - correct`);
+          } else {
+            node.classList.add('wrong');
+            node.setAttribute('aria-label', `${k} - wrong`);
+          }
+        }
+        // highlight correct
+        if(k === q.Ans){
+          node.style.outline = '2px solid green';
+        }
+        // disable clicking
+        node.disabled = true;
+      });
+    }
+
+    prevBtn.addEventListener('click', ()=>{
+      if(current === 0) return;
+      current -=1;
+      renderQuestion(current);
+    });
+
+    nextBtn.addEventListener('click', ()=>{
+      if(current >= total-1) return;
+      current +=1;
+      renderQuestion(current);
+    });
+
+    showScoreBtn.addEventListener('click', showResults);
+
+    function showResults(){
+      progressBar.style.width = '100%';
+      scoreText.textContent = `You scored ${score} / ${total}`;
+      resultBox.classList.add('show');
+      // enable review
+      reviewBtn.disabled = false;
+    }
+
+    restartBtn.addEventListener('click', ()=>{
+      // reset
+      current = 0; score = 0; userAnswers.fill(null);
+      renderQuestion(0);
+      resultBox.classList.remove('show');
+      nextBtn.disabled = true;
+    });
+
+    reviewBtn.addEventListener('click', ()=>{
+      // go to first unanswered or first question
+      const firstAnswered = userAnswers.findIndex(x=>x!==null);
+      current = firstAnswered === -1 ? 0 : 0;
+      renderQuestion(current);
+    });
+
+    // init
+    renderQuestion(0);
+  </script>
+</body>
+</html>
