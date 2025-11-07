@@ -145,10 +145,10 @@
   <script>
     // Get URL parameters
     const urlParams = new URLSearchParams(window.location.search);
-    const book = urlParams.get("book") || "ec";  // default
+    const book = urlParams.get("book") || "ECC";  // default
     const chapter = urlParams.get("chapter") || "1";
 
-    document.getElementById("title").innerText = wordsData[book]["display"];
+    document.getElementById("title").innerText = wordsData[book]["display"]+' '+chapter;
 
         // ✅ Load chapter data
     const chapterData = wordsData[book]?.[chapter];
