@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bible Image Gallery</title>
+  <style>
+    /* General Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 10px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #222;
+      margin: 15px 0 25px;
+    }
+
+    /* Responsive Gallery Grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+      padding: 10px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 90%;
+      max-height: 80%;
+      text-align: center;
+      overflow-y: auto;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    #bibleWord {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .close-btn:hover {
+      background: #0056b3;
+    }
+
+    /* Mobile Optimizations */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+      }
+
+      .gallery img {
+        height: 140px;
+      }
+
+      .modal-content {
+        padding: 20px;
+      }
+
+      .close-btn {
+        width: 100%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">Ecclesiastes Visual Gallery</h1>
+  <div class="gallery" id="gallery"></div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <p id="bibleWord"></p>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script src="words.js"></script>
+  <script>
+    // Get URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const book = urlParams.get("book") || "ec";  // default
+    const chapter = urlParams.get("chapter") || "1";
+
+    document.getElementById("title").innerText = wordsData[book]["display"];
+
+        // ✅ Load chapter data
+    const chapterData = wordsData[book]?.[chapter];
+    const galleryDiv = document.getElementById("gallery");
+
+    if (!chapterData) {
+        galleryDiv.innerHTML = "<p style='text-align:center;'>No data found for this chapter.</p>";
+    } else {
+        Object.entries(chapterData).forEach(([key, verse]) => {
+        const img = document.createElement("img");
+        img.src = `images/${key}.png`;
+        img.alt = key;
+        img.addEventListener("click", () => openModal(verse));
+        galleryDiv.appendChild(img);
+        });
+        }
+
+    // Modal functions
+    function openModal(text) {
+      document.getElementById("bibleWord").innerText = text;
+      document.getElementById("modal").style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById("modal");
+      if (event.target === modal) closeModal();
+    }
+  </script>
+</body>
+</html>
