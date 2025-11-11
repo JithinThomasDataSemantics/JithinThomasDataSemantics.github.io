@@ -161,6 +161,10 @@
         const img = document.createElement("img");
         img.src = `images/${key}.png`;
         img.alt = key;
+        img.onerror = () => {
+          img.onerror = null; 
+          img.src = `images/${key}.jpeg`;
+        };
         img.addEventListener("click", () => openModal(verse));
         galleryDiv.appendChild(img);
         });
