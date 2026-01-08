@@ -26,7 +26,12 @@
         group.subgroups.forEach(sub => {
           const btn = document.createElement("button");
           btn.className = "list-btn";
-          btn.textContent = "അധ്യായം " + sub;
+          if(sub=="Intro"){
+            btn.textContent = "ആമുഖം";
+          }
+          else{
+              btn.textContent = "അധ്യായം " + sub;
+          } 
           btn.onclick = () => {
             // go to quiz page
             window.location.href = `quiz.html?group=${groupKey}&subgroup=${sub}`;
