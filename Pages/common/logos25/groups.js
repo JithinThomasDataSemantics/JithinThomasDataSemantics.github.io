@@ -2,4 +2,4 @@ groupsData = {"ECC" : {"display":"സഭാപ്രസംഗകൻ","subgroups"
 			  "RUTH": {"display":"റൂത്ത്","subgroups":["Intro","1","2","3","4"]},
 			  "GAL":{"display":"ഗലാത്തിയാ","subgroups":["1","2","3","4","5","6"]},
 				"JOHN":{"display":"യോഹന്നാൻ","subgroups":["1","2","3","4","5","6","7","8","9","10","11","12"]},
-				"SAM":{"display":"1 സാമുവൽ","subgroups":["1","2","3","4","5","6","7"]}}
+				"SAM":{"display":"1 സാമുവൽ","subgroups":["Intro","1","2","3","4","5","6","7"]}}
