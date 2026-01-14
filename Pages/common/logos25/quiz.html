@@ -50,8 +50,23 @@
       .question{font-size:1rem}
     }
   </style>
-  <script src="questions.js"></script>
-  <script src="groups.js"></script>
+<script src="groups.js"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  window.group = params.get("group") || "default";
+
+  const qScript = document.createElement("script");
+  qScript.src = `questions_${window.group}.js`;
+
+  // when questions file is loaded, start quiz
+  qScript.onload = () => {
+    window.startQuiz();   // call function defined below
+  };
+
+  document.head.appendChild(qScript);
+</script>
+
 </head>
 <body>
   <div class="container" role="application" aria-labelledby="quiztitle">
@@ -102,14 +117,152 @@
   </a>
     </footer>
   </div>
+<script>
+function startQuiz(){
 
-  <script>
+  // const params = new URLSearchParams(window.location.search);
+  // const subgroup = params.get('subgroup'); 
+
+  // const QUESTIONS = quizData[group][subgroup];
+  const params = new URLSearchParams(window.location.search);
+  const subgroup = params.get('subgroup');
+  const part = parseInt(params.get('part') || "1");
+
+  const ALL_QUESTIONS = quizData[group][subgroup];
+
+  // split into chunks of 30
+  const startIndex = (part - 1) * 30;
+  const QUESTIONS = ALL_QUESTIONS.slice(startIndex, startIndex + 30);
+
+  if (!QUESTIONS.length) {
+  alert("No questions found for this quiz.");
+  window.location.href = "index.html";
+  return;
+}
+  // App state
+  let current = 0;
+  let score = 0;
+  const total = QUESTIONS.length;
+  const userAnswers = new Array(total).fill(null);
+
+  // DOM refs
+  const qNumber = document.getElementById('qNumber');
+  const progressBar = document.getElementById('progressBar');
+  const questionText = document.getElementById('questionText');
+  const optionsWrap = document.getElementById('options');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const resultBox = document.getElementById('resultBox');
+  const scoreText = document.getElementById('scoreText');
+  const restartBtn = document.getElementById('restartBtn');
+  const showScoreBtn = document.getElementById('showScoreBtn');
+  const reviewBtn = document.getElementById('reviewBtn');
+
+  const maintitle = document.getElementById('quiztitle');
+  const groups = groupsData[group];
+
+  maintitle.innerHTML =
+  `${groups.display} – അധ്യായം ${subgroup} – Part ${part}`;
+  // maintitle.innerHTML = groups.display + ' ' + subgroup;
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  function renderQuestion(index){
+    const q = QUESTIONS[index];
+
+    qNumber.textContent = `Question ${index+1} / ${total}`;
+    const pct = Math.round(((index)/total)*100);
+    progressBar.style.width = pct + '%';
+    questionText.textContent = q.Question;
+
+    optionsWrap.innerHTML = '';
+    const keys = shuffleArray(['A','B','C','D']);
+
+    keys.forEach(key => {
+      const btn = document.createElement('button');
+      btn.className = 'opt';
+      btn.type = 'button';
+      btn.dataset.key = key;
+      btn.innerHTML = `<span class="optText">${q[key]}</span>`;
+      btn.addEventListener('click', onOptionClick);
+      optionsWrap.appendChild(btn);
+    });
+
+    if(userAnswers[index]){
+      applyFeedback(index);
+    }
+
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === total - 1;
+    resultBox.classList.remove('show');
+  }
+
+  function onOptionClick(e){
+    const btn = e.currentTarget;
+    const chosen = btn.dataset.key;
+    if(userAnswers[current]) return;
+    userAnswers[current] = chosen;
+
+    if(chosen === QUESTIONS[current].Ans){
+      score += 1;
+    }
+
+    applyFeedback(current);
+
+    if(current < total -1){
+      nextBtn.disabled = false;
+    } else {
+      showResults();
+    }
+  }
+
+  function applyFeedback(index){
+    const q = QUESTIONS[index];
+    const nodes = optionsWrap.querySelectorAll('button.opt');
+    nodes.forEach(node => {
+      const k = node.dataset.key;
+      if(userAnswers[index] === k){
+        node.classList.add(k === q.Ans ? 'correct' : 'wrong');
+      }
+      if(k === q.Ans){
+        node.style.outline = '2px solid green';
+      }
+      node.disabled = true;
+    });
+  }
+
+  prevBtn.onclick = ()=>{ if(current>0){ current--; renderQuestion(current);} };
+  nextBtn.onclick = ()=>{ if(current<total-1){ current++; renderQuestion(current);} };
+  showScoreBtn.onclick = showResults;
+
+  function showResults(){
+    progressBar.style.width = '100%';
+    scoreText.textContent = `You scored ${score} / ${total}`;
+    resultBox.classList.add('show');
+  }
+
+  restartBtn.onclick = ()=>{
+    current=0; score=0; userAnswers.fill(null);
+    nextBtn.disabled=true;
+    renderQuestion(0);
+  };
+
+  reviewBtn.onclick = ()=>{ current=0; renderQuestion(0); };
+
+  renderQuestion(0);
+}
+</script>
+
+  <!-- <script>
 	const queryString = window.location.search; 
-	const urlParams = new URLSearchParams(queryString);
 
 	// Get a specific parameter's value
-	const group = urlParams.get('group'); 
-	const subgroup = urlParams.get('subgroup'); 
+	const subgroup = params.get('subgroup'); 
     // JSON data (kept exactly as provided) -------------------------------------------------
     const QUESTIONS = quizData[group][subgroup];
     // ------------------------------------------------------------------------------------
@@ -254,6 +407,6 @@
 
     // init
     renderQuestion(0);
-  </script>
+  </script> -->
 </body>
 </html>

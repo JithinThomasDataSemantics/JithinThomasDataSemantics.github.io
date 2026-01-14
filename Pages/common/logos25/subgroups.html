@@ -12,7 +12,7 @@
     <div id="subgroups-list"></div>
   </div>
 
-  <script src="groups.js"></script>
+  <!-- <script src="groups.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -42,6 +42,74 @@
         title.textContent = "Group not found!";
       }
     });
-  </script>
+  </script> -->
+
+  <script src="groups.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const groupKey = urlParams.get("group");
+  const group = groupsData[groupKey];
+
+  const title = document.getElementById("group-title");
+  const subgroupsList = document.getElementById("subgroups-list");
+
+  if (!group) {
+    title.textContent = "Group not found!";
+    return;
+  }
+
+  title.textContent = group.display;
+
+  // 🔹 dynamically load questions file for this group
+  const qScript = document.createElement("script");
+  qScript.src = `questions_${groupKey}.js`;
+
+  qScript.onload = () => {
+    group.subgroups.forEach(sub => {
+
+      // INTRO (no splitting)
+      if (sub === "Intro") {
+        const btn = document.createElement("button");
+        btn.className = "list-btn";
+        btn.textContent = "ആമുഖം";
+        btn.onclick = () => {
+          window.location.href =
+            `quiz.html?group=${groupKey}&subgroup=${sub}&part=1`;
+        };
+        subgroupsList.appendChild(btn);
+        return;
+      }
+
+      // 🔹 chapter questions
+      const questions = quizData[groupKey]?.[sub];
+      if (!questions || questions.length === 0) return;
+
+      const totalParts = Math.ceil(questions.length / 30);
+
+      for (let i = 0; i < totalParts; i++) {
+        const part = i + 1;
+
+        const btn = document.createElement("button");
+        btn.className = "list-btn";
+
+        btn.textContent =
+          `${group.display} – അധ്യായം ${sub} – Part ${part}`;
+
+        btn.onclick = () => {
+          window.location.href =
+            `quiz.html?group=${groupKey}&subgroup=${sub}&part=${part}`;
+        };
+
+        subgroupsList.appendChild(btn);
+      }
+    });
+  };
+
+  document.head.appendChild(qScript);
+});
+</script>
+
 </body>
 </html>
