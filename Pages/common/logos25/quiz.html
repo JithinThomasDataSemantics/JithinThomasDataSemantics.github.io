@@ -124,6 +124,10 @@ function startQuiz(){
   // const subgroup = params.get('subgroup'); 
 
   // const QUESTIONS = quizData[group][subgroup];
+  if (typeof quizData === "undefined") {
+  setTimeout(startQuiz, 200);
+  return;
+}
   const params = new URLSearchParams(window.location.search);
   const subgroup = params.get('subgroup');
   const part = parseInt(params.get('part') || "1");
