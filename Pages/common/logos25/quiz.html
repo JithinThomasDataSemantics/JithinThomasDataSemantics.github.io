@@ -51,7 +51,7 @@
     }
   </style>
 <script src="groups.js"></script>
-
+<!-- 
 <script>
   const params = new URLSearchParams(window.location.search);
   window.group = params.get("group") || "default";
@@ -65,7 +65,7 @@
   };
 
   document.head.appendChild(qScript);
-</script>
+</script> -->
 
 </head>
 <body>
@@ -124,10 +124,6 @@ function startQuiz(){
   // const subgroup = params.get('subgroup'); 
 
   // const QUESTIONS = quizData[group][subgroup];
-  if (typeof quizData === "undefined") {
-  setTimeout(startQuiz, 200);
-  return;
-}
   const params = new URLSearchParams(window.location.search);
   const subgroup = params.get('subgroup');
   const part = parseInt(params.get('part') || "1");
@@ -412,5 +408,30 @@ function startQuiz(){
     // init
     renderQuestion(0);
   </script> -->
+
+  <script>
+  // read params once
+  const params = new URLSearchParams(window.location.search);
+  window.group = params.get("group") || "default";
+
+  const questionsScript = document.createElement("script");
+  questionsScript.src = `questions_${window.group}.js`;
+
+  questionsScript.onload = () => {
+    // ensure quizData exists
+    if (typeof quizData === "undefined") {
+      console.error("quizData not loaded");
+      return;
+    }
+    startQuiz();
+  };
+
+  questionsScript.onerror = () => {
+    alert("Failed to load questions file");
+  };
+
+  document.body.appendChild(questionsScript);
+</script>
+
 </body>
 </html>
