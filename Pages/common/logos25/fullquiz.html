@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Master Bible Quiz</title>
+
+<style>
+:root{
+  --bg:#0f172a;--card:#0b1220;--accent:#06b6d4;
+  --muted:#94a3b8;--correct:#16a34a;--wrong:#dc2626
+}
+body{
+  margin:0;font-family:system-ui,'Noto Sans Malayalam';
+  background:linear-gradient(180deg,#071129,#071827);
+  color:#e6eef6;display:flex;justify-content:center;padding:20px
+}
+.container{max-width:780px;width:100%}
+.card{background:var(--card);padding:16px;border-radius:14px}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{padding:12px;border-radius:10px;border:0;cursor:pointer}
+.opt{background:#111827;color:#fff}
+.correct{background:#064e3b}
+.wrong{background:#7f1d1d}
+.footer{margin-top:12px;display:flex;justify-content:space-between}
+.progress{height:10px;background:#1e293b;border-radius:999px;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--accent);width:0%}
+.meta{color:var(--muted);font-size:0.85rem;margin:4px 0}
+@media(max-width:520px){.options{grid-template-columns:1fr}}
+</style>
+
+<script src="groups.js"></script>
+
+<script>
+window.ALL_QUIZ_DATA = {};
+</script>
+
+<!-- Load ALL question files -->
+<script src="questions_ECC.js"></script>
+<script src="questions_RUTH.js"></script>
+<!-- <script src="questions_GAL.js"></script> -->
+<script src="questions_JOHN.js"></script>
+<script src="questions_SAM.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+  <h2>📘 Mock Test (150 Questions)</h2>
+
+  <div class="progress"><span id="bar"></span></div>
+
+  <div class="card">
+    <div id="qnum"></div>
+    <div id="meta" class="meta"></div>
+    <div id="qtext" style="margin:10px 0"></div>
+    <div class="options" id="opts"></div>
+
+    <div class="footer">
+      <button id="prev">Previous</button>
+      <button id="next">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TOTAL_QUESTIONS = 150;
+let MASTER_QUESTIONS = [];
+
+/* ---------- helpers ---------- */
+const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+
+const mapping={"JOHN":"യോഹ","RUTH":"റൂത്ത്", "GAL":"ഗലാ","ECC":"സഭാ","SAM":"1 സാമു"}
+/* ---------- build master quiz ---------- */
+function buildMasterQuiz() {
+  MASTER_QUESTIONS = [];
+
+  const totalWeight = Object.values(ratio)
+    .reduce((a, b) => a + b, 0);
+
+  for (const group in ratio) {
+
+    const groupData = ALL_QUIZ_DATA[group][group];
+    if (!groupData) {
+      console.warn(`❌ No data for group ${group}`);
+      continue;
+    }
+
+    const groupTarget = Math.round(
+      (ratio[group] / totalWeight) * TOTAL_QUESTIONS
+    );
+
+    const chapters = groupsratio[group];
+    let selected = [];
+    let remainingPool = [];
+
+    /* ---------- Phase 1: minimum per chapter ---------- */
+    for (const chapter in groupData) {
+
+      const chapterQuestions = groupData[chapter].map(q => ({
+        ...q,
+        _group: mapping[group],
+        _chapter: chapter
+      }));
+
+      shuffle(chapterQuestions);
+
+      const minNeed = chapters?.[chapter] || 0;
+
+      selected.push(...chapterQuestions.slice(0, minNeed));
+      remainingPool.push(...chapterQuestions.slice(minNeed));
+    }
+
+    /* ---------- Phase 2: fill remaining quota ---------- */
+    shuffle(remainingPool);
+
+    const stillNeed = groupTarget - selected.length;
+    if (stillNeed > 0) {
+      selected.push(...remainingPool.slice(0, stillNeed));
+    }
+
+    MASTER_QUESTIONS.push(...selected.slice(0, groupTarget));
+  }
+
+  MASTER_QUESTIONS = shuffle(MASTER_QUESTIONS)
+    .slice(0, TOTAL_QUESTIONS);
+
+  console.log("✅ MASTER_QUESTIONS:", MASTER_QUESTIONS.length);
+}
+
+/* ---------- quiz engine ---------- */
+let index = 0, score = 0, answers = [];
+
+const qnum = document.getElementById("qnum");
+const qtext = document.getElementById("qtext");
+const meta = document.getElementById("meta");
+const opts = document.getElementById("opts");
+const bar = document.getElementById("bar");
+
+function render() {
+  const q = MASTER_QUESTIONS[index];
+
+  qnum.textContent =
+    `Question ${index+1} / ${MASTER_QUESTIONS.length}`;
+
+  meta.textContent =
+    `${q._group} – ${q._chapter}`;
+
+  qtext.textContent = q.Question;
+
+  bar.style.width =
+    ((index+1)/MASTER_QUESTIONS.length)*100 + "%";
+
+  opts.innerHTML = "";
+
+  ["A","B","C","D"].forEach(k=>{
+    const b = document.createElement("button");
+    b.className = "opt";
+    b.textContent = q[k];
+
+    b.onclick = ()=>{
+      if(answers[index]) return;
+      answers[index] = k;
+      if(k === q.Ans) score++;
+      render();
+    };
+
+    if(answers[index]){
+      if(k === q.Ans) b.classList.add("correct");
+      if(k === answers[index] && k !== q.Ans)
+        b.classList.add("wrong");
+      b.disabled = true;
+    }
+
+    opts.appendChild(b);
+  });
+}
+
+document.getElementById("next").onclick = ()=>{
+  if(index < MASTER_QUESTIONS.length-1){
+    index++; render();
+  }
+};
+document.getElementById("prev").onclick = ()=>{
+  if(index > 0){
+    index--; render();
+  }
+};
+
+/* ---------- start ---------- */
+buildMasterQuiz();
+render();
+</script>
+
+</body>
+</html>

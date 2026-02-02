@@ -2392,3 +2392,4 @@ quizData={
 }
 
 
+window.ALL_QUIZ_DATA.RUTH = quizData;

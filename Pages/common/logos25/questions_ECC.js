@@ -3816,3 +3816,5 @@ quizData={"ECC":
 }
 
 
+window.ALL_QUIZ_DATA.ECC = quizData;
+

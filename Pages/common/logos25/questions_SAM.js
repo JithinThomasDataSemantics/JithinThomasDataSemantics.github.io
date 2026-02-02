@@ -6673,4 +6673,5 @@ quizData={
 
 }
 
+window.ALL_QUIZ_DATA.SAM = quizData;
 

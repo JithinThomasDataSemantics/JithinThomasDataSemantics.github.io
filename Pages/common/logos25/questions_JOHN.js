@@ -3640,3 +3640,4 @@ quizData={
 }
 
 
+window.ALL_QUIZ_DATA.JOHN = quizData;
