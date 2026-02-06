@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ബൈബിൾ സംഗ്രഹം</title>
+
+<style>
+body{
+  margin:0;
+  font-family:system-ui,'Noto Sans Malayalam';
+  background:#f3f4f6;
+  color:#111;
+}
+.container{
+  max-width:760px;
+  margin:auto;
+  padding:20px;
+}
+h1{
+  text-align:center;
+  margin-bottom:20px;
+}
+.book{
+  background:#0d6efd;
+  color:#fff;
+  padding:16px;
+  border-radius:12px;
+  margin-bottom:12px;
+  cursor:pointer;
+  font-size:1.1rem;
+  text-align:center;
+}
+.chapter{
+  background:#fff;
+  margin:8px 0;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid #e5e7eb;
+}
+.chapter-header{
+  padding:12px 14px;
+  font-weight:600;
+  cursor:pointer;
+
+  /* light yellow theme */
+  background:#fff9db;          /* light yellow */
+  color:#5c4700;               /* dark readable brown */
+
+  border-bottom:1px solid #f1e3a3;
+  transition:background 0.2s ease;
+}
+.section{
+  padding:12px 16px;
+  border-top:1px solid #e5e7eb;
+}
+.section h4{
+  margin:0 0 6px;
+  font-size:0.95rem;
+}
+.section p{
+  margin:0;
+  font-size:0.9rem;
+  color:#374151;
+}
+.hidden{display:none}
+
+
+
+.chapter-header:hover{
+  background:#fff3bf;
+}
+
+.chapter-header:active{
+  background:#ffec99;
+}
+
+</style>
+
+<script src="groups.js"></script>
+
+<script>
+window.ALL_SUMMARIES = {};
+</script>
+
+<!-- <script src="summary_ECC.js"></script> -->
+<script src="summary_RUTH.js"></script>
+<!-- <script src="summary_GAL.js"></script>
+<script src="summary_JOHN.js"></script>
+<script src="summary_SAM.js"></script> -->
+
+</head>
+<body>
+
+<div class="container">
+  <h1>📘 ബൈബിൾ സംഗ്രഹം</h1>
+  <div id="list"></div>
+</div>
+
+<script>
+const list = document.getElementById("list");
+
+function toggle(el){
+  el.classList.toggle("hidden");
+}
+
+function closeAllChapters(current) {
+  document.querySelectorAll(".chapter-content").forEach(el => {
+    if (el !== current) el.classList.add("hidden");
+  });
+}
+
+
+for(const group in groupsData){
+
+  const bookBtn = document.createElement("div");
+  bookBtn.className = "book";
+  bookBtn.textContent = groupsData[group].display;
+
+  const chaptersWrap = document.createElement("div");
+  chaptersWrap.className = "hidden";
+
+  bookBtn.onclick = ()=> toggle(chaptersWrap);
+
+  const summaryData = ALL_SUMMARIES[group];
+  if(!summaryData) continue;
+
+  groupsData[group].subgroups.forEach(chKey => {
+
+    const chData = summaryData[chKey];
+    if(!chData) return;
+
+    const chapter = document.createElement("div");
+    chapter.className = "chapter";
+
+    const chHeader = document.createElement("div");
+    chHeader.className = "chapter-header";
+    chHeader.textContent =
+      chKey === "Intro" ? "ആമുഖം" : `അദ്ധ്യായം ${chKey}`;
+
+    const sectionsWrap = document.createElement("div");
+    sectionsWrap.className = "chapter-content hidden";
+
+
+    chHeader.onclick = () => {
+        const isOpen = !sectionsWrap.classList.contains("hidden");
+
+        // close all chapters first
+        closeAllChapters();
+
+        // toggle current one
+        if (!isOpen) {
+            sectionsWrap.classList.remove("hidden");
+        } else {
+            sectionsWrap.classList.add("hidden");
+        }
+        };
+
+
+
+    if(chKey === "Intro"){
+      const sec = document.createElement("div");
+      sec.className = "section";
+      sec.innerHTML = `<p>${chData}</p>`;
+      sectionsWrap.appendChild(sec);
+    } else {
+
+        /* ---------- Chapter summary block ---------- */
+        const summaryBlock = document.createElement("div");
+        summaryBlock.className = "section";
+        summaryBlock.innerHTML = `
+            <h4>സംഗ്രഹം</h4>
+            <p>
+            തലക്കെട്ടുകൾ : ${chData.headingsCount}<br>
+            വാക്യങ്ങൾ : ${chData.wordscount}
+            </p>
+        `;
+        sectionsWrap.appendChild(summaryBlock);
+
+      for(let i=1; i<=chData.headingsCount; i++){
+        const s = chData[i];
+        if(!s) continue;
+
+        const sec = document.createElement("div");
+        sec.className = "section";
+        sec.innerHTML = `
+          <h4>${s.header} (${s.words})</h4>
+          <p>${s.summary}</p>
+        `;
+        sectionsWrap.appendChild(sec);
+      }
+    }
+
+    chapter.appendChild(chHeader);
+    chapter.appendChild(sectionsWrap);
+    chaptersWrap.appendChild(chapter);
+  });
+
+  list.appendChild(bookBtn);
+  list.appendChild(chaptersWrap);
+}
+</script>
+
+</body>
+</html>
