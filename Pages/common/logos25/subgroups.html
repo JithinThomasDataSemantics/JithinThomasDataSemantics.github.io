@@ -70,17 +70,32 @@ document.addEventListener("DOMContentLoaded", () => {
     group.subgroups.forEach(sub => {
 
       // INTRO (no splitting)
-      if (sub === "Intro") {
-        const btn = document.createElement("button");
-        btn.className = "list-btn";
-        btn.textContent = "ആമുഖം";
-        btn.onclick = () => {
-          window.location.href =
-            `quiz.html?group=${groupKey}&subgroup=${sub}&part=1`;
-        };
-        subgroupsList.appendChild(btn);
-        return;
-      }
+      // if (sub === "Intro") {
+      //   const btn = document.createElement("button");
+      //   btn.className = "list-btn";
+      //   btn.textContent = "ആമുഖം";
+      //   btn.onclick = () => {
+      //     window.location.href =
+      //       `quiz.html?group=${groupKey}&subgroup=${sub}&part=1`;
+      //   };
+        
+      //   subgroupsList.appendChild(btn);
+      //   return;
+      // }
+
+
+      // if (sub === "Intro1") {
+      //   const btn = document.createElement("button");
+      //   btn.className = "list-btn";
+      //   btn.textContent = "ആമുഖം-2";
+      //   btn.onclick = () => {
+      //     window.location.href =
+      //       `quiz.html?group=${groupKey}&subgroup=${sub}&part=1`;
+      //   };
+        
+      //   subgroupsList.appendChild(btn);
+      //   return;
+      // }
 
       // 🔹 chapter questions
       const questions = quizData[groupKey]?.[sub];
@@ -93,10 +108,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const btn = document.createElement("button");
         btn.className = "list-btn";
-
+        if (sub ==="Intro"){
+            btn.textContent =`ആമുഖം  – Part ${part}`;
+        }
+         else if (sub ==="Intro1"){
+            btn.textContent =`ആമുഖം 2 – Part ${part}`;
+        }
+        else if (sub ==="400-Quiz"){
+            btn.textContent =`Part ${part}`;
+        }
+        else{
         btn.textContent =
           `${group.display} – അധ്യായം ${sub} – Part ${part}`;
-
+        }
         btn.onclick = () => {
           window.location.href =
             `quiz.html?group=${groupKey}&subgroup=${sub}&part=${part}`;

@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<!-- saved from url=(0012)about:srcdoc -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-to-image/1.11.13/html-to-image.min.js" integrity="sha512-iZ2ORl595Wx6miw+GuadDet4WQbdSWS3JLMoNfY8cRGoEFy6oT3G9IbcrBeL6AfkgpA51ETt/faX6yLV+/gFJg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      (function() {
+        // Capture host references before any artifact code runs: Window.parent
+        // is [Replaceable] (a top-level `var parent` in artifact code would
+        // replace the accessor with a data property), and a top-level
+        // `const crypto` would shadow the global — either would otherwise
+        // silently break the bridge for artifacts that worked before.
+        const realParent = window.parent;
+        const cryptoObj = window.crypto;
+        // crypto.randomUUID exists only in Secure Contexts; fall back to a
+        // unique non-crypto id elsewhere (http://LAN-IP dev flows) —
+        // uniqueness is what the bridge needs, unpredictability is
+        // defense-in-depth on top of the source guards.
+        const newRequestId =
+          cryptoObj && typeof cryptoObj.randomUUID === "function"
+            ? function () { return cryptoObj.randomUUID(); }
+            : function () { return Date.now() + "-" + Math.random(); };
+        const originalConsole = window.console;
+        window.console = {
+          log: (...args) => {
+            originalConsole.log(...args);
+            realParent.postMessage({ type: 'console', message: args.join(' ') }, '*');
+          },
+          error: (...args) => {
+            originalConsole.error(...args);
+            realParent.postMessage({ type: 'console', message: 'Error: ' + args.join(' ') }, '*');
+          },
+          warn: (...args) => {
+            originalConsole.warn(...args);
+            realParent.postMessage({ type: 'console', message: 'Warning: ' + args.join(' ') }, '*');
+          }
+        };
+
+        // Bridge request ids are crypto-random (not sequential) so they
+        // cannot be predicted by other frames in the tab.
+        let callbacksMap = new Map();
+        let streamControllers = new Map();
+        
+        window.claude = {
+          complete: (prompt) => {
+            return new Promise((resolve, reject) => {
+              const id = newRequestId();
+              callbacksMap.set(id, { resolve, reject });
+              realParent.postMessage({ type: 'claudeComplete', id, prompt }, '*');
+            });
+          }
+        };
+
+        window.storage = {
+          get: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = newRequestId();
+              callbacksMap.set(id, { resolve, reject });
+              realParent.postMessage({ type: 'storageGet', id, key, shared }, '*');
+            });
+          },
+          set: (key, value, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = newRequestId();
+              callbacksMap.set(id, { resolve, reject });
+              realParent.postMessage({ type: 'storageSet', id, key, value, shared }, '*');
+            });
+          },
+          delete: (key, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = newRequestId();
+              callbacksMap.set(id, { resolve, reject });
+              realParent.postMessage({ type: 'storageDelete', id, key, shared }, '*');
+            });
+          },
+          list: (prefix, shared = false) => {
+            return new Promise((resolve, reject) => {
+              const id = newRequestId();
+              callbacksMap.set(id, { resolve, reject });
+              realParent.postMessage({ type: 'storageList', id, prefix, shared }, '*');
+            });
+          }
+        };
+
+        let pendingBlobs = new Map();
+        URL.createObjectURL = (blob) => {
+          // Store the blob and create an ID and URL for it
+          const blobId = `blob-${Date.now()}-${Math.random()}`;
+          pendingBlobs.set(blobId, blob);
+          return `blob-request://${blobId}`;
+        };
+
+        URL.revokeObjectURL = (url) => {
+          // Remove the blob from our store
+          const blobId = url.replace("blob-request://", "");
+          pendingBlobs.delete(blobId);
+        };
+
+        const getBlobFromURL = (url) => {
+          const blobId = url.replace("blob-request://", "");
+          return pendingBlobs.get(blobId);
+        };
+
+        // Override global fetch with streaming support
+        window.fetch = (url, init = {}) => {
+          return new Promise((resolve, reject) => {
+            const id = newRequestId();
+            const channelId = `fetch-${id}-${Date.now()}`;
+            
+            callbacksMap.set(id, { 
+              resolve: (response) => {
+                // Null-body statuses: Response(stream, {status: 204}) throws
+                // per the Fetch spec, which would escape this resolver and
+                // hang the artifact's await forever.
+                if (response.status === 204 || response.status === 205 || response.status === 304) {
+                  try {
+                    resolve(new Response(null, {
+                      status: response.status,
+                      statusText: response.statusText,
+                      headers: response.headers
+                    }));
+                  } catch (err) {
+                    // Invalid statusText/header bytes can throw here too.
+                    reject(new TypeError(
+                      'Bridge fetch: unconstructable response (status ' + response.status + ')'
+                    ));
+                  }
+                  return;
+                }
+                // Create a ReadableStream for the response body
+                const stream = new ReadableStream({
+                  start(controller) {
+                    streamControllers.set(channelId, controller);
+                  },
+                  cancel() {
+                    streamControllers.delete(channelId);
+                  }
+                });
+                
+                // Create and return the Response with the stream. Response()
+                // requires status in [200, 599]; an opaque/no-cors fetch
+                // forwards status 0, which would throw here and escape the
+                // resolver, hanging the artifact's await. Surface it as a
+                // network-error-shaped rejection instead.
+                try {
+                  resolve(new Response(stream, {
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: response.headers
+                  }));
+                } catch (err) {
+                  streamControllers.delete(channelId);
+                  reject(new TypeError(
+                    'Bridge fetch: unconstructable response (status ' + response.status + ')'
+                  ));
+                }
+              },
+              reject,
+              channelId
+            });
+            
+            realParent.postMessage({
+              type: 'proxyFetch',
+              id,
+              url,
+              init,
+              channelId
+            }, '*');
+          });
+        };
+
+        window.addEventListener('message', async (event) => {
+          // Only the embedding parent may drive the bridge — sibling and
+          // nested frames can also postMessage into this window.
+          if (event.source !== realParent) return;
+          if (event.data.type === 'takeScreenshot') {
+            // Echo the request's nonce so the requester can correlate the
+            // reply to ITS request — a reply without the expected nonce
+            // (e.g. from a stale pre-remount artifact) is ignored upstream.
+            const screenshotNonce = event.data.nonce;
+            const rootElement = document.getElementById('artifacts-component-root-html');
+            if (!rootElement) {
+              realParent.postMessage({
+                type: 'screenshotError',
+                nonce: screenshotNonce,
+                error: new Error('Root element not found'),
+              }, '*');
+              return;
+            }
+            // Catch CDN load failures (htmlToImage undefined) and toPng errors
+            // so the parent always gets a response instead of hanging forever.
+            try {
+              const screenshot = await htmlToImage.toPng(rootElement, {
+                imagePlaceholder:
+                  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjePDgwX8ACOQDoNsk0PMAAAAASUVORK5CYII=",
+              });
+              realParent.postMessage({
+                type: 'screenshotData',
+                nonce: screenshotNonce,
+                data: screenshot,
+              }, '*');
+            } catch (err) {
+              realParent.postMessage({
+                type: 'screenshotError',
+                nonce: screenshotNonce,
+                error: err instanceof Error ? err : new Error(String(err)),
+              }, '*');
+            }
+          } else if (event.data.type === 'claudeComplete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (!callback) return;
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.completion);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'proxyFetchResponse') {
+            const callback = callbacksMap.get(event.data.id);
+            if (!callback) return;
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+              callbacksMap.delete(event.data.id);
+            } else {
+              // Initial response with headers, status, etc.
+              callback.resolve({
+                status: event.data.status,
+                statusText: event.data.statusText,
+                headers: event.data.headers
+              });
+              // Don't delete the callback yet if streaming
+              if (!event.data.body) {
+                callbacksMap.delete(event.data.id);
+              }
+            }
+          } else if (event.data.type === 'proxyFetchStream') {
+            // Handle streaming data chunks
+            const controller = streamControllers.get(event.data.channelId);
+            if (controller) {
+              if (event.data.error) {
+                controller.error(new Error(event.data.error));
+                streamControllers.delete(event.data.channelId);
+              } else if (event.data.done) {
+                controller.close();
+                streamControllers.delete(event.data.channelId);
+                // Clean up the callback
+                const callback = Array.from(callbacksMap.entries()).find(
+                  ([_, value]) => value.channelId === event.data.channelId
+                );
+                if (callback) {
+                  callbacksMap.delete(callback[0]);
+                }
+              } else if (event.data.chunk) {
+                controller.enqueue(new Uint8Array(event.data.chunk));
+              }
+            }
+          } else if (event.data.type === 'storageGet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (!callback) return;
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageSet') {
+            const callback = callbacksMap.get(event.data.id);
+            if (!callback) return;
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageDelete') {
+            const callback = callbacksMap.get(event.data.id);
+            if (!callback) return;
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          } else if (event.data.type === 'storageList') {
+            const callback = callbacksMap.get(event.data.id);
+            if (!callback) return;
+            if (event.data.error) {
+              callback.reject(new Error(event.data.error));
+            } else {
+              callback.resolve(event.data.result);
+            }
+            callbacksMap.delete(event.data.id);
+          }
+        });
+
+        window.addEventListener('click', (event) => {
+          const isEl = event.target instanceof HTMLElement;
+          if (!isEl) return;
+    
+          // find ancestor links
+          const linkEl = event.target.closest("a");
+          if (!linkEl || !linkEl.href) return;
+    
+          event.preventDefault();
+          event.stopImmediatePropagation();
+    
+          if (linkEl.href.startsWith("blob-request:")) {
+            const blob = getBlobFromURL(linkEl.href);
+            if (!blob) return;
+            void blob.arrayBuffer().then((data) => {
+              realParent.postMessage({
+                type: "downloadFile",
+                filename: linkEl.download,
+                data,
+                mimeType: blob.type || "application/octet-stream",
+              });
+            });
+          } else if (linkEl.href.startsWith("data:")) {
+            const [header, base64Data] = linkEl.href.split(",");
+            const mimeMatch = header.match(/data:([^;]+)/);
+            const mimeType = mimeMatch ? mimeMatch[1] : "application/octet-stream";
+            const binaryString = atob(base64Data);
+            const data = Uint8Array.from(binaryString, (c) =>
+              c.charCodeAt(0),
+            ).buffer;
+            realParent.postMessage({
+              type: "downloadFile",
+              filename: linkEl.download,
+              data,
+              mimeType,
+            });
+          } else {
+            let linkUrl;
+            try {
+              linkUrl = new URL(linkEl.href);
+            } catch (error) {
+              return;
+            }
+    
+            if (linkUrl.hostname === window.location.hostname) return;
+      
+            realParent.postMessage({
+              type: 'openExternal',
+              href: linkEl.href,
+            }, '*');
+          }
+      });
+
+        const originalOpen = window.open;
+        window.open = function (url) {
+          realParent.postMessage({
+            type: "openExternal",
+            href: url,
+          }, "*");
+        };
+
+        window.addEventListener('error', (event) => {
+          realParent.postMessage({ type: 'console', message: 'Uncaught Error: ' + event.message }, '*');
+        });
+      })();
+    </script>
+  
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M2 · Integrate Custom Tools into Your Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12141C;
+    --bg-soft: #171B26;
+    --surface: #1C2130;
+    --surface-2: #232A3C;
+    --line: #2E3648;
+    --copper: #E8823A;
+    --copper-dim: #b8622a;
+    --steel: #5FA8D3;
+    --steel-dim: #3d7ba3;
+    --text: #F1EEE6;
+    --text-dim: #A9B0C2;
+    --text-faint: #6C7488;
+    --good: #7BC67E;
+    --warn: #E8B23A;
+    --danger: #E85A5A;
+    --radius: 14px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(232,130,58,0.10), transparent 60%),
+      radial-gradient(1000px 500px at 90% 10%, rgba(95,168,211,0.10), transparent 55%),
+      var(--bg);
+    color:var(--text); font-family:var(--body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:var(--display); margin:0; letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:inherit;}
+  ::selection{background:var(--copper); color:#12141C;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--copper); display:flex; align-items:center; gap:10px; margin-bottom:14px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--copper);}
+  .eyebrow.steel{color:var(--steel);}
+  .eyebrow.steel::before{background:var(--steel);}
+
+  /* ---------- NAV ---------- */
+  nav.rail{
+    position:sticky; top:0; z-index:50; backdrop-filter:blur(14px);
+    background:rgba(18,20,28,0.86); border-bottom:1px solid var(--line);
+  }
+  .rail-inner{max-width:1180px; margin:0 auto; padding:14px 28px; display:flex; align-items:center; gap:18px; overflow-x:auto; scrollbar-width:none;}
+  .rail-inner::-webkit-scrollbar{display:none;}
+  .rail-brand{font-family:var(--display); font-weight:700; font-size:15px; white-space:nowrap; color:var(--text); flex-shrink:0;}
+  .rail-brand span{color:var(--copper);}
+  .rail-links{display:flex; gap:4px; flex-shrink:0;}
+  .rail-links a{
+    font-size:12.5px; padding:7px 12px; border-radius:20px; white-space:nowrap; color:var(--text-dim);
+    text-decoration:none; transition:all .15s ease; border:1px solid transparent;
+  }
+  .rail-links a:hover{color:var(--text); border-color:var(--line); background:var(--surface);}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:86px 0 60px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{font-size:clamp(34px,4.4vw,54px); line-height:1.05; font-weight:700;}
+  .hero h1 em{font-style:normal; color:var(--copper);}
+  .hero .lede{margin-top:18px; font-size:16.5px; color:var(--text-dim); max-width:52ch;}
+  .hero-tags{display:flex; gap:10px; margin-top:26px; flex-wrap:wrap;}
+  .tag{font-family:var(--mono); font-size:11.5px; padding:6px 12px; border-radius:8px; border:1px solid var(--line); color:var(--text-dim); background:var(--surface);}
+
+  /* Signature: workbench / pegboard diagram */
+  .bench{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px; position:relative;}
+  .bench svg{width:100%; height:auto; display:block;}
+  .node-dot{cursor:pointer; transition:transform .15s ease;}
+  .node-dot:hover{transform:scale(1.15);}
+  .lane-label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase;}
+  #tooltip{
+    position:fixed; z-index:200; max-width:250px; background:#0D0F16; border:1px solid var(--copper);
+    border-radius:10px; padding:12px 14px; font-size:12.5px; color:var(--text); pointer-events:none;
+    opacity:0; transition:opacity .12s ease; box-shadow:0 12px 30px rgba(0,0,0,0.5);
+  }
+  #tooltip.show{opacity:1;}
+  #tooltip .tt-title{font-family:var(--mono); font-size:11px; color:var(--copper); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; display:block;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:70px 0; border-top:1px solid var(--line);}
+  .sec-head{margin-bottom:34px; max-width:70ch;}
+  .sec-head h2{font-size:clamp(24px,3vw,32px);}
+  .sec-head .sub{margin-top:10px; color:var(--text-dim); font-size:15px;}
+
+  .grid{display:grid; gap:16px;}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-4{grid-template-columns:repeat(4,1fr);}
+  @media (max-width:820px){ .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;} }
+
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px;}
+  .card h3{font-size:17px; margin-bottom:8px;}
+  .card p{color:var(--text-dim); font-size:14px;}
+  .card .icon{width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; font-size:18px; background:rgba(232,130,58,0.12); color:var(--copper);}
+  .card .icon.steelicon{background:rgba(95,168,211,0.14); color:var(--steel);}
+
+  /* Stat cards */
+  .stat{background:linear-gradient(160deg, var(--surface), var(--surface-2)); border:1px solid var(--line); border-radius:var(--radius); padding:22px;}
+  .stat .n{font-family:var(--display); font-size:26px; color:var(--copper); font-weight:700;}
+  .stat h4{font-size:14.5px; margin:8px 0 6px;}
+  .stat p{font-size:13px; color:var(--text-dim);}
+
+  /* Flip cards - use cases */
+  .flip-scene{perspective:1400px; height:210px;}
+  .flip-card{position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .55s cubic-bezier(.4,.2,.2,1); cursor:pointer;}
+  .flip-card.flipped{transform:rotateY(180deg);}
+  .flip-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:var(--radius); padding:20px; border:1px solid var(--line);}
+  .flip-front{background:var(--surface); display:flex; flex-direction:column; justify-content:space-between;}
+  .flip-back{background:linear-gradient(160deg,#22283A,#1A2030); transform:rotateY(180deg); font-size:12.5px; color:var(--text-dim); display:flex; flex-direction:column; justify-content:center; gap:8px;}
+  .flip-back b{color:var(--copper); font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; display:block;}
+  .flip-front .tap{font-family:var(--mono); font-size:10.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:.08em;}
+  .flip-front h4{font-size:16px;}
+  .flip-front .who{font-size:12.5px; color:var(--copper); font-family:var(--mono);}
+
+  /* Tabs */
+  .tabbar{display:flex; gap:8px; margin-bottom:18px; flex-wrap:wrap;}
+  .tabbtn{font-family:var(--mono); font-size:12.5px; padding:9px 16px; border-radius:9px; border:1px solid var(--line); background:var(--surface); color:var(--text-dim); cursor:pointer; transition:all .15s ease;}
+  .tabbtn.active{background:var(--copper); color:#171008; border-color:var(--copper); font-weight:600;}
+  .tabbtn.steelactive.active{background:var(--steel); color:#0B1A24; border-color:var(--steel);}
+  .tabpane{display:none;}
+  .tabpane.active{display:block; animation:fadeIn .25s ease;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);}}
+
+  .checklist{list-style:none; margin:0; padding:0; display:grid; gap:8px;}
+  .checklist li{display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--text-dim);}
+  .checklist li::before{content:"→"; color:var(--steel); flex-shrink:0; font-family:var(--mono);}
+
+  /* Sequence stepper (weather tool call) */
+  .stepper-wrap{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px;}
+  .step-track{display:flex; align-items:center; margin-bottom:24px; overflow-x:auto; padding-bottom:6px;}
+  .step-dot{width:30px; height:30px; border-radius:50%; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:12px; color:var(--text-faint); flex-shrink:0; cursor:pointer; transition:all .2s ease; background:var(--bg-soft);}
+  .step-dot.active{border-color:var(--copper); color:var(--copper); background:rgba(232,130,58,0.12); transform:scale(1.12);}
+  .step-dot.done{border-color:var(--good); color:var(--good);}
+  .step-line{flex:1; height:2px; background:var(--line); min-width:16px;}
+  .step-line.done{background:var(--good);}
+  .step-panel h4{font-size:18px; margin-bottom:8px; color:var(--copper);}
+  .step-panel p{color:var(--text-dim); font-size:14.5px;}
+  .step-nav{display:flex; gap:10px; margin-top:20px;}
+  .step-nav button{font-family:var(--mono); font-size:12.5px; padding:9px 16px; border-radius:9px; border:1px solid var(--line); background:var(--bg-soft); color:var(--text); cursor:pointer;}
+  .step-nav button:hover{border-color:var(--copper);}
+  .step-nav button:disabled{opacity:.35; cursor:not-allowed;}
+
+  /* Code viewer */
+  .code-shell{background:#0D0F16; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .code-tabbar{display:flex; border-bottom:1px solid var(--line); background:#10131C; flex-wrap:wrap;}
+  .code-tabbar button{font-family:var(--mono); font-size:12px; padding:11px 18px; background:transparent; border:none; color:var(--text-faint); cursor:pointer; border-right:1px solid var(--line);}
+  .code-tabbar button.active{color:var(--copper); background:#0D0F16;}
+  pre.code{margin:0; padding:20px; font-family:var(--mono); font-size:12.4px; line-height:1.65; color:#D7DCE6; overflow-x:auto; max-height:480px;}
+  .code .k{color:#5FA8D3;}
+  .code .s{color:#E8B23A;}
+  .code .c{color:#6C7488; font-style:italic;}
+  .code .p{color:#E8823A;}
+  .code .f{color:#7BC67E;}
+  .code-caption{font-family:var(--mono); font-size:11px; color:var(--text-faint); padding:10px 18px; border-top:1px solid var(--line); background:#10131C;}
+
+  /* Option cards (custom tool implementation options) */
+  .opt-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px; cursor:pointer; transition:border-color .2s ease, transform .15s ease;}
+  .opt-card:hover{border-color:var(--copper); transform:translateY(-2px);}
+  .opt-card.active{border-color:var(--copper); background:linear-gradient(160deg,#232A3C,#1C2130);}
+  .opt-card .tag-row{display:flex; gap:6px; margin-top:12px; flex-wrap:wrap;}
+  .opt-card .mini-tag{font-family:var(--mono); font-size:10.5px; padding:3px 8px; border-radius:6px; background:var(--bg-soft); color:var(--text-dim); border:1px solid var(--line);}
+
+  /* Accordion (reused for scenarios detail) */
+  .acc-item{border:1px solid var(--line); border-radius:12px; margin-bottom:10px; overflow:hidden; background:var(--surface);}
+  .acc-head{display:flex; justify-content:space-between; align-items:center; padding:16px 18px; cursor:pointer; gap:14px;}
+  .acc-head .risk-name{font-weight:600; font-size:14.5px;}
+  .acc-head .plus{font-family:var(--mono); color:var(--copper); font-size:18px; transition:transform .2s ease; flex-shrink:0;}
+  .acc-item.open .plus{transform:rotate(45deg);}
+  .acc-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .acc-body-in{padding:0 18px 18px; font-size:13.5px; color:var(--text-dim);}
+  .acc-body-in .impact{margin-top:10px; padding:10px 12px; border-left:2px solid var(--good); background:rgba(123,198,126,0.06); border-radius:0 8px 8px 0;}
+  .acc-body-in .impact b{color:var(--good); font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.05em;}
+
+  /* lifecycle mini stepper */
+  .lifecycle{display:flex; gap:0; align-items:stretch; flex-wrap:wrap; margin-top:20px;}
+  .lc-step{flex:1; min-width:150px; background:var(--bg-soft); border:1px solid var(--line); padding:14px; font-size:12px; color:var(--text-dim); position:relative;}
+  .lc-step .lc-n{font-family:var(--mono); color:var(--steel); font-size:11px; display:block; margin-bottom:6px;}
+  .lc-step:not(:last-child)::after{content:"›"; position:absolute; right:-14px; top:50%; transform:translateY(-50%); color:var(--text-faint); font-size:16px; z-index:2;}
+
+  /* Auth type toggle */
+  .auth-toggle{display:inline-flex; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:4px; margin-bottom:18px; flex-wrap:wrap;}
+  .auth-toggle button{border:none; background:transparent; color:var(--text-dim); font-family:var(--mono); font-size:12.5px; padding:9px 16px; border-radius:9px; cursor:pointer;}
+  .auth-toggle button.active{background:var(--steel); color:#0B1A24; font-weight:600;}
+
+  /* Note / tip / warning callouts */
+  .callout{border-radius:var(--radius); padding:18px 20px; border:1px solid var(--line); background:var(--surface); display:flex; gap:14px; align-items:flex-start;}
+  .callout .cicon{font-family:var(--mono); font-size:13px; width:26px; height:26px; border-radius:7px; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;}
+  .callout.tip{border-color:rgba(95,168,211,0.4);}
+  .callout.tip .cicon{background:rgba(95,168,211,0.16); color:var(--steel);}
+  .callout.note{border-color:rgba(123,198,126,0.4);}
+  .callout.note .cicon{background:rgba(123,198,126,0.16); color:var(--good);}
+
+  /* Quiz */
+  .quiz-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:22px; margin-bottom:14px;}
+  .quiz-q{font-weight:600; font-size:14.5px; margin-bottom:14px;}
+  .quiz-opts{display:grid; gap:8px;}
+  .quiz-opt{text-align:left; padding:11px 14px; border-radius:9px; border:1px solid var(--line); background:var(--bg-soft); color:var(--text-dim); cursor:pointer; font-size:13.5px; transition:all .15s ease;}
+  .quiz-opt:hover{border-color:var(--steel);}
+  .quiz-opt.correct{border-color:var(--good); background:rgba(123,198,126,0.1); color:var(--good);}
+  .quiz-opt.wrong{border-color:var(--danger); background:rgba(232,90,90,0.1); color:var(--danger);}
+  .quiz-score{font-family:var(--mono); font-size:13px; color:var(--copper); text-align:center; margin-top:6px;}
+
+  /* Matching game */
+  .match-wrap{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  @media (max-width:700px){ .match-wrap{grid-template-columns:1fr;} }
+  .match-col h4{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-faint); margin-bottom:10px;}
+  .match-item{padding:12px 14px; border-radius:9px; border:1px solid var(--line); background:var(--bg-soft); font-size:13.5px; cursor:pointer; margin-bottom:8px; transition:all .15s ease; color:var(--text-dim);}
+  .match-item.selected{border-color:var(--steel); color:var(--text);}
+  .match-item.matched{border-color:var(--good); color:var(--good); background:rgba(123,198,126,0.08); cursor:default;}
+  .match-item.shake{animation:shake .3s ease;}
+  @keyframes shake{25%{transform:translateX(-4px);} 75%{transform:translateX(4px);}}
+  .match-status{font-family:var(--mono); font-size:12.5px; color:var(--text-faint); margin-top:10px; text-align:center;}
+
+  footer{padding:50px 0 70px; text-align:center; color:var(--text-faint); font-size:12.5px; font-family:var(--mono);}
+  .pill{display:inline-block; padding:3px 10px; border-radius:20px; background:var(--surface-2); border:1px solid var(--line); font-size:11px; font-family:var(--mono); color:var(--steel); margin-right:6px;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:820px){ .two-col{grid-template-columns:1fr;} }
+  .link-list{list-style:none; margin:0; padding:0; display:grid; gap:10px;}
+  .link-list li a{display:flex; align-items:center; gap:10px; padding:12px 16px; border-radius:10px; border:1px solid var(--line); background:var(--surface); font-size:13.5px; color:var(--steel); text-decoration:none; transition:border-color .15s ease;}
+  .link-list li a:hover{border-color:var(--steel);}
+  .link-list li a::before{content:"↗"; font-family:var(--mono); color:var(--text-faint);}
+</style>
+</head>
+<body id="artifacts-component-root-html">
+
+<div id="tooltip"></div>
+
+<nav class="rail">
+  <div class="rail-inner">
+    <div class="rail-brand">AI‑103 · M2 <span>Custom Tools</span></div>
+    <div class="rail-links">
+      <a href="https://www.claudeusercontent.com/artifact/a15e0bed-0b3a-49f1-9958-663929abfff0?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true&amp;routeHandlerPdf=true#why">Why tools</a>
+      <a href="https://www.claudeusercontent.com/artifact/a15e0bed-0b3a-49f1-9958-663929abfff0?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true&amp;routeHandlerPdf=true#flow">How a tool call works</a>
+      <a href="https://www.claudeusercontent.com/artifact/a15e0bed-0b3a-49f1-9958-663929abfff0?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true&amp;routeHandlerPdf=true#scenarios">Scenarios</a>
+      <a href="https://www.claudeusercontent.com/artifact/a15e0bed-0b3a-49f1-9958-663929abfff0?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true&amp;routeHandlerPdf=true#options">Your options</a>
+      <a href="https://www.claudeusercontent.com/artifact/a15e0bed-0b3a-49f1-9958-663929abfff0?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true&amp;routeHandlerPdf=true#build">Build one</a>
+      <a href="https://www.claudeusercontent.com/artifact/a15e0bed-0b3a-49f1-9958-663929abfff0?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true&amp;routeHandlerPdf=true#declarative">The declarative trick</a>
+      <a href="https://www.claudeusercontent.com/artifact/a15e0bed-0b3a-49f1-9958-663929abfff0?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true&amp;routeHandlerPdf=true#quiz">Check yourself</a>
+      <a href="https://www.claudeusercontent.com/artifact/a15e0bed-0b3a-49f1-9958-663929abfff0?domain=claude.ai&amp;parentOrigin=https%3A%2F%2Fclaude.ai&amp;errorReportingMode=parent&amp;formattedSpreadsheets=true&amp;routeHandlerPdf=true#resources">Resources</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Module 2 · Extending agents</div>
+      <h1>Your agent has a brain.<br>Custom tools give it <em>hands</em>.</h1>
+      <p class="lede">A model alone can only talk. The moment it needs to look up a real order, check real stock, or hit a real API, it needs a tool. This module walks through why custom tools matter, the four ways Microsoft Foundry Agent Service lets you build them, and exactly how to wire one in — with working code for each option.</p>
+      <div class="hero-tags">
+        <span class="tag">Function calling</span>
+        <span class="tag">Azure Functions</span>
+        <span class="tag">OpenAPI 3.0</span>
+        <span class="tag">Azure Logic Apps</span>
+      </div>
+    </div>
+    <div class="bench">
+      <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg">
+        <text x="16" y="26" class="lane-label" fill="#E8823A">USER</text>
+        <text x="16" y="146" class="lane-label" fill="#F1EEE6">AGENT</text>
+        <text x="16" y="266" class="lane-label" fill="#5FA8D3">CUSTOM TOOL</text>
+
+        <line x1="16" y1="40" x2="460" y2="40" stroke="#2E3648" stroke-width="1"></line>
+        <line x1="16" y1="160" x2="460" y2="160" stroke="#2E3648" stroke-width="1"></line>
+        <line x1="16" y1="280" x2="460" y2="280" stroke="#2E3648" stroke-width="1"></line>
+
+        <path d="M90,40 C120,90 120,110 150,150" fill="none" stroke="#E8823A" stroke-width="2" marker-end="url(#arrow1)"></path>
+        <path d="M230,160 C260,200 260,220 290,270" fill="none" stroke="#5FA8D3" stroke-width="2" marker-end="url(#arrow2)"></path>
+        <path d="M370,270 C400,220 400,200 430,160" fill="none" stroke="#5FA8D3" stroke-width="2" marker-end="url(#arrow2)" stroke-dasharray="4 3"></path>
+        <path d="M300,150 C330,110 330,90 360,40" fill="none" stroke="#E8823A" stroke-width="2" marker-end="url(#arrow1)" stroke-dasharray="4 3"></path>
+
+        <defs>
+          <marker id="arrow1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#E8823A"></path></marker>
+          <marker id="arrow2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5FA8D3"></path></marker>
+        </defs>
+
+        <g id="bench-nodes"><circle cx="90" cy="40" r="10" fill="#E8823A" stroke="#12141C" stroke-width="2" class="node-dot" data-title="User asks" data-desc="“What are the conditions like at the ski resort right now?”"></circle><circle cx="230" cy="160" r="10" fill="#F1EEE6" stroke="#12141C" stroke-width="2" class="node-dot" data-title="Agent decides" data-desc="The model recognizes it has a tool that can call a meteorological API — and chooses to invoke it."></circle><circle cx="370" cy="280" r="10" fill="#5FA8D3" stroke="#12141C" stroke-width="2" class="node-dot" data-title="Tool executes" data-desc="Your custom tool (function, Azure Function, or OpenAPI call) runs and returns the weather report."></circle><circle cx="360" cy="40" r="10" fill="#E8823A" stroke="#12141C" stroke-width="2" class="node-dot" data-title="Agent informs" data-desc="The agent turns the raw tool result into a natural-language answer for the user."></circle></g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">01 · Why bother</div>
+      <h2>Built-in tools get you knowledge. Custom tools get you action.</h2>
+      <p class="sub">Foundry Agent Service ships with built-in tools for gathering knowledge and generating code. But an AI model, on its own, can't check a real order, look up real inventory, or book a real appointment. A <b style="color:var(--text);">custom tool</b> — your own code, or a third-party API — closes that gap.</p>
+    </div>
+
+    <div class="card" style="border-color:var(--copper); margin-bottom:24px;">
+      <div class="icon">🏬</div>
+      <h3 style="color:var(--copper);">The retail scenario this module is built around</h3>
+      <p style="margin-top:8px;">A retail company's support team is drowning in repetitive order-status questions, and response times are slipping. Instead of hiring more agents, they build a custom FAQ agent equipped with a tool that looks up customer orders directly — freeing the human team to handle the complex cases.</p>
+    </div>
+
+    <div class="grid grid-3" id="benefit-cards"><div class="card"><div class="icon">⚙</div><h3>Enhanced productivity</h3><p>Automate repetitive tasks and streamline workflows that are specific to your use case — the agent handles the routine so people don't have to.</p></div><div class="card"><div class="icon">🎯</div><h3>Improved accuracy</h3><p>Tools provide precise, consistent outputs pulled straight from your systems, reducing the likelihood of human error in the response.</p></div><div class="card"><div class="icon">🧩</div><h3>Tailored solutions</h3><p>Address specific business needs and optimize processes that a generic, out-of-the-box agent simply can't reach.</p></div></div>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">02 · The mental model</div>
+      <h2>Watch a custom tool get called, step by step.</h2>
+      <p class="sub">The module's own example: a skier asks about conditions at a resort. Walk through what actually happens between the question and the answer.</p>
+    </div>
+    <div class="stepper-wrap">
+      <div class="step-track" id="flow-track"><div class="step-dot active">1</div><div class="step-line"></div><div class="step-dot">2</div><div class="step-line"></div><div class="step-dot">3</div><div class="step-line"></div><div class="step-dot">4</div><div class="step-line"></div><div class="step-dot">5</div></div>
+      <div class="step-panel" id="flow-panel"><h4>1 · The question arrives</h4><p>A user asks the agent about the weather conditions in a ski resort. To the model, this is just a piece of natural-language text — nothing more.</p></div>
+      <div class="step-nav">
+        <button id="flow-prev" disabled="">← Back</button>
+        <button id="flow-next">Next →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">03 · Where this shows up</div>
+      <h2>Five industries, one shape: connect, act, resolve.</h2>
+      <p class="sub">Every example follows the same pattern — a tool links the agent to a real business system, and that connection changes an outcome. Tap a card to see the functionality and the result.</p>
+    </div>
+    <div class="grid grid-3" id="scenario-grid"><div class="flip-scene"><div class="flip-card"><div class="flip-face flip-front"><div><span class="who">Retail · CRM</span><h4 style="margin-top:8px;">Customer support automation</h4><p style="font-size:13px; color:var(--text-dim); margin-top:6px;">Connects the agent to a CRM system.</p></div><span class="tap">Tap to flip →</span></div><div class="flip-face flip-back"><b>Does</b>Retrieves order histories, processes refunds, gives real-time shipping updates.<b>Result</b>Faster query resolution, lighter support workload, happier customers.</div></div></div><div class="flip-scene"><div class="flip-card"><div class="flip-face flip-front"><div><span class="who">Manufacturing</span><h4 style="margin-top:8px;">Inventory management</h4><p style="font-size:13px; color:var(--text-dim); margin-top:6px;">Links the agent to an inventory system.</p></div><span class="tap">Tap to flip →</span></div><div class="flip-face flip-back"><b>Does</b>Checks stock levels, predicts restocking needs from historical data, places supplier orders automatically.<b>Result</b>Streamlined inventory and optimized supply chain.</div></div></div><div class="flip-scene"><div class="flip-card"><div class="flip-face flip-front"><div><span class="who">Healthcare provider</span><h4 style="margin-top:8px;">Healthcare appointment scheduling</h4><p style="font-size:13px; color:var(--text-dim); margin-top:6px;">Integrates a custom scheduling tool.</p></div><span class="tap">Tap to flip →</span></div><div class="flip-face flip-back"><b>Does</b>Accesses patient records, suggests open slots, sends reminders.<b>Result</b>Less admin burden, better patient experience, smarter resource use.</div></div></div><div class="flip-scene"><div class="flip-card"><div class="flip-face flip-front"><div><span class="who">IT department</span><h4 style="margin-top:8px;">IT Helpdesk support</h4><p style="font-size:13px; color:var(--text-dim); margin-top:6px;">Ties into ticketing &amp; knowledge base.</p></div><span class="tap">Tap to flip →</span></div><div class="flip-face flip-back"><b>Does</b>Troubleshoots common issues, escalates complex ones, tracks ticket status.<b>Result</b>Faster resolution, less downtime, higher employee productivity.</div></div></div><div class="flip-scene"><div class="flip-card"><div class="flip-face flip-front"><div><span class="who">Educational institution</span><h4 style="margin-top:8px;">E-learning and training</h4><p style="font-size:13px; color:var(--text-dim); margin-top:6px;">Connects to a learning management system.</p></div><span class="tap">Tap to flip →</span></div><div class="flip-face flip-back"><b>Does</b>Recommends courses, tracks student progress, answers course-content questions.<b>Result</b>Better learning experiences and streamlined admin.</div></div></div></div>
+  </div>
+</section>
+
+<section id="options">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">04 · Four ways in</div>
+      <h2>Pick the option that matches what you already have.</h2>
+      <p class="sub">Foundry Agent Service doesn't force one integration style. Select a card to see when it fits best.</p>
+    </div>
+    <div class="grid grid-2" id="option-grid"><div class="opt-card active"><div class="icon" style="font-family:var(--mono);">ƒ()</div><h3>Custom function</h3><p>Describe a function's structure to the agent; it dynamically picks the right one and returns the arguments to call it with.</p><div class="tag-row"><span class="mini-tag">Python / multi-language logic</span><span class="mini-tag">Runs in your own code</span></div></div><div class="opt-card"><div class="icon steelicon" style="font-family:var(--mono);">⚡</div><h3>Azure Functions</h3><p>Serverless, event-driven compute with minimal overhead — triggers decide when it runs, bindings connect it to data.</p><div class="tag-row"><span class="mini-tag">Triggers</span><span class="mini-tag">Bindings</span><span class="mini-tag">Event-driven</span></div></div><div class="opt-card"><div class="icon" style="font-family:var(--mono);">⇄</div><h3>OpenAPI specification tools</h3><p>Connect your agent to any external API described by an OpenAPI 3.0 spec — standardized and automated.</p><div class="tag-row"><span class="mini-tag">OpenAPI 3.0</span><span class="mini-tag">anonymous / API key / managed identity auth</span></div></div><div class="opt-card"><div class="icon steelicon" style="font-family:var(--mono);">◧</div><h3>Azure Logic Apps</h3><p>Low-code / no-code workflows that connect apps, data, and services without writing integration code by hand.</p><div class="tag-row"><span class="mini-tag">Low-code</span><span class="mini-tag">No-code</span><span class="mini-tag">Workflow connector</span></div></div></div>
+    <div class="card" id="option-detail" style="margin-top:20px; border-color:var(--copper);"><h3>Custom function (function calling)</h3><p style="margin-top:10px;">Function calling lets you describe the structure of custom functions to an agent, which then returns the functions that need to be called along with their arguments. The agent dynamically identifies the appropriate function based on its definition. Useful for integrating custom logic and workflows, in a selection of programming languages, directly into your AI agents.</p></div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">05 · Hands-on</div>
+      <h2>The same snowfall tool, built three ways.</h2>
+      <p class="sub">The module walks through one running example — checking recent snowfall for a location — implemented as a custom function, an Azure Function, and an OpenAPI tool. Switch tabs to compare the code side by side.</p>
+    </div>
+
+    <div class="tabbar" id="build-tabbar"><button class="tabbtn active">Custom function</button><button class="tabbtn">Azure Functions</button><button class="tabbtn">OpenAPI spec</button></div>
+    <div id="build-panes"><div class="tabpane active" id="bpane-0"><div class="code-shell"><pre class="code"><span class="k">import</span> json
+
+<span class="k">def</span> <span class="f">recent_snowfall</span>(location: str) -&gt; str:
+    <span class="c">"""
+    Fetches recent snowfall totals for a given location.
+    :param location: The city name.
+    :return: Snowfall details as a JSON string.
+    """</span>
+    mock_snow_data = {<span class="s">"Seattle"</span>: <span class="s">"0 inches"</span>, <span class="s">"Denver"</span>: <span class="s">"2 inches"</span>}
+    snow = mock_snow_data.get(location, <span class="s">"Data not available."</span>)
+    <span class="k">return</span> json.dumps({<span class="s">"location"</span>: location, <span class="s">"snowfall"</span>: snow})
+
+<span class="c"># Define a function tool for the model to use</span>
+function_tool = FunctionTool(
+    name=<span class="s">"recent_snowfall"</span>,
+    parameters={
+        <span class="s">"type"</span>: <span class="s">"object"</span>,
+        <span class="s">"properties"</span>: {
+            <span class="s">"location"</span>: {<span class="s">"type"</span>: <span class="s">"string"</span>, <span class="s">"description"</span>: <span class="s">"The city name to check snowfall for."</span>},
+        },
+        <span class="s">"required"</span>: [<span class="s">"location"</span>],
+        <span class="s">"additionalProperties"</span>: <span class="k">False</span>
+    },
+    description=<span class="s">"Get recent snowfall totals for a given location."</span>,
+    strict=<span class="k">True</span>,
+)
+
+<span class="c"># Add the function tool to a list of tools for the agent</span>
+tools: list[Tool] = [function_tool]
+
+<span class="c"># Create your agent with the toolset</span>
+agent = project_client.agents.create_version(
+    name=<span class="s">"snowfall-agent"</span>,
+    definition=PromptAgentDefinition(
+        model=<span class="s">"gpt-4.1"</span>,
+        instructions=<span class="s">"You are a weather assistant tracking snowfall. Use the provided functions to answer questions."</span>,
+        tools=tools,
+    )
+)</pre><div class="code-caption">function.py — define the logic, then register it as a FunctionTool</div></div></div><div class="tabpane" id="bpane-1"><div class="code-shell"><pre class="code">tool = AzureFunctionTool(
+    azure_function=AzureFunctionDefinition(
+        input_binding=AzureFunctionBinding(
+            storage_queue=AzureFunctionStorageQueue(
+                queue_name=<span class="s">"STORAGE_INPUT_QUEUE_NAME"</span>,
+                queue_service_endpoint=<span class="s">"STORAGE_QUEUE_SERVICE_ENDPOINT"</span>,
+            )
+        ),
+        output_binding=AzureFunctionBinding(
+            storage_queue=AzureFunctionStorageQueue(
+                queue_name=<span class="s">"STORAGE_OUTPUT_QUEUE_NAME"</span>,
+                queue_service_endpoint=<span class="s">"STORAGE_QUEUE_SERVICE_ENDPOINT"</span>,
+            )
+        ),
+        function=AzureFunctionDefinitionFunction(
+            name=<span class="s">"queue_trigger"</span>,
+            description=<span class="s">"Get weather for a given location"</span>,
+            parameters={
+                <span class="s">"type"</span>: <span class="s">"object"</span>,
+                <span class="s">"properties"</span>: {<span class="s">"location"</span>: {<span class="s">"type"</span>: <span class="s">"string"</span>, <span class="s">"description"</span>: <span class="s">"location to determine weather for"</span>}},
+            },
+        ),
+    )
+)
+
+agent = project_client.agents.create_version(
+    agent_name=<span class="s">"MyAgent"</span>,
+    definition=PromptAgentDefinition(
+        model=<span class="s">"gpt-4.1"</span>,
+        instructions=<span class="s">"You are a helpful weather assistant. Use the provided Azure Function to get weather information for a location when needed."</span>,
+        tools=[tool],
+    ),
+)</pre><div class="code-caption">azure_function_tool.py — route the call through a storage queue trigger</div></div></div><div class="tabpane" id="bpane-2"><div class="code-shell"><pre class="code"><span class="c">// weather_openapi.json (abridged)</span>
+{
+  <span class="s">"openapi"</span>: <span class="s">"3.1.0"</span>,
+  <span class="s">"info"</span>: { <span class="s">"title"</span>: <span class="s">"get weather data"</span>, <span class="s">"version"</span>: <span class="s">"v1.0.0"</span> },
+  <span class="s">"servers"</span>: [ { <span class="s">"url"</span>: <span class="s">"https://wttr.in"</span> } ],
+  <span class="s">"paths"</span>: {
+    <span class="s">"/{location}"</span>: {
+      <span class="s">"get"</span>: {
+        <span class="s">"operationId"</span>: <span class="s">"GetCurrentWeather"</span>,
+        <span class="s">"parameters"</span>: [
+          { <span class="s">"name"</span>: <span class="s">"location"</span>, <span class="s">"in"</span>: <span class="s">"path"</span>, <span class="s">"required"</span>: <span class="k">true</span>, <span class="s">"schema"</span>: {<span class="s">"type"</span>:<span class="s">"string"</span>} },
+          { <span class="s">"name"</span>: <span class="s">"format"</span>, <span class="s">"in"</span>: <span class="s">"query"</span>, <span class="s">"required"</span>: <span class="k">true</span>, <span class="s">"schema"</span>: {<span class="s">"type"</span>:<span class="s">"string"</span>,<span class="s">"default"</span>:<span class="s">"j1"</span>} }
+        ],
+        <span class="s">"responses"</span>: { <span class="s">"200"</span>: {<span class="s">"description"</span>:<span class="s">"Successful response"</span>}, <span class="s">"404"</span>: {<span class="s">"description"</span>:<span class="s">"Location not found"</span>} }
+      }
+    }
+  }
+}
+
+<span class="c"># Register the OpenAPI tool in the agent definition</span>
+<span class="k">from</span> azure.ai.projects.models <span class="k">import</span> OpenApiTool, OpenApiAnonymousAuthDetails
+
+<span class="k">with</span> open(weather_asset_file_path, <span class="s">"r"</span>) <span class="k">as</span> f:
+    openapi_weather = cast(dict[str, Any], jsonref.loads(f.read()))
+
+tool = OpenApiTool(
+    openapi=OpenApiFunctionDefinition(
+        name=<span class="s">"get_weather"</span>,
+        spec=openapi_weather,
+        description=<span class="s">"Retrieve weather information for a location."</span>,
+        auth=OpenApiAnonymousAuthDetails(),
+    )
+)
+
+agent = project_client.agents.create_version(
+    agent_name=<span class="s">"openapi-agent"</span>,
+    definition=PromptAgentDefinition(
+        model=<span class="s">"gpt-4.1"</span>,
+        instructions=<span class="s">"You are a weather assistant. Use the API to fetch weather data."</span>,
+        tools=[openapi_tool],
+    ),
+)</pre><div class="code-caption">weather_openapi.json — describe the API, then register it as an OpenApiTool</div></div></div></div>
+  <div class="callout tip" style="margin-top: 20px;"><div class="cicon">i</div><div><p style="color:var(--text); font-weight:600; margin-bottom:6px;">Tip — OpenAPI authentication types</p><p>Three authentication types are supported with OpenAPI 3.0 tools: <b style="color:var(--text);">anonymous</b>, <b style="color:var(--text);">API key</b>, and <b style="color:var(--text);">managed identity</b>. Choose based on how the target API expects to be called.</p></div></div></div>
+</section>
+
+<section id="declarative">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow steel">06 · The idea people trip on</div>
+      <h2>You never write the code that calls your tool.</h2>
+      <p class="sub">This is the single most common point of confusion for developers new to agent tools — worth slowing down for.</p>
+    </div>
+
+    <div class="callout note">
+      <div class="cicon">✓</div>
+      <div>
+        <p style="color:var(--text); font-weight:600; margin-bottom:6px;">The declarative nature of agent tools</p>
+        <p>You don't explicitly <i>call</i> your custom tool functions anywhere in your code. The agent itself decides to invoke a tool, based on the messages in the conversation. Give the agent functions with meaningful names and well-documented parameters, and it figures out — entirely on its own — when and how to call them.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:20px;">
+      <div class="card">
+        <h3 style="color:var(--danger);">What you might expect (imperative)</h3>
+        <p style="margin-top:8px;">"I write code that says: <i>if the user asks about weather, call recent_snowfall()</i>." This is how traditional programs work — but it's not how agent tools work.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--good);">What actually happens (declarative)</h3>
+        <p style="margin-top:8px;">You describe the tool's name, purpose, and parameters. The model reads the user's message, decides for itself that the tool is relevant, and generates the call — no branching logic required from you.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3>Try the matching game</h3>
+      <p style="margin-top:6px; margin-bottom:16px;">Match each custom tool option to the concept it depends on most.</p>
+      <div class="match-wrap">
+        <div class="match-col">
+          <h4>Tool option</h4>
+          <div id="match-left"><div class="match-item" data-id="0">Custom function</div><div class="match-item" data-id="1">Azure Functions</div><div class="match-item" data-id="2">OpenAPI spec tools</div><div class="match-item" data-id="3">Azure Logic Apps</div></div>
+        </div>
+        <div class="match-col">
+          <h4>Depends on</h4>
+          <div id="match-right"><div class="match-item" data-id="0">Well-documented Python function signatures the model can reason about</div><div class="match-item" data-id="2">A 3.0 specification describing an HTTP API's paths and schemas</div><div class="match-item" data-id="1">Triggers and bindings connecting to storage queues</div><div class="match-item" data-id="3">A low-code/no-code visual workflow designer</div></div>
+        </div>
+      </div>
+      <div class="match-status" id="match-status">0 / 4 matched</div>
+    </div>
+  </div>
+</section>
+
+<section id="quiz">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">07 · Check yourself</div>
+      <h2>Six questions before you move on.</h2>
+    </div>
+    <div id="quiz-list"><div class="quiz-card"><div class="quiz-q">1. What is the core reason to add a custom tool to an agent?</div><div class="quiz-opts"><button class="quiz-opt" data-oi="0">To make responses longer</button><button class="quiz-opt" data-oi="1">To let the agent perform actions or reach data an AI model can't handle on its own</button><button class="quiz-opt" data-oi="2">To reduce the number of models needed</button><button class="quiz-opt" data-oi="3">To replace the need for instructions</button></div></div><div class="quiz-card"><div class="quiz-q">2. In the ski-resort weather example, what does the agent do first?</div><div class="quiz-opts"><button class="quiz-opt" data-oi="0">Calls the API directly with no reasoning</button><button class="quiz-opt" data-oi="1">Determines it has access to a tool that can get the information, then calls it</button><button class="quiz-opt" data-oi="2">Asks the user to check the weather themselves</button><button class="quiz-opt" data-oi="3">Ignores the request</button></div></div><div class="quiz-card"><div class="quiz-q">3. Which custom tool option is built specifically around triggers and bindings?</div><div class="quiz-opts"><button class="quiz-opt" data-oi="0">Custom function</button><button class="quiz-opt" data-oi="1">Azure Functions</button><button class="quiz-opt" data-oi="2">OpenAPI specification tools</button><button class="quiz-opt" data-oi="3">Azure Logic Apps</button></div></div><div class="quiz-card"><div class="quiz-q">4. Which authentication types are supported with OpenAPI 3.0 tools?</div><div class="quiz-opts"><button class="quiz-opt" data-oi="0">Only OAuth2</button><button class="quiz-opt" data-oi="1">Anonymous, API key, and managed identity</button><button class="quiz-opt" data-oi="2">Only anonymous</button><button class="quiz-opt" data-oi="3">Basic auth only</button></div></div><div class="quiz-card"><div class="quiz-q">5. What does 'declarative' mean in the context of agent custom tools?</div><div class="quiz-opts"><button class="quiz-opt" data-oi="0">You write explicit if/else code to call each tool</button><button class="quiz-opt" data-oi="1">The agent itself decides when and how to call a tool based on its name, description, and the conversation</button><button class="quiz-opt" data-oi="2">Tools must be declared in a separate config file only</button><button class="quiz-opt" data-oi="3">Declarative tools can't take parameters</button></div></div><div class="quiz-card"><div class="quiz-q">6. Which option is the best fit for low-code/no-code integration between apps, data, and services?</div><div class="quiz-opts"><button class="quiz-opt" data-oi="0">Custom function</button><button class="quiz-opt" data-oi="1">OpenAPI specification tools</button><button class="quiz-opt" data-oi="2">Azure Logic Apps</button><button class="quiz-opt" data-oi="3">Function calling</button></div></div></div>
+    <div class="quiz-score" id="quiz-score"></div>
+  </div>
+</section>
+
+<section id="resources">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">08 · Keep going</div>
+      <h2>Exercise and further reading.</h2>
+    </div>
+    <div class="two-col">
+      <div class="card" style="border-color:var(--copper);">
+        <div class="icon">🛠</div>
+        <h3>Exercise — Build an agent with custom tools</h3>
+        <p style="margin-top:8px;">Apply everything in this module hands-on in the official Microsoft Learn lab.</p>
+        <div style="margin-top:14px;">
+          <a href="https://microsoftlearning.github.io/mslearn-ai-agents/Instructions/Exercises/02-agent-custom-tools.html" target="_blank" style="display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:9px; background:var(--copper); color:#171008; text-decoration:none; font-weight:600; font-size:13.5px;">Open the exercise ↗</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Further reading</h3>
+        <ul class="link-list" style="margin-top:12px;">
+          <li><a href="https://github.com/microsoft/ai-agents-for-beginners/blob/main/04-tool-use/README.md" target="_blank">AI Agents for Beginners — tool use</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/azure/ai-services/agents/how-to/tools/function-calling" target="_blank">Foundry Agent Service function calling</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview" target="_blank">Introduction to Azure Functions</a></li>
+          <li><a href="https://swagger.io/specification/" target="_blank">OpenAPI Specification</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="pill">AI-103</span><span class="pill">Topic 2</span><span class="pill">Module 2 of 9</span>
+    <p style="margin-top:16px;">Integrate custom tools into your agent — study reference.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+  // ---------- Tooltip helper ----------
+  var tooltip = document.getElementById("tooltip");
+  function showTooltip(target, title, desc){
+    var rect = target.getBoundingClientRect();
+    tooltip.innerHTML = "<span class=\"tt-title\">" + title + "</span>" + desc;
+    tooltip.style.left = (rect.left + rect.width/2 - 125) + "px";
+    tooltip.style.top = (rect.top - 92) + "px";
+    tooltip.classList.add("show");
+  }
+  function hideTooltip(){ tooltip.classList.remove("show"); }
+
+  // ---------- Hero bench diagram nodes ----------
+  var benchNodes = [
+    {x:90, y:40, title:"User asks", desc:"“What are the conditions like at the ski resort right now?”", color:"#E8823A"},
+    {x:230, y:160, title:"Agent decides", desc:"The model recognizes it has a tool that can call a meteorological API — and chooses to invoke it.", color:"#F1EEE6"},
+    {x:370, y:280, title:"Tool executes", desc:"Your custom tool (function, Azure Function, or OpenAPI call) runs and returns the weather report.", color:"#5FA8D3"},
+    {x:360, y:40, title:"Agent informs", desc:"The agent turns the raw tool result into a natural-language answer for the user.", color:"#E8823A"}
+  ];
+  var benchG = document.getElementById("bench-nodes");
+  benchNodes.forEach(function(n){
+    benchG.innerHTML += "<circle cx=\"" + n.x + "\" cy=\"" + n.y + "\" r=\"10\" fill=\"" + n.color + "\" stroke=\"#12141C\" stroke-width=\"2\" class=\"node-dot\" data-title=\"" + n.title + "\" data-desc=\"" + n.desc + "\"></circle>";
+  });
+  document.querySelectorAll(".node-dot").forEach(function(dot){
+    dot.addEventListener("mouseenter", function(){ showTooltip(dot, dot.getAttribute("data-title"), dot.getAttribute("data-desc")); });
+    dot.addEventListener("mouseleave", hideTooltip);
+    dot.addEventListener("click", function(){ showTooltip(dot, dot.getAttribute("data-title"), dot.getAttribute("data-desc")); setTimeout(hideTooltip, 2600); });
+  });
+
+  // ---------- Benefit cards ----------
+  var benefits = [
+    {icon:"⚙", t:"Enhanced productivity", d:"Automate repetitive tasks and streamline workflows that are specific to your use case — the agent handles the routine so people don't have to."},
+    {icon:"🎯", t:"Improved accuracy", d:"Tools provide precise, consistent outputs pulled straight from your systems, reducing the likelihood of human error in the response."},
+    {icon:"🧩", t:"Tailored solutions", d:"Address specific business needs and optimize processes that a generic, out-of-the-box agent simply can't reach."}
+  ];
+  var bCards = document.getElementById("benefit-cards");
+  benefits.forEach(function(b){
+    var d = document.createElement("div");
+    d.className = "card";
+    d.innerHTML = "<div class=\"icon\">" + b.icon + "</div><h3>" + b.t + "</h3><p>" + b.d + "</p>";
+    bCards.appendChild(d);
+  });
+
+  // ---------- Flow stepper (weather example) ----------
+  var flowSteps = [
+    {t:"1 · The question arrives", d:"A user asks the agent about the weather conditions in a ski resort. To the model, this is just a piece of natural-language text — nothing more."},
+    {t:"2 · The agent checks its toolbox", d:"The agent determines that it has access to a custom tool that can call an external API to get meteorological information for a location."},
+    {t:"3 · The agent calls the tool", d:"The agent generates the tool call with the right arguments (for example, the resort's location) and hands off execution — it doesn't run the API request itself."},
+    {t:"4 · The tool returns data", d:"The tool executes your code (or hits the external service) and returns the weather report as structured data back to the agent."},
+    {t:"5 · The agent responds", d:"The agent incorporates the tool's result into a natural-language reply and informs the user — turning raw data into a helpful answer."}
+  ];
+  var flowTrack = document.getElementById("flow-track");
+  var flowPanel = document.getElementById("flow-panel");
+  var flowCurrent = 0;
+  function renderFlowTrack(){
+    flowTrack.innerHTML = "";
+    flowSteps.forEach(function(s, i){
+      var dot = document.createElement("div");
+      dot.className = "step-dot" + (i === flowCurrent ? " active" : (i < flowCurrent ? " done" : ""));
+      dot.textContent = i + 1;
+      dot.addEventListener("click", function(){ flowCurrent = i; renderFlow(); });
+      flowTrack.appendChild(dot);
+      if(i < flowSteps.length - 1){
+        var line = document.createElement("div");
+        line.className = "step-line" + (i < flowCurrent ? " done" : "");
+        flowTrack.appendChild(line);
+      }
+    });
+  }
+  function renderFlow(){
+    renderFlowTrack();
+    flowPanel.innerHTML = "<h4>" + flowSteps[flowCurrent].t + "</h4><p>" + flowSteps[flowCurrent].d + "</p>";
+    document.getElementById("flow-prev").disabled = flowCurrent === 0;
+    document.getElementById("flow-next").disabled = flowCurrent === flowSteps.length - 1;
+  }
+  document.getElementById("flow-prev").addEventListener("click", function(){ if(flowCurrent>0){ flowCurrent--; renderFlow(); } });
+  document.getElementById("flow-next").addEventListener("click", function(){ if(flowCurrent<flowSteps.length-1){ flowCurrent++; renderFlow(); } });
+  renderFlow();
+
+  // ---------- Scenario flip cards ----------
+  var scenarios = [
+    {name:"Customer support automation", who:"Retail · CRM", front:"Connects the agent to a CRM system.", back:"<b>Does</b>Retrieves order histories, processes refunds, gives real-time shipping updates.<b>Result</b>Faster query resolution, lighter support workload, happier customers."},
+    {name:"Inventory management", who:"Manufacturing", front:"Links the agent to an inventory system.", back:"<b>Does</b>Checks stock levels, predicts restocking needs from historical data, places supplier orders automatically.<b>Result</b>Streamlined inventory and optimized supply chain."},
+    {name:"Healthcare appointment scheduling", who:"Healthcare provider", front:"Integrates a custom scheduling tool.", back:"<b>Does</b>Accesses patient records, suggests open slots, sends reminders.<b>Result</b>Less admin burden, better patient experience, smarter resource use."},
+    {name:"IT Helpdesk support", who:"IT department", front:"Ties into ticketing & knowledge base.", back:"<b>Does</b>Troubleshoots common issues, escalates complex ones, tracks ticket status.<b>Result</b>Faster resolution, less downtime, higher employee productivity."},
+    {name:"E-learning and training", who:"Educational institution", front:"Connects to a learning management system.", back:"<b>Does</b>Recommends courses, tracks student progress, answers course-content questions.<b>Result</b>Better learning experiences and streamlined admin."}
+  ];
+  var scenGrid = document.getElementById("scenario-grid");
+  scenarios.forEach(function(u){
+    var scene = document.createElement("div");
+    scene.className = "flip-scene";
+    scene.innerHTML =
+      "<div class=\"flip-card\">" +
+        "<div class=\"flip-face flip-front\"><div><span class=\"who\">" + u.who + "</span><h4 style=\"margin-top:8px;\">" + u.name + "</h4><p style=\"font-size:13px; color:var(--text-dim); margin-top:6px;\">" + u.front + "</p></div><span class=\"tap\">Tap to flip →</span></div>" +
+        "<div class=\"flip-face flip-back\">" + u.back + "</div>" +
+      "</div>";
+    var card = scene.querySelector(".flip-card");
+    scene.addEventListener("click", function(){ card.classList.toggle("flipped"); });
+    scenGrid.appendChild(scene);
+  });
+
+  // ---------- Option cards ----------
+  var options = [
+    {
+      icon:"ƒ()", t:"Custom function", tagcolor:"copper",
+      short:"Describe a function's structure to the agent; it dynamically picks the right one and returns the arguments to call it with.",
+      tags:["Python / multi-language logic","Runs in your own code"],
+      detail:"<h3>Custom function (function calling)</h3><p style=\"margin-top:10px;\">Function calling lets you describe the structure of custom functions to an agent, which then returns the functions that need to be called along with their arguments. The agent dynamically identifies the appropriate function based on its definition. Useful for integrating custom logic and workflows, in a selection of programming languages, directly into your AI agents.</p>"
+    },
+    {
+      icon:"⚡", t:"Azure Functions", tagcolor:"steel",
+      short:"Serverless, event-driven compute with minimal overhead — triggers decide when it runs, bindings connect it to data.",
+      tags:["Triggers","Bindings","Event-driven"],
+      detail:"<h3>Azure Functions</h3><p style=\"margin-top:10px;\">Azure Functions lets you create intelligent, event-driven applications with minimal overhead. They support <b style=\"color:var(--text);\">triggers</b> (which determine when a function executes) and <b style=\"color:var(--text);\">bindings</b> (which streamline connections to input or output data sources) — simplifying how your agents interact with external systems.</p>"
+    },
+    {
+      icon:"⇄", t:"OpenAPI specification tools", tagcolor:"copper",
+      short:"Connect your agent to any external API described by an OpenAPI 3.0 spec — standardized and automated.",
+      tags:["OpenAPI 3.0","anonymous / API key / managed identity auth"],
+      detail:"<h3>OpenAPI specification tools</h3><p style=\"margin-top:10px;\">These tools connect your Azure AI Agent to an external API using an OpenAPI 3.0 specification, giving you standardized, automated, and scalable API integration. OpenAPI specs describe HTTP APIs in a way that lets people understand how the API works, generate client code, create tests, and apply design standards.</p>"
+    },
+    {
+      icon:"◧", t:"Azure Logic Apps", tagcolor:"steel",
+      short:"Low-code / no-code workflows that connect apps, data, and services without writing integration code by hand.",
+      tags:["Low-code","No-code","Workflow connector"],
+      detail:"<h3>Azure Logic Apps</h3><p style=\"margin-top:10px;\">This action provides low-code/no-code solutions to add workflows and connect apps, data, and services through the Logic App designer — a good fit when you want integration without hand-writing the plumbing yourself.</p>"
+    }
+  ];
+  var optGrid = document.getElementById("option-grid");
+  var optDetail = document.getElementById("option-detail");
+  function selectOption(i){
+    document.querySelectorAll(".opt-card").forEach(function(c,ci){ c.classList.toggle("active", ci===i); });
+    optDetail.innerHTML = options[i].detail;
+  }
+  options.forEach(function(o, i){
+    var c = document.createElement("div");
+    c.className = "opt-card" + (i===0 ? " active":"");
+    var tagsHtml = o.tags.map(function(tg){ return "<span class=\"mini-tag\">"+tg+"</span>"; }).join("");
+    c.innerHTML = "<div class=\"icon" + (o.tagcolor==='steel' ? ' steelicon':'') + "\" style=\"font-family:var(--mono);\">" + o.icon + "</div><h3>" + o.t + "</h3><p>" + o.short + "</p><div class=\"tag-row\">" + tagsHtml + "</div>";
+    c.addEventListener("click", function(){ selectOption(i); });
+    optGrid.appendChild(c);
+  });
+  selectOption(0);
+
+  // ---------- Build tabs: three implementations of the snowfall tool ----------
+  var buildTabs = [
+    {
+      key:"function", label:"Custom function",
+      caption:"function.py — define the logic, then register it as a FunctionTool",
+      code:
+"<span class=\"k\">import</span> json\n\n" +
+"<span class=\"k\">def</span> <span class=\"f\">recent_snowfall</span>(location: str) -> str:\n" +
+"    <span class=\"c\">\"\"\"\n" +
+"    Fetches recent snowfall totals for a given location.\n" +
+"    :param location: The city name.\n" +
+"    :return: Snowfall details as a JSON string.\n" +
+"    \"\"\"</span>\n" +
+"    mock_snow_data = {<span class=\"s\">\"Seattle\"</span>: <span class=\"s\">\"0 inches\"</span>, <span class=\"s\">\"Denver\"</span>: <span class=\"s\">\"2 inches\"</span>}\n" +
+"    snow = mock_snow_data.get(location, <span class=\"s\">\"Data not available.\"</span>)\n" +
+"    <span class=\"k\">return</span> json.dumps({<span class=\"s\">\"location\"</span>: location, <span class=\"s\">\"snowfall\"</span>: snow})\n\n" +
+"<span class=\"c\"># Define a function tool for the model to use</span>\n" +
+"function_tool = FunctionTool(\n" +
+"    name=<span class=\"s\">\"recent_snowfall\"</span>,\n" +
+"    parameters={\n" +
+"        <span class=\"s\">\"type\"</span>: <span class=\"s\">\"object\"</span>,\n" +
+"        <span class=\"s\">\"properties\"</span>: {\n" +
+"            <span class=\"s\">\"location\"</span>: {<span class=\"s\">\"type\"</span>: <span class=\"s\">\"string\"</span>, <span class=\"s\">\"description\"</span>: <span class=\"s\">\"The city name to check snowfall for.\"</span>},\n" +
+"        },\n" +
+"        <span class=\"s\">\"required\"</span>: [<span class=\"s\">\"location\"</span>],\n" +
+"        <span class=\"s\">\"additionalProperties\"</span>: <span class=\"k\">False</span>\n" +
+"    },\n" +
+"    description=<span class=\"s\">\"Get recent snowfall totals for a given location.\"</span>,\n" +
+"    strict=<span class=\"k\">True</span>,\n" +
+")\n\n" +
+"<span class=\"c\"># Add the function tool to a list of tools for the agent</span>\n" +
+"tools: list[Tool] = [function_tool]\n\n" +
+"<span class=\"c\"># Create your agent with the toolset</span>\n" +
+"agent = project_client.agents.create_version(\n" +
+"    name=<span class=\"s\">\"snowfall-agent\"</span>,\n" +
+"    definition=PromptAgentDefinition(\n" +
+"        model=<span class=\"s\">\"gpt-4.1\"</span>,\n" +
+"        instructions=<span class=\"s\">\"You are a weather assistant tracking snowfall. Use the provided functions to answer questions.\"</span>,\n" +
+"        tools=tools,\n" +
+"    )\n" +
+")"
+    },
+    {
+      key:"functions", label:"Azure Functions",
+      caption:"azure_function_tool.py — route the call through a storage queue trigger",
+      code:
+"tool = AzureFunctionTool(\n" +
+"    azure_function=AzureFunctionDefinition(\n" +
+"        input_binding=AzureFunctionBinding(\n" +
+"            storage_queue=AzureFunctionStorageQueue(\n" +
+"                queue_name=<span class=\"s\">\"STORAGE_INPUT_QUEUE_NAME\"</span>,\n" +
+"                queue_service_endpoint=<span class=\"s\">\"STORAGE_QUEUE_SERVICE_ENDPOINT\"</span>,\n" +
+"            )\n" +
+"        ),\n" +
+"        output_binding=AzureFunctionBinding(\n" +
+"            storage_queue=AzureFunctionStorageQueue(\n" +
+"                queue_name=<span class=\"s\">\"STORAGE_OUTPUT_QUEUE_NAME\"</span>,\n" +
+"                queue_service_endpoint=<span class=\"s\">\"STORAGE_QUEUE_SERVICE_ENDPOINT\"</span>,\n" +
+"            )\n" +
+"        ),\n" +
+"        function=AzureFunctionDefinitionFunction(\n" +
+"            name=<span class=\"s\">\"queue_trigger\"</span>,\n" +
+"            description=<span class=\"s\">\"Get weather for a given location\"</span>,\n" +
+"            parameters={\n" +
+"                <span class=\"s\">\"type\"</span>: <span class=\"s\">\"object\"</span>,\n" +
+"                <span class=\"s\">\"properties\"</span>: {<span class=\"s\">\"location\"</span>: {<span class=\"s\">\"type\"</span>: <span class=\"s\">\"string\"</span>, <span class=\"s\">\"description\"</span>: <span class=\"s\">\"location to determine weather for\"</span>}},\n" +
+"            },\n" +
+"        ),\n" +
+"    )\n" +
+")\n\n" +
+"agent = project_client.agents.create_version(\n" +
+"    agent_name=<span class=\"s\">\"MyAgent\"</span>,\n" +
+"    definition=PromptAgentDefinition(\n" +
+"        model=<span class=\"s\">\"gpt-4.1\"</span>,\n" +
+"        instructions=<span class=\"s\">\"You are a helpful weather assistant. Use the provided Azure Function to get weather information for a location when needed.\"</span>,\n" +
+"        tools=[tool],\n" +
+"    ),\n" +
+")"
+    },
+    {
+      key:"openapi", label:"OpenAPI spec",
+      caption:"weather_openapi.json — describe the API, then register it as an OpenApiTool",
+      code:
+"<span class=\"c\">// weather_openapi.json (abridged)</span>\n" +
+"{\n" +
+"  <span class=\"s\">\"openapi\"</span>: <span class=\"s\">\"3.1.0\"</span>,\n" +
+"  <span class=\"s\">\"info\"</span>: { <span class=\"s\">\"title\"</span>: <span class=\"s\">\"get weather data\"</span>, <span class=\"s\">\"version\"</span>: <span class=\"s\">\"v1.0.0\"</span> },\n" +
+"  <span class=\"s\">\"servers\"</span>: [ { <span class=\"s\">\"url\"</span>: <span class=\"s\">\"https://wttr.in\"</span> } ],\n" +
+"  <span class=\"s\">\"paths\"</span>: {\n" +
+"    <span class=\"s\">\"/{location}\"</span>: {\n" +
+"      <span class=\"s\">\"get\"</span>: {\n" +
+"        <span class=\"s\">\"operationId\"</span>: <span class=\"s\">\"GetCurrentWeather\"</span>,\n" +
+"        <span class=\"s\">\"parameters\"</span>: [\n" +
+"          { <span class=\"s\">\"name\"</span>: <span class=\"s\">\"location\"</span>, <span class=\"s\">\"in\"</span>: <span class=\"s\">\"path\"</span>, <span class=\"s\">\"required\"</span>: <span class=\"k\">true</span>, <span class=\"s\">\"schema\"</span>: {<span class=\"s\">\"type\"</span>:<span class=\"s\">\"string\"</span>} },\n" +
+"          { <span class=\"s\">\"name\"</span>: <span class=\"s\">\"format\"</span>, <span class=\"s\">\"in\"</span>: <span class=\"s\">\"query\"</span>, <span class=\"s\">\"required\"</span>: <span class=\"k\">true</span>, <span class=\"s\">\"schema\"</span>: {<span class=\"s\">\"type\"</span>:<span class=\"s\">\"string\"</span>,<span class=\"s\">\"default\"</span>:<span class=\"s\">\"j1\"</span>} }\n" +
+"        ],\n" +
+"        <span class=\"s\">\"responses\"</span>: { <span class=\"s\">\"200\"</span>: {<span class=\"s\">\"description\"</span>:<span class=\"s\">\"Successful response\"</span>}, <span class=\"s\">\"404\"</span>: {<span class=\"s\">\"description\"</span>:<span class=\"s\">\"Location not found\"</span>} }\n" +
+"      }\n" +
+"    }\n" +
+"  }\n" +
+"}\n\n" +
+"<span class=\"c\"># Register the OpenAPI tool in the agent definition</span>\n" +
+"<span class=\"k\">from</span> azure.ai.projects.models <span class=\"k\">import</span> OpenApiTool, OpenApiAnonymousAuthDetails\n\n" +
+"<span class=\"k\">with</span> open(weather_asset_file_path, <span class=\"s\">\"r\"</span>) <span class=\"k\">as</span> f:\n" +
+"    openapi_weather = cast(dict[str, Any], jsonref.loads(f.read()))\n\n" +
+"tool = OpenApiTool(\n" +
+"    openapi=OpenApiFunctionDefinition(\n" +
+"        name=<span class=\"s\">\"get_weather\"</span>,\n" +
+"        spec=openapi_weather,\n" +
+"        description=<span class=\"s\">\"Retrieve weather information for a location.\"</span>,\n" +
+"        auth=OpenApiAnonymousAuthDetails(),\n" +
+"    )\n" +
+")\n\n" +
+"agent = project_client.agents.create_version(\n" +
+"    agent_name=<span class=\"s\">\"openapi-agent\"</span>,\n" +
+"    definition=PromptAgentDefinition(\n" +
+"        model=<span class=\"s\">\"gpt-4.1\"</span>,\n" +
+"        instructions=<span class=\"s\">\"You are a weather assistant. Use the API to fetch weather data.\"</span>,\n" +
+"        tools=[openapi_tool],\n" +
+"    ),\n" +
+")"
+    }
+  ];
+  var buildTabbar = document.getElementById("build-tabbar");
+  var buildPanes = document.getElementById("build-panes");
+  buildTabs.forEach(function(tb, i){
+    var b = document.createElement("button");
+    b.className = "tabbtn" + (i===0 ? " active":"");
+    b.textContent = tb.label;
+    b.addEventListener("click", function(){
+      document.querySelectorAll("#build-tabbar .tabbtn").forEach(function(x){ x.classList.remove("active"); });
+      b.classList.add("active");
+      document.querySelectorAll("#build-panes .tabpane").forEach(function(x){ x.classList.remove("active"); });
+      document.getElementById("bpane-"+i).classList.add("active");
+    });
+    buildTabbar.appendChild(b);
+
+    var pane = document.createElement("div");
+    pane.className = "tabpane" + (i===0 ? " active":"");
+    pane.id = "bpane-"+i;
+    pane.innerHTML = "<div class=\"code-shell\"><pre class=\"code\">" + tb.code + "</pre><div class=\"code-caption\">" + tb.caption + "</div></div>";
+    buildPanes.appendChild(pane);
+  });
+
+  // Auth note for OpenAPI, appended after tabs
+  var authNote = document.createElement("div");
+  authNote.className = "callout tip";
+  authNote.style.marginTop = "20px";
+  authNote.innerHTML = "<div class=\"cicon\">i</div><div><p style=\"color:var(--text); font-weight:600; margin-bottom:6px;\">Tip — OpenAPI authentication types</p><p>Three authentication types are supported with OpenAPI 3.0 tools: <b style=\"color:var(--text);\">anonymous</b>, <b style=\"color:var(--text);\">API key</b>, and <b style=\"color:var(--text);\">managed identity</b>. Choose based on how the target API expects to be called.</p></div>";
+  document.getElementById("build").querySelector(".wrap").appendChild(authNote);
+
+  // ---------- Matching game ----------
+  var pairs = [
+    {left:"Custom function", right:"Well-documented Python function signatures the model can reason about"},
+    {left:"Azure Functions", right:"Triggers and bindings connecting to storage queues"},
+    {left:"OpenAPI spec tools", right:"A 3.0 specification describing an HTTP API's paths and schemas"},
+    {left:"Azure Logic Apps", right:"A low-code/no-code visual workflow designer"}
+  ];
+  var leftItems = pairs.map(function(p,i){ return {text:p.left, id:i}; });
+  var rightItems = pairs.map(function(p,i){ return {text:p.right, id:i}; });
+  // shuffle right items
+  rightItems.sort(function(){ return Math.random() - 0.5; });
+
+  var matchLeft = document.getElementById("match-left");
+  var matchRight = document.getElementById("match-right");
+  var matchStatus = document.getElementById("match-status");
+  var selectedLeft = null, selectedRight = null, matchedCount = 0;
+
+  function buildMatchItem(container, item, side){
+    var el = document.createElement("div");
+    el.className = "match-item";
+    el.textContent = item.text;
+    el.dataset.id = item.id;
+    el.addEventListener("click", function(){
+      if(el.classList.contains("matched")) return;
+      if(side === "left"){
+        if(selectedLeft) selectedLeft.classList.remove("selected");
+        selectedLeft = el;
+        el.classList.add("selected");
+      } else {
+        if(selectedRight) selectedRight.classList.remove("selected");
+        selectedRight = el;
+        el.classList.add("selected");
+      }
+      if(selectedLeft && selectedRight){
+        if(selectedLeft.dataset.id === selectedRight.dataset.id){
+          selectedLeft.classList.remove("selected"); selectedLeft.classList.add("matched");
+          selectedRight.classList.remove("selected"); selectedRight.classList.add("matched");
+          matchedCount++;
+          matchStatus.textContent = matchedCount + " / 4 matched" + (matchedCount === 4 ? " — nice work!" : "");
+          selectedLeft = null; selectedRight = null;
+        } else {
+          selectedLeft.classList.add("shake"); selectedRight.classList.add("shake");
+          setTimeout(function(){
+            if(selectedLeft){ selectedLeft.classList.remove("selected","shake"); }
+            if(selectedRight){ selectedRight.classList.remove("selected","shake"); }
+            selectedLeft = null; selectedRight = null;
+          }, 350);
+        }
+      }
+    });
+    container.appendChild(el);
+  }
+  leftItems.forEach(function(it){ buildMatchItem(matchLeft, it, "left"); });
+  rightItems.forEach(function(it){ buildMatchItem(matchRight, it, "right"); });
+
+  // ---------- Quiz ----------
+  var quiz = [
+    {q:"What is the core reason to add a custom tool to an agent?", opts:["To make responses longer","To let the agent perform actions or reach data an AI model can't handle on its own","To reduce the number of models needed","To replace the need for instructions"], a:1},
+    {q:"In the ski-resort weather example, what does the agent do first?", opts:["Calls the API directly with no reasoning","Determines it has access to a tool that can get the information, then calls it","Asks the user to check the weather themselves","Ignores the request"], a:1},
+    {q:"Which custom tool option is built specifically around triggers and bindings?", opts:["Custom function","Azure Functions","OpenAPI specification tools","Azure Logic Apps"], a:1},
+    {q:"Which authentication types are supported with OpenAPI 3.0 tools?", opts:["Only OAuth2","Anonymous, API key, and managed identity","Only anonymous","Basic auth only"], a:1},
+    {q:"What does 'declarative' mean in the context of agent custom tools?", opts:["You write explicit if/else code to call each tool","The agent itself decides when and how to call a tool based on its name, description, and the conversation","Tools must be declared in a separate config file only","Declarative tools can't take parameters"], a:1},
+    {q:"Which option is the best fit for low-code/no-code integration between apps, data, and services?", opts:["Custom function","OpenAPI specification tools","Azure Logic Apps","Function calling"], a:2}
+  ];
+  var quizList = document.getElementById("quiz-list");
+  var scoreEl = document.getElementById("quiz-score");
+  var answered = 0, correct = 0;
+  quiz.forEach(function(item, qi){
+    var card = document.createElement("div");
+    card.className = "quiz-card";
+    var optsHtml = "";
+    item.opts.forEach(function(o, oi){
+      optsHtml += "<button class=\"quiz-opt\" data-oi=\"" + oi + "\">" + o + "</button>";
+    });
+    card.innerHTML = "<div class=\"quiz-q\">" + (qi+1) + ". " + item.q + "</div><div class=\"quiz-opts\">" + optsHtml + "</div>";
+    var optButtons = card.querySelectorAll(".quiz-opt");
+    optButtons.forEach(function(btn){
+      btn.addEventListener("click", function(){
+        if(btn.classList.contains("locked")) return;
+        optButtons.forEach(function(b){ b.classList.add("locked"); });
+        var oi = parseInt(btn.getAttribute("data-oi"), 10);
+        if(oi === item.a){
+          btn.classList.add("correct");
+          correct++;
+        } else {
+          btn.classList.add("wrong");
+          optButtons[item.a].classList.add("correct");
+        }
+        answered++;
+        scoreEl.textContent = "Score: " + correct + " / " + answered + " answered so far";
+      });
+    });
+    quizList.appendChild(card);
+  });
+
+})();
+</script>
+
+
+</body></html>
