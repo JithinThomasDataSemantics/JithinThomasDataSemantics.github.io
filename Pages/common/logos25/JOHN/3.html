@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ദൈവം ഇത്രമാത്രം സ്‌നേഹിച്ചു — യോഹന്നാൻ 3 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #131a2e;
+    --night-2: #1c2540;
+    --parchment: #e7e5ef;
+    --parchment-dim: #a3a4bf;
+    --love: #e0896a;
+    --love-soft: #f0ac8f;
+    --wind: #7fa8c9;
+    --wind-soft: #a9c8e0;
+    --line: rgba(224,137,106,0.2);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(127,168,201,0.10), transparent 45%),
+      radial-gradient(ellipse at 88% 25%, rgba(224,137,106,0.10), transparent 42%),
+      var(--night);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--love); color:var(--night);}
+
+  #wind-canvas{position:fixed; inset:0; z-index:0; pointer-events:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .eyebrow{position:relative; z-index:1; font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--wind-soft); margin-bottom:1.6rem; font-style:italic;}
+  .hero h1{position:relative; z-index:1; font-weight:800; font-size:clamp(2rem, 6vw, 3.7rem); line-height:1.35; margin:0; color:var(--parchment);}
+  .hero h1 em{font-style:normal; color:var(--love-soft); display:block;}
+  .hero .ref{position:relative; z-index:1; font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--parchment-dim); margin-top:1rem;}
+  .hero p.tag{position:relative; z-index:1; max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--parchment-dim);}
+  .scroll-cue{position:relative; z-index:1; margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--love-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--love), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--love-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.35rem,3.1vw,1.95rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--love);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--love-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--love-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:420px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--love-soft); font-size:0.88rem;}
+
+  .wind-callout{margin-top:1rem; padding:1.1rem 1.3rem; background:rgba(127,168,201,0.08); border:1px solid rgba(127,168,201,0.3); border-left:3px solid var(--wind); border-radius:8px; font-size:0.94rem; line-height:1.85; color:var(--parchment-dim);}
+  .wind-callout b{color:var(--wind-soft);}
+
+  /* ---------- 3:16 GIANT PULL QUOTE ---------- */
+  .verse16{margin:0.4rem 0 2rem; padding:3rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(224,137,106,0.16), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .verse16 .vtag{font-family:var(--font-num); font-style:italic; color:var(--love-soft); font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;}
+  .verse16 p{font-family:var(--font-ml); font-weight:800; font-size:clamp(1.3rem, 3.6vw, 2rem); line-height:1.85; color:var(--parchment); max-width:44ch; margin:0 auto;}
+  .verse16 p b{color:var(--love-soft);}
+
+  .cards-col{display:flex; flex-direction:column; gap:0.7rem;}
+  .simple-card{background:var(--night-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.3rem;}
+  .simple-card .sverse{font-family:var(--font-num); font-style:italic; color:var(--love-soft); font-size:0.82rem; margin-bottom:0.4rem;}
+  .simple-card .stext{font-size:0.96rem; line-height:1.85; color:var(--parchment);}
+  .simple-card .stext b{color:var(--love-soft);}
+
+  /* ---------- BRIDEGROOM INCREASE/DECREASE ---------- */
+  .bg-wrap{display:flex; align-items:flex-end; justify-content:center; gap:3rem; background:var(--night-2); border:1px solid var(--line); border-radius:14px; padding:2.4rem 1.4rem 1.6rem; margin-top:0.6rem;}
+  .bg-bar{display:flex; flex-direction:column; align-items:center; gap:0.6rem;}
+  .bg-track{width:34px; height:140px; background:rgba(255,255,255,0.04); border-radius:6px; display:flex; align-items:flex-end; overflow:hidden;}
+  .bg-fill{width:100%; border-radius:6px 6px 0 0; transition:height 2s cubic-bezier(.3,.8,.3,1);}
+  .bg-fill.john{background:linear-gradient(180deg, var(--wind-soft), var(--wind)); height:88%;}
+  .bg-fill.jesus{background:linear-gradient(180deg, var(--love-soft), var(--love)); height:12%;}
+  .bg-wrap.animated .bg-fill.john{height:18%;}
+  .bg-wrap.animated .bg-fill.jesus{height:92%;}
+  .bg-label{font-family:var(--font-ml); font-weight:600; font-size:0.9rem; color:var(--parchment);}
+  .bg-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.78rem;}
+
+  .increase-quote{text-align:center; margin-top:1.4rem; font-family:var(--font-ml); font-weight:700; font-size:1.05rem; color:var(--love-soft);}
+  .increase-quote span{display:block; margin-top:0.5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; font-weight:400;}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--night-2), var(--night)); border:1px solid var(--line); border-left:3px solid var(--love); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--love-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--wind-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--love);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--love-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--love); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--love-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--love); color:var(--night); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--love-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .scroll-cue span{animation:none !important;} .bg-fill{transition:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} .bg-wrap{gap:1.6rem;} }
+</style>
+</head>
+<body>
+
+<canvas id="wind-canvas"></canvas>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; John / യോഹന്നാൻ</div>
+  <h1>ദൈവം<br><em>ഇത്രമാത്രം സ്‌നേഹിച്ചു</em></h1>
+  <div class="ref">യോഹന്നാൻ 3 : 1&ndash;36</div>
+  <p class="tag">രാത്രിയിൽ വന്ന നിക്കൊദേമോസ്, വീണ്ടും ജനിക്കേണ്ടതിന്റെ രഹസ്യം, ബൈബിളിലെ ഏറ്റവും അറിയപ്പെടുന്ന വാക്യം, ഒടുവിൽ യോഹന്നാന്റെ അന്ത്യസാക്ഷ്യം.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: NICODEMUS -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>യേശുവും നിക്കൊദേമോസും</h2></div>
+  <p class="section-sub">വാ. 1&ndash;15. ഒരു രാത്രി സന്ദർശനം, ഒരു അഗാധമായ സംഭാഷണം.</p>
+  <div class="prologue-grid" id="prologue"></div>
+  <div class="wind-callout">വാ. 8: &ldquo;<b>കാറ്റ്</b> അതിനിഷ്ടമുള്ളിടത്തേക്കു വീശുന്നു; അതിന്റെ ശബ്ദം നീ കേള്‍ക്കുന്നു, എന്നാൽ എവിടെനിന്നു വരുന്നെന്നോ എവിടേക്കു പോകുന്നെന്നോ അറിയുന്നില്ല. ആത്മാവിൽനിന്നു ജനിക്കുന്ന ഏവനും ഇതുപോലെയാണ്.&rdquo;</div>
+</section>
+
+<!-- II: GOD'S LOVE AND JUDGMENT -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>ദൈവസ്‌നേഹവും ന്യായവിധിയും</h2></div>
+  <p class="section-sub">വാ. 16&ndash;21. സുവിശേഷത്തിന്റെ കാമ്പ്.</p>
+  <div class="verse16">
+    <div class="vtag">വാ. 16</div>
+    <p>&ldquo;അവനില്‍ വിശ്വസിക്കുന്ന ഏവനും നശിച്ചുപോകാതെ നിത്യജീവന്‍ പ്രാപിക്കുന്നതിനുവേണ്ടി, തന്റെ <b>ഏകജാതനെ നല്‍കാന്‍</b> തക്കവിധം ദൈവം ലോകത്തെ അത്രമാത്രം സ്‌നേഹിച്ചു.&rdquo;</p>
+  </div>
+  <div class="cards-col" id="loveCards"></div>
+</section>
+
+<!-- III: JOHN'S FINAL TESTIMONY -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>സ്‌നാപകന്റെ അന്ത്യസാക്ഷ്യം</h2></div>
+  <p class="section-sub">വാ. 22&ndash;36. യോഹന്നാൻ സ്‌നാപകന്റെ അവസാന വാക്കുകൾ ഈ സുവിശേഷത്തിൽ.</p>
+  <div class="cards-col" id="johnCards"></div>
+  <div class="bg-wrap" id="bgWrap">
+    <div class="bg-bar">
+      <div class="bg-track"><div class="bg-fill john"></div></div>
+      <div class="bg-label">യോഹന്നാൻ</div>
+      <div class="bg-sub">കുറയണം</div>
+    </div>
+    <div class="bg-bar">
+      <div class="bg-track"><div class="bg-fill jesus"></div></div>
+      <div class="bg-label">യേശു</div>
+      <div class="bg-sub">വളരണം</div>
+    </div>
+  </div>
+  <div class="increase-quote">&ldquo;അവന്‍ വളരുകയും ഞാന്‍ കുറയുകയും വേണം.&rdquo;<span>വാ. 30</span></div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">പേരുകൾ, സ്ഥലങ്ങൾ, പ്രധാന വാക്യങ്ങൾ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>യോഹന്നാൻ 3 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- wind particle ambient canvas ---------------- */
+(function(){
+  const c = document.getElementById('wind-canvas');
+  const ctx = c.getContext('2d');
+  let particles = [];
+  function resize(){
+    c.width = window.innerWidth;
+    c.height = document.body.scrollHeight;
+    particles = [];
+    const count = Math.floor((c.width*c.height)/60000);
+    for(let i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*c.width, y: Math.random()*c.height,
+        vx: 0.15+Math.random()*0.35, vy: (Math.random()-0.5)*0.1,
+        r: Math.random()*1.4+0.4, a: Math.random()*0.35+0.08
+      });
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    particles.forEach(p=>{
+      p.x += p.vx; p.y += p.vy;
+      if(p.x > c.width+10){ p.x = -10; p.y = Math.random()*c.height; }
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(169,200,224,${p.a})`;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+/* ---------------- SECTION I ACCORDION ---------------- */
+const prologue = [
+  {v:"1-2", text:"ഫരിസേയരില്‍ നിക്കൊദേമോസ് എന്നുപേരായ ഒരു യഹൂദപ്രമാണി ഉണ്ടായിരുന്നു. അവന്‍ രാത്രി യേശുവിന്റെ അടുത്തു വന്നു: 'റബ്ബീ, അങ്ങ് ദൈവത്തില്‍നിന്നു വന്ന ഗുരുവാണെന്ന് ഞങ്ങള്‍ അറിയുന്നു.'", note:"ക്വിസ് സൂചന: നിക്കൊദേമോസ് &mdash; ഫരിസേയൻ, യഹൂദപ്രമാണി, <b>രാത്രിയിൽ</b> വന്നു."},
+  {v:"3", text:"യേശു പറഞ്ഞു: 'സത്യം സത്യമായി ഞാന്‍ നിന്നോടു പറയുന്നു, വീണ്ടും ജനിക്കുന്നില്ലെങ്കില്‍ ഒരുവന് ദൈവരാജ്യം കാണാന്‍ കഴിയുകയില്ല.'", note:"'വീണ്ടും ജനിക്കുക' &mdash; ഈ അധ്യായത്തിന്റെ കേന്ദ്ര ആശയം."},
+  {v:"4-5", text:"നിക്കൊദേമോസ് ചോദിച്ചു: 'അമ്മയുടെ ഉദരത്തില്‍ വീണ്ടും പ്രവേശിക്കാമോ?' യേശു: 'ജലത്താലും ആത്മാവിനാലും ജനിക്കുന്നില്ലെങ്കില്‍ ദൈവരാജ്യത്തില്‍ പ്രവേശിക്കുക സാധ്യമല്ല.'", note:"ക്വിസ് ഉദ്ധരണി: 'ജലത്താലും ആത്മാവിനാലും ജനിക്കുക.'"},
+  {v:"6-7", text:"മാംസത്തില്‍നിന്നു ജനിക്കുന്നതു മാംസം; ആത്മാവില്‍നിന്നു ജനിക്കുന്നത് ആത്മാവ്. 'വീണ്ടും ജനിക്കണം' എന്നു പറഞ്ഞതിൽ വിസ്മയിക്കേണ്ടാ.", note:"ശാരീരികജനനവും ആത്മീയജനനവും തമ്മിലുള്ള വ്യത്യാസം."},
+  {v:"9-10", text:"'ഇതെല്ലാം എങ്ങനെ സംഭവിക്കും?' എന്നു നിക്കൊദേമോസ് ചോദിച്ചു. യേശു: 'നീ ഇസ്രായേലിലെ ഗുരുവല്ലേ? എന്നിട്ടും ഇതു മനസ്സിലാകുന്നില്ലേ?'", note:"ഒരു ഗുരു തന്നെ ആത്മീയകാര്യങ്ങളിൽ വിസ്മയിക്കുന്നു."},
+  {v:"13-15", text:"സ്വര്‍ഗത്തില്‍നിന്നിറങ്ങിവന്ന മനുഷ്യപുത്രനല്ലാതെ ആരും സ്വര്‍ഗത്തില്‍ കയറിയിട്ടില്ല. മോശ മരുഭൂമിയില്‍ സര്‍പ്പത്തെ ഉയര്‍ത്തിയതുപോലെ, മനുഷ്യപുത്രനും ഉയര്‍ത്തപ്പെടേണ്ടിയിരിക്കുന്നു &mdash; വിശ്വസിക്കുന്നവനു നിത്യജീവന്‍ ഉണ്ടാകേണ്ടതിന്.", note:"മോശയുടെ വെങ്കലസര്‍പ്പത്തിന്റെ ഉപമ &mdash; ക്രൂശീകരണത്തിന്റെ സൂചന."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- SECTION II LOVE/JUDGMENT CARDS ---------------- */
+const loveCards = [
+  {v:"17", t:"ദൈവം പുത്രനെ ലോകത്തിലേക്കയച്ചത് ലോകത്തെ <b>ശിക്ഷയ്ക്കു വിധിക്കാനല്ല</b>, പ്രത്യുത അവൻ വഴി ലോകം <b>രക്ഷപ്രാപിക്കാനാണ്.</b>"},
+  {v:"18", t:"വിശ്വസിക്കുന്നവൻ ശിക്ഷയ്ക്കു വിധിക്കപ്പെടുന്നില്ല; വിശ്വസിക്കാത്തവൻ <b>ഏകജാതന്റെ നാമത്തിൽ വിശ്വസിക്കായ്കമൂലം</b> നേരത്തേതന്നെ വിധിക്കപ്പെട്ടിരിക്കുന്നു."},
+  {v:"19-20", t:"ശിക്ഷാവിധി ഇതാണ്: പ്രകാശം വന്നിട്ടും മനുഷ്യർ <b>അന്ധകാരത്തെ അധികമായി സ്‌നേഹിച്ചു</b> &mdash; പ്രവൃത്തികൾ തിന്മ നിറഞ്ഞതിനാൽ."},
+  {v:"21", t:"സത്യം പ്രവർത്തിക്കുന്നവൻ വെളിച്ചത്തിലേക്കു വരുന്നു &mdash; പ്രവൃത്തികൾ <b>ദൈവൈക്യത്തിൽ</b> ചെയ്യുന്നവയെന്നു വെളിപ്പെടാൻ."}
+];
+document.getElementById('loveCards').innerHTML = loveCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- SECTION III JOHN CARDS ---------------- */
+const johnCards = [
+  {v:"22-24", t:"യേശുവും ശിഷ്യന്മാരും യൂദയാദേശത്തു സ്‌നാനം നൽകി. യോഹന്നാൻ <b>സാലിമിനടുത്തുള്ള ഏനോനിൽ</b> സ്‌നാനം നൽകി &mdash; വെള്ളം ധാരാളമുണ്ടായിരുന്നതിനാൽ. യോഹന്നാൻ അപ്പോഴും <b>കാരാഗൃഹത്തിലായിരുന്നില്ല.</b>"},
+  {v:"26-27", t:"ശിഷ്യന്മാർ യോഹന്നാനോടു പറഞ്ഞു: 'നീ സാക്ഷ്യപ്പെടുത്തിയവൻ ഇവിടെയും സ്‌നാനം നൽകുന്നു; എല്ലാവരും അവന്റെ അടുത്തേക്കു പോകുന്നു.' യോഹന്നാൻ: 'സ്വർഗത്തിൽനിന്നു നൽകപ്പെടുന്നില്ലെങ്കിൽ ആർക്കും ഒന്നും സ്വീകരിക്കാൻ സാധിക്കില്ല.'"},
+  {v:"28-29", t:"'ഞാൻ ക്രിസ്തുവല്ല, അവനുമുമ്പേ അയയ്ക്കപ്പെട്ടവനാണ്.' <b>മണവാട്ടിയുള്ളവനാണ് മണവാളൻ;</b> മണവാളനെ ശ്രവിക്കുന്ന സ്‌നേഹിതൻ അവന്റെ സ്വരത്തിൽ സന്തോഷിക്കുന്നു. ഈ സന്തോഷം ഇപ്പോൾ പൂർണമായിരിക്കുന്നു."},
+  {v:"34-36", t:"ദൈവം അയച്ചവൻ ദൈവത്തിന്റെ വാക്കുകൾ സംസാരിക്കുന്നു; <b>അളന്നല്ല ആത്മാവിനെ കൊടുക്കുന്നത്.</b> പിതാവ് പുത്രനെ സ്‌നേഹിക്കുന്നു; എല്ലാം അവന്റെ കൈകളിൽ ഏൽപിച്ചിരിക്കുന്നു. പുത്രനിൽ വിശ്വസിക്കുന്നവനു നിത്യജീവൻ."}
+];
+document.getElementById('johnCards').innerHTML = johnCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+setTimeout(()=>document.getElementById('bgWrap').classList.add('animated'), 500);
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"നിക്കൊദേമോസ്", val:"<b>ഫരിസേയൻ</b>, യഹൂദപ്രമാണി, യേശുവിനെ <b>രാത്രിയിൽ</b> സന്ദർശിച്ചു (വാ. 1&ndash;2)."},
+  {label:"ദൈവരാജ്യം കാണാൻ", val:"<b>വീണ്ടും ജനിക്കണം</b> (വാ. 3)."},
+  {label:"ദൈവരാജ്യത്തിൽ പ്രവേശിക്കാൻ", val:"<b>ജലത്താലും ആത്മാവിനാലും</b> ജനിക്കണം (വാ. 5)."},
+  {label:"ആത്മാവിന്റെ ഉപമ", val:"<b>കാറ്റ്</b> &mdash; എവിടെനിന്നു വരുന്നെന്നോ പോകുന്നെന്നോ അറിയില്ല (വാ. 8)."},
+  {label:"സര്‍പ്പം ഉയര്‍ത്തിയവൻ", val:"<b>മോശ</b>, മരുഭൂമിയിൽ (വാ. 14)."},
+  {label:"വാ. 16-ലെ ദാനം", val:"ദൈവത്തിന്റെ <b>ഏകജാതൻ</b>."},
+  {label:"യോഹന്നാൻ സ്‌നാനം നൽകിയ സ്ഥലം", val:"<b>സാലിമിനടുത്തുള്ള ഏനോൻ</b> (വാ. 23)."},
+  {label:"യോഹന്നാന്റെ അന്ത്യപ്രഖ്യാപനം", val:"'അവൻ വളരുകയും ഞാൻ <b>കുറയുകയും</b> വേണം' (വാ. 30)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"നിക്കൊദേമോസ് യേശുവിനെ എപ്പോൾ സന്ദർശിച്ചു (വാ. 2)?",
+   opts:["രാവിലെ","ഉച്ചയ്ക്ക്","രാത്രി","സന്ധ്യയ്ക്ക്"], correct:2,
+   note:"വാ. 2 &mdash; 'അവന്‍ രാത്രി യേശുവിന്റെ അടുത്തു വന്നു.'"},
+  {q:"ദൈവരാജ്യം കാണാൻ ഒരുവന് എന്തു വേണം (വാ. 3)?",
+   opts:["നിയമം പാലിക്കണം","വീണ്ടും ജനിക്കണം","പരിച്‌ഛേദനം സ്വീകരിക്കണം","ജറുസലെമിൽ പോകണം"], correct:1,
+   note:"വാ. 3 &mdash; 'വീണ്ടും ജനിക്കുന്നില്ലെങ്കില്‍ ഒരുവന് ദൈവരാജ്യം കാണാന്‍ കഴിയുകയില്ല.'"},
+  {q:"ദൈവരാജ്യത്തിൽ പ്രവേശിക്കാൻ എന്തിനാൽ ജനിക്കണം (വാ. 5)?",
+   opts:["അഗ്നിയാലും രക്തത്താലും","ജലത്താലും ആത്മാവിനാലും","നിയമത്താലും പ്രവൃത്തിയാലും","വിശ്വാസത്താലും ഭയത്താലും"], correct:1,
+   note:"വാ. 5 &mdash; 'ജലത്താലും ആത്മാവിനാലും ജനിക്കുന്നില്ലെങ്കില്‍ ഒരുവനും ദൈവരാജ്യത്തില്‍ പ്രവേശിക്കുക സാധ്യമല്ല.'"},
+  {q:"ആത്മാവിൽനിന്നു ജനിക്കുന്നവനെ യേശു എന്തിനോടാണ് ഉപമിച്ചത് (വാ. 8)?",
+   opts:["സൂര്യനോട്","കാറ്റിനോട്","നദിയോട്","മഴയോട്"], correct:1,
+   note:"വാ. 8 &mdash; 'കാറ്റ് അതിനിഷ്ടമുള്ളിടത്തേക്കു വീശുന്നു&hellip; ഇതുപോലെയാണ് ആത്മാവില്‍നിന്നു ജനിക്കുന്ന ഏവനും.'"},
+  {q:"മരുഭൂമിയിൽ സർപ്പത്തെ ഉയർത്തിയത് ആരാണ് (വാ. 14)?",
+   opts:["അഹറോൻ","മോശ","യോശുവ","ഏലിയാവ്"], correct:1,
+   note:"വാ. 14 &mdash; 'മോശ മരുഭൂമിയില്‍ സര്‍പ്പത്തെ ഉയര്‍ത്തിയതുപോലെ.'"},
+  {q:"വാ. 16 പ്രകാരം ദൈവം ലോകത്തെ സ്‌നേഹിച്ചതുകൊണ്ട് എന്തു നൽകി?",
+   opts:["ഒരു ദൂതനെ","നിയമം","തന്റെ ഏകജാതനെ","ഒരു പ്രവാചകനെ"], correct:2,
+   note:"വാ. 16 &mdash; 'തന്റെ ഏകജാതനെ നല്‍കാന്‍ തക്കവിധം ദൈവം ലോകത്തെ അത്രമാത്രം സ്‌നേഹിച്ചു.'"},
+  {q:"ദൈവം പുത്രനെ ലോകത്തിലേക്ക് അയച്ചത് എന്തിനുവേണ്ടിയാണ് (വാ. 17)?",
+   opts:["ലോകത്തെ ശിക്ഷിക്കാൻ","ലോകത്തെ രക്ഷിക്കാൻ","ലോകത്തെ ന്യായം വിധിക്കാൻ","ലോകം അവസാനിപ്പിക്കാൻ"], correct:1,
+   note:"വാ. 17 &mdash; 'അവന്‍ വഴി ലോകം രക്ഷപ്രാപിക്കാനാണ്.'"},
+  {q:"തന്നെക്കുറിച്ചും യേശുവിനെക്കുറിച്ചും യോഹന്നാൻ എന്തു പറഞ്ഞു (വാ. 30)?",
+   opts:["'ഞങ്ങൾ ഒരുപോലെ വളരണം'","'അവൻ വളരുകയും ഞാൻ കുറയുകയും വേണം'","'ഞാൻ അവനെക്കാൾ വലിയവനാണ്'","'ഞങ്ങൾ ഒരുമിച്ചു പോകും'"], correct:1,
+   note:"വാ. 30 &mdash; 'അവന്‍ വളരുകയും ഞാന്‍ കുറയുകയും വേണം.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--love); color:var(--night); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

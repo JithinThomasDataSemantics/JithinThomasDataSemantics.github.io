@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>സഭാപ്രസംഗകന്‍ 1 · മിഥ്യകളില്‍ മിഥ്യ | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0F1116; --void-2:#171A22; --panel:#1D212B; --panel-2:#242834;
+    --mist:#B9C4D6; --mist-soft:#DCE3EE; --mist-dim:#5B6478;
+    --amber:#C9A265; --amber-soft:#E3C596;
+    --plum:#8B6FA0; --plum-dim:#4A3B58;
+    --sage:#7E9385;
+    --parchment:#EFEAE0; --parchment-2:#E2DBC9;
+    --ink:#25231E; --text:#E5E4DE; --text-dim:#9CA1B0;
+    --line: rgba(185,196,214,0.16);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(185,196,214,0.10), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--plum), var(--mist), var(--amber));
+    z-index:200; transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 10%, rgba(185,196,214,0.14), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--mist-soft);
+    background:rgba(185,196,214,0.07); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--plum);box-shadow:0 0 8px var(--plum);}
+
+  .vapor{ width:90px; height:90px; margin:0 auto 14px; position:relative; }
+  .ring{
+    position:absolute; inset:0; border-radius:50%;
+    border:1.5px dashed rgba(201,162,101,0.4);
+    animation: spin 24s linear infinite;
+  }
+  .ring.r2{ inset:14px; border-color:rgba(185,196,214,0.3); animation-duration:18s; animation-direction:reverse; }
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+  .vapor-core{
+    position:absolute; left:50%; top:50%; width:24px; height:24px; transform:translate(-50%,-50%);
+    border-radius:50%; background:radial-gradient(circle, var(--amber-soft), var(--amber) 60%, transparent 80%);
+    filter:blur(1px);
+    animation: breathe 3.5s ease-in-out infinite;
+  }
+  @keyframes breathe{ 0%,100%{ opacity:.7; transform:translate(-50%,-50%) scale(0.9);} 50%{ opacity:1; transform:translate(-50%,-50%) scale(1.15);} }
+
+  h1.title{ font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px); margin:6px 0 8px; color:var(--parchment); }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--mist-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--plum); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- AUTHOR CARD ---------- */
+  .author-card{
+    display:flex; gap:16px; align-items:flex-start; background:var(--panel);
+    border:1px solid var(--line); border-radius:var(--radius); padding:20px;
+  }
+  .author-icon{ flex:none; width:44px; height:44px; border-radius:50%; background:rgba(201,162,101,0.15); display:flex; align-items:center; justify-content:center; font-size:20px; }
+  .author-card p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.7; }
+  .author-card p b{ color:var(--text); }
+
+  /* ---------- CYCLE GRID ---------- */
+  .cycle-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .cycle-grid{ grid-template-columns:1fr; } }
+  .cycle-card{
+    background:linear-gradient(160deg, var(--panel-2), var(--panel));
+    border:1px solid var(--line); border-radius:var(--radius); padding:20px; position:relative;
+  }
+  .cycle-card .cyicon{ font-size:26px; display:block; margin-bottom:8px; }
+  .cycle-card .cytitle{ font-family:var(--display); font-weight:700; font-size:16px; color:var(--amber-soft); margin:0 0 8px; }
+  .cycle-card p{ margin:0; font-size:13.5px; color:var(--text-dim); line-height:1.65; }
+  .cycle-card .cyloop{ position:absolute; right:14px; top:16px; font-size:14px; color:var(--mist-dim); }
+
+  /* ---------- SCROLL (repeated phrase) ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:30px 26px; position:relative; text-align:center;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35); border:1px solid #cfc6ad;
+  }
+  .scroll::before, .scroll::after{ content:""; position:absolute; left:0; right:0; height:14px; background:repeating-linear-gradient(90deg, #cfc6ad 0 10px, #beb494 10px 20px); border-radius:50%; }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--display); font-weight:700; font-size:clamp(19px,4.2vw,26px); line-height:1.6; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:16px; font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.06em; color:#5c5340; text-transform:uppercase; }
+
+  /* ---------- WISDOM PARADOX ---------- */
+  .paradox{ display:flex; align-items:center; gap:14px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  @media(max-width:560px){ .paradox{ flex-direction:column; } }
+  .paradox .pside{ flex:1; text-align:center; }
+  .paradox .pside .pbig{ font-family:var(--display); font-weight:800; font-size:17px; color:var(--parchment); }
+  .paradox .pside .psmall{ font-size:12.5px; color:var(--text-dim); margin-top:4px; }
+  .paradox .parrow{ font-size:22px; color:var(--amber); flex:none; }
+  @media(max-width:560px){ .paradox .parrow{ transform:rotate(90deg); } }
+
+  /* ---------- FACTS ---------- */
+  .facts{ display:flex; flex-direction:column; gap:10px; }
+  .fact-item{ display:flex; gap:14px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; }
+  .fact-icon{ flex:none; width:36px; height:36px; border-radius:50%; background:rgba(139,111,160,0.18); display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .fact-item p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.6; }
+  .fact-item p b{ color:var(--text); }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--amber-soft); background:rgba(201,162,101,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--amber); }
+  .opt.correct{ background:rgba(126,147,133,0.25); border-color:var(--sage); color:#D3DFCF; }
+  .opt.wrong{ background:rgba(139,111,160,0.22); border-color:var(--plum); color:#E4D7EC; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(201,162,101,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--amber), #9C7A42); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--amber); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--amber-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--amber); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--amber-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍</div>
+    <div class="vapor">
+      <div class="ring"></div>
+      <div class="ring r2"></div>
+      <div class="vapor-core"></div>
+    </div>
+    <h1 class="title">മിഥ്യകളില്‍ മിഥ്യ</h1>
+    <p class="subtitle">"സൂര്യനു കീഴേ പുതുതായൊന്നുമില്ല"</p>
+    <p class="ref">സഭാപ്രസംഗകന്‍ 1 &nbsp;·&nbsp; ചക്രങ്ങളുടെ പുസ്തകം</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- AUTHOR -->
+  <section class="section" id="author-sec">
+    <p class="eyebrow">ആരാണ് സംസാരിക്കുന്നത്?</p>
+    <h2 class="h">സഭാപ്രസംഗകന്‍</h2>
+    <div class="author-card">
+      <div class="author-icon">👑</div>
+      <p><b>ജറുസലെമില്‍ രാജാവും ദാവീദിന്റെ പുത്രനുമായ</b> സഭാപ്രസംഗകന്റെ (ഹീബ്രുവില്‍ "ഖൊഹെലെത്ത്") വാക്കുകളാണ് ഈ പുസ്തകം. ജ്ഞാനത്തിന്റെ പരകോടിയില്‍ എത്തിയ ഒരു രാജാവ്, ജീവിതത്തിന്റെ അര്‍ഥശൂന്യതയെക്കുറിച്ച് ധ്യാനിക്കുന്നു.</p>
+    </div>
+  </section>
+
+  <!-- CYCLE -->
+  <section class="section" id="cycle-sec">
+    <p class="eyebrow">ആവര്‍ത്തിക്കുന്ന പ്രകൃതി</p>
+    <h2 class="h">നാലു ചക്രങ്ങള്‍</h2>
+    <p class="lede">പ്രകൃതി മുഴുവന്‍ ഒരു ചക്രത്തില്‍ കറങ്ങുന്നു എന്നതാണ് സഭാപ്രസംഗകന്റെ ആദ്യ നിരീക്ഷണം — ഓരോ ഉദാഹരണവും ക്വിസില്‍ ചോദിക്കാം.</p>
+    <div class="cycle-grid">
+      <div class="cycle-card"><span class="cyloop">↻</span><span class="cyicon">☀️</span><p class="cytitle">സൂര്യന്‍</p><p>ഉദിക്കുന്നു, അസ്തമിക്കുന്നു; ഉദിച്ചിടത്തുതന്നെ വേഗം തിരിച്ചെത്തുന്നു.</p></div>
+      <div class="cycle-card"><span class="cyloop">↻</span><span class="cyicon">🌬</span><p class="cytitle">കാറ്റ്</p><p>തെക്കോട്ടു വീശുന്നു, വടക്കോട്ടു തിരിയുന്നു, ചുറ്റിക്കറങ്ങിക്കൊണ്ടേയിരിക്കുന്നു.</p></div>
+      <div class="cycle-card"><span class="cyloop">↻</span><span class="cyicon">🌊</span><p class="cytitle">നദികള്‍</p><p>സമുദ്രത്തിലേക്ക് ഒഴുകുന്നു, എന്നാല്‍ സമുദ്രം നിറയുന്നില്ല; വെള്ളം ഉറവിടത്തിലേക്കു തിരികെ ഒഴുകുന്നു.</p></div>
+      <div class="cycle-card"><span class="cyloop">↻</span><span class="cyicon">👥</span><p class="cytitle">തലമുറകള്‍</p><p>വരുന്നു, പോകുന്നു — ഭൂമിയാകട്ടെ എന്നേക്കും അതേപടി നിലനില്‍ക്കുന്നു.</p></div>
+    </div>
+  </section>
+
+  <!-- REPEATED PHRASE -->
+  <section class="section" id="phrase-sec">
+    <p class="eyebrow">പുസ്തകത്തിന്റെ താക്കോല്‍ വാക്യം</p>
+    <h2 class="h">ആദ്യ പ്രഖ്യാപനം</h2>
+    <div class="scroll">
+      <p>"മിഥ്യകളില്‍ മിഥ്യ, സകലവും മിഥ്യ, മിഥ്യകളില്‍ മിഥ്യ!"</p>
+      <span class="cite">സഭാപ്രസംഗകന്‍ 1:2</span>
+    </div>
+  </section>
+
+  <!-- WISDOM PARADOX -->
+  <section class="section" id="paradox-sec">
+    <p class="eyebrow">ജ്ഞാനത്തിന്റെ വിരോധാഭാസം</p>
+    <h2 class="h">കൂടുതല്‍ അറിവ്, കൂടുതല്‍ വേദന</h2>
+    <div class="paradox">
+      <div class="pside"><div class="pbig">ജ്ഞാനം ഏറുന്നു</div><div class="psmall">അറിവ് വര്‍ധിക്കുന്നു</div></div>
+      <div class="parrow">→</div>
+      <div class="pside"><div class="pbig">ദുഃഖം ഏറുന്നു</div><div class="psmall">വ്യസനം വര്‍ധിക്കുന്നു</div></div>
+    </div>
+  </section>
+
+  <!-- FACTS -->
+  <section class="section" id="facts-sec">
+    <p class="eyebrow">ധ്യാനത്തിന്റെ ബാക്കി വരികള്‍</p>
+    <h2 class="h">ഓര്‍ത്തിരിക്കേണ്ട ആശയങ്ങള്‍</h2>
+    <div class="facts">
+      <div class="fact-item"><div class="fact-icon">🔁</div><p><b>"സൂര്യനു കീഴേ പുതുതായൊന്നുമില്ല"</b> — യുഗങ്ങള്‍ക്കു മുന്‍പുതന്നെ എല്ലാം ഉണ്ടായിരുന്നു എന്നതിനാല്‍.</p></div>
+      <div class="fact-item"><div class="fact-icon">🧠</div><p>സഭാപ്രസംഗകന്‍ <b>ജറുസലെമിലെ എല്ലാ മുന്‍ രാജാക്കന്മാരെക്കാളും</b> അധികം ജ്ഞാനം സമ്പാദിച്ചു എന്ന് അവകാശപ്പെടുന്നു.</p></div>
+      <div class="fact-item"><div class="fact-icon">📉</div><p><b>"വളഞ്ഞതു നേരെയാക്കാന്‍ ആര്‍ക്കും കഴിയില്ല"</b> — മനുഷ്യാധ്വാനത്തിന്റെ പരിമിതിയെ സൂചിപ്പിക്കുന്നു.</p></div>
+      <div class="fact-item"><div class="fact-icon">🙈</div><p><b>"കഴിഞ്ഞതൊന്നും ആരും ഓര്‍ക്കുന്നില്ല"</b> — ഭാവി തലമുറകളും വര്‍ത്തമാനത്തെ മറക്കും.</p></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — സഭാപ്രസംഗകന്‍ 1</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🌀 Logos Quiz 2026 പഠന സഹായി · സഭാപ്രസംഗകന്‍ 1</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* full text */
+const verses = [
+  ['1','ജറുസലെമില്‍ രാജാവും ദാവീദിന്റെ പുത്രനുമായ സഭാപ്രസംഗകന്റെ വാക്കുകള്‍.'],
+  ['2','മിഥ്യകളില്‍ മിഥ്യ, സകലവും മിഥ്യ, മിഥ്യകളില്‍ മിഥ്യ!'],
+  ['3','സൂര്യനു താഴെ മനുഷ്യന് അധ്വാനംകൊണ്ട് എന്തുഫലം?'],
+  ['4','തലമുറകള്‍ വരുന്നു, പോകുന്നു. ഭൂമിയാകട്ടെ എന്നേക്കും നിലനില്‍ക്കുന്നു.'],
+  ['5-7','സൂര്യന്‍ ഉദിച്ച് അസ്തമിച്ച് തിരിച്ചെത്തുന്നു; കാറ്റ് ചുറ്റിക്കറങ്ങുന്നു; നദികള്‍ സമുദ്രത്തിലേക്ക് ഒഴുകിയാലും സമുദ്രം നിറയുന്നില്ല.'],
+  ['8-9','സകലവും ക്ലേശഭൂയിഷ്ഠം, വിവരിക്കുക അസാധ്യം; ഉണ്ടായതുതന്നെ വീണ്ടും ഉണ്ടാകുന്നു; സൂര്യനു കീഴേ പുതുതായൊന്നുമില്ല.'],
+  ['10-11','പുതിയത് എന്നു തോന്നുന്നതും യുഗങ്ങള്‍ക്കു മുന്‍പേ ഉണ്ടായിരുന്നു; കഴിഞ്ഞതും വരാനിരിക്കുന്നതും ആരും ഓര്‍ക്കുകയില്ല.'],
+  ['12-14','സഭാപ്രസംഗകന്‍ ജറുസലെമില്‍ ഇസ്രായേലിന്റെ രാജാവായിരുന്നു; ജ്ഞാനത്തോടെ എല്ലാം ആരാഞ്ഞു, എല്ലാം മിഥ്യയും പാഴ്‌വേലയുമെന്നു കണ്ടു.'],
+  ['15','വളഞ്ഞതു നേരെയാക്കാന്‍ ആര്‍ക്കും കഴിയില്ല; ഇല്ലാത്തത് എണ്ണുക അസാധ്യം.'],
+  ['16-18','മുന്‍ രാജാക്കന്മാരെക്കാള്‍ അധികം ജ്ഞാനം സമ്പാദിച്ചു; ജ്ഞാനവും ഭോഷത്തവും വിവേചിച്ചറിഞ്ഞു — അതും പാഴ്‌വേല; ജ്ഞാനമേറുമ്പോള്‍ ദുഃഖവും ഏറുന്നു.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'സഭാപ്രസംഗകന്‍ ആരാണെന്നാണ് ആദ്യ വാക്യം വിശേഷിപ്പിക്കുന്നത്?',
+    options: ['ഒരു പുരോഹിതന്‍', 'ജറുസലെമില്‍ രാജാവും ദാവീദിന്റെ പുത്രനും', 'ഒരു ന്യായാധിപന്‍', 'ഒരു പ്രവാചകന്‍ മാത്രം'],
+    correct: 1,
+    explain: '1:1 — "ജറുസലെമില്‍ രാജാവും ദാവീദിന്റെ പുത്രനുമായ സഭാപ്രസംഗകന്റെ വാക്കുകള്‍."'
+  },
+  {
+    q: 'തലമുറകളും ഭൂമിയും തമ്മിലുള്ള വൈരുധ്യം എന്താണ്?',
+    options: ['രണ്ടും മാറ്റമില്ലാതെ നിലനില്‍ക്കുന്നു', 'തലമുറകള്‍ വരുന്നു പോകുന്നു, ഭൂമി എന്നേക്കും നിലനില്‍ക്കുന്നു', 'ഭൂമി മാറിക്കൊണ്ടിരിക്കുന്നു, തലമുറകള്‍ സ്ഥിരമാണ്', 'രണ്ടും വേഗം നശിക്കുന്നു'],
+    correct: 1,
+    explain: '1:4 — "തലമുറകള്‍ വരുന്നു, പോകുന്നു. ഭൂമിയാകട്ടെ എന്നേക്കും നിലനില്‍ക്കുന്നു."'
+  },
+  {
+    q: 'സൂര്യന്റെ ചക്രം എങ്ങനെയാണ് വിവരിക്കുന്നത്?',
+    options: ['ഉദിക്കുന്നു, ഒരിക്കലും അസ്തമിക്കുന്നില്ല', 'ഉദിക്കുന്നു, അസ്തമിക്കുന്നു, ഉദിച്ചിടത്തേക്കു വേഗം തിരിച്ചെത്തുന്നു', 'ആകാശത്തു നിശ്ചലമായി നില്‍ക്കുന്നു', 'ദിവസവും സ്ഥാനം മാറുന്നു'],
+    correct: 1,
+    explain: '1:5 — "സൂര്യനുദിക്കുന്നു, അസ്തമിക്കുന്നു; ഉദിച്ചിടത്തുതന്നെ വേഗം തിരിച്ചെത്തുന്നു."'
+  },
+  {
+    q: 'കാറ്റിന്റെ ചലനം എങ്ങനെ വിവരിക്കുന്നു?',
+    options: ['എപ്പോഴും കിഴക്കോട്ടു മാത്രം വീശുന്നു', 'തെക്കോട്ടും വടക്കോട്ടും ചുറ്റിക്കറങ്ങിക്കൊണ്ടേയിരിക്കുന്നു', 'വര്‍ഷത്തിലൊരിക്കല്‍ മാത്രം വീശുന്നു', 'ഒരിക്കലും നിലയ്ക്കുന്നില്ല, ദിശ മാറുന്നില്ല'],
+    correct: 1,
+    explain: '1:6 — "കാറ്റു തെക്കോട്ടു വീശുന്നു; തിരിഞ്ഞു വടക്കോട്ടു വീശുന്നു... ചുറ്റിക്കറങ്ങിക്കൊണ്ടേയിരിക്കുന്നു."'
+  },
+  {
+    q: 'നദികള്‍ സമുദ്രത്തിലേക്ക് ഒഴുകിയാലും സമുദ്രം നിറയാത്തത് എന്തുകൊണ്ട്?',
+    options: ['സമുദ്രം അനന്തമായതിനാല്‍', 'വെള്ളം ഉറവിടത്തിലേക്കു വീണ്ടും ഒഴുകുന്നതിനാല്‍', 'നദികള്‍ വറ്റിപ്പോകുന്നതിനാല്‍', 'സൂര്യന്‍ വെള്ളം വലിച്ചെടുക്കുന്നതിനാല്‍'],
+    correct: 1,
+    explain: '1:7 — "ഉറവിടത്തിലേക്കു വീണ്ടും ഒഴുക്കു തുടരുന്നു" എന്ന ചക്രം വിവരിക്കുന്നു.'
+  },
+  {
+    q: '"സൂര്യനു കീഴേ പുതുതായൊന്നുമില്ല" എന്നു പറയുന്നതിന്റെ കാരണം എന്ത്?',
+    options: ['ദൈവം സൃഷ്ടി നിര്‍ത്തിയതിനാല്‍', 'യുഗങ്ങള്‍ക്കു മുന്‍പുതന്നെ അതെല്ലാം ഉണ്ടായിരുന്നതിനാല്‍', 'മനുഷ്യര്‍ പുതുമ ആഗ്രഹിക്കാത്തതിനാല്‍', 'ലോകം ഇനി മാറില്ലാത്തതിനാല്‍'],
+    correct: 1,
+    explain: '1:10 — "പുതിയത് എന്നുപറയാന്‍ എന്തുണ്ട്? യുഗങ്ങള്‍ക്കു മുന്‍പുതന്നെ അതുണ്ടായിരുന്നു."'
+  },
+  {
+    q: 'സഭാപ്രസംഗകന്‍ തന്റെ ജ്ഞാനത്തെക്കുറിച്ച് എന്താണ് അവകാശപ്പെട്ടത്?',
+    options: ['ജ്ഞാനം തനിക്ക് ഒട്ടും ഇല്ലായിരുന്നു', 'ജറുസലെമിലെ എല്ലാ മുന്‍ രാജാക്കന്മാരെക്കാളും അധികം ജ്ഞാനം സമ്പാദിച്ചു', 'ജ്ഞാനം ദൈവത്തില്‍നിന്നു നേരിട്ടു ലഭിച്ചു എന്നു മാത്രം പറഞ്ഞു', 'ജ്ഞാനം അന്വേഷിക്കാന്‍ ശ്രമിച്ചില്ല'],
+    correct: 1,
+    explain: '1:16 — "ജറുസലെമില്‍ എനിക്കു മുന്‍പുണ്ടായിരുന്ന എല്ലാ രാജാക്കന്‍മാരെയുംകാള്‍ അധികം ജ്ഞാനം ഞാന്‍ സമ്പാദിച്ചു."'
+  },
+  {
+    q: '"വളഞ്ഞതു നേരെയാക്കാന്‍ ആര്‍ക്കും കഴിയില്ല" എന്ന വാക്യം എന്തിനെ സൂചിപ്പിക്കുന്നു?',
+    options: ['ദൈവത്തിന്റെ അപ്രാപ്യതയെ', 'മനുഷ്യാധ്വാനത്തിന്റെ പരിമിതിയെ', 'ഭൂമിശാസ്ത്രപരമായ ഒരു വസ്തുതയെ', 'ഒരു നിര്‍മാണ പ്രശ്‌നത്തെ'],
+    correct: 1,
+    explain: '1:15 — ജീവിതത്തിലെ ചില യാഥാര്‍ഥ്യങ്ങള്‍ മനുഷ്യ പരിശ്രമത്താല്‍ മാറ്റാനാവില്ല എന്ന നിരീക്ഷണം.'
+  },
+  {
+    q: 'ജ്ഞാനവും ഭോഷത്തവും വിവേചിച്ചറിയാനുള്ള ശ്രമത്തെക്കുറിച്ച് സഭാപ്രസംഗകന്‍ എന്തു നിഗമനത്തിലെത്തി?',
+    options: ['അതില്‍ പൂര്‍ണതൃപ്തി ലഭിച്ചു', 'അതും പാഴ്‌വേലയാണെന്നു കണ്ടു', 'അതു ജീവിതത്തിന്റെ പരമമായ ലക്ഷ്യമാണെന്നു കണ്ടു', 'അതു നിഷ്ഫലമെന്നു കരുതി ഉപേക്ഷിച്ചു'],
+    correct: 1,
+    explain: '1:17 — "ഇതും പാഴ്‌വേലയാണെന്നു ഞാന്‍ കണ്ടു."'
+  },
+  {
+    q: '18-ാം വാക്യം അനുസരിച്ച് ജ്ഞാനവും അറിവും വര്‍ധിക്കുമ്പോള്‍ എന്താണ് വര്‍ധിക്കുന്നത്?',
+    options: ['സന്തോഷവും സമാധാനവും', 'ദുഃഖവും വ്യസനവും', 'ധനവും അധികാരവും', 'ബഹുമാനവും പ്രശസ്തിയും'],
+    correct: 1,
+    explain: '1:18 — "ജ്ഞാനമേറുമ്പോള്‍ ദുഃഖവും ഏറുന്നു, അറിവു വര്‍ദ്ധിക്കുമ്പോള്‍ വ്യസനവും വര്‍ദ്ധിക്കുന്നു."'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

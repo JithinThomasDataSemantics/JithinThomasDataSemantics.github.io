@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ജീവജലത്തിന്റെ അരുവികള്‍ — യോഹന്നാൻ 7 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #1a160f; --night-2: #241e14;
+    --parchment: #eee2c7; --parchment-dim: #b0a488;
+    --bronze: #c68c4a; --bronze-soft: #e3ae74;
+    --burst: #3fb8c9; --burst-soft: #83dbe6;
+    --line: rgba(198,140,74,0.22);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(198,140,74,0.12), transparent 45%),
+      radial-gradient(ellipse at 85% 20%, rgba(63,184,201,0.08), transparent 42%),
+      var(--night);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--burst); color:var(--night);}
+
+  /* ---------- HERO: WATER BURST ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .eyebrow{position:relative; z-index:1; font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--bronze-soft); margin-bottom:1.4rem; font-style:italic;}
+  .burst{position:relative; width:140px; height:140px; margin-bottom:1.6rem;}
+  .burst svg{width:100%; height:100%;}
+  .burst-ray{stroke:var(--burst-soft); stroke-width:2; stroke-linecap:round; transform-origin:70px 105px; animation:rayShoot 2.6s ease-in-out infinite;}
+  .burst-ray:nth-child(1){animation-delay:0s;}
+  .burst-ray:nth-child(2){animation-delay:0.15s;}
+  .burst-ray:nth-child(3){animation-delay:0.3s;}
+  .burst-ray:nth-child(4){animation-delay:0.45s;}
+  .burst-ray:nth-child(5){animation-delay:0.6s;}
+  @keyframes rayShoot{0%{opacity:0; transform:scaleY(0.3);} 40%{opacity:1; transform:scaleY(1);} 100%{opacity:0; transform:scaleY(1.15);}}
+  .burst-pool{fill:var(--burst); opacity:0.85;}
+
+  .hero h1{position:relative; z-index:1; font-weight:800; font-size:clamp(2rem, 6vw, 3.8rem); line-height:1.3; margin:0; color:var(--parchment);}
+  .hero h1 em{font-style:normal; color:var(--burst-soft); display:block;}
+  .hero .ref{position:relative; z-index:1; font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--parchment-dim); margin-top:1rem;}
+  .hero p.tag{position:relative; z-index:1; max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--parchment-dim);}
+  .scroll-cue{position:relative; z-index:1; margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--bronze-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--bronze), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--bronze-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.35rem,3.1vw,1.95rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--bronze);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--bronze-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:420px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:0.88rem;}
+
+  /* ---------- VOICES FROM THE CROWD ---------- */
+  .voices-grid{display:flex; flex-wrap:wrap; gap:0.9rem;}
+  .voice-bubble{
+    background:var(--night-2);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1rem 1.2rem;
+    max-width:260px;
+    font-size:0.9rem;
+    line-height:1.65;
+    color:var(--parchment);
+  }
+  .voice-bubble:nth-child(even){border-color:rgba(63,184,201,0.3);}
+  .voice-bubble .vwho{display:block; font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:0.78rem; margin-bottom:0.4rem;}
+  .voice-bubble:nth-child(even) .vwho{color:var(--burst-soft);}
+
+  /* ---------- SABBATH CALLBACK ---------- */
+  .callback-note{margin-top:1.4rem; padding:1.1rem 1.3rem; background:rgba(63,184,201,0.07); border:1px solid rgba(63,184,201,0.28); border-left:3px solid var(--burst); border-radius:8px; font-size:0.94rem; line-height:1.8; color:var(--parchment-dim);}
+  .callback-note b{color:var(--burst-soft);}
+
+  /* ---------- LIVING WATER GIANT QUOTE ---------- */
+  .lw-quote{margin:0.4rem 0 0.4rem; padding:3rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(63,184,201,0.18), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .lw-quote .vtag{font-family:var(--font-num); font-style:italic; color:var(--burst-soft); font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;}
+  .lw-quote p{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.15rem, 3vw, 1.65rem); line-height:1.85; color:var(--parchment); max-width:38ch; margin:0 auto;}
+  .lw-explain{margin-top:1.2rem; text-align:center; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.88rem; max-width:50ch; margin-left:auto; margin-right:auto;}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--night-2), var(--night)); border:1px solid var(--line); border-left:3px solid var(--bronze); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--burst-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--bronze);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--bronze); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--bronze-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--bronze); color:var(--night); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--bronze-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .burst-ray, .scroll-cue span{animation:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; John / യോഹന്നാൻ</div>
+  <div class="burst">
+    <svg viewBox="0 0 140 140">
+      <ellipse class="burst-pool" cx="70" cy="112" rx="26" ry="7"/>
+      <line class="burst-ray" x1="70" y1="105" x2="70" y2="40"/>
+      <line class="burst-ray" x1="70" y1="105" x2="45" y2="55"/>
+      <line class="burst-ray" x1="70" y1="105" x2="95" y2="55"/>
+      <line class="burst-ray" x1="70" y1="105" x2="30" y2="75"/>
+      <line class="burst-ray" x1="70" y1="105" x2="110" y2="75"/>
+    </svg>
+  </div>
+  <h1>ജീവജലത്തിന്റെ<br><em>അരുവികള്‍</em></h1>
+  <div class="ref">യോഹന്നാൻ 7 : 1&ndash;53</div>
+  <p class="tag">കൂടാരത്തിരുനാളിലെ രഹസ്യയാത്ര, ദേവാലയത്തിലെ വാഗ്വാദം, ഒടുവിൽ അവസാന മഹാദിനത്തിലെ ഉച്ചത്തിലുള്ള ക്ഷണം.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: SECRET JOURNEY -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>കൂടാരത്തിരുനാള്‍ &mdash; രഹസ്യയാത്ര</h2></div>
+  <p class="section-sub">വാ. 1&ndash;13. സഹോദരന്മാരുടെ പ്രേരണ, യേശുവിന്റെ വിസമ്മതം, പിന്നീട് രഹസ്യമായ യാത്ര.</p>
+  <div class="prologue-grid" id="prologue"></div>
+</section>
+
+<!-- II: TEACHING & INTERROGATION -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>യേശുവിന്റെ വിജ്ഞാനവും ചോദ്യം ചെയ്യലും</h2></div>
+  <p class="section-sub">വാ. 14&ndash;36. ദേവാലയത്തിലെ പഠിപ്പിക്കൽ ജനക്കൂട്ടത്തിനിടയിൽ ഭിന്നത സൃഷ്ടിക്കുന്നു.</p>
+  <div class="voices-grid" id="voicesGrid"></div>
+  <div class="callback-note">വാ. 21&ndash;23: യേശു തന്റെ സാബത്ത് സൗഖ്യത്തെ (അധ്യായം 5-ലെ ബേത്‌സഥാ സംഭവം) ഓർമിപ്പിക്കുന്നു &mdash; സാബത്തിൽ പരിച്‌ഛേദനം അനുവദനീയമെങ്കിൽ, <b>ഒരു മനുഷ്യനെ പൂർണമായി സുഖമാക്കിയതിന്</b> എന്തിനു കോപിക്കുന്നു?</div>
+</section>
+
+<!-- III: RIVERS OF LIVING WATER -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>ജീവജലത്തിന്റെ അരുവികള്‍</h2></div>
+  <p class="section-sub">വാ. 37&ndash;39. തിരുനാളിന്റെ അവസാനത്തെ മഹാദിനത്തിലെ പരസ്യപ്രഖ്യാപനം.</p>
+  <div class="lw-quote">
+    <div class="vtag">വാ. 37&ndash;38</div>
+    <p>&ldquo;ആർക്കെങ്കിലും ദാഹിക്കുന്നെങ്കിൽ അവൻ എന്റെ അടുക്കൽ വന്നു കുടിക്കട്ടെ. എന്നിൽ വിശ്വസിക്കുന്നവന്റെ ഹൃദയത്തിൽനിന്ന് ജീവജലത്തിന്റെ അരുവികൾ ഒഴുകും.&rdquo;</p>
+  </div>
+  <div class="lw-explain">വാ. 39: ഇതു പറഞ്ഞത് വിശ്വസിക്കുന്നവർ സ്വീകരിക്കാനിരിക്കുന്ന <b style="color:var(--burst-soft)">ആത്മാവിനെപ്പറ്റി</b>യാണ് &mdash; യേശു അതുവരെയും മഹത്വീകരിക്കപ്പെട്ടിരുന്നില്ല എന്നതിനാൽ ആത്മാവു നൽകപ്പെട്ടിരുന്നില്ല.</div>
+</section>
+
+<!-- IV: DIVISION AND UNBELIEF -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>ഭിന്നതയും അധികാരികളുടെ അവിശ്വാസവും</h2></div>
+  <p class="section-sub">വാ. 40&ndash;53. ജനക്കൂട്ടം ഭിന്നിക്കുന്നു; സേവകർ പരാജയപ്പെടുന്നു; നിക്കൊദേമോസ് ഒറ്റയ്ക്കു സംസാരിക്കുന്നു.</p>
+  <div class="voices-grid" id="voicesGrid2"></div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">സംഭവങ്ങൾ, പ്രധാന വാക്യങ്ങൾ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s6">
+  <div class="section-head"><span class="num">VI</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>യോഹന്നാൻ 7 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- SECTION I ACCORDION ---------------- */
+const prologue = [
+  {v:"3-5", text:"സഹോദരന്മാർ: 'നീ ചെയ്യുന്ന പ്രവൃത്തികൾ ശിഷ്യന്മാർ കാണേണ്ടതിന് യൂദയായിലേക്കു പോവുക. പരസ്യമായി അറിയപ്പെടാൻ ആഗ്രഹിക്കുന്നവൻ രഹസ്യമായി പ്രവർത്തിക്കില്ല.' സഹോദരന്മാർപോലും അവനിൽ വിശ്വസിച്ചിരുന്നില്ല.", note:"സ്വന്തം കുടുംബത്തിന്റെ അവിശ്വാസം &mdash; ശ്രദ്ധേയമായ വിശദാംശം."},
+  {v:"6-8", text:"യേശു: 'എന്റെ സമയം ഇതുവരെയും ആയിട്ടില്ല. നിങ്ങൾക്കാകട്ടെ എപ്പോഴും അനുകൂലമായ സമയമാണല്ലോ&hellip; ഞാൻ ഈ തിരുനാളിനു പോകുന്നില്ല.'", note:"'എന്റെ സമയം' &mdash; യോഹന്നാന്റെ സുവിശേഷത്തിൽ ആവർത്തിക്കുന്ന പ്രമേയം."},
+  {v:"10", text:"സഹോദരന്മാർ തിരുനാളിനു പോയശേഷം അവനും പോയി &mdash; പരസ്യമായല്ല, <b>രഹസ്യമായി.</b>", note:"പ്രസ്താവനയ്ക്കും പ്രവൃത്തിക്കും ഇടയിലെ സൂക്ഷ്മമായ മാറ്റം."},
+  {v:"12-13", text:"ജനങ്ങൾ അവനെപ്പറ്റി രഹസ്യമായി പലതും പറഞ്ഞു &mdash; 'നല്ല മനുഷ്യൻ' എന്നു ചിലർ, 'ജനങ്ങളെ വഴിപിഴപ്പിക്കുന്നു' എന്നു മറ്റുള്ളവർ. യഹൂദരെ ഭയന്ന് ആരും പരസ്യമായി സംസാരിച്ചില്ല.", note:"ഭയത്തിന്റെ അന്തരീക്ഷം &mdash; ഈ അധ്യായത്തിലുടനീളം."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- SECTION II VOICES ---------------- */
+const voices1 = [
+  {who:"യേശു (വാ. 16)", t:"'എന്റെ പ്രബോധനം എന്റെ സ്വന്തമല്ല, എന്നെ അയച്ചവന്റേതത്രേ.'"},
+  {who:"ജനങ്ങൾ (വാ. 20)", t:"'നിനക്കു പിശാചുണ്ട്. ആരാണു നിന്നെ കൊല്ലാൻ ആലോചിക്കുന്നത്?'"},
+  {who:"ജറുസലെം നിവാസികൾ (വാ. 26)", t:"'ഇവൻതന്നെയാണു ക്രിസ്തുവെന്ന് അധികാരികൾ അറിഞ്ഞിരിക്കുമോ?'"},
+  {who:"ജനങ്ങൾ (വാ. 27)", t:"'ഇവൻ എവിടെനിന്നു വരുന്നു എന്നു നമുക്കറിയാം. ക്രിസ്തു എവിടെനിന്നു വരുമെന്ന് ആരും അറിയില്ലല്ലോ.'"},
+  {who:"ജനക്കൂട്ടത്തിൽ പലർ (വാ. 31)", t:"'ക്രിസ്തു വരുമ്പോൾ ഇവൻ പ്രവർത്തിച്ചതിലേറെ അടയാളങ്ങൾ പ്രവർത്തിക്കുമോ?' &mdash; അവർ വിശ്വസിച്ചു."},
+  {who:"യേശു (വാ. 34)", t:"'നിങ്ങൾ എന്നെ അന്വേഷിക്കും; കണ്ടെത്തുകയില്ല. ഞാൻ ആയിരിക്കുന്നിടത്തു വരാൻ നിങ്ങൾക്കു സാധിക്കുകയില്ല.'"}
+];
+document.getElementById('voicesGrid').innerHTML = voices1.map(v=>`
+  <div class="voice-bubble"><span class="vwho">${v.who}</span>${v.t}</div>
+`).join('');
+
+/* ---------------- SECTION IV VOICES ---------------- */
+const voices2 = [
+  {who:"ചിലർ (വാ. 40)", t:"'ഇവൻ യഥാർഥത്തിൽ പ്രവാചകനാണ്.'"},
+  {who:"മറ്റു ചിലർ (വാ. 41)", t:"'ഇവൻ ക്രിസ്തുവാണ്.'"},
+  {who:"വേറെ ചിലർ (വാ. 41&ndash;42)", t:"'ക്രിസ്തു ഗലീലിയിൽനിന്നാണോ വരുക? ദാവീദിന്റെ ഗ്രാമമായ ബേത്‌ലെഹെമിൽനിന്നല്ലേ വരേണ്ടത്?'"},
+  {who:"സേവകന്മാർ (വാ. 46)", t:"'അവനെപ്പോലെ ആരും ഇതുവരെ സംസാരിച്ചിട്ടില്ല.'"},
+  {who:"നിക്കൊദേമോസ് (വാ. 51)", t:"'ഒരുവനു പറയാനുള്ളത് ആദ്യം കേൾക്കാതെ അവനെ വിധിക്കാൻ നമ്മുടെ നിയമം അനുവദിക്കുന്നുണ്ടോ?'"},
+  {who:"ഫരിസേയർ (വാ. 52)", t:"'നീയും ഗലീലിയിൽനിന്നാണോ? ഒരു പ്രവാചകനും ഗലീലിയിൽനിന്നു വരുന്നില്ല.'"}
+];
+document.getElementById('voicesGrid2').innerHTML = voices2.map(v=>`
+  <div class="voice-bubble"><span class="vwho">${v.who}</span>${v.t}</div>
+`).join('');
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"തിരുനാൾ", val:"<b>കൂടാരത്തിരുനാൾ</b> (വാ. 2)."},
+  {label:"യേശുവിന്റെ യാത്ര", val:"സഹോദരന്മാർക്കുശേഷം <b>രഹസ്യമായി</b> പോയി (വാ. 10)."},
+  {label:"സാബത്ത് വാദം", val:"പരിച്‌ഛേദനം സാബത്തിൽ അനുവദനീയമെങ്കിൽ <b>പൂർണ സൗഖ്യവും</b> ആകാം (വാ. 22&ndash;23)."},
+  {label:"ജീവജല പ്രഖ്യാപനം നടന്ന ദിവസം", val:"തിരുനാളിന്റെ <b>അവസാനത്തെ മഹാദിനം</b> (വാ. 37)."},
+  {label:"ജീവജലം എന്തിനെ സൂചിപ്പിക്കുന്നു", val:"<b>പരിശുദ്ധാത്മാവിനെ</b> &mdash; അന്നു നൽകപ്പെട്ടിരുന്നില്ല (വാ. 39)."},
+  {label:"ക്രിസ്തുവിന്റെ ജന്മസ്ഥലത്തെക്കുറിച്ചുള്ള വാദം", val:"ചിലർ പറഞ്ഞു ക്രിസ്തു <b>ബേത്‌ലെഹെമിൽനിന്ന്</b> വരണം (വാ. 42)."},
+  {label:"സേവകരുടെ റിപ്പോർട്ട്", val:"'അവനെപ്പോലെ ആരും ഇതുവരെ <b>സംസാരിച്ചിട്ടില്ല</b>' (വാ. 46)."},
+  {label:"യേശുവിനെ പ്രതിരോധിച്ചത്", val:"<b>നിക്കൊദേമോസ്</b> (വാ. 50&ndash;51)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"ഈ അധ്യായത്തിൽ പരാമർശിക്കുന്ന യഹൂദ തിരുനാൾ ഏതാണ് (വാ. 2)?",
+   opts:["പെസഹാ","പെന്തക്കുസ്ത","കൂടാരത്തിരുനാൾ","പ്രായശ്ചിത്തദിനം"], correct:2,
+   note:"വാ. 2 &mdash; 'യഹൂദരുടെ കൂടാരത്തിരുനാള്‍ സമീപിച്ചിരുന്നു.'"},
+  {q:"സഹോദരന്മാർ പോയശേഷം യേശു എങ്ങനെയാണ് തിരുനാളിനു പോയത് (വാ. 10)?",
+   opts:["പരസ്യമായി, വലിയ ജനക്കൂട്ടത്തോടെ","രഹസ്യമായി","ശിഷ്യന്മാരെ മാത്രം കൂട്ടി","അവൻ പോയതേയില്ല"], correct:1,
+   note:"വാ. 10 &mdash; 'പരസ്യമായല്ല, രഹസ്യമായി.'"},
+  {q:"സാബത്തിൽ ഒരു മനുഷ്യനെ സൗഖ്യമാക്കിയതിനെ ന്യായീകരിക്കാൻ യേശു ഏതു നടപടിയെ ഉദാഹരണമായി ചൂണ്ടിക്കാട്ടി (വാ. 22&ndash;23)?",
+   opts:["ബലിയർപ്പണം","പരിച്‌ഛേദനം","ഉപവാസം","നികുതി പിരിവ്"], correct:1,
+   note:"വാ. 22&ndash;23 &mdash; സാബത്തിൽ പരിച്‌ഛേദനം അനുവദനീയമെങ്കിൽ പൂർണസൗഖ്യവും ആകാം."},
+  {q:"'ജീവജലത്തിന്റെ അരുവികൾ' എന്ന പ്രഖ്യാപനം യേശു നടത്തിയത് എപ്പോഴാണ് (വാ. 37)?",
+   opts:["തിരുനാളിന്റെ ആദ്യ ദിവസം","തിരുനാളിന്റെ പകുതി","തിരുനാളിന്റെ അവസാനത്തെ മഹാദിനം","തിരുനാളിനുശേഷം"], correct:2,
+   note:"വാ. 37 &mdash; 'തിരുനാളിന്റെ അവസാനത്തെ മഹാദിനത്തില്‍.'"},
+  {q:"'ജീവജലത്തിന്റെ അരുവികൾ' എന്നത് എന്തിനെയാണ് സൂചിപ്പിക്കുന്നത് (വാ. 39)?",
+   opts:["ജ്ഞാനസ്നാനത്തെ","പരിശുദ്ധാത്മാവിനെ","നിത്യജീവനെ","മഴയെ"], correct:1,
+   note:"വാ. 39 &mdash; 'അവന്‍ ഇതു പറഞ്ഞതു തന്നില്‍ വിശ്വസിക്കുന്നവര്‍ സ്വീകരിക്കാനിരിക്കുന്ന ആത്മാവിനെപ്പറ്റിയാണ്.'"},
+  {q:"ചിലരുടെ വാദപ്രകാരം ക്രിസ്തു എവിടെനിന്നു വരണം (വാ. 42)?",
+   opts:["ജറുസലെം","ബേത്‌ലെഹെം","നസ്രത്ത്","ഗലീലി"], correct:1,
+   note:"വാ. 42 &mdash; 'ദാവീദിന്റെ ഗ്രാമമായ ബേത്‌ലെഹെമില്‍നിന്ന് അവന്‍ വരുമെന്നുമല്ലേ വിശുദ്ധ ലിഖിതം പറയുന്നത്?'"},
+  {q:"യേശുവിനെ ബന്ധിക്കാൻ അയച്ച സേവകർ തിരിച്ചെത്തിയപ്പോൾ എന്തു പറഞ്ഞു (വാ. 46)?",
+   opts:["'അവനെ കണ്ടില്ല'","'അവനെപ്പോലെ ആരും ഇതുവരെ സംസാരിച്ചിട്ടില്ല'","'അവൻ ഞങ്ങളെ ഭയപ്പെടുത്തി'","'അവൻ ഓടിപ്പോയി'"], correct:1,
+   note:"വാ. 46 &mdash; 'അവനെപ്പോലെ ആരും ഇതുവരെ സംസാരിച്ചിട്ടില്ല.'"},
+  {q:"ഫരിസേയർക്കിടയിൽ യേശുവിനുവേണ്ടി സംസാരിച്ചത് ആരാണ് (വാ. 50&ndash;51)?",
+   opts:["ഗമാലിയേൽ","നിക്കൊദേമോസ്","യൗസേപ്പ്","കയ്യഫാസ്"], correct:1,
+   note:"വാ. 50 &mdash; 'മുമ്പൊരിക്കല്‍ യേശുവിന്റെ അടുക്കല്‍ പോയവനും അവരിലൊരുവനുമായ നിക്കൊദേമോസ്.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--bronze); color:var(--night); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

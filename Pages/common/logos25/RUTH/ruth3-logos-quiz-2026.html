@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>റൂത്ത് 3 · മെതിക്കളത്തിലെ രാത്രി | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#100C15; --void-2:#191320; --panel:#221A29; --panel-2:#2A2032;
+    --wheat:#D9A441; --wheat-soft:#EAC479; --wheat-dim:#8A651F;
+    --rust:#C1652F; --rust-dim:#6B3419;
+    --rose:#C97B84; --rose-dim:#6E3A40;
+    --moon:#B9C4D6;
+    --olive:#8B9A5F;
+    --parchment:#F5EBDA; --parchment-2:#EEE0C4;
+    --ink:#2A1E12; --text:#EFE6D8; --text-dim:#B7ABC0;
+    --line: rgba(217,164,65,0.18);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1.5px 1.5px at 15% 12%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 75% 8%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 40% 18%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(185,196,214,0.12), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    background-repeat:no-repeat; background-attachment:fixed;
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--wheat); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--moon), var(--rose), var(--wheat));
+    z-index:200; box-shadow:0 0 12px rgba(217,164,65,0.5); transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 12%, rgba(185,196,214,0.16), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--wheat-soft);
+    background:rgba(217,164,65,0.08); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--rose);box-shadow:0 0 8px var(--rose);}
+
+  .moon-icon{ width:64px; height:64px; margin:0 auto 14px; }
+  h1.title{ font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px); margin:6px 0 8px; color:var(--parchment); }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--wheat-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--rust); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- NAOMI'S PLAN ---------- */
+  .plan{ display:flex; flex-direction:column; gap:0; }
+  .plan-item{ position:relative; padding:14px 14px 14px 52px; border-radius:14px; background:var(--panel); border:1px solid var(--line); margin-bottom:10px; }
+  .plan-num{ position:absolute; left:14px; top:14px; width:26px; height:26px; border-radius:50%; background:var(--void-2); border:2px solid var(--wheat); color:var(--wheat-soft); display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:700; font-size:12.5px; }
+  .plan-item p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.6; }
+  .plan-item p b{ color:var(--text); }
+
+  /* ---------- MIDNIGHT MOMENT ---------- */
+  .midnight-card{
+    background:linear-gradient(160deg, rgba(185,196,214,0.14), var(--panel));
+    border:1px solid var(--moon); border-radius:var(--radius); padding:22px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .midnight-card .micon{ font-size:30px; flex:none; }
+  .midnight-card p{ margin:0; font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .midnight-card p b{ color:var(--text); }
+
+  /* ---------- SCROLL ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:26px 24px; position:relative;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35); border:1px solid #d8c39a;
+  }
+  .scroll::before, .scroll::after{ content:""; position:absolute; left:0; right:0; height:14px; background:repeating-linear-gradient(90deg, #d8c39a 0 10px, #c7ab7c 10px 20px); border-radius:50%; }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--serif); font-style:italic; font-size:16px; line-height:1.85; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:var(--rust-dim); text-transform:uppercase; }
+
+  /* ---------- TERM CARD ---------- */
+  .term-card{
+    background:linear-gradient(160deg, rgba(217,164,65,0.14), var(--panel));
+    border:1px solid var(--wheat); border-radius:var(--radius); padding:24px; text-align:center;
+  }
+  .term-card .tword{ font-family:var(--display); font-weight:800; font-size:24px; color:var(--wheat-soft); margin:0 0 8px; }
+  .term-card p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.7; max-width:54ch; margin:0 auto; }
+  .term-card p b{ color:var(--text); }
+
+  /* ---------- COMPLICATION ---------- */
+  .complication-card{
+    background:linear-gradient(160deg, rgba(110,58,64,0.16), var(--panel));
+    border:1px solid var(--rose-dim); border-radius:var(--radius); padding:22px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .complication-card .cicon{ font-size:30px; flex:none; }
+  .complication-card p{ margin:0; font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .complication-card p b{ color:var(--text); }
+
+  /* ---------- NUMBER ---------- */
+  .barley-num{ display:flex; align-items:center; justify-content:center; gap:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px; }
+  .barley-num .bnum{ font-family:var(--display); font-weight:800; font-size:36px; color:var(--wheat); }
+  .barley-num .blabel{ font-size:13.5px; color:var(--text-dim); max-width:260px; }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--wheat-soft); background:rgba(217,164,65,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--wheat); }
+  .opt.correct{ background:rgba(139,154,95,0.25); border-color:var(--olive); color:#DCE6C4; }
+  .opt.wrong{ background:rgba(110,58,64,0.3); border-color:var(--rose); color:#F0CBD1; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(217,164,65,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--wheat), #A97323); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--wheat); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--wheat-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--wheat); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--wheat-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍</div>
+    <svg class="moon-icon" viewBox="0 0 64 64">
+      <path d="M40 8 A24 24 0 1 0 40 56 A19 19 0 0 1 40 8 Z" fill="#EAC479" opacity="0.9"/>
+    </svg>
+    <h1 class="title">മെതിക്കളത്തിലെ രാത്രി</h1>
+    <p class="subtitle">"അങ്ങയുടെ വസ്ത്രം ഈ ദാസിയുടെമേൽ വിരിച്ച് എന്നെ സ്വീകരിക്കുക"</p>
+    <p class="ref">റൂത്ത് 3 &nbsp;·&nbsp; ധൈര്യത്തിന്റെ അഭ്യർഥന</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- PLAN -->
+  <section class="section" id="plan-sec">
+    <p class="eyebrow">നവോമിയുടെ പദ്ധതി</p>
+    <h2 class="h">ആറു നിർദേശങ്ങൾ</h2>
+    <p class="lede">നവോമി റൂത്തിന് കൃത്യമായ ഒരു പദ്ധതി നൽകി — ഓരോ ഘട്ടവും ക്വിസില്‍ ചോദിക്കാം.</p>
+    <div class="plan" id="planWrap"></div>
+  </section>
+
+  <!-- MIDNIGHT -->
+  <section class="section" id="midnight-sec">
+    <p class="eyebrow">അർധരാത്രിയിലെ ഞെട്ടൽ</p>
+    <h2 class="h">"കാൽക്കൽ ഒരു സ്ത്രീ!"</h2>
+    <div class="midnight-card">
+      <div class="micon">🌙</div>
+      <p>ബോവാസ് <b>ഭക്ഷിച്ചും പാനംചെയ്തും സന്തുഷ്ടനായി</b> ധാന്യക്കൂമ്പാരത്തിന്റെ അരികിൽ ഉറങ്ങി. റൂത്ത് സാവധാനം ചെന്ന് <b>അവന്റെ കാലിൽനിന്നു പുതപ്പുമാറ്റി കിടന്നു</b>. അർധരാത്രിയിൽ അവൻ ഞെട്ടിയുണർന്നു — കാൽക്കൽ ഒരു സ്ത്രീ!</p>
+    </div>
+  </section>
+
+  <!-- REQUEST -->
+  <section class="section" id="request-sec">
+    <p class="eyebrow">റൂത്തിന്റെ ധൈര്യമായ അഭ്യർഥന</p>
+    <h2 class="h">"അടുത്ത ബന്ധു" എന്ന വാക്ക്</h2>
+    <div class="scroll">
+      <p>"ഞാൻ നിന്റെ ദാസിയായ റൂത്ത് ആണ്. അങ്ങ് എന്റെ അടുത്ത ബന്ധുവാകയാൽ അങ്ങയുടെ വസ്ത്രം ഈ ദാസിയുടെമേൽ വിരിച്ച് എന്നെ സ്വീകരിക്കുക."</p>
+      <span class="cite">റൂത്ത് 3:9</span>
+    </div>
+  </section>
+
+  <!-- TERM -->
+  <section class="section" id="term-sec">
+    <p class="eyebrow">ബോവാസിന്റെ പ്രശംസ</p>
+    <h2 class="h">"ഉത്തമസ്ത്രീ"</h2>
+    <div class="term-card">
+      <p class="tword">ഉത്തമസ്ത്രീ</p>
+      <p>"നീ ഒരു ഉത്തമസ്ത്രീയാണെന്ന് നഗരത്തിലെ എന്റെ പരിചയക്കാർക്കെല്ലാം അറിയാം" — റൂത്തിന്റെ വിശ്വസ്തതയും സ്വഭാവശുദ്ധിയും <b>പട്ടണം മുഴുവൻ അറിഞ്ഞിരുന്നു</b> എന്നതിന്റെ സാക്ഷ്യമാണ് ബോവാസിന്റെ ഈ വാക്കുകൾ.</p>
+    </div>
+  </section>
+
+  <!-- COMPLICATION -->
+  <section class="section" id="complication-sec">
+    <p class="eyebrow">ഒരു അപ്രതീക്ഷിത തടസ്സം</p>
+    <h2 class="h">കൂടുതൽ അടുത്ത ഒരു ബന്ധു</h2>
+    <div class="complication-card">
+      <div class="cicon">⚖</div>
+      <p>ബോവാസ് വെളിപ്പെടുത്തി: <b>"എന്നെക്കാൾ അടുത്ത മറ്റൊരു ചാർച്ചക്കാരൻ നിനക്കുണ്ട്."</b> ആ ബന്ധു കടമ നിർവഹിക്കുമോ എന്നു രാവിലെ അന്വേഷിക്കാമെന്നും, ഇല്ലെങ്കിൽ <b>കർത്താവാണേ, താൻ തന്നെ ഉറ്റബന്ധുവിന്റെ കടമ നിർവഹിക്കുമെന്നും</b> ബോവാസ് വാഗ്ദാനം ചെയ്തു.</p>
+    </div>
+  </section>
+
+  <!-- BARLEY -->
+  <section class="section" id="barley-sec">
+    <p class="eyebrow">വെറുംകൈയോടെ അല്ല</p>
+    <h2 class="h">ആറളവ് ബാർലി</h2>
+    <div class="barley-num">
+      <span class="bnum">6</span>
+      <span class="blabel">അളവ് ബാർലി — "അമ്മായിയമ്മയുടെ അടുത്തേക്ക് വെറുംകയ്യോടെ പോകേണ്ടാ" എന്നു പറഞ്ഞ് ബോവാസ് കൊടുത്തയച്ചത് (3:15,17)</span>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം · അധ്യായം 3</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — റൂത്ത് 3</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🌙 Logos Quiz 2026 പഠന സഹായി · റൂത്ത് 3</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* naomi's plan */
+const plan = [
+  {t:'കുളിച്ചു തൈലം പൂശുക', b:'ശുദ്ധിയോടെ ഒരുങ്ങുക.'},
+  {t:'ഏറ്റവും നല്ല വസ്ത്രം ധരിക്കുക', b:'വിശേഷാവസരത്തിനുള്ള ഒരുക്കം.'},
+  {t:'അറിയപ്പെടാതെ മെതിക്കളത്തിലേക്കു പോകുക', b:'ബോവാസ് അത്താഴം കഴിക്കുന്നതുവരെ കാണരുത്.'},
+  {t:'അവൻ കിടക്കുന്ന സ്ഥലം നോക്കിവയ്ക്കുക', b:'ധാന്യക്കൂമ്പാരത്തിന്റെ അരികിൽ അവൻ ഉറങ്ങും.'},
+  {t:'കാലിൽനിന്നു പുതപ്പുമാറ്റി കിടക്കുക', b:'ഇത് അടുത്ത ബന്ധുവിനോടുള്ള ഒരു അഭ്യർഥനയുടെ പ്രതീകാത്മക പ്രവൃത്തി.'},
+  {t:'അവൻ പറയുന്നതു കേൾക്കുക', b:'ബാക്കി എന്തു ചെയ്യണമെന്ന് ബോവാസ് തന്നെ പറഞ്ഞുതരും.'},
+];
+const planWrap = document.getElementById('planWrap');
+plan.forEach((item,i)=>{
+  const el = document.createElement('div');
+  el.className = 'plan-item';
+  el.innerHTML = `<div class="plan-num">${i+1}</div><p><b>${item.t}</b> — ${item.b}</p>`;
+  planWrap.appendChild(el);
+});
+
+/* full text */
+const verses = [
+  ['1-4','നവോമി റൂത്തിനോട് ഒരു പദ്ധതി പറഞ്ഞു — കുളിച്ചു തൈലം പൂശി നല്ല വസ്ത്രം ധരിച്ച് മെതിക്കളത്തിൽ ചെന്ന്, ബോവാസ് ഉറങ്ങുന്നിടത്ത് കാലിൽനിന്നു പുതപ്പുമാറ്റി കിടക്കണം.'],
+  ['5-7','റൂത്ത് അമ്മായിയമ്മ പറഞ്ഞതുപോലെ പ്രവർത്തിച്ചു; ബോവാസ് ഭക്ഷിച്ചു സന്തുഷ്ടനായി ധാന്യക്കൂമ്പാരത്തിനരികെ ഉറങ്ങി; അവൾ കാലിൽനിന്നു പുതപ്പുമാറ്റി കിടന്നു.'],
+  ['8-9','അർധരാത്രിയിൽ ബോവാസ് ഞെട്ടിയുണർന്നു; റൂത്ത് തന്നെയാണെന്നു പറഞ്ഞ്, അടുത്ത ബന്ധു എന്ന നിലയിൽ വസ്ത്രം വിരിച്ചു സ്വീകരിക്കാൻ അഭ്യർഥിച്ചു.'],
+  ['10-11','ബോവാസ് അവളെ അനുഗ്രഹിച്ചു, അവളുടെ ഔദാര്യത്തെ പ്രശംസിച്ചു, അവൾ ഉത്തമസ്ത്രീയാണെന്നു പട്ടണത്തിനറിയാമെന്നു പറഞ്ഞു.'],
+  ['12-13','താൻ അടുത്ത ബന്ധുവാണെങ്കിലും തന്നെക്കാൾ അടുത്ത മറ്റൊരു ബന്ധു ഉണ്ടെന്നു വെളിപ്പെടുത്തി; അവൻ കടമ നിർവഹിക്കാഞ്ഞാൽ താൻ നിർവഹിക്കുമെന്നു വാഗ്ദാനം ചെയ്തു.'],
+  ['14-15','അതിരാവിലെ ആരും അറിയാതെ അവൾ എഴുന്നേറ്റു; ബോവാസ് ആറ് അളവ് ബാർലി അവളുടെ മേലങ്കിയിൽ കൊടുത്തയച്ചു.'],
+  ['16-18','റൂത്ത് നവോമിയോട് എല്ലാം വിവരിച്ചു; നവോമി കാര്യം ഇന്നുതന്നെ തീരുമാനമാകുമെന്നു പറഞ്ഞു.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'നവോമിയുടെ പദ്ധതി പ്രകാരം റൂത്ത് ആദ്യം എന്തു ചെയ്യണമായിരുന്നു?',
+    options: ['ബോവാസിനെ നേരിട്ടു കാണണം', 'കുളിച്ചു തൈലം പൂശി നല്ല വസ്ത്രം ധരിക്കണം', 'വീട്ടിൽ കാത്തിരിക്കണം', 'ബോവാസിന് കത്തയക്കണം'],
+    correct: 1,
+    explain: '3:3 — "നീ കുളിച്ചു തൈലം പൂശി ഏറ്റവും നല്ല വസ്ത്രവും ധരിക്കുക."'
+  },
+  {
+    q: 'ബോവാസ് ആ രാത്രി എവിടെയാണ് ഉറങ്ങിയത്?',
+    options: ['സ്വന്തം വീട്ടിൽ', 'മെതിക്കളത്തിൽ ധാന്യക്കൂമ്പാരത്തിന്റെ അരികിൽ', 'നഗരത്തിലെ അതിഥിമന്ദിരത്തിൽ', 'വയലിന്റെ അതിർത്തിയിൽ'],
+    correct: 1,
+    explain: '3:7 — "ബോവാസ് ധാന്യക്കൂമ്പാരത്തിന്റെ അരികിൽ കിടന്നുറങ്ങി."'
+  },
+  {
+    q: 'റൂത്ത് ബോവാസിന്റെ അടുത്തുചെന്ന് എന്താണ് ചെയ്തത്?',
+    options: ['അവനെ വിളിച്ചുണർത്തി', 'കാലിൽനിന്നു പുതപ്പുമാറ്റി അവിടെ കിടന്നു', 'ഭക്ഷണം കൊണ്ടുവന്നു', 'അവന്റെ അടുത്തിരുന്നു കാത്തു'],
+    correct: 1,
+    explain: '3:7 — "അവൾ സാവധാനം ചെന്ന് അവന്റെ കാലിൽനിന്നു പുതപ്പുമാറ്റി അവിടെ കിടന്നു."'
+  },
+  {
+    q: 'അർധരാത്രിയിൽ ബോവാസ് ഉണർന്നപ്പോൾ എന്താണ് കണ്ടത്?',
+    options: ['ഒരു കള്ളൻ', 'കാൽക്കൽ ഒരു സ്ത്രീ കിടക്കുന്നു', 'വയലിൽ തീപിടിച്ചത്', 'നവോമി വന്നിരിക്കുന്നത്'],
+    correct: 1,
+    explain: '3:8 — "അർധരാത്രിയിൽ അവൻ ഞെട്ടിയുണർന്നു. കാൽക്കൽ ഒരു സ്ത്രീ കിടക്കുന്നു!"'
+  },
+  {
+    q: 'റൂത്ത് ബോവാസിനോട് എന്താണ് അഭ്യർഥിച്ചത്?',
+    options: ['തന്നെ ബേത്‌ലെഹെമിലേക്കു തിരികെ കൊണ്ടുപോകാൻ', 'അടുത്ത ബന്ധു എന്ന നിലയിൽ വസ്ത്രം വിരിച്ചു സ്വീകരിക്കാൻ', 'തനിക്കു കൂടുതൽ ബാർലി തരാൻ', 'നവോമിയെ സഹായിക്കാൻ'],
+    correct: 1,
+    explain: '3:9 — "അങ്ങയുടെ വസ്ത്രം ഈ ദാസിയുടെമേൽ വിരിച്ച് എന്നെ സ്വീകരിക്കുക."'
+  },
+  {
+    q: 'ബോവാസ് റൂത്തിനെ ഏതു വിശേഷണം കൊണ്ടാണ് വിളിച്ചത്?',
+    options: ['ധീരയായ സ്ത്രീ', 'ഉത്തമസ്ത്രീ', 'ജ്ഞാനിയായ സ്ത്രീ', 'സുന്ദരിയായ സ്ത്രീ'],
+    correct: 1,
+    explain: '3:11 — "നീ ഒരു ഉത്തമസ്ത്രീയാണെന്ന് നഗരത്തിലെ എന്റെ പരിചയക്കാർക്കെല്ലാം അറിയാം."'
+  },
+  {
+    q: 'ബോവാസ് വെളിപ്പെടുത്തിയ പ്രശ്നം എന്തായിരുന്നു?',
+    options: ['അവന് ഇതിനകം ഭാര്യയുണ്ടായിരുന്നു', 'തന്നെക്കാൾ അടുത്ത മറ്റൊരു ചാർച്ചക്കാരൻ ഉണ്ട്', 'റൂത്ത് ഇസ്രായേല്യയല്ല എന്ന നിയമപ്രശ്നം', 'നവോമി എതിർത്തിരുന്നു'],
+    correct: 1,
+    explain: '3:12 — "എന്നെക്കാൾ അടുത്ത മറ്റൊരു ചാർച്ചക്കാരൻ നിനക്കുണ്ട്."'
+  },
+  {
+    q: 'അടുത്ത ബന്ധു കടമ നിർവഹിക്കാഞ്ഞാൽ ബോവാസ് എന്തു ചെയ്യുമെന്നു വാഗ്ദാനം ചെയ്തു?',
+    options: ['മറ്റൊരു ബന്ധുവിനെ കണ്ടെത്തും', 'താൻ തന്നെ ഉറ്റബന്ധുവിന്റെ കടമ നിർവഹിക്കും', 'റൂത്തിനെ മൊവാബിലേക്കു തിരിച്ചയക്കും', 'നവോമിയോടു ചോദിക്കും'],
+    correct: 1,
+    explain: '3:13 — "ഉറ്റ ബന്ധുവിന്റെ കടമ കർത്താവാണേ, ഞാൻ നിർവഹിക്കും."'
+  },
+  {
+    q: 'ബോവാസ് റൂത്തിന് എത്ര അളവ് ബാർലി കൊടുത്തയച്ചു?',
+    options: ['മൂന്ന് അളവ്', 'നാല് അളവ്', 'ആറ് അളവ്', 'പത്ത് അളവ്'],
+    correct: 2,
+    explain: '3:15,17 — "ആറ് അളവ് ബാർലി അതിലിട്ട് അവളുടെ തലയിൽ വച്ചുകൊടുത്തു."'
+  },
+  {
+    q: 'ബോവാസ് എന്തു പറഞ്ഞുകൊണ്ടാണ് ബാർലി കൊടുത്തയച്ചത്?',
+    options: ['"ഇതു നിനക്കുള്ള സമ്മാനം"', '"അമ്മായിയമ്മയുടെ അടുത്തേക്ക് വെറുംകയ്യോടെ പോകേണ്ടാ"', '"ഇതു നിന്റെ കൂലിയാണ്"', '"ഇതു നമ്മുടെ വിവാഹത്തിനുള്ള അടയാളം"'],
+    correct: 1,
+    explain: '3:17 — "അമ്മായിയമ്മയുടെ അടുത്തേക്ക് വെറുംകയ്യോടെ പോകേണ്ടാ എന്നുപറഞ്ഞ് ഈ ആറളവ് ബാർലി അവൻ എനിക്കു തന്നു."'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>റൂത്ത് 2 · ബോവാസിന്റെ വയലിൽ | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#150F0A; --void-2:#1E1610; --panel:#241A12; --panel-2:#2C2016;
+    --wheat:#D9A441; --wheat-soft:#EAC479; --wheat-dim:#8A651F;
+    --rust:#C1652F; --rust-dim:#6B3419;
+    --rose:#C97B84; --rose-dim:#6E3A40;
+    --olive:#8B9A5F;
+    --parchment:#F5EBDA; --parchment-2:#EEE0C4;
+    --ink:#2A1E12; --text:#EFE6D8; --text-dim:#BBAC93;
+    --line: rgba(217,164,65,0.20);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(217,164,65,0.16), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--wheat); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--rose), var(--rust), var(--wheat));
+    z-index:200; box-shadow:0 0 12px rgba(217,164,65,0.6); transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 16%, rgba(217,164,65,0.18), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--wheat-soft);
+    background:rgba(217,164,65,0.09); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--rose);box-shadow:0 0 8px var(--rose);}
+
+  .wheat-icon{ width:60px; height:70px; margin:0 auto 14px; }
+  h1.title{ font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px); margin:6px 0 8px; color:var(--parchment); }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--wheat-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--rust); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- PROVIDENCE CALLOUT ---------- */
+  .provi-card{
+    background:linear-gradient(160deg, rgba(217,164,65,0.14), var(--panel));
+    border:1px solid var(--wheat); border-radius:var(--radius); padding:22px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .provi-card .picon{ font-size:30px; flex:none; }
+  .provi-card p{ margin:0; font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .provi-card p b{ color:var(--text); }
+
+  /* ---------- BLESSING EXCHANGE ---------- */
+  .greeting{ display:flex; align-items:center; justify-content:center; gap:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; flex-wrap:wrap; }
+  .greeting .gside{ text-align:center; max-width:260px; }
+  .greeting .gline{ font-family:var(--serif); font-style:italic; font-size:15px; color:var(--parchment); }
+  .greeting .gwho{ font-size:11.5px; color:var(--text-dim); margin-top:6px; }
+  .greeting .garrow{ font-size:20px; color:var(--wheat); }
+
+  /* ---------- KINDNESS GRID ---------- */
+  .kindness{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:560px){ .kindness{ grid-template-columns:1fr; } }
+  .kind-card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; display:flex; gap:12px; align-items:flex-start; }
+  .kind-card .kicon{ font-size:20px; flex:none; }
+  .kind-card p{ margin:0; font-size:13.5px; color:var(--text-dim); line-height:1.6; }
+  .kind-card p b{ color:var(--text); }
+
+  /* ---------- SCROLL ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:26px 24px; position:relative;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35); border:1px solid #d8c39a;
+  }
+  .scroll::before, .scroll::after{ content:""; position:absolute; left:0; right:0; height:14px; background:repeating-linear-gradient(90deg, #d8c39a 0 10px, #c7ab7c 10px 20px); border-radius:50%; }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--serif); font-style:italic; font-size:16px; line-height:1.85; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:var(--rust-dim); text-transform:uppercase; }
+
+  /* ---------- REDEEMER REVEAL ---------- */
+  .redeemer-card{
+    background:linear-gradient(160deg, rgba(201,123,132,0.14), var(--panel));
+    border:1px solid var(--rose); border-radius:var(--radius); padding:24px; text-align:center;
+  }
+  .redeemer-card .rword{ font-family:var(--display); font-weight:800; font-size:24px; color:var(--wheat-soft); margin:0 0 8px; }
+  .redeemer-card p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.7; max-width:56ch; margin:0 auto; }
+  .redeemer-card p b{ color:var(--text); }
+
+  /* ---------- NUMBER ---------- */
+  .harvest-num{ display:flex; align-items:center; justify-content:center; gap:16px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px; }
+  .harvest-num .hnum{ font-family:var(--display); font-weight:800; font-size:36px; color:var(--wheat); }
+  .harvest-num .hlabel{ font-size:13.5px; color:var(--text-dim); max-width:220px; }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--wheat-soft); background:rgba(217,164,65,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--wheat); }
+  .opt.correct{ background:rgba(139,154,95,0.25); border-color:var(--olive); color:#DCE6C4; }
+  .opt.wrong{ background:rgba(110,58,64,0.3); border-color:var(--rose); color:#F0CBD1; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(217,164,65,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--wheat), #A97323); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--wheat); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--wheat-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--wheat); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--wheat-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍</div>
+    <svg class="wheat-icon" viewBox="0 0 60 70">
+      <line x1="30" y1="70" x2="30" y2="20" stroke="#8A651F" stroke-width="2.5"/>
+      <ellipse cx="30" cy="16" rx="5" ry="9" fill="#EAC479"/>
+      <ellipse cx="22" cy="24" rx="4.5" ry="8" fill="#D9A441" transform="rotate(-30 22 24)"/>
+      <ellipse cx="38" cy="24" rx="4.5" ry="8" fill="#D9A441" transform="rotate(30 38 24)"/>
+      <ellipse cx="20" cy="34" rx="4.5" ry="8" fill="#C1652F" opacity="0.85" transform="rotate(-35 20 34)"/>
+      <ellipse cx="40" cy="34" rx="4.5" ry="8" fill="#C1652F" opacity="0.85" transform="rotate(35 40 34)"/>
+    </svg>
+    <h1 class="title">ബോവാസിന്റെ വയലിൽ</h1>
+    <p class="subtitle">"യാദൃച്ഛികമായി അവൾ ബോവാസിന്റെ വയലിലെത്തി"</p>
+    <p class="ref">റൂത്ത് 2 &nbsp;·&nbsp; കൃപയും കൊയ്ത്തും</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- PROVIDENCE -->
+  <section class="section" id="provi-sec">
+    <p class="eyebrow">ഒരു "യാദൃച്ഛിക" സംഭവം</p>
+    <h2 class="h">ശരിയായ വയലില്‍ എത്തിച്ചേരല്‍</h2>
+    <div class="provi-card">
+      <div class="picon">🌾</div>
+      <p>റൂത്ത് ഏതെങ്കിലും വയലില്‍ കാലാപെറുക്കാന്‍ അനുവാദം തേടി പുറപ്പെട്ടു. അവള്‍ <b>"യാദൃച്ഛികമായി"</b> എത്തിച്ചേര്‍ന്നത് എലിമെലെക്കിന്റെ കുടുംബത്തില്‍പ്പെട്ട <b>ബോവാസിന്റെ വയലില്‍</b> ആയിരുന്നു — കഥയുടെ ഗതി മാറ്റുന്ന ഒരു "യാദൃച്ഛികത".</p>
+    </div>
+  </section>
+
+  <!-- GREETING -->
+  <section class="section" id="greeting-sec">
+    <p class="eyebrow">വയലിലെ ആചാരം</p>
+    <h2 class="h">അഭിവാദന കൈമാറ്റം</h2>
+    <div class="greeting">
+      <div class="gside"><div class="gline">"കര്‍ത്താവ് നിങ്ങളോടുകൂടെ"</div><div class="gwho">— ബോവാസ്, കൊയ്ത്തുകാരോട്</div></div>
+      <div class="garrow">⇄</div>
+      <div class="gside"><div class="gline">"കര്‍ത്താവ് അങ്ങയെ അനുഗ്രഹിക്കട്ടെ"</div><div class="gwho">— കൊയ്ത്തുകാർ, ബോവാസിനോട്</div></div>
+    </div>
+  </section>
+
+  <!-- KINDNESS -->
+  <section class="section" id="kindness-sec">
+    <p class="eyebrow">ബോവാസിന്റെ പ്രത്യേക കരുതൽ</p>
+    <h2 class="h">ഒരു അപരിചിതയോടുള്ള കൃപ</h2>
+    <div class="kindness">
+      <div class="kind-card"><span class="kicon">🛡</span><p><b>സംരക്ഷണം:</b> ഭൃത്യന്മാരോടു ശല്യപ്പെടുത്തരുതെന്നു നിർദേശിച്ചു.</p></div>
+      <div class="kind-card"><span class="kicon">💧</span><p><b>വെള്ളം:</b> ദാഹിക്കുമ്പോൾ ഭൃത്യന്മാർ കോരിവച്ച വെള്ളം കുടിക്കാൻ അനുവദിച്ചു.</p></div>
+      <div class="kind-card"><span class="kicon">🍞</span><p><b>ഭക്ഷണം:</b> കൊയ്ത്തുകാരോടൊപ്പം ഇരുത്തി, മലർ കൊടുത്തു — അവൾ തൃപ്തയായി.</p></div>
+      <div class="kind-card"><span class="kicon">🌾</span><p><b>രഹസ്യ ഔദാര്യം:</b> കറ്റകളിൽനിന്നു കുറേശ്ശെ വലിച്ചൂരി അവൾക്കായി ഇടാൻ ഭൃത്യന്മാരോടു രഹസ്യമായി പറഞ്ഞു.</p></div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="section" id="quote-sec">
+    <p class="eyebrow">ബോവാസ് അവളെക്കുറിച്ച് അറിഞ്ഞിരുന്നു</p>
+    <h2 class="h">"നിന്റെ ചിറകിന്‍ കീഴിൽ അഭയം"</h2>
+    <div class="scroll">
+      <p>"നിന്റെ പ്രവൃത്തികൾക്കു കർത്താവ് പ്രതിഫലം നൽകും. നീ അഭയം പ്രാപിച്ചിരിക്കുന്ന ഇസ്രായേലിന്റെ ദൈവമായ കർത്താവ് നിന്നെ സമൃദ്ധമായി അനുഗ്രഹിക്കും."</p>
+      <span class="cite">റൂത്ത് 2:12</span>
+    </div>
+  </section>
+
+  <!-- HARVEST NUMBER -->
+  <section class="section" id="num-sec">
+    <p class="eyebrow">ഒരു ദിവസത്തെ അധ്വാനം</p>
+    <h2 class="h">വൈകുന്നേരത്തെ വിളവ്</h2>
+    <div class="harvest-num">
+      <span class="hnum">~1</span>
+      <span class="hlabel">ഏഫാ ബാർലി — റൂത്ത് സന്ധ്യവരെ കാലാപെറുക്കി മെതിച്ചത് (2:17)</span>
+    </div>
+  </section>
+
+  <!-- REDEEMER REVEAL -->
+  <section class="section" id="redeemer-sec">
+    <p class="eyebrow">നവോമിയുടെ വെളിപ്പെടുത്തൽ</p>
+    <h2 class="h">"അവൻ നമ്മുടെ ഉറ്റബന്ധു"</h2>
+    <div class="redeemer-card">
+      <p class="rword">ഗോയേൽ (ഉറ്റബന്ധു)</p>
+      <p>റൂത്ത് ബോവാസിന്റെ പേരു പറഞ്ഞപ്പോൾ നവോമി തിരിച്ചറിഞ്ഞു — <b>ബോവാസ് അവരുടെ ഉറ്റബന്ധുവാണ്</b>, കുടുംബത്തെ വീണ്ടെടുക്കാൻ അവകാശമുള്ള ഒരു ബന്ധു. ഈ ചെറിയ വിശദാംശമാണ് പുസ്തകത്തിന്റെ ബാക്കി ഭാഗത്തിന്റെ അടിത്തറ.</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം · അധ്യായം 2</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — റൂത്ത് 2</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🌾 Logos Quiz 2026 പഠന സഹായി · റൂത്ത് 2</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* full text */
+const verses = [
+  ['1-3','നവോമിയുടെ ഭർത്തൃകുടുംബത്തിൽ ധനികനായ ബോവാസ് ഉണ്ടായിരുന്നു; റൂത്ത് കാലാപെറുക്കാൻ അനുവാദം ചോദിച്ചു, യാദൃച്ഛികമായി ബോവാസിന്റെ വയലിലെത്തി.'],
+  ['4-7','ബോവാസ് കൊയ്ത്തുകാരെ അഭിവാദനം ചെയ്തു; റൂത്തിനെക്കുറിച്ച് ഭൃത്യനോടു ചോദിച്ചു; അവൾ മൊവാബ്യയാണെന്നും രാവിലെ മുതൽ ജോലി ചെയ്യുകയാണെന്നും അറിഞ്ഞു.'],
+  ['8-9','ബോവാസ് റൂത്തിനോട് തന്റെ വയലിൽത്തന്നെ തുടരാനും ദാസിമാരോടു ചേരാനും ആവശ്യപ്പെട്ടു; ശല്യപ്പെടുത്തില്ലെന്നും വെള്ളം കുടിക്കാമെന്നും പറഞ്ഞു.'],
+  ['10-12','റൂത്ത് നന്ദി പ്രകടിപ്പിച്ചു; ബോവാസ് അവളുടെ വിശ്വസ്തതയെക്കുറിച്ച് അറിയാമെന്നും കർത്താവ് അവളെ അനുഗ്രഹിക്കുമെന്നും പറഞ്ഞു.'],
+  ['13-14','റൂത്ത് നന്ദി പറഞ്ഞു; ഭക്ഷണസമയത്ത് ബോവാസ് അവളെ കൊയ്ത്തുകാരോടൊപ്പം ഇരുത്തി മലർ കൊടുത്തു; അവൾ തൃപ്തയായി.'],
+  ['15-16','ബോവാസ് ഭൃത്യന്മാരോട് അവളെ ശാസിക്കരുതെന്നും കറ്റകളിൽനിന്നു കുറേശ്ശെ വലിച്ചൂരി ഇടണമെന്നും രഹസ്യമായി നിർദേശിച്ചു.'],
+  ['17-18','റൂത്ത് സന്ധ്യവരെ കാലാപെറുക്കി; ഏകദേശം ഒരു ഏഫാ ബാർലി ലഭിച്ചു; അമ്മായിയമ്മയ്ക്ക് കാണിച്ചു, ബാക്കി ഭക്ഷണവും കൊടുത്തു.'],
+  ['19-23','നവോമി വിവരം ചോദിച്ചു, ബോവാസിന്റെ പേരു കേട്ട് അവൻ ഉറ്റബന്ധുവാണെന്നു പറഞ്ഞു; റൂത്ത് വിളവെടുപ്പു കഴിയുന്നതുവരെ ബോവാസിന്റെ ദാസിമാരോടു ചേർന്നു കാലാപെറുക്കി.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'ബോവാസ് നവോമിയുടെ ഭർത്തൃകുടുംബത്തിൽ എന്തായിരുന്നു?',
+    options: ['ദരിദ്രനായ ഒരു ബന്ധു', 'ധനികനായ ഒരു ബന്ധു', 'ഒരു അപരിചിതൻ', 'ഒരു പുരോഹിതൻ'],
+    correct: 1,
+    explain: '2:1 — "നവോമിയുടെ ഭർത്തൃകുടുംബത്തിൽ ബോവാസ് എന്നു പേരായ ഒരു ധനികൻ ഉണ്ടായിരുന്നു."'
+  },
+  {
+    q: 'റൂത്ത് വയലിൽ എന്തിനാണ് പോയത്?',
+    options: ['വിളവെടുപ്പ് സഹായിക്കാൻ', 'കാലാപെറുക്കാൻ', 'ബോവാസിനെ കാണാൻ', 'വെള്ളം കൊണ്ടുവരാൻ'],
+    correct: 1,
+    explain: '2:2 — "ഞാൻ പോയി എന്നെ അനുവദിക്കുന്നവരുടെ വയലിൽ കാലാപെറുക്കട്ടെ."'
+  },
+  {
+    q: 'റൂത്ത് "യാദൃച്ഛികമായി" എത്തിച്ചേർന്നത് ആരുടെ വയലിലാണ്?',
+    options: ['ഒരു അപരിചിതന്റെ', 'ബോവാസിന്റെ', 'നവോമിയുടെ ബന്ധുവായ മറ്റൊരാളുടെ', 'എലിമെലെക്കിന്റെ ശത്രുവിന്റെ'],
+    correct: 1,
+    explain: '2:3 — "എലിമെലെക്കിന്റെ കുടുംബത്തിൽപ്പെട്ട ബോവാസിന്റെ വയലിലാണ് അവൾ എത്തിച്ചേർന്നത്."'
+  },
+  {
+    q: 'ബോവാസ് കൊയ്ത്തുകാരെ എങ്ങനെയാണ് അഭിവാദനം ചെയ്തത്?',
+    options: ['"നിങ്ങൾക്കു നല്ല ദിവസം"', '"കർത്താവ് നിങ്ങളോടുകൂടെ"', '"സമാധാനം നിങ്ങളോടുകൂടെ"', '"ജോലി തുടരുക"'],
+    correct: 1,
+    explain: '2:4 — "കർത്താവ് നിങ്ങളോടുകൂടെ എന്നുപറഞ്ഞ് അവൻ കൊയ്ത്തുകാരെ അഭിവാദനം ചെയ്തു."'
+  },
+  {
+    q: 'ബോവാസ് റൂത്തിന് ദാഹിക്കുമ്പോൾ എന്തു ചെയ്യാൻ അനുവദിച്ചു?',
+    options: ['സ്വന്തം വീട്ടിലേക്കു പോകാൻ', 'ഭൃത്യന്മാർ കോരിവച്ച വെള്ളം കുടിക്കാൻ', 'ജോലി നിർത്താൻ', 'വേറെ വയലിലേക്കു പോകാൻ'],
+    correct: 1,
+    explain: '2:9 — "നിനക്കു ദാഹിക്കുമ്പോൾ അവർ കോരിവച്ചിട്ടുള്ള വെള്ളം കുടിക്കാം."'
+  },
+  {
+    q: 'ബോവാസ് റൂത്തിനെക്കുറിച്ച് എന്തെല്ലാം കേട്ടിരുന്നു?',
+    options: ['അവൾ ധനികയാണെന്ന്', 'ഭർത്താവിന്റെ മരണശേഷം അമ്മായിയമ്മയ്ക്കുവേണ്ടി ചെയ്തതും സ്വദേശം വിട്ടു വന്നതും', 'അവൾ ഒരു രാജകുമാരിയാണെന്ന്', 'അവൾ ബോവാസിന്റെ ബന്ധുവാണെന്ന്'],
+    correct: 1,
+    explain: '2:11 — "ഭർത്താവിന്റെ മരണത്തിനുശേഷം നീ അമ്മായിയമ്മയ്ക്കുവേണ്ടി ചെയ്തതും... എനിക്ക് അറിയാം."'
+  },
+  {
+    q: 'ബോവാസ് ഭൃത്യന്മാരോട് രഹസ്യമായി എന്തു ചെയ്യാൻ പറഞ്ഞു?',
+    options: ['റൂത്തിനെ വീട്ടിലേക്കു കൊണ്ടുപോകാൻ', 'കറ്റകളിൽനിന്നു കുറേശ്ശെ വലിച്ചൂരി അവൾക്കു പെറുക്കാൻ ഇടണം', 'അവളെ ജോലിയിൽനിന്നു ഒഴിവാക്കാൻ', 'അവൾക്കു പണം കൊടുക്കാൻ'],
+    correct: 1,
+    explain: '2:16 — "കറ്റകളിൽനിന്നു കുറേശ്ശെ വലിച്ചൂരി അവൾക്കു പെറുക്കാൻ ഇടണം. അവളെ ശാസിക്കരുത്."'
+  },
+  {
+    q: 'റൂത്ത് ആ ദിവസം സന്ധ്യവരെ കാലാപെറുക്കി മെതിച്ചപ്പോൾ എത്ര ബാർലി ഉണ്ടായിരുന്നു?',
+    options: ['അര ഏഫാ', 'ഏകദേശം ഒരു ഏഫാ', 'രണ്ട് ഏഫാ', 'പത്ത് ഏഫാ'],
+    correct: 1,
+    explain: '2:17 — "മെതിച്ചപ്പോൾ ഏകദേശം ഒരു ഏഫാ ബാർലി ഉണ്ടായിരുന്നു."'
+  },
+  {
+    q: 'റൂത്ത് ബോവാസിന്റെ പേരു പറഞ്ഞപ്പോൾ നവോമി അവനെ എന്തായി തിരിച്ചറിഞ്ഞു?',
+    options: ['ഒരു അപരിചിതൻ', 'നമ്മുടെ ഉറ്റബന്ധു', 'ഒരു ശത്രു', 'ഒരു യാചകൻ'],
+    correct: 1,
+    explain: '2:20 — "അവൻ നമ്മുടെ ബന്ധുവാണ് — ഉറ്റബന്ധു."'
+  },
+  {
+    q: 'റൂത്ത് ബോവാസിന്റെ വയലിൽ എത്രകാലം കാലാപെറുക്കി?',
+    options: ['ഒരു ദിവസം മാത്രം', 'ബാർലിയുടെയും ഗോതമ്പിന്റെയും വിളവെടുപ്പു കഴിയുന്നതു വരെ', 'ഒരു മാസം', 'ഒരു വർഷം മുഴുവൻ'],
+    correct: 1,
+    explain: '2:23 — "ബാർലിയുടെയും ഗോതമ്പിന്റെയും വിളവെടുപ്പു കഴിയുന്നതു വരെ അവൾ... കാലാപെറുക്കി."'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

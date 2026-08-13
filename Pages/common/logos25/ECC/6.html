@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>സഭാപ്രസംഗകന്‍ 6 · അന്യന്‍ അനുഭവിക്കുന്നു | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0F1116; --void-2:#171A22; --panel:#1D212B; --panel-2:#242834;
+    --mist:#B9C4D6; --mist-soft:#DCE3EE; --mist-dim:#5B6478;
+    --amber:#C9A265; --amber-soft:#E3C596;
+    --plum:#8B6FA0; --plum-dim:#4A3B58;
+    --sage:#7E9385;
+    --parchment:#EFEAE0; --parchment-2:#E2DBC9;
+    --ink:#25231E; --text:#E5E4DE; --text-dim:#9CA1B0;
+    --line: rgba(185,196,214,0.16);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(139,111,160,0.10), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--plum), var(--mist), var(--amber));
+    z-index:200; transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 10%, rgba(139,111,160,0.16), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--mist-soft);
+    background:rgba(185,196,214,0.07); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--plum);box-shadow:0 0 8px var(--plum);}
+
+  .chest-icon{ width:70px; height:60px; margin:0 auto 14px; opacity:.9; }
+  h1.title{ font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px); margin:6px 0 8px; color:var(--parchment); }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--mist-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--plum); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- PARADOX ---------- */
+  .paradox-card{
+    background:linear-gradient(160deg, rgba(139,111,160,0.14), var(--panel));
+    border:1px solid var(--line); border-radius:var(--radius); padding:22px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .paradox-card .picon{ font-size:30px; flex:none; }
+  .paradox-card p{ margin:0; font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .paradox-card p b{ color:var(--text); }
+
+  /* ---------- EXTREME COMPARISON ---------- */
+  .extreme{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .extreme{ grid-template-columns:1fr; } }
+  .ext-card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:20px; text-align:center; }
+  .ext-card .eicon{ font-size:26px; display:block; margin-bottom:8px; }
+  .ext-card .etitle{ font-family:var(--display); font-weight:700; font-size:15px; color:var(--amber-soft); margin:0 0 8px; }
+  .ext-card p{ margin:0; font-size:13px; color:var(--text-dim); line-height:1.6; }
+  .ext-vs{ text-align:center; font-family:var(--display); font-weight:800; color:var(--plum); font-size:14px; margin:4px 0; }
+
+  /* ---------- SCROLL ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:26px 24px; position:relative; text-align:center;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35); border:1px solid #cfc6ad;
+  }
+  .scroll::before, .scroll::after{ content:""; position:absolute; left:0; right:0; height:14px; background:repeating-linear-gradient(90deg, #cfc6ad 0 10px, #beb494 10px 20px); border-radius:50%; }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--serif); font-style:italic; font-size:16.5px; line-height:1.85; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:#5c5340; text-transform:uppercase; }
+
+  /* ---------- CONTENTMENT BRANCH ---------- */
+  .cbranch{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .cbranch{ grid-template-columns:1fr; } }
+  .cb-card{ border-radius:14px; padding:18px; border:1px solid var(--line); }
+  .cb-card.good{ background:linear-gradient(160deg, rgba(126,147,133,0.14), var(--panel)); border-color:rgba(126,147,133,0.4); }
+  .cb-card.bad{ background:linear-gradient(160deg, rgba(139,111,160,0.12), var(--panel)); border-color:rgba(139,111,160,0.4); }
+  .cb-card .cbicon{ font-size:22px; margin-bottom:8px; }
+  .cb-card .cbtitle{ font-family:var(--display); font-weight:700; font-size:14.5px; color:var(--parchment); margin:0 0 6px; }
+  .cb-card p{ margin:0; font-size:13px; color:var(--text-dim); line-height:1.6; }
+
+  /* ---------- OPEN QUESTIONS ---------- */
+  .open-card{
+    background:linear-gradient(160deg, rgba(91,100,120,0.18), var(--panel));
+    border:1px solid var(--line); border-radius:var(--radius); padding:24px; text-align:center;
+  }
+  .open-card .oqicon{ font-size:30px; margin-bottom:10px; }
+  .open-card .oqline{ font-family:var(--display); font-weight:700; font-size:16.5px; color:var(--parchment); margin:0 0 8px; line-height:1.5; }
+  .open-card .oqsub{ font-size:13px; color:var(--text-dim); }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--amber-soft); background:rgba(201,162,101,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--amber); }
+  .opt.correct{ background:rgba(126,147,133,0.25); border-color:var(--sage); color:#D3DFCF; }
+  .opt.wrong{ background:rgba(139,111,160,0.22); border-color:var(--plum); color:#E4D7EC; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(201,162,101,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--amber), #9C7A42); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--amber); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--amber-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--amber); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--amber-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍</div>
+    <svg class="chest-icon" viewBox="0 0 70 60">
+      <rect x="10" y="24" width="50" height="30" rx="3" fill="none" stroke="#C9A265" stroke-width="2.5"/>
+      <path d="M10 24 L35 10 L60 24" fill="none" stroke="#C9A265" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="35" cy="38" r="3.5" fill="none" stroke="#8B6FA0" stroke-width="2"/>
+    </svg>
+    <h1 class="title">അന്യന്‍ അനുഭവിക്കുന്നു</h1>
+    <p class="subtitle">"സൂര്യനു കീഴേ മനുഷ്യര്‍ക്കു ദുര്‍വഹമായൊരു തിന്മ"</p>
+    <p class="ref">സഭാപ്രസംഗകന്‍ 6 &nbsp;·&nbsp; ആസ്വദിക്കാനാവാത്ത സമ്പത്ത്</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- PARADOX -->
+  <section class="section" id="paradox-sec">
+    <p class="eyebrow">സൂര്യനു കീഴേ കണ്ട ദുര്‍വഹമായ തിന്മ</p>
+    <h2 class="h">എല്ലാം ഉണ്ട്, ആസ്വദിക്കാനാവുന്നില്ല</h2>
+    <div class="paradox-card">
+      <div class="picon">🎁</div>
+      <p>ദൈവം ഒരുവന് <b>സമ്പത്തും ഐശ്വര്യവും കീര്‍ത്തിയും</b> നല്‍കുന്നു — ആഗ്രഹിക്കുന്നതില്‍ ഒന്നിനും കുറവില്ല. എന്നിട്ടും അവന് <b>അവ അനുഭവിക്കാനുള്ള കഴിവ്</b> നല്‍കുന്നില്ല. പകരം <b>അന്യന്‍ അത് അനുഭവിക്കുന്നു</b> — "ഇതു മിഥ്യയും തീവ്രവേദനയും ആണ്."</p>
+    </div>
+  </section>
+
+  <!-- EXTREME COMPARISON -->
+  <section class="section" id="extreme-sec">
+    <p class="eyebrow">ഒരു ഞെട്ടിക്കുന്ന താരതമ്യം</p>
+    <h2 class="h">നൂറു മക്കളും ചാപിള്ളയും</h2>
+    <p class="lede">ജീവിതസുഖം ആസ്വദിക്കാതെയും ശരിയായ സംസ്‌കാരം ലഭിക്കാതെയും ദീര്‍ഘായുസ്സ് ജീവിച്ചാല്‍ എന്തു കാര്യം?</p>
+    <div class="extreme">
+      <div class="ext-card">
+        <span class="eicon">👴</span>
+        <p class="etitle">നൂറു മക്കളുള്ള ദീര്‍ഘായുഷ്മാൻ</p>
+        <p>ജീവിതസുഖങ്ങള്‍ ആസ്വദിക്കാനോ ഒടുക്കം സംസ്‌കാരം ലഭിക്കാനോ ഇടവരാതെ ജീവിച്ചാല്‍ —</p>
+      </div>
+      <div class="ext-card">
+        <span class="eicon">🕯</span>
+        <p class="etitle">ചാപിള്ള</p>
+        <p>വെളിച്ചം കണ്ടിട്ടില്ല, ഒന്നും അറിഞ്ഞിട്ടില്ല — എങ്കിലും അതിന് <b>സ്വസ്ഥതയുണ്ട്</b>.</p>
+      </div>
+    </div>
+    <p class="ext-vs">ചാപിള്ളയായി പിറക്കുന്നതാണ് ഭേദം എന്നു പറയുന്നു (6:3-5)</p>
+  </section>
+
+  <!-- SCROLL -->
+  <section class="section" id="quote-sec">
+    <p class="eyebrow">രണ്ടായിരം വര്‍ഷമായാലും</p>
+    <h2 class="h">"ഇരുവരും ഒരിടത്തല്ലേ ചെന്നടിയുന്നത്?"</h2>
+    <div class="scroll">
+      <p>"അവന്‍ രണ്ടായിരം വര്‍ഷം ജീവിച്ചാലും ഒരു ഭാഗ്യവും അനുഭവിക്കുന്നില്ലെങ്കില്‍ ഇരുവരും ഒരിടത്തല്ലേ ചെന്നടിയുന്നത്?"</p>
+      <span class="cite">സഭാപ്രസംഗകന്‍ 6:6</span>
+    </div>
+  </section>
+
+  <!-- CONTENTMENT -->
+  <section class="section" id="cbranch-sec">
+    <p class="eyebrow">രണ്ട് വഴികള്‍</p>
+    <h2 class="h">കണ്‍മുന്‍പിലുള്ളതോ, സങ്കല്‍പമോ?</h2>
+    <div class="cbranch">
+      <div class="cb-card good">
+        <div class="cbicon">👁</div>
+        <p class="cbtitle">കണ്‍മുന്‍പിലുള്ളതുകൊണ്ട് തൃപ്തിപ്പെടുക</p>
+        <p>ഉള്ളതില്‍ സംതൃപ്തി കണ്ടെത്തുന്നത് ഭേദമായ വഴി.</p>
+      </div>
+      <div class="cb-card bad">
+        <div class="cbicon">💭</div>
+        <p class="cbtitle">സങ്കല്‍പങ്ങളില്‍ അലയുക</p>
+        <p>ഇല്ലാത്തതിനെക്കുറിച്ചു മോഹിച്ചലയുന്നത് — "ഇതും മിഥ്യയും പാഴ്‌വേലയുമാണ്."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN QUESTIONS -->
+  <section class="section" id="open-sec">
+    <p class="eyebrow">ഈ അധ്യായം ഉത്തരമില്ലാതെ അവസാനിക്കുന്നു</p>
+    <h2 class="h">ആര്‍ക്കറിയാം?</h2>
+    <div class="open-card">
+      <div class="oqicon">❓</div>
+      <p class="oqline">"നിഴല്‍പോലെ കടന്നുപോകുന്ന ഈ വ്യര്‍ഥമായ ഹ്രസ്വജീവിതത്തില്‍ മനുഷ്യന് നന്മയായിട്ടുള്ളതെന്താണെന്ന് ആര് അറിയുന്നു?"</p>
+      <p class="oqsub">"തനിക്കുശേഷം എന്തു സംഭവിക്കുമെന്ന് അവനോടു പറയാന്‍ ആര്‍ക്കു കഴിയും?" (6:12) — ഈ ചോദ്യങ്ങളോടെയാണ് അധ്യായം അവസാനിക്കുന്നത്, മറ്റു അധ്യായങ്ങളില്‍ കാണുന്ന "ആസ്വദിക്കുക" എന്ന ഉപദേശമില്ലാതെ.</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം · അധ്യായം 6</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — സഭാപ്രസംഗകന്‍ 6</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🪙 Logos Quiz 2026 പഠന സഹായി · സഭാപ്രസംഗകന്‍ 6</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* full text */
+const verses = [
+  ['1-2','സൂര്യനു കീഴേ ഒരു ദുര്‍വഹമായ തിന്മ കണ്ടു — ദൈവം സമ്പത്തും ഐശ്വര്യവും കീര്‍ത്തിയും നല്‍കിയിട്ടും അതനുഭവിക്കാനുള്ള കഴിവ് നല്‍കാതെ അന്യന്‍ അതനുഭവിക്കുന്നു; ഇതു മിഥ്യയും തീവ്രവേദനയും.'],
+  ['3-5','നൂറു മക്കളോടും ദീര്‍ഘായുസ്സോടും കൂടിയാലും ജീവിതസുഖം ആസ്വദിക്കാതെയും സംസ്‌കാരം ലഭിക്കാതെയും ഇരുന്നാല്‍ ചാപിള്ളയായി പിറക്കുന്നതാണ് ഭേദം — അതിന് സ്വസ്ഥതയുണ്ട്.'],
+  ['6','രണ്ടായിരം വര്‍ഷം ജീവിച്ചാലും ഭാഗ്യം അനുഭവിച്ചില്ലെങ്കില്‍ ഇരുവരും ഒരിടത്തല്ലേ ചെന്നടിയുന്നത്?'],
+  ['7-9','മനുഷ്യന്റെ അധ്വാനം ഉദരപൂരണത്തിനാണ്, എങ്കിലും വിശപ്പടങ്ങുന്നില്ല; കണ്‍മുന്‍പിലുള്ളതുകൊണ്ട് തൃപ്തിപ്പെടുന്നത് സങ്കല്‍പങ്ങളില്‍ അലയുന്നതിനെക്കാള്‍ നല്ലത്.'],
+  ['10-12','മനുഷ്യന്‍ ആരാണെന്നും ശക്തനോടു മല്ലിടാന്‍ കഴിവില്ലെന്നും വ്യക്തം; വാക്കുകളുടെ പെരുപ്പം മിഥ്യയുടെ പെരുപ്പം; ഹ്രസ്വജീവിതത്തില്‍ നന്മയെന്തെന്നും ഭാവിയില്‍ എന്തു സംഭവിക്കുമെന്നും ആര്‍ക്കും അറിയില്ല.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'ഒരുവന് സമ്പത്തും ഐശ്വര്യവും കീര്‍ത്തിയും ഉണ്ടായിട്ടും ദൈവം അവന് എന്താണ് നല്‍കാതിരിക്കുന്നത്?',
+    options: ['കൂടുതല്‍ സമ്പത്ത്', 'അവ അനുഭവിക്കാനുള്ള കഴിവ്', 'സന്താനങ്ങള്‍', 'ദീര്‍ഘായുസ്‌സ്'],
+    correct: 1,
+    explain: '6:2 — "അവിടുന്ന് അവന് അവ അനുഭവിക്കാനുള്ള കഴിവു നല്‍കുന്നില്ല."'
+  },
+  {
+    q: 'അപ്പോള്‍ ആരാണ് അവന്റെ സമ്പത്ത് അനുഭവിക്കുന്നത്?',
+    options: ['അവന്റെ മക്കള്‍', 'അന്യന്‍', 'രാജാവ്', 'പുരോഹിതന്മാര്‍'],
+    correct: 1,
+    explain: '6:2 — "അന്യന്‍ അവ അനുഭവിക്കുന്നു. ഇതു മിഥ്യയും തീവ്രവേദനയും ആണ്."'
+  },
+  {
+    q: 'നൂറു മക്കളോടുകൂടെ ദീര്‍ഘായുസ്സുള്ള ഒരാള്‍ക്ക് ജീവിതസുഖം ആസ്വദിക്കാനും സംസ്‌കാരം ലഭിക്കാനും ഇടവരാതിരുന്നാല്‍ എന്തിനെക്കാള്‍ ഭേദമെന്നു പറയുന്നു?',
+    options: ['ദരിദ്രനായി ജീവിക്കുന്നതിനെക്കാള്‍', 'ചാപിള്ളയായി പിറക്കുന്നതിനെക്കാള്‍ ചാപിള്ള തന്നെ ഭേദം', 'അവിവാഹിതനായി ജീവിക്കുന്നതിനെക്കാള്‍', 'വിദേശത്തു ജീവിക്കുന്നതിനെക്കാള്‍'],
+    correct: 1,
+    explain: '6:3 — "അതിനെക്കാള്‍ ഭേദം ചാപിള്ളയായി പിറക്കുകയായിരുന്നുവെന്ന് ഞാന്‍ പറയും."'
+  },
+  {
+    q: 'ചാപിള്ളയ്ക്ക് ആ ദീര്‍ഘായുഷ്മാനെക്കാള്‍ എന്തുണ്ടെന്നു പറയുന്നു?',
+    options: ['കൂടുതല്‍ ബഹുമാനം', 'സ്വസ്ഥത', 'കൂടുതല്‍ ജ്ഞാനം', 'നല്ല സംസ്‌കാരം'],
+    correct: 1,
+    explain: '6:5 — "അതു മുന്‍പറഞ്ഞവനെപ്പോലെയല്ല, അതിന് സ്വസ്ഥതയുണ്ട്."'
+  },
+  {
+    q: 'ഒരുവന്‍ രണ്ടായിരം വര്‍ഷം ജീവിച്ചാലും ഭാഗ്യം അനുഭവിച്ചില്ലെങ്കില്‍ എന്തു ചോദ്യമാണ് ഉന്നയിക്കുന്നത്?',
+    options: ['അവന്‍ ജ്ഞാനിയാണോ എന്ന്', 'ഇരുവരും ഒരിടത്തല്ലേ ചെന്നടിയുന്നത് എന്ന്', 'അവന് മക്കളുണ്ടോ എന്ന്', 'അവന്‍ രാജാവാണോ എന്ന്'],
+    correct: 1,
+    explain: '6:6 — "ഇരുവരും ഒരിടത്തല്ലേ ചെന്നടിയുന്നത്?"'
+  },
+  {
+    q: 'മനുഷ്യന്റെ അധ്വാനം മുഴുവന്‍ എന്തിനുവേണ്ടിയാണെന്നു പറയുന്നു?',
+    options: ['അധികാരത്തിനുവേണ്ടി', 'ഉദരപൂരണത്തിന്', 'പ്രശസ്തിക്കുവേണ്ടി', 'സന്താനങ്ങള്‍ക്കുവേണ്ടി'],
+    correct: 1,
+    explain: '6:7 — "ഉദരപൂരണത്തിനാണ് മനുഷ്യന്റെ അധ്വാനം മുഴുവന്‍, എങ്കിലും അവനു വിശപ്പടങ്ങുന്നില്ല."'
+  },
+  {
+    q: '"കണ്‍മുന്‍പിലുള്ളതുകൊണ്ട് തൃപ്തിപ്പെടുന്നത്" എന്തിനെക്കാള്‍ നല്ലതെന്നു പറയുന്നു?',
+    options: ['അധ്വാനിക്കുന്നതിനെക്കാള്‍', 'സങ്കല്‍പങ്ങളില്‍ അലയുന്നതിനെക്കാള്‍', 'സമ്പാദിക്കുന്നതിനെക്കാള്‍', 'ദാനം ചെയ്യുന്നതിനെക്കാള്‍'],
+    correct: 1,
+    explain: '6:9 — "കണ്‍മുന്‍പിലുള്ളതുകൊണ്ട് തൃപ്തിപ്പെടുന്നതാണ് സങ്കല്‍പങ്ങളില്‍ അലയുന്നതിനെക്കാള്‍ നല്ലത്."'
+  },
+  {
+    q: 'മനുഷ്യന് തന്നെക്കാള്‍ ശക്തനായവനോട് എന്തു ചെയ്യാന്‍ കഴിവില്ലെന്നു പറയുന്നു?',
+    options: ['സഹകരിക്കാന്‍', 'മല്ലിടാന്‍', 'സംസാരിക്കാന്‍', 'അകന്നു നില്‍ക്കാന്‍'],
+    correct: 1,
+    explain: '6:10 — "തന്നെക്കാള്‍ ശക്തനോടു മല്ലിടാന്‍ അവനു കഴിവില്ലെന്നും വ്യക്തമായിക്കഴിഞ്ഞു."'
+  },
+  {
+    q: 'വാക്കുകളുടെ പെരുപ്പം എന്തിന്റെ പെരുപ്പമാണെന്നു 11-ാം വാക്യം പറയുന്നു?',
+    options: ['ജ്ഞാനത്തിന്റെ പെരുപ്പം', 'മിഥ്യയുടെ പെരുപ്പം', 'സമ്പത്തിന്റെ പെരുപ്പം', 'സന്തോഷത്തിന്റെ പെരുപ്പം'],
+    correct: 1,
+    explain: '6:11 — "വാക്കുകളുടെ പെരുപ്പം മിഥ്യയുടെ പെരുപ്പംതന്നെ."'
+  },
+  {
+    q: 'അധ്യായം 6 അവസാനിക്കുന്നത് എന്തിനെക്കുറിച്ചുള്ള ചോദ്യങ്ങളോടെയാണ്?',
+    options: ['ധനത്തിന്റെ ഉപയോഗത്തെക്കുറിച്ച്', 'ജീവിതത്തിലെ നന്മയും ഭാവിയില്‍ എന്തു സംഭവിക്കുമെന്നും ആര്‍ക്കും അറിയില്ല എന്നതിനെക്കുറിച്ച്', 'ദൈവത്തിന്റെ അസ്തിത്വത്തെക്കുറിച്ച്', 'രാജാവിന്റെ അധികാരത്തെക്കുറിച്ച്'],
+    correct: 1,
+    explain: '6:12 — "മനുഷ്യന് നന്മയായിട്ടുള്ളതെന്താണെന്ന് ആര് അറിയുന്നു?... തനിക്കുശേഷം എന്തു സംഭവിക്കുമെന്ന് അവനോടു പറയാന്‍ ആര്‍ക്കു കഴിയും?"'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>അടിമയല്ല, പുത്രൻ — ഗലാത്തിയര്‍ 4 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #171b20;
+    --night-2: #1f252b;
+    --parchment: #e8e2d4;
+    --parchment-dim: #a4a292;
+    --hagar: #6f8fa6;
+    --hagar-soft: #9cbdd1;
+    --sarah: #d98a63;
+    --sarah-soft: #f0b28c;
+    --line: rgba(217,138,99,0.2);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 12% 0%, rgba(111,143,166,0.10), transparent 45%),
+      radial-gradient(ellipse at 90% 22%, rgba(217,138,99,0.10), transparent 42%),
+      var(--night);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--sarah); color:var(--night);}
+
+  /* ---------- HERO: TWIN MOUNTAINS ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .eyebrow{font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--sarah-soft); margin-bottom:1.4rem; font-style:italic;}
+  .mountains{width:min(78vw,560px); margin-bottom:1.6rem;}
+  .mountains svg{width:100%; height:auto; display:block;}
+  .m-peak{transition:opacity .3s ease;}
+  .m-label{font-family:var(--font-num); font-style:italic; font-size:13px;}
+  .m-glow-h{animation:glowH 4s ease-in-out infinite;}
+  .m-glow-s{animation:glowS 4s ease-in-out infinite 0.4s;}
+  @keyframes glowH{0%,100%{opacity:0.55;} 50%{opacity:0.9;}}
+  @keyframes glowS{0%,100%{opacity:0.6;} 50%{opacity:1;}}
+
+  .hero h1{font-weight:800; font-size:clamp(2rem, 6.2vw, 3.8rem); line-height:1.3; margin:0; color:var(--parchment);}
+  .hero h1 em{font-style:normal; color:var(--sarah-soft); display:block;}
+  .hero .ref{font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--parchment-dim); margin-top:1rem;}
+  .hero p.tag{max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--parchment-dim);}
+  .scroll-cue{margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--sarah-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--sarah), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--sarah-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.35rem,3.1vw,1.95rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- SLAVE/SON BEFORE-AFTER ---------- */
+  .contrast-wrap{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+  @media (max-width:640px){.contrast-wrap{grid-template-columns:1fr;}}
+  .contrast-col{border-radius:12px; padding:1.5rem 1.3rem; border:1px solid var(--line);}
+  .contrast-col.before{background:linear-gradient(180deg, rgba(111,143,166,0.12), transparent); border-color:rgba(111,143,166,0.32);}
+  .contrast-col.after{background:linear-gradient(180deg, rgba(217,138,99,0.12), transparent); border-color:var(--line);}
+  .contrast-col h3{margin:0 0 0.9rem; font-family:var(--font-ml); font-size:1.1rem;}
+  .contrast-col.before h3{color:var(--hagar-soft);}
+  .contrast-col.after h3{color:var(--sarah-soft);}
+  .contrast-col ul{margin:0; padding-left:1.1rem; display:flex; flex-direction:column; gap:0.7rem;}
+  .contrast-col li{font-size:0.94rem; line-height:1.7; color:var(--parchment-dim);}
+  .contrast-col li b{color:var(--parchment);}
+  .abba-quote{margin-top:1.6rem; text-align:center; padding:1.4rem; background:rgba(217,138,99,0.06); border:1px solid var(--line); border-radius:10px;}
+  .abba-quote p{font-family:var(--font-ml); font-weight:700; font-size:1.15rem; color:var(--sarah-soft); margin:0;}
+  .abba-quote span{display:block; margin-top:0.5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--sarah);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--sarah-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--sarah-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:420px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--sarah-soft); font-size:0.88rem;}
+
+  .pull-quote{margin:2rem 0 0.4rem; padding:2.2rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(217,138,99,0.14), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .pull-quote p{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.1rem, 2.6vw, 1.45rem); line-height:1.9; color:var(--parchment); max-width:38ch; margin:0 auto;}
+  .pull-quote span{display:block; margin-top:0.9rem; font-family:var(--font-num); font-style:italic; color:var(--sarah-soft); font-size:0.88rem;}
+
+  /* ---------- HAGAR/SARAH TABLE ---------- */
+  .allegory-table{width:100%; border-collapse:separate; border-spacing:0 0.5rem;}
+  .allegory-table th{font-family:var(--font-num); font-style:italic; font-weight:400; font-size:0.85rem; color:var(--parchment-dim); text-align:left; padding:0 1rem 0.5rem;}
+  .allegory-table th.hcol{color:var(--hagar-soft);}
+  .allegory-table th.scol{color:var(--sarah-soft);}
+  .allegory-table td{background:var(--night-2); padding:0.9rem 1rem; font-size:0.92rem; line-height:1.6; color:var(--parchment); vertical-align:top;}
+  .allegory-table td:first-child{border-radius:8px 0 0 8px; color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; white-space:nowrap; font-size:0.85rem;}
+  .allegory-table td:nth-child(2){border-left:2px solid var(--hagar);}
+  .allegory-table td:nth-child(3){border-left:2px solid var(--sarah); border-radius:0 8px 8px 0;}
+  .allegory-table{margin-top:0.4rem;}
+  @media (max-width:640px){
+    .allegory-table, .allegory-table thead, .allegory-table tbody, .allegory-table th, .allegory-table td, .allegory-table tr{display:block;}
+    .allegory-table thead{display:none;}
+    .allegory-table tr{margin-bottom:0.8rem; background:var(--night-2); border-radius:8px; padding:0.8rem 1rem;}
+    .allegory-table td{background:none; padding:0.35rem 0; border:none !important; border-radius:0 !important;}
+    .allegory-table td:first-child{font-weight:700; color:var(--parchment);}
+    .allegory-table td:nth-child(2)::before{content:'ഹാഗാർ: '; color:var(--hagar-soft);}
+    .allegory-table td:nth-child(3)::before{content:'സാറാ: '; color:var(--sarah-soft);}
+  }
+
+  .scripture-cite{margin-top:1.4rem; padding:1.1rem 1.3rem; background:rgba(111,143,166,0.08); border:1px solid var(--line); border-left:3px solid var(--hagar); border-radius:8px; font-size:0.94rem; line-height:1.8; color:var(--parchment-dim); font-style:italic;}
+  .scripture-cite b{color:var(--parchment); font-style:normal;}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--night-2), var(--night)); border:1px solid var(--line); border-left:3px solid var(--sarah); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--sarah-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--hagar-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--sarah);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--sarah-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--sarah); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--sarah-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--sarah-soft); color:var(--night); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--sarah-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .m-glow-h, .m-glow-s, .scroll-cue span{animation:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; Galatians / ഗലാത്തിയര്‍</div>
+  <div class="mountains">
+    <svg viewBox="0 0 400 140">
+      <g class="m-peak m-glow-h">
+        <path d="M0,140 L90,30 L180,140 Z" fill="#6f8fa6" opacity="0.55"/>
+        <text class="m-label" x="90" y="120" text-anchor="middle" fill="#9cbdd1">സീനായ്</text>
+      </g>
+      <g class="m-peak m-glow-s">
+        <path d="M210,140 L300,15 L400,140 Z" fill="#d98a63" opacity="0.6"/>
+        <text class="m-label" x="305" y="120" text-anchor="middle" fill="#f0b28c">സ്വർഗീയ ജറുസലെം</text>
+      </g>
+    </svg>
+  </div>
+  <h1>അടിമയല്ല,<br><em>പുത്രൻ</em></h1>
+  <div class="ref">ഗലാത്തിയര്‍ 4 : 1&ndash;30</div>
+  <p class="tag">പിന്തുടർച്ചാവകാശിയുടെ ദൃഷ്ടാന്തം മുതൽ ഹാഗാറിന്റെയും സാറായുടെയും സാങ്കൽപികകഥവരെ &mdash; അടിമത്തത്തിൽനിന്നു പുത്രത്വത്തിലേക്കുള്ള യാത്ര.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: SLAVE TO SON -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>അടിമയോ പുത്രനോ?</h2></div>
+  <p class="section-sub">വാ. 1&ndash;7. ബാല്യത്തിന്റെ അടിമത്തത്തിൽനിന്ന് പുത്രത്വത്തിന്റെ സ്വാതന്ത്ര്യത്തിലേക്ക്.</p>
+  <div class="contrast-wrap">
+    <div class="contrast-col before">
+      <h3>മുമ്പ് &mdash; ബാലൻ / അടിമ</h3>
+      <ul>
+        <li>പിന്തുടർച്ചാവകാശിയാണെങ്കിലും ബാലനായിരിക്കുന്നിടത്തോളം <b>അടിമയില്‍നിന്നു വിഭിന്നനല്ല</b> (വാ. 1)</li>
+        <li>പിതാവ് നിശ്ചയിച്ച കാലാവധിവരെ <b>രക്ഷാകര്‍ത്താക്കളുടെയും കാര്യസ്ഥന്മാരുടെയും</b> സംരക്ഷണത്തിൽ (വാ. 2)</li>
+        <li>ശിശുക്കളായിരുന്നപ്പോൾ <b>പ്രകൃതിയുടെ ശക്തികള്‍ക്ക്</b> അടിമപ്പെട്ടിരുന്നു (വാ. 3)</li>
+      </ul>
+    </div>
+    <div class="contrast-col after">
+      <h3>ശേഷം &mdash; പുത്രൻ / അവകാശി</h3>
+      <ul>
+        <li><b>കാലസമ്പൂര്‍ണത</b> വന്നപ്പോൾ ദൈവം പുത്രനെ അയച്ചു, സ്ത്രീയിൽനിന്നു ജാതനായി (വാ. 4)</li>
+        <li>നിയമത്തിന് അധീനരായവരെ വിമുക്തരാക്കി, <b>പുത്രന്മാരായി ദത്തെടുക്കാൻ</b> (വാ. 5)</li>
+        <li>ഇനിമേൽ ദാസനല്ല, <b>പുത്രനും അവകാശിയും</b> (വാ. 7)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="abba-quote">
+    <p>&ldquo;ആബ്ബാ! &mdash; പിതാവേ!&rdquo;</p>
+    <span>വാ. 6 &mdash; പുത്രന്റെ ആത്മാവ് നമ്മുടെ ഹൃദയത്തിൽനിന്നു വിളിച്ചുപറയുന്നത്</span>
+  </div>
+</section>
+
+<!-- II: PAUL'S ANXIOUS APPEAL -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>ഗലാത്തിയരെക്കുറിച്ചു വ്യഗ്രത</h2></div>
+  <p class="section-sub">വാ. 8&ndash;20. പൗലോസിന്റെ വൈകാരികമായ അഭ്യർഥന &mdash; ടാപ്പ് ചെയ്ത് വിശദാംശം കാണുക.</p>
+  <div class="prologue-grid" id="prologue"></div>
+  <div class="pull-quote">
+    <p>&ldquo;എന്റെ കുഞ്ഞുമക്കളേ, ക്രിസ്തു നിങ്ങളില്‍ രൂപപ്പെടുന്നതുവരെ വീണ്ടും ഞാന്‍ നിങ്ങള്‍ക്കുവേണ്ടി ഈറ്റുനോവ് അനുഭവിക്കുന്നു.&rdquo;</p>
+    <span>വാ. 19 &mdash; പൗലോസിന്റെ ആത്മീയ പിതൃഭാവം, പ്രസവവേദനയോട് ഉപമിച്ച്</span>
+  </div>
+</section>
+
+<!-- III: HAGAR AND SARAH -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>ഹാഗാറും സാറായും</h2></div>
+  <p class="section-sub">വാ. 21&ndash;30. രണ്ട് സ്ത്രീകൾ, രണ്ട് ഉടമ്പടികൾ, രണ്ട് ജറുസലെമുകൾ.</p>
+  <table class="allegory-table">
+    <thead><tr><th></th><th class="hcol">ഹാഗാർ</th><th class="scol">സാറാ</th></tr></thead>
+    <tbody>
+      <tr><td>നില</td><td>ദാസി</td><td>സ്വതന്ത്ര</td></tr>
+      <tr><td>പുത്രന്റെ ജനനരീതി</td><td>ശാരീരികരീതിയിൽ</td><td>വാഗ്ദാനപ്രകാരം</td></tr>
+      <tr><td>പ്രതീകം</td><td>സീനായ്മല (അറേബ്യ)</td><td>സ്വർഗീയ ജറുസലെം</td></tr>
+      <tr><td>വർത്തമാന സമാന്തരം</td><td>ഇന്നത്തെ ജറുസലെം &mdash; ദാസ്യവൃത്തി</td><td>നമ്മുടെ അമ്മ &mdash; സ്വാതന്ത്ര്യം</td></tr>
+      <tr><td>മക്കളുടെ അവസ്ഥ</td><td>ദാസ്യവൃത്തിക്കായി ജനിപ്പിക്കുന്നു</td><td>വാഗ്ദാനത്തിന്റെ മക്കൾ (ഇസഹാക്കിനെപ്പോലെ)</td></tr>
+    </tbody>
+  </table>
+  <div class="scripture-cite">&ldquo;ദാസിയെയും അവളുടെ പുത്രനെയും നിഷ്‌കാസനം ചെയ്യുവിന്‍; എന്തെന്നാല്‍, ദാസിയുടെ പുത്രന്‍ സ്വതന്ത്രയുടെ പുത്രനോടൊപ്പം <b>അവകാശിയാകാന്‍ പാടില്ല.</b>&rdquo; &mdash; വാ. 30, വിശുദ്ധ ലിഖിതത്തിൽനിന്നുള്ള ഉദ്ധരണി</div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">സംഖ്യകൾ, പേരുകൾ, ഉപമകൾ &mdash; ക്വിസ് ചോദ്യങ്ങളിൽ പലപ്പോഴും വരുന്നവ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>ഗലാത്തിയര്‍ 4 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- SECTION II ACCORDION ---------------- */
+const prologue = [
+  {v:"8-9", text:"ദൈവത്തെ അറിയാതിരുന്ന അന്ന് നിങ്ങള്‍ ദൈവമല്ലാത്തവയെ സേവിച്ചു. ഇപ്പോള്‍ ദൈവത്തെ അറിയുന്നു; ബലഹീനങ്ങളും വ്യര്‍ഥങ്ങളുമായ ശക്തികളുടെ അടുത്തേക്കു വീണ്ടും തിരിച്ചുപോകുന്നതെന്ത്?", note:"'ദൈവം നിങ്ങളെ അറിയുന്നു' എന്ന തിരുത്ത് ശ്രദ്ധിക്കുക &mdash; ബന്ധം ഇരുദിശയിലും."},
+  {v:"10", text:"നിങ്ങള്‍ ദിവസങ്ങളും മാസങ്ങളും ഋതുക്കളും വര്‍ഷങ്ങളും ആചരിക്കുന്നുപോലും!", note:"ക്വിസ് സൂചന: നാലു കാലയളവുകൾ &mdash; ദിവസം, മാസം, ഋതു, വർഷം."},
+  {v:"13-14", text:"ശാരീരികാസ്വാസ്ഥ്യമുള്ള അവസരത്തിലാണ് പൗലോസ് ആദ്യമായി സുവിശേഷം പ്രസംഗിച്ചത്. ഗലാത്തിയാക്കാർ അവനെ നിന്ദിക്കാതെ ഒരു ദൈവദൂതനെപ്പോലെ, യേശുക്രിസ്തുവിനെപ്പോലെതന്നെ സ്വീകരിച്ചു.", note:"പൗലോസിന്റെ ശാരീരിക ബലഹീനതയും ഗലാത്തിയരുടെ ഊഷ്മള സ്വീകരണവും."},
+  {v:"15", text:"സാധിക്കുമായിരുന്നെങ്കില്‍ അവർ സ്വന്തം കണ്ണുകള്‍പോലും ചൂഴ്‌ന്നെടുത്തു പൗലോസിനു തരുമായിരുന്നു.", note:"അവരുടെ ആദ്യകാല സ്നേഹത്തിന്റെ തീവ്രത കാണിക്കുന്ന ഉപമ."},
+  {v:"17", text:"എതിരാളികൾ അവരിൽ താത്പര്യം കാണിക്കുന്നത് സദുദ്ദേശ്യത്തോടെയല്ല; ഗലാത്തിയരെ ഒറ്റപ്പെടുത്തുകയാണ് ലക്ഷ്യം.", note:"കള്ള ഉപദേഷ്ടാക്കളുടെ യഥാർഥ ഉദ്ദേശ്യത്തെക്കുറിച്ചുള്ള മുന്നറിയിപ്പ്."},
+  {v:"19-20", text:"'എന്റെ കുഞ്ഞുമക്കളേ, ക്രിസ്തു നിങ്ങളില്‍ രൂപപ്പെടുന്നതുവരെ ഞാന്‍ ഈറ്റുനോവ് അനുഭവിക്കുന്നു.' നിങ്ങളെക്കുറിച്ച് ഞാന്‍ അസ്വസ്ഥനാണ്.", note:"പൗലോസിന്റെ ആത്മീയ പിതൃത്വത്തിന്റെ ഏറ്റവും വൈകാരികമായ പ്രകടനം."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"ദൈവം പുത്രനെ അയച്ചത്", val:"<b>കാലസമ്പൂര്‍ണത</b> വന്നപ്പോൾ; സ്ത്രീയിൽനിന്നു ജാതൻ, നിയമത്തിന് അധീനൻ (വാ. 4)."},
+  {label:"ആത്മാവിന്റെ വിളി", val:"നമ്മുടെ ഹൃദയത്തിൽ <b>'ആബ്ബാ! പിതാവേ!'</b> (വാ. 6)."},
+  {label:"ആചരിച്ച കാലയളവുകൾ", val:"<b>ദിവസങ്ങൾ, മാസങ്ങൾ, ഋതുക്കൾ, വർഷങ്ങൾ</b> (വാ. 10)."},
+  {label:"ആദ്യ പ്രസംഗത്തിന്റെ കാരണം", val:"പൗലോസിന്റെ <b>ശാരീരികാസ്വാസ്ഥ്യം</b> (വാ. 13)."},
+  {label:"ഈറ്റുനോവ് ഉപമ", val:"ക്രിസ്തു അവരിൽ <b>രൂപപ്പെടുന്നതുവരെ</b> (വാ. 19)."},
+  {label:"ഹാഗാർ പ്രതിനിധാനം ചെയ്യുന്നത്", val:"<b>സീനായ്മല</b>, ഇന്നത്തെ ജറുസലെം, ദാസ്യവൃത്തി (വാ. 24&ndash;25)."},
+  {label:"'നമ്മുടെ അമ്മ'", val:"<b>സ്വർഗീയ ജറുസലെം</b> &mdash; സ്വതന്ത്ര (വാ. 26)."},
+  {label:"നമ്മൾ ആരെപ്പോലെ", val:"<b>ഇസഹാക്കിനെപ്പോലെ</b> വാഗ്ദാനത്തിന്റെ മക്കൾ (വാ. 28)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"വാ. 2 പ്രകാരം, പിന്തുടർച്ചാവകാശി ആരുടെ സംരക്ഷണത്തിലായിരിക്കും?",
+   opts:["സഹോദരങ്ങളുടെ","രക്ഷാകര്‍ത്താക്കളുടെയും കാര്യസ്ഥന്മാരുടെയും","അയൽക്കാരുടെ","പുരോഹിതരുടെ"], correct:1,
+   note:"വാ. 2 &mdash; 'പിതാവ് നിശ്ചയിച്ച കാലാവധിവരെ അവന്‍ രക്ഷാകര്‍ത്താക്കളുടെയും കാര്യസ്ഥന്മാരുടെയും സംരക്ഷണത്തിലായിരിക്കും.'"},
+  {q:"ദൈവം തന്റെ പുത്രനെ അയച്ചത് എപ്പോഴാണ് (വാ. 4)?",
+   opts:["നിയമം നൽകുന്നതിനുമുമ്പ്","കാലസമ്പൂര്‍ണത വന്നപ്പോൾ","അബ്രാഹത്തിന്റെ കാലത്ത്","ജറുസലെം നശിച്ചപ്പോൾ"], correct:1,
+   note:"വാ. 4 &mdash; 'കാലസമ്പൂര്‍ണത വന്നപ്പോള്‍ ദൈവം തന്റെ പുത്രനെ അയച്ചു.'"},
+  {q:"നമ്മുടെ ഹൃദയത്തിലേക്ക് അയക്കപ്പെട്ട ആത്മാവ് എന്തു വിളിച്ചുപറയുന്നു (വാ. 6)?",
+   opts:["ഹോശാന്ന","ആബ്ബാ! പിതാവേ!","ഹല്ലേലുയ്യ","ആമേൻ"], correct:1,
+   note:"വാ. 6 &mdash; 'ആബ്ബാ! — പിതാവേ! എന്നു വിളിക്കുന്ന തന്റെ പുത്രന്റെ ആത്മാവിനെ ദൈവം നമ്മുടെ ഹൃദയത്തിലേക്ക് അയച്ചിരിക്കുന്നു.'"},
+  {q:"വാ. 10 പ്രകാരം ഗലാത്തിയാക്കാർ ഏതെല്ലാം ആചരിച്ചിരുന്നു?",
+   opts:["ബലികളും ഉപവാസങ്ങളും","ദിവസങ്ങളും മാസങ്ങളും ഋതുക്കളും വര്‍ഷങ്ങളും","സാബത്തും പെസഹായും മാത്രം","പരിച്ഛേദനവും ശുദ്ധീകരണവും"], correct:1,
+   note:"വാ. 10 &mdash; 'നിങ്ങള്‍ ദിവസങ്ങളും മാസങ്ങളും ഋതുക്കളും വര്‍ഷങ്ങളും ആചരിക്കുന്നുപോലും!'"},
+  {q:"പൗലോസ് ഗലാത്തിയരോട് ആദ്യമായി സുവിശേഷം പ്രസംഗിച്ചത് ഏതു സാഹചര്യത്തിലാണ് (വാ. 13)?",
+   opts:["ജയിലിൽ ആയിരിക്കുമ്പോൾ","ശാരീരികാസ്വാസ്ഥ്യമുള്ള അവസരത്തിൽ","ഒരു ഉത്സവത്തിൽ","കപ്പൽ യാത്രയ്ക്കിടെ"], correct:1,
+   note:"വാ. 13 &mdash; 'ഞാന്‍ ആദ്യമേ നിങ്ങളോടു സുവിശേഷം പ്രസംഗിച്ചത് എനിക്കു ശാരീരികാസ്വാസ്ഥ്യം ഉള്ള അവസരത്തിലാണ്.'"},
+  {q:"വാ. 19-ൽ പൗലോസ് തന്റെ അഭ്യർഥനയെ എന്തിനോടാണ് ഉപമിക്കുന്നത്?",
+   opts:["ഒരു യുദ്ധത്തോട്","ഈറ്റുനോവിനോട് (പ്രസവവേദന)","ഒരു യാത്രയോട്","ഒരു വിളവെടുപ്പിനോട്"], correct:1,
+   note:"വാ. 19 &mdash; 'ക്രിസ്തു നിങ്ങളില്‍ രൂപപ്പെടുന്നതുവരെ വീണ്ടും ഞാന്‍ നിങ്ങള്‍ക്കുവേണ്ടി ഈറ്റുനോവ് അനുഭവിക്കുന്നു.'"},
+  {q:"ഹാഗാർ ആലങ്കാരികമായി ഏതു മലയെ പ്രതിനിധാനം ചെയ്യുന്നു (വാ. 24&ndash;25)?",
+   opts:["കർമേൽ മല","ഒലിവ് മല","സീനായ് മല","താബോർ മല"], correct:2,
+   note:"വാ. 25 &mdash; 'ഹാഗാര്‍ അറേബ്യായിലെ സീനായ്മലയാണ്.'"},
+  {q:"വാ. 26 പ്രകാരം 'നമ്മുടെ അമ്മ' ആരാണ്?",
+   opts:["ഇന്നത്തെ ജറുസലെം","സാറാ നേരിട്ട്","സ്വർഗീയ ജറുസലെം","സീനായ് മല"], correct:2,
+   note:"വാ. 26 &mdash; 'സ്വര്‍ഗീയ ജറുസലെം സ്വതന്ത്രയാണ്. അവളാണ് നമ്മുടെ അമ്മ.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--sarah-soft); color:var(--night); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

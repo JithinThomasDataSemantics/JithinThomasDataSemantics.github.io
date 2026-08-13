@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 സാമുവല്‍ 2 · ഹന്നായുടെ കീര്‍ത്തനം | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0E1526; --void-2:#141F38; --panel:#182342; --panel-2:#1E2B4F;
+    --gold:#E8B34C; --gold-soft:#F5D98A; --gold-dim:#8A6B2C;
+    --pome:#C13F58; --pome-dim:#7A2836;
+    --olive:#8B9A5F; --olive-dim:#4B5636;
+    --parchment:#F6EEDC; --parchment-2:#EFE3C7;
+    --ink:#2A2013; --text:#EFE9DA; --text-dim:#AEB6CE;
+    --line: rgba(232,179,76,0.22);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(232,179,76,0.16), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--pome), var(--gold), var(--gold-soft));
+    z-index:200; box-shadow:0 0 12px rgba(232,179,76,0.7); transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 18%, rgba(232,179,76,0.20), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--gold-soft);
+    background:rgba(232,179,76,0.09); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--pome);box-shadow:0 0 8px var(--pome);}
+  .harp{ width:64px; height:64px; margin:0 auto 14px; color:var(--gold); }
+  h1.title{
+    font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px);
+    margin:6px 0 8px; color:var(--parchment);
+  }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--gold-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--pome); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- REVERSAL CARDS (song of Hannah) ---------- */
+  .reversals{ display:flex; flex-direction:column; gap:10px; }
+  .rev-card{
+    display:grid; grid-template-columns:1fr 34px 1fr; align-items:center; gap:8px;
+    background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 16px;
+  }
+  @media(max-width:560px){ .rev-card{ grid-template-columns:1fr; gap:6px; text-align:center; } .rev-arrow{ transform:rotate(90deg); margin:2px auto;} }
+  .rev-before{ font-size:13.5px; color:#E7A6B1; text-align:right; }
+  .rev-after{ font-size:13.5px; color:#C9D6A4; text-align:left; font-weight:600; }
+  @media(max-width:560px){ .rev-before, .rev-after{ text-align:center; } }
+  .rev-arrow{ color:var(--gold); font-size:16px; text-align:center; }
+  .rev-tag{ font-size:10.5px; color:var(--text-dim); letter-spacing:.06em; }
+
+  /* ---------- SONG EXCERPT ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:26px 24px; position:relative;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35); border:1px solid #d8c79a;
+  }
+  .scroll::before, .scroll::after{
+    content:""; position:absolute; left:0; right:0; height:14px;
+    background:repeating-linear-gradient(90deg, #d8c79a 0 10px, #cbb888 10px 20px); border-radius:50%;
+  }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--serif); font-style:italic; font-size:16.5px; line-height:1.85; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:var(--pome-dim); text-transform:uppercase; }
+
+  /* ---------- TWO GROWTHS ---------- */
+  .growths{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .growths{ grid-template-columns:1fr; } }
+  .growth-card{
+    background:linear-gradient(160deg, var(--panel-2), var(--panel));
+    border-radius:var(--radius); padding:20px; position:relative; overflow:hidden;
+  }
+  .growth-card.good{ border:1px solid rgba(139,154,95,0.5); }
+  .growth-card.bad{ border:1px solid rgba(193,63,88,0.5); }
+  .growth-card.good::after{ content:"🌱"; position:absolute; right:14px; top:12px; opacity:.55; font-size:20px; }
+  .growth-card.bad::after{ content:"⚠"; position:absolute; right:14px; top:12px; opacity:.55; font-size:18px; color:var(--pome); }
+  .growth-name{ font-family:var(--display); font-size:19px; font-weight:700; margin:0 0 10px; }
+  .growth-card.good .growth-name{ color:#C9D6A4; }
+  .growth-card.bad .growth-name{ color:#E7A6B1; }
+  .growth-card ul{ margin:0; padding-left:18px; font-size:14px; color:var(--text-dim); }
+  .growth-card li{ margin-bottom:6px; }
+  .growth-card li b{ color:var(--text); font-weight:600; }
+
+  /* ---------- SIN DETAIL STRIP ---------- */
+  .sin-strip{ display:flex; flex-direction:column; gap:12px; }
+  .sin-item{
+    display:flex; gap:14px; background:var(--panel); border:1px solid var(--line);
+    border-radius:14px; padding:16px;
+  }
+  .sin-icon{
+    flex:none; width:38px; height:38px; border-radius:50%; background:var(--pome-dim);
+    display:flex; align-items:center; justify-content:center; font-size:16px;
+  }
+  .sin-item p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.6; }
+  .sin-item p b{ color:var(--text); }
+
+  /* ---------- PROPHECY GRID ---------- */
+  .prophecy{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:560px){ .prophecy{ grid-template-columns:1fr; } }
+  .proph-card{
+    background:var(--panel); border:1px solid var(--pome-dim); border-radius:14px; padding:16px;
+    border-left:3px solid var(--pome);
+  }
+  .proph-card .plabel{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--pome); font-weight:700; margin-bottom:6px; }
+  .proph-card p{ margin:0; font-size:14px; color:var(--text); line-height:1.6; }
+
+  /* ---------- QUIZ (same system) ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; position:relative; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--gold-soft); background:rgba(232,179,76,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--gold); }
+  .opt.correct{ background:rgba(139,154,95,0.25); border-color:var(--olive); color:#DCE6C4; }
+  .opt.wrong{ background:rgba(193,63,88,0.22); border-color:var(--pome); color:#F3C7CF; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(232,179,76,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--gold), #C98F2E); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--gold); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--gold-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--gold); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--gold-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍ 2</div>
+    <svg class="harp" viewBox="0 0 64 64" fill="none">
+      <path d="M14 54 C10 40 10 22 20 10" stroke="#E8B34C" stroke-width="3" stroke-linecap="round"/>
+      <path d="M14 54 L46 54" stroke="#B98A3A" stroke-width="3" stroke-linecap="round"/>
+      <path d="M46 54 C46 40 38 20 20 10" stroke="#8A6B2C" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <line x1="20" y1="16" x2="18" y2="53" stroke="#F5D98A" stroke-width="1.4"/>
+      <line x1="24" y1="18" x2="24" y2="53" stroke="#F5D98A" stroke-width="1.4"/>
+      <line x1="29" y1="21" x2="30" y2="53" stroke="#F5D98A" stroke-width="1.4"/>
+      <line x1="34" y1="26" x2="36" y2="53" stroke="#F5D98A" stroke-width="1.4"/>
+      <line x1="39" y1="34" x2="42" y2="53" stroke="#F5D98A" stroke-width="1.4"/>
+    </svg>
+    <h1 class="title">ഹന്നായുടെ കീര്‍ത്തനം</h1>
+    <p class="subtitle">"എന്റെ ഹൃദയം കര്‍ത്താവില്‍ ആനന്ദിക്കുന്നു..."</p>
+    <p class="ref">1 സാമുവല്‍ 2 &nbsp;·&nbsp; കീര്‍ത്തനവും ഏലിയുടെ പുത്രന്മാരും</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- REVERSALS -->
+  <section class="section" id="reversals-sec">
+    <p class="eyebrow">കീര്‍ത്തനത്തിന്റെ ഹൃദയം</p>
+    <h2 class="h">ദൈവത്തിന്റെ മറിച്ചിടലുകള്‍</h2>
+    <p class="lede">ഹന്നായുടെ കീര്‍ത്തനം മുഴുവന്‍ ഒരു പ്രമേയത്തിലാണ് ഉറച്ചുനില്‍ക്കുന്നത് — കര്‍ത്താവ് അവസ്ഥകളെ പൂര്‍ണമായി മറിച്ചിടുന്നു. ഓരോ ജോടിയും ക്വിസില്‍ ചോദിക്കാവുന്നതാണ്.</p>
+    <div class="reversals" id="revWrap"></div>
+  </section>
+
+  <!-- SONG EXCERPT -->
+  <section class="section" id="song-sec">
+    <p class="eyebrow">മനഃപാഠമാക്കേണ്ട വരികള്‍</p>
+    <h2 class="h">കീര്‍ത്തനത്തിന്റെ ആരംഭം</h2>
+    <div class="scroll">
+      <p>"എന്റെ ഹൃദയം കര്‍ത്താവില്‍ ആനന്ദിക്കുന്നു. എന്റെ ശിരസ്‌സ് കര്‍ത്താവില്‍ ഉയര്‍ന്നിരിക്കുന്നു... അവിടുത്തെ രക്ഷയില്‍ ഞാന്‍ ആനന്ദിക്കുന്നു. കര്‍ത്താവിനെപ്പോലെ പരിശുദ്ധനായി മറ്റാരുമില്ല."</p>
+      <span class="cite">1 സാമുവല്‍ 2:1-2</span>
+    </div>
+  </section>
+
+  <!-- TWO GROWTHS -->
+  <section class="section" id="growths-sec">
+    <p class="eyebrow">ഒരേ ദേവാലയം, രണ്ട് വഴികള്‍</p>
+    <h2 class="h">സാമുവലും ഏലിയുടെ പുത്രന്മാരും</h2>
+    <p class="lede">ഒരേ സമയം, ഒരേ സ്ഥലത്ത് — വിപരീത ദിശകളില്‍ വളര്‍ന്ന രണ്ടു ജീവിതങ്ങള്‍.</p>
+    <div class="growths">
+      <div class="growth-card good">
+        <p class="growth-name">ബാലനായ സാമുവല്‍</p>
+        <ul>
+          <li>ഏലിയുടെ സാന്നിധ്യത്തില്‍ <b>കര്‍ത്താവിനു ശുശ്രൂഷ ചെയ്തു</b></li>
+          <li><b>ചണനൂല്‍ കൊണ്ടുള്ള</b> വിശേഷ വസ്ത്രം ധരിച്ചു</li>
+          <li>അമ്മ വര്‍ഷംതോറും <b>ചെറിയ ഉടുപ്പ്</b> ഉണ്ടാക്കിക്കൊടുത്തു</li>
+          <li>കര്‍ത്താവിന്റെ സന്നിധിയില്‍ <b>വളര്‍ന്നുവന്നു</b></li>
+          <li>കര്‍ത്താവിന്റെയും മനുഷ്യരുടെയും <b>പ്രീതിയില്‍</b> വളര്‍ന്നു</li>
+        </ul>
+      </div>
+      <div class="growth-card bad">
+        <p class="growth-name">ഹോഫ്‌നിയും ഫിനെഹാസും</p>
+        <ul>
+          <li><b>ദുര്‍മാര്‍ഗികള്‍</b>, കര്‍ത്താവിനെ ബഹുമാനിക്കാത്തവര്‍</li>
+          <li>പുരോഹിത വിഹിത നിയമം <b>ലംഘിച്ചു</b></li>
+          <li>മേദസ്സ് ദഹിപ്പിക്കും മുമ്പേ <b>ബലം പ്രയോഗിച്ചു മാംസം എടുത്തു</b></li>
+          <li>സമാഗമകൂടാരവാതില്‍ക്കല്‍ സ്ത്രീകളുമായി <b>പാപം ചെയ്തു</b></li>
+          <li>പിതാവിന്റെ ശാസന <b>കേട്ടില്ല</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIN DETAIL -->
+  <section class="section" id="sin-sec">
+    <p class="eyebrow">വിശദാംശം ക്വിസില്‍ വരാം</p>
+    <h2 class="h">പുരോഹിതരുടെ ദുഷ്‌പ്രവൃത്തി</h2>
+    <div class="sin-strip">
+      <div class="sin-item">
+        <div class="sin-icon">🍴</div>
+        <p><b>മുപ്പല്ലി (ത്രിശൂലം):</b> പുരോഹിതന്റെ ഭൃത്യന്‍ ബലിമാംസം വേവുന്ന പാത്രത്തില്‍ ഇതു കുത്തി, കിട്ടുന്നതെല്ലാം സ്വന്തമാക്കി.</p>
+      </div>
+      <div class="sin-item">
+        <div class="sin-icon">🔥</div>
+        <p><b>ക്രമലംഘനം:</b> മേദസ്സ് ദഹിപ്പിക്കുന്നതിനു മുമ്പേ പച്ചമാംസം ആവശ്യപ്പെട്ടു — വേവിച്ചത് സ്വീകരിക്കില്ലെന്നു ഭീഷണിപ്പെടുത്തി.</p>
+      </div>
+      <div class="sin-item">
+        <div class="sin-icon">⚖</div>
+        <p><b>ബലപ്രയോഗം:</b> ആരെങ്കിലും തടസ്സം പറഞ്ഞാല്‍, "ഇപ്പോള്‍ത്തന്നെ വേണം, അല്ലെങ്കില്‍ ബലം പ്രയോഗിച്ച് എടുക്കും" എന്നു ഭീഷണിപ്പെടുത്തി.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPHECY -->
+  <section class="section" id="prophecy-sec">
+    <p class="eyebrow">ദൈവപുരുഷന്റെ വാക്കുകള്‍</p>
+    <h2 class="h">ഏലിയുടെ ഭവനത്തിനെതിരായ പ്രവചനം</h2>
+    <p class="lede">ക്വിസില്‍ ഏറ്റവും കൂടുതല്‍ ചോദിക്കപ്പെടുന്ന ഭാഗം — ഓരോ വിശദാംശവും കൃത്യമായി ഓര്‍ക്കുക.</p>
+    <div class="prophecy">
+      <div class="proph-card"><div class="plabel">അടയാളം</div><p>ഹോഫ്‌നിയും ഫിനെഹാസും <b>ഒരേ ദിവസം</b> മരിക്കും.</p></div>
+      <div class="proph-card"><div class="plabel">ശക്തിക്ഷയം</div><p>വാര്‍ധക്യത്തിലെത്താന്‍ കുടുംബത്തില്‍ ആര്‍ക്കും ഇടയാവില്ല.</p></div>
+      <div class="proph-card"><div class="plabel">പുതിയ പുരോഹിതന്‍</div><p>കര്‍ത്താവ് തനിക്കായി <b>വിശ്വസ്തനായ ഒരു പുരോഹിതനെ</b> തിരഞ്ഞെടുക്കും.</p></div>
+      <div class="proph-card"><div class="plabel">ഭാവി ദാരിദ്ര്യം</div><p>അവശേഷിക്കുന്നവര്‍ <b>ഒരു വെള്ളിക്കാശിനും ഒരു കഷണം അപ്പത്തിനും</b> യാചിക്കും.</p></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം · അധ്യായം 2</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — 1 സാമുവല്‍ 2</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🪔 Logos Quiz 2026 പഠന സഹായി · 1 സാമുവല്‍ 2</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* reversal pairs from the song */
+const reversals = [
+  {before:'വീരന്മാരുടെ വില്ലുകള്‍ തകരുന്നു', after:'ബലഹീനര്‍ ശക്തിപ്രാപിക്കുന്നു', v:'2:4'},
+  {before:'സുഭിക്ഷര്‍ കൂലിപ്പണിക്കിറങ്ങുന്നു', after:'വിശപ്പുള്ളവര്‍ സംതൃപ്തരാകുന്നു', v:'2:5'},
+  {before:'വന്ധ്യ ഏഴു പ്രസവിക്കുന്നു', after:'സന്താന സമ്പന്ന നിരാലംബയാകുന്നു', v:'2:5'},
+  {before:'കര്‍ത്താവ് ജീവന്‍ എടുക്കുന്നു', after:'കര്‍ത്താവ് ജീവന്‍ കൊടുക്കുന്നു', v:'2:6'},
+  {before:'പാതാളത്തിലേക്ക് ഇറക്കുന്നു', after:'അവിടെനിന്നു കയറ്റുന്നു', v:'2:6'},
+  {before:'ദരിദ്രനാക്കുന്നു', after:'ധനികനാക്കുന്നു', v:'2:7'},
+  {before:'ധൂളിയില്‍ കിടക്കുന്ന ദരിദ്രന്‍', after:'പ്രഭുക്കന്മാരോടൊപ്പം ഇരുത്തപ്പെടുന്നു', v:'2:8'},
+];
+const revWrap = document.getElementById('revWrap');
+reversals.forEach(r=>{
+  const el = document.createElement('div');
+  el.className = 'rev-card';
+  el.innerHTML = `
+    <div class="rev-before">${r.before}</div>
+    <div class="rev-arrow">⇄</div>
+    <div class="rev-after">${r.after}</div>
+  `;
+  revWrap.appendChild(el);
+});
+
+/* full text */
+const verses = [
+  ['1-2','ഹന്നായുടെ കീര്‍ത്തനം ആരംഭിക്കുന്നു: "എന്റെ ഹൃദയം കര്‍ത്താവില്‍ ആനന്ദിക്കുന്നു... കര്‍ത്താവിനെപ്പോലെ പരിശുദ്ധനായി മറ്റാരുമില്ല."'],
+  ['3','അഹന്തയോടെ സംസാരിക്കരുത്; കര്‍ത്താവ് സര്‍വജ്ഞനും പ്രവൃത്തികളെ വിലയിരുത്തുന്നവനുമാണ്.'],
+  ['4-8','ദൈവത്തിന്റെ മറിച്ചിടലുകള്‍ വിവരിക്കുന്നു — ബലഹീനര്‍ ശക്തിപ്രാപിക്കുന്നു, വന്ധ്യ പ്രസവിക്കുന്നു, ദരിദ്രനെ ഉയര്‍ത്തുന്നു.'],
+  ['9-10','വിശ്വസ്തരെ കാക്കുന്നു, ദുഷ്ടരെ അന്ധകാരത്തില്‍ ഉപേക്ഷിക്കുന്നു; കര്‍ത്താവ് ഭൂമിയെ വിധിക്കുകയും അഭിഷിക്തനെ ഉയര്‍ത്തുകയും ചെയ്യും.'],
+  ['11','എല്ക്കാന റാമായിലേക്കു മടങ്ങി; ബാലനായ സാമുവല്‍ ഏലിയുടെ സാന്നിധ്യത്തില്‍ ശുശ്രൂഷ ചെയ്തു.'],
+  ['12-17','ഏലിയുടെ പുത്രന്മാര്‍ ദുര്‍മാര്‍ഗികളായിരുന്നു; മുപ്പല്ലി ഉപയോഗിച്ചും ബലപ്രയോഗത്തിലൂടെയും ബലിമാംസം കവര്‍ന്നു.'],
+  ['18-19','സാമുവല്‍ ചണനൂല്‍ വസ്ത്രം ധരിച്ചു ശുശ്രൂഷ ചെയ്തു; അമ്മ വര്‍ഷംതോറും ചെറിയ ഉടുപ്പ് ഉണ്ടാക്കിക്കൊടുത്തു.'],
+  ['20-21','ഏലി എല്ക്കാനയെയും ഹന്നായെയും അനുഗ്രഹിച്ചു; ഹന്നായ്ക്ക് വീണ്ടും 3 പുത്രന്മാരും 2 പുത്രിമാരും ജനിച്ചു; സാമുവല്‍ വളര്‍ന്നു.'],
+  ['22-25','ഏലി വൃദ്ധനായി, പുത്രന്മാരുടെ ദുഷ്‌കൃത്യങ്ങള്‍ കേട്ട് ശാസിച്ചു; അവര്‍ കേട്ടില്ല, കാരണം കര്‍ത്താവ് അവരെ നശിപ്പിക്കാന്‍ നിശ്ചയിച്ചിരുന്നു.'],
+  ['26','ബാലനായ സാമുവല്‍ കര്‍ത്താവിന്റെയും മനുഷ്യരുടെയും പ്രീതിയില്‍ വളര്‍ന്നു.'],
+  ['27-30','ദൈവപുരുഷന്‍ ഏലിയോട് ഭൂതകാല അനുഗ്രഹങ്ങള്‍ ഓര്‍മിപ്പിച്ചു; പുത്രന്മാരെ ദൈവത്തെക്കാള്‍ ബഹുമാനിച്ചതിനെ ശാസിച്ചു.'],
+  ['31-33','ഏലിയുടെ കുടുംബത്തിന്റെ ശക്തി ക്ഷയിക്കുമെന്നും വാര്‍ധക്യത്തിലെത്തുന്നവര്‍ ഉണ്ടാവില്ലെന്നും പ്രവചിച്ചു.'],
+  ['34-36','ഹോഫ്‌നിയും ഫിനെഹാസും ഒരേ ദിവസം മരിക്കുമെന്ന് അടയാളം നല്‍കി; വിശ്വസ്തനായ പുരോഹിതനെ എഴുന്നേല്‍പിക്കുമെന്നും ശേഷിക്കുന്നവര്‍ അപ്പത്തിനു യാചിക്കുമെന്നും പ്രവചിച്ചു.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'ഹന്നായുടെ കീര്‍ത്തനത്തിന്റെ പ്രധാന പ്രമേയം എന്ത്?',
+    options: ['യുദ്ധവിജയം', 'ദൈവത്തിന്റെ മറിച്ചിടലുകള്‍ (താഴ്ത്തലും ഉയര്‍ത്തലും)', 'വിളവെടുപ്പ് ഉത്സവം', 'രാജാവിന്റെ കിരീടധാരണം'],
+    correct: 1,
+    explain: '2:4-8 — ബലഹീനര്‍ ശക്തിപ്രാപിക്കുന്നു, ദരിദ്രന്‍ ഉയരുന്നു എന്നിങ്ങനെ കര്‍ത്താവിന്റെ മറിച്ചിടല്‍ ശക്തിയാണ് കീര്‍ത്തനത്തിന്റെ കാതല്‍.'
+  },
+  {
+    q: '"വന്ധ്യ ഏഴു പ്രസവിക്കുന്നു" എന്ന വരിക്കൊപ്പം ഏതു വിപരീതമാണ് പറയുന്നത്?',
+    options: ['ധനികന്‍ ദരിദ്രനാകുന്നു', 'സന്താന സമ്പന്ന നിരാലംബയാകുന്നു', 'വൃദ്ധന്‍ യുവാവാകുന്നു', 'രാജാവ് അടിമയാകുന്നു'],
+    correct: 1,
+    explain: '2:5 — ഒരേ വാക്യത്തില്‍ രണ്ട് വിപരീത അവസ്ഥകള്‍ ചേര്‍ത്തിരിക്കുന്നു.'
+  },
+  {
+    q: 'പുരോഹിതന്റെ ഭൃത്യന്‍ ബലിമാംസം കുത്തിയെടുക്കാന്‍ ഉപയോഗിച്ചിരുന്ന ഉപകരണം ഏത്?',
+    options: ['കത്തി', 'മുപ്പല്ലി (ത്രിശൂലം)', 'ചട്ടുകം', 'വടി'],
+    correct: 1,
+    explain: '2:14 — "പാത്രത്തില്‍ മുപ്പല്ലികൊണ്ടു കുത്തി അതില്‍ കിട്ടുന്നതു മുഴുവന്‍ പുരോഹിതനു വേണ്ടി എടുത്തിരുന്നു."'
+  },
+  {
+    q: 'ബാലനായ സാമുവല്‍ ധരിച്ചിരുന്ന വിശേഷ വസ്ത്രം എന്തുകൊണ്ട് നിര്‍മിച്ചതായിരുന്നു?',
+    options: ['പട്ട്', 'ചണനൂല്‍', 'ആട്ടുരോമം', 'തുകല്‍'],
+    correct: 1,
+    explain: '2:18 — "ചണനൂല്‍കൊണ്ടുള്ള ഒരു വിശേഷ വസ്ത്രമാണ് അവന്‍ ധരിച്ചിരുന്നത്."'
+  },
+  {
+    q: 'സാമുവലിന്റെ അമ്മ വര്‍ഷംതോറും അവന് എന്താണ് ഉണ്ടാക്കിക്കൊടുത്തിരുന്നത്?',
+    options: ['ഒരു ചെറിയ ഉടുപ്പ്', 'ഒരു കിരീടം', 'ഒരു ബലിപാത്രം', 'ഒരു തുകല്‍ സഞ്ചി'],
+    correct: 0,
+    explain: '2:19 — ഹന്നാ ഓരോ വര്‍ഷവും ചെറിയ ഉടുപ്പുണ്ടാക്കി സാമുവലിനു കൊടുത്തിരുന്നു.'
+  },
+  {
+    q: 'സാമുവലിനു ശേഷം ഹന്നായ്ക്ക് എത്ര മക്കള്‍ കൂടി ജനിച്ചു?',
+    options: ['2 പുത്രന്മാര്‍ മാത്രം', '3 പുത്രന്മാരും 2 പുത്രിമാരും', '1 പുത്രനും 1 പുത്രിയും', '4 പുത്രിമാര്‍ മാത്രം'],
+    correct: 1,
+    explain: '2:21 — "അവള്‍ ഗര്‍ഭംധരിച്ച് മൂന്നു പുത്രന്മാരെയും രണ്ടു പുത്രിമാരെയും പ്രസവിച്ചു."'
+  },
+  {
+    q: 'ഏലിയുടെ പുത്രന്മാര്‍ സമാഗമകൂടാരവാതില്‍ക്കല്‍ ആരുമായി പാപം ചെയ്തതായി ഏലി അറിഞ്ഞു?',
+    options: ['അന്യദേശക്കാരുമായി', 'അവിടെ ജോലി ചെയ്തിരുന്ന സ്ത്രീകളുമായി', 'പുരോഹിത സഹായികളുമായി', 'സൈനികരുമായി'],
+    correct: 1,
+    explain: '2:22 — "സമാഗമകൂടാരത്തിന്റെ പ്രവേശനകവാടത്തില്‍ ജോലിചെയ്തിരുന്ന സ്ത്രീകളോടൊത്ത് അവര്‍ ശയിച്ചിരുന്ന വിവരം."'
+  },
+  {
+    q: 'മനുഷ്യന്‍ കര്‍ത്താവിനോടു പാപം ചെയ്താല്‍ ആര്‍ മാധ്യസ്ഥ്യം വഹിക്കുമെന്നാണ് ഏലി ചോദിച്ചത്?',
+    options: ['മറ്റൊരു പുരോഹിതന്‍', 'ആരും ഇല്ല എന്ന അര്‍ഥത്തില്‍ ഒരു ചോദ്യം', 'രാജാവ്', 'മൂപ്പന്മാര്‍'],
+    correct: 1,
+    explain: '2:25 — "കര്‍ത്താവിനോടു പാപം ചെയ്താല്‍ ആര്‍ മാധ്യസ്ഥ്യം വഹിക്കും?" എന്നത് മറുപടിയില്ലാത്ത ചോദ്യമാണ്.'
+  },
+  {
+    q: 'ദൈവപുരുഷന്റെ പ്രവചനമനുസരിച്ച് ഹോഫ്‌നിയും ഫിനെഹാസും എപ്പോള്‍ മരിക്കും?',
+    options: ['വ്യത്യസ്ത വര്‍ഷങ്ങളില്‍', 'ഒരേ ദിവസം', 'വാര്‍ധക്യത്തില്‍', 'യുദ്ധത്തിനു ശേഷം വര്‍ഷങ്ങള്‍ കഴിഞ്ഞ്'],
+    correct: 1,
+    explain: '2:34 — "നിന്റെ പുത്രന്മാരായ ഹോഫ്‌നിയും ഫിനെഹാസും ഒരേദിവസം തന്നെ മരിക്കും."'
+  },
+  {
+    q: 'ഏലിയുടെ കുടുംബത്തില്‍ അവശേഷിക്കുന്നവര്‍ ഭാവിയില്‍ എന്തിനുവേണ്ടി യാചിക്കുമെന്നാണ് പ്രവചനം?',
+    options: ['ഭൂമിക്കും വീടിനും', 'ഒരു വെള്ളിക്കാശിനും ഒരു കഷണം അപ്പത്തിനും', 'ആടുകള്‍ക്കും കന്നുകാലികള്‍ക്കും', 'പുരോഹിത വസ്ത്രത്തിനും'],
+    correct: 1,
+    explain: '2:36 — "ഒരു വെള്ളിക്കാശിനും ഒരു കഷണം അപ്പത്തിനും വേണ്ടി അവനോടു യാചിച്ചുകൊണ്ടു പറയും."'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

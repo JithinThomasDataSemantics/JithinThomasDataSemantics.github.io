@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ഞാനാണ് ജീവന്റെ അപ്പം — യോഹന്നാൻ 6 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --umber: #221a12; --umber-2: #2c2216;
+    --parchment: #f0e5cd; --parchment-dim: #b3a488;
+    --wheat: #d9a13f; --wheat-soft: #f0c274;
+    --storm: #4f6b85; --storm-soft: #83a2ba;
+    --warn: #a24a3a; --warn-soft: #cc7562;
+    --line: rgba(217,161,63,0.22);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(217,161,63,0.11), transparent 45%),
+      radial-gradient(ellipse at 88% 25%, rgba(79,107,133,0.10), transparent 42%),
+      var(--umber);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--wheat); color:var(--umber);}
+
+  /* ---------- HERO: MULTIPLYING LOAVES ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .eyebrow{font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--wheat-soft); margin-bottom:1.4rem; font-style:italic;}
+  .loaves{display:flex; gap:10px; margin-bottom:1.8rem;}
+  .loaf{width:30px; height:22px; border-radius:50% 50% 45% 45%; background:radial-gradient(circle at 35% 30%, var(--wheat-soft), var(--wheat) 75%); box-shadow:0 4px 10px rgba(217,161,63,0.22); animation:loafPulse 3s ease-in-out infinite;}
+  .loaf:nth-child(1){animation-delay:0s;} .loaf:nth-child(2){animation-delay:0.2s;} .loaf:nth-child(3){animation-delay:0.4s;} .loaf:nth-child(4){animation-delay:0.6s;} .loaf:nth-child(5){animation-delay:0.8s;}
+  @keyframes loafPulse{0%,100%{transform:scale(1); opacity:0.85;} 50%{transform:scale(1.15); opacity:1;}}
+  .hero h1{font-weight:800; font-size:clamp(2rem, 6vw, 3.8rem); line-height:1.3; margin:0; color:var(--parchment);}
+  .hero h1 em{font-style:normal; color:var(--wheat-soft); display:block;}
+  .hero .ref{font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--parchment-dim); margin-top:1rem;}
+  .hero p.tag{max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--parchment-dim);}
+  .scroll-cue{margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--wheat-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--wheat), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--wheat-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.35rem,3.1vw,1.95rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--umber-2), var(--umber)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--wheat);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--wheat-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--wheat-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:420px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--wheat-soft); font-size:0.88rem;}
+
+  /* ---------- NUMBER BADGES ---------- */
+  .badge-row{display:flex; flex-wrap:wrap; gap:0.8rem; margin-top:1.4rem;}
+  .num-badge{background:var(--umber-2); border:1px solid var(--line); border-radius:10px; padding:0.9rem 1.2rem; text-align:center; min-width:100px;}
+  .num-badge .nval{font-family:var(--font-display); font-size:1.6rem; font-weight:700; color:var(--wheat-soft); line-height:1;}
+  .num-badge .nlabel{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.8rem; margin-top:0.4rem;}
+
+  /* ---------- STORM SECTION ---------- */
+  .storm-wrap{background:linear-gradient(180deg, rgba(79,107,133,0.14), var(--umber-2)); border:1px solid rgba(79,107,133,0.3); border-radius:14px; padding:1.8rem 1.5rem;}
+  .storm-wrap .swave{font-family:var(--font-num); font-style:italic; color:var(--storm-soft); font-size:0.85rem; margin-bottom:0.8rem;}
+  .storm-wrap .stext{font-size:0.97rem; line-height:1.9; color:var(--parchment);}
+  .storm-wrap .stext b{color:var(--storm-soft);}
+  .storm-quote{margin-top:1.2rem; text-align:center; padding:1.3rem; background:rgba(79,107,133,0.1); border:1px solid rgba(79,107,133,0.3); border-radius:10px;}
+  .storm-quote p{font-family:var(--font-ml); font-weight:700; font-size:1.1rem; color:var(--storm-soft); margin:0;}
+  .storm-quote span{display:block; margin-top:0.5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.82rem;}
+
+  /* ---------- BREAD OF LIFE GIANT QUOTE ---------- */
+  .bol-quote{margin:0.4rem 0 2rem; padding:3rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(217,161,63,0.18), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .bol-quote .vtag{font-family:var(--font-num); font-style:italic; color:var(--wheat-soft); font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;}
+  .bol-quote p{font-family:var(--font-ml); font-weight:800; font-size:clamp(1.4rem, 3.8vw, 2.2rem); line-height:1.6; color:var(--parchment); max-width:30ch; margin:0 auto;}
+
+  .cards-col{display:flex; flex-direction:column; gap:0.7rem;}
+  .simple-card{background:var(--umber-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.3rem;}
+  .simple-card .sverse{font-family:var(--font-num); font-style:italic; color:var(--wheat-soft); font-size:0.82rem; margin-bottom:0.4rem;}
+  .simple-card .stext{font-size:0.96rem; line-height:1.85; color:var(--parchment);}
+  .simple-card .stext b{color:var(--warn-soft);}
+
+  /* ---------- PETER'S CONFESSION ---------- */
+  .peter-quote{margin:0.4rem 0 0.4rem; padding:2.4rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(217,161,63,0.14), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .peter-quote p{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.1rem, 2.6vw, 1.5rem); line-height:1.9; color:var(--parchment); max-width:42ch; margin:0 auto;}
+  .peter-quote span{display:block; margin-top:0.9rem; font-family:var(--font-num); font-style:italic; color:var(--wheat-soft); font-size:0.88rem;}
+  .judas-note{margin-top:1.2rem; padding:1.1rem 1.3rem; background:rgba(162,74,58,0.1); border:1px solid rgba(162,74,58,0.3); border-left:3px solid var(--warn); border-radius:8px; font-size:0.9rem; line-height:1.8; color:var(--parchment-dim);}
+  .judas-note b{color:var(--warn-soft);}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--umber-2), var(--umber)); border:1px solid var(--line); border-left:3px solid var(--wheat); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--wheat-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--storm-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--umber-2), var(--umber)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--wheat);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--wheat-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--wheat); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--wheat-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--wheat); color:var(--umber); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--wheat-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .loaf, .scroll-cue span{animation:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; John / യോഹന്നാൻ</div>
+  <div class="loaves">
+    <div class="loaf"></div><div class="loaf"></div><div class="loaf"></div><div class="loaf"></div><div class="loaf"></div>
+  </div>
+  <h1>ഞാനാണ്<br><em>ജീവന്റെ അപ്പം</em></h1>
+  <div class="ref">യോഹന്നാൻ 6 : 1&ndash;71</div>
+  <p class="tag">അഞ്ചപ്പവും രണ്ടു മീനും അയ്യായിരം പേരെ തൃപ്തിപ്പെടുത്തുന്നു; കടലിനുമീതേ നടക്കുന്നു; ഒടുവിൽ കഠിനമായ ഒരു വചനം പലരെയും അകറ്റുന്നു.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: FEEDING THE 5000 -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>അപ്പം വര്‍ധിപ്പിക്കുന്നു</h2></div>
+  <p class="section-sub">വാ. 1&ndash;15. പെസഹാത്തിരുനാൾ അടുത്ത സമയം &mdash; ടാപ്പ് ചെയ്ത് വിശദാംശം കാണുക.</p>
+  <div class="prologue-grid" id="prologue"></div>
+  <div class="badge-row">
+    <div class="num-badge"><div class="nval">5</div><div class="nlabel">ബാര്‍ലിയപ്പം</div></div>
+    <div class="num-badge"><div class="nval">2</div><div class="nlabel">മീൻ</div></div>
+    <div class="num-badge"><div class="nval">~5000</div><div class="nlabel">പുരുഷന്മാർ</div></div>
+    <div class="num-badge"><div class="nval">12</div><div class="nlabel">കുട്ട മിച്ചം</div></div>
+    <div class="num-badge"><div class="nval">200</div><div class="nlabel">ദനാറ (പീലിപ്പോസിന്റെ കണക്ക്)</div></div>
+  </div>
+</section>
+
+<!-- II: WALKING ON WATER -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>വെള്ളത്തിനുമീതേ നടക്കുന്നു</h2></div>
+  <p class="section-sub">വാ. 16&ndash;21. ഇരുട്ടിലും കൊടുങ്കാറ്റിലും ഒരു ശബ്ദം.</p>
+  <div class="storm-wrap">
+    <div class="swave">വൈകുന്നേരം &mdash; ഗലീലിക്കടൽ</div>
+    <div class="stext">ശിഷ്യന്മാർ വള്ളത്തിൽ കഫർന്നഹൂമിലേക്കു പുറപ്പെട്ടു; യേശു അപ്പോഴും അവരോടൊപ്പം ഉണ്ടായിരുന്നില്ല. <b>ശക്തിയേറിയ കാറ്റ്</b> കടലിനെ ക്ഷോഭിപ്പിച്ചു. <b>ഇരുപത്തഞ്ചോ മുപ്പതോ സ്താദിയോൺ</b> ദൂരം തണ്ടു വലിച്ചപ്പോൾ യേശു കടലിനുമീതേ നടന്നു വരുന്നതു കണ്ട് അവർ ഭയപ്പെട്ടു.</div>
+    <div class="storm-quote">
+      <p>&ldquo;ഞാനാണ്; ഭയപ്പെടേണ്ടാ.&rdquo;</p>
+      <span>വാ. 20 &mdash; വള്ളം ഉടനെ ലക്ഷ്യസ്ഥാനത്ത് എത്തി (വാ. 21)</span>
+    </div>
+  </div>
+</section>
+
+<!-- III: BREAD OF LIFE -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>ജീവന്റെ അപ്പം</h2></div>
+  <p class="section-sub">വാ. 22&ndash;59. കഫർന്നഹൂം സിനഗോഗിലെ ഏറ്റവും ആഴമേറിയ പ്രഭാഷണം.</p>
+  <div class="bol-quote">
+    <div class="vtag">വാ. 35, 48</div>
+    <p>&ldquo;ഞാനാണ് ജീവന്റെ അപ്പം.&rdquo;</p>
+  </div>
+  <div class="cards-col" id="bolCards"></div>
+</section>
+
+<!-- IV: WORDS OF ETERNAL LIFE -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>നിത്യജീവന്റെ വചസ്സുകള്‍</h2></div>
+  <p class="section-sub">വാ. 60&ndash;71. കഠിനമായ വചനം; ചിലർ പോകുന്നു, പത്രോസ് ഏറ്റുപറയുന്നു.</p>
+  <div class="peter-quote">
+    <p>&ldquo;കര്‍ത്താവേ, ഞങ്ങള്‍ ആരുടെ അടുത്തേക്കു പോകും? നിത്യജീവന്റെ വചനങ്ങള്‍ നിന്റെ പക്കലുണ്ട്. നീയാണു ദൈവത്തിന്റെ പരിശുദ്ധന്‍ എന്നു ഞങ്ങള്‍ വിശ്വസിക്കുകയും അറിയുകയും ചെയ്തിരിക്കുന്നു.&rdquo;</p>
+    <span>വാ. 68&ndash;69 &mdash; ശിമയോൻ പത്രോസ്, പന്ത്രണ്ടുപേരുടെ പേരിൽ</span>
+  </div>
+  <div class="judas-note">വാ. 70&ndash;71: പലരും യേശുവിനെ വിട്ടുപോയപ്പോൾ, പന്ത്രണ്ടുപേരോടും അവൻ ചോദിച്ചു: 'നിങ്ങളും പോകാൻ ആഗ്രഹിക്കുന്നുവോ?' <b>പന്ത്രണ്ടുപേരിൽ ഒരുവൻ പിശാചാണ്</b> എന്നു യേശു സൂചിപ്പിച്ചു &mdash; ശിമയോൻ സ്‌കറിയോത്തായുടെ മകൻ യൂദാസ്, തന്നെ ഒറ്റിക്കൊടുക്കാനിരുന്നവൻ.</div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">സംഖ്യകൾ, പ്രധാന വാക്യങ്ങൾ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s6">
+  <div class="section-head"><span class="num">VI</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>യോഹന്നാൻ 6 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- SECTION I ACCORDION ---------------- */
+const prologue = [
+  {v:"5-7", text:"വലിയ ജനക്കൂട്ടം വരുന്നതു കണ്ട് യേശു പീലിപ്പോസിനോടു ചോദിച്ചു: 'ഇവർക്കു ഭക്ഷിക്കുവാൻ നാം എവിടെനിന്ന് അപ്പം വാങ്ങും?' അവനെ പരീക്ഷിക്കാനായിരുന്നു ഈ ചോദ്യം. പീലിപ്പോസ്: 'ഇരുനൂറു ദനാറയ്ക്കുള്ള അപ്പംപോലും തികയില്ല.'", note:"ക്വിസ് സൂചന: <b>200 ദനാറ</b> &mdash; പീലിപ്പോസിന്റെ കണക്ക്."},
+  {v:"8-9", text:"അന്ത്രയോസ്: 'അഞ്ചു ബാർലിയപ്പവും രണ്ടു മീനും കൈവശമുള്ള ഒരു കുട്ടി ഇവിടെയുണ്ട്. ഇത്രയും പേർക്ക് അതെന്തുണ്ട്?'", note:"ഒരു കുട്ടിയുടെ ചെറിയ സംഭാവന &mdash; അദ്ഭുതത്തിന്റെ തുടക്കം."},
+  {v:"10-11", text:"'ആളുകളെ ഭക്ഷണത്തിനിരുത്തുവിൻ.' അയ്യായിരത്തോളം പുരുഷന്മാർ ഇരുന്നു. യേശു അപ്പമെടുത്ത് കൃതജ്ഞതാസ്‌തോത്രം ചെയ്ത് വിതരണം ചെയ്തു; മീനും വേണ്ടത്ര നൽകി.", note:"ക്വിസ് സൂചന: <b>~5000 പുരുഷന്മാർ</b> (സ്ത്രീകളും കുട്ടികളും കണക്കിലെടുക്കാതെ)."},
+  {v:"12-13", text:"എല്ലാവരും തൃപ്തരായി. 'മിച്ചമുള്ള കഷണങ്ങളെല്ലാം ശേഖരിക്കുവിൻ.' <b>പന്ത്രണ്ടു കുട്ട</b> നിറയെ ശേഖരിച്ചു.", note:"12 കുട്ട &mdash; ഒന്നും നഷ്ടപ്പെടരുത് എന്ന യേശുവിന്റെ നിർദേശം."},
+  {v:"14-15", text:"ജനങ്ങൾ: 'ലോകത്തിലേക്കു വരാനിരുന്ന പ്രവാചകൻ സത്യമായും ഇവനാണ്.' അവർ ബലമായി രാജാവാക്കാൻ ഭാവിച്ചപ്പോൾ യേശു തനിയേ മലമുകളിലേക്കു പിൻമാറി.", note:"ജനക്കൂട്ടത്തിന്റെ രാഷ്ട്രീയ പ്രതീക്ഷയിൽനിന്ന് യേശുവിന്റെ പിന്മാറ്റം."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- SECTION III BREAD OF LIFE CARDS ---------------- */
+const bolCards = [
+  {v:"26-27", t:"'അടയാളങ്ങൾ കണ്ടതുകൊണ്ടല്ല, അപ്പം ഭക്ഷിച്ചു തൃപ്തരായതുകൊണ്ടാണ് നിങ്ങൾ എന്നെ അന്വേഷിക്കുന്നത്.' <b>നശ്വരമായ അപ്പത്തിനല്ല, നിത്യജീവന്റെ അനശ്വരമായ അപ്പത്തിനുവേണ്ടി</b> അധ്വാനിക്കുവിൻ."},
+  {v:"28-29", t:"'ദൈവഹിതമനുസരിച്ചു പ്രവർത്തിക്കാൻ ഞങ്ങൾ എന്തു ചെയ്യണം?' യേശു: 'അവിടുന്ന് അയച്ചവനിൽ <b>വിശ്വസിക്കുക</b> എന്നതാണ് ദൈവഹിതം.'"},
+  {v:"31-33", t:"പിതാക്കന്മാർ മരുഭൂമിയിൽ മന്നാ ഭക്ഷിച്ചു. യേശു: 'മോശയല്ല, <b>എന്റെ പിതാവാണ്</b> സ്വർഗത്തിൽനിന്ന് യഥാർഥമായ അപ്പം തരുന്നത്.'"},
+  {v:"48-51", t:"'ഞാൻ ജീവന്റെ അപ്പമാണ്. പിതാക്കന്മാർ മന്നാ ഭക്ഷിച്ചു; എങ്കിലും മരിച്ചു. ഈ അപ്പം ഭക്ഷിക്കുന്നവൻ <b>എന്നേക്കും ജീവിക്കും.</b> ഞാൻ നൽകുന്ന അപ്പം എന്റെ ശരീരമാണ്.'"},
+  {v:"53-56", t:"'മനുഷ്യപുത്രന്റെ ശരീരം ഭക്ഷിക്കുകയും രക്തം പാനം ചെയ്യുകയും ചെയ്യുന്നില്ലെങ്കിൽ ജീവൻ ഉണ്ടായിരിക്കില്ല.' ഇതു യഹൂദർക്കിടയിൽ <b>തർക്കമുണ്ടാക്കി</b> (വാ. 52)."},
+  {v:"60-63", t:"പല ശിഷ്യരും പറഞ്ഞു: 'ഈ വചനം കഠിനമാണ്.' യേശു: '<b>ആത്മാവാണു ജീവൻ നൽകുന്നത്</b>; ശരീരം ഒന്നിനും ഉപകരിക്കുന്നില്ല. ഞാൻ പറഞ്ഞ വാക്കുകൾ ആത്മാവും ജീവനുമാണ്.'"}
+];
+document.getElementById('bolCards').innerHTML = bolCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"അപ്പവും മീനും", val:"<b>5 ബാർലിയപ്പം, 2 മീൻ</b> &mdash; ഒരു കുട്ടിയുടേത് (വാ. 9)."},
+  {label:"ഭക്ഷിച്ചവരുടെ എണ്ണം", val:"ഏകദേശം <b>5000 പുരുഷന്മാർ</b> (വാ. 10)."},
+  {label:"മിച്ചം ശേഖരിച്ചത്", val:"<b>12 കുട്ട</b> നിറയെ (വാ. 13)."},
+  {label:"ജനക്കൂട്ടത്തിന്റെ പ്രതികരണം", val:"ബലമായി <b>രാജാവാക്കാൻ</b> ഭാവിച്ചു (വാ. 15)."},
+  {label:"കടലിൽ യേശുവിന്റെ വാക്കുകൾ", val:"'ഞാനാണ്; <b>ഭയപ്പെടേണ്ടാ</b>' (വാ. 20)."},
+  {label:"ദൈവഹിതമനുസരിച്ച പ്രവൃത്തി", val:"അയച്ചവനിൽ <b>വിശ്വസിക്കുക</b> (വാ. 29)."},
+  {label:"യേശുവിന്റെ പ്രഖ്യാപനം", val:"'ഞാനാണ് <b>ജീവന്റെ അപ്പം</b>' (വാ. 35, 48)."},
+  {label:"പത്രോസിന്റെ ഏറ്റുപറച്ചിൽ", val:"'നീ ദൈവത്തിന്റെ <b>പരിശുദ്ധൻ</b>' (വാ. 69)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"കുട്ടിയുടെ കൈവശം എത്ര അപ്പവും മീനും ഉണ്ടായിരുന്നു (വാ. 9)?",
+   opts:["3 അപ്പം, 1 മീൻ","5 ബാർലിയപ്പം, 2 മീൻ","7 അപ്പം, 3 മീൻ","2 അപ്പം, 5 മീൻ"], correct:1,
+   note:"വാ. 9 &mdash; 'അഞ്ചു ബാര്‍ലിയപ്പവും രണ്ടു മീനും കൈവശമുള്ള ഒരു കുട്ടി.'"},
+  {q:"ഭക്ഷണത്തിനിരുന്ന പുരുഷന്മാരുടെ എണ്ണം ഏകദേശം എത്രയായിരുന്നു (വാ. 10)?",
+   opts:["1000","3000","5000","10000"], correct:2,
+   note:"വാ. 10 &mdash; 'അയ്യായിരത്തോളം വരുന്ന പുരുഷന്‍മാര്‍ അവിടെ ഇരുന്നു.'"},
+  {q:"മിച്ചം വന്ന കഷണങ്ങൾ എത്ര കുട്ട ശേഖരിച്ചു (വാ. 13)?",
+   opts:["7","10","12","15"], correct:2,
+   note:"വാ. 13 &mdash; 'പന്ത്രണ്ടു കുട്ട നിറയെ അവര്‍ ശേഖരിച്ചു.'"},
+  {q:"അദ്ഭുതത്തിനുശേഷം ജനക്കൂട്ടം എന്തു ചെയ്യാൻ ഭാവിച്ചു (വാ. 15)?",
+   opts:["അവനെ കല്ലെറിയാൻ","അവനെ ബലമായി രാജാവാക്കാൻ","അവനെ പിന്തുടരാതിരിക്കാൻ","അവനെ ജറുസലെമിലേക്കയക്കാൻ"], correct:1,
+   note:"വാ. 15 &mdash; 'അവര്‍ വന്നു തന്നെ രാജാവാക്കാന്‍വേണ്ടി ബലമായി പിടിച്ചുകൊണ്ടുപോകാന്‍ ഭാവിക്കുന്നു.'"},
+  {q:"കടലിനുമീതേ നടന്നുവന്ന യേശു ഭയപ്പെട്ട ശിഷ്യന്മാരോട് എന്തു പറഞ്ഞു (വാ. 20)?",
+   opts:["'ഓടിപ്പോകുവിൻ'","'ഞാനാണ്; ഭയപ്പെടേണ്ടാ'","'വള്ളം നിർത്തുവിൻ'","'കാറ്റിനെ ശാന്തമാക്കുവിൻ'"], correct:1,
+   note:"വാ. 20 &mdash; 'ഞാനാണ്; ഭയപ്പെടേണ്ടാ.'"},
+  {q:"വാ. 29 പ്രകാരം ദൈവഹിതമനുസരിച്ചുള്ള പ്രവൃത്തി എന്താണ്?",
+   opts:["നിയമം പാലിക്കുക","ബലിയർപ്പിക്കുക","അയച്ചവനിൽ വിശ്വസിക്കുക","ഉപവസിക്കുക"], correct:2,
+   note:"വാ. 29 &mdash; 'അവിടുന്ന് അയച്ചവനില്‍ വിശ്വസിക്കുക.'"},
+  {q:"യേശു തന്നെക്കുറിച്ചു എന്തു പ്രഖ്യാപിച്ചു (വാ. 35, 48)?",
+   opts:["'ഞാൻ നല്ല ഇടയനാണ്'","'ഞാൻ ജീവന്റെ അപ്പമാണ്'","'ഞാൻ വഴിയാണ്'","'ഞാൻ മുന്തിരിവള്ളിയാണ്'"], correct:1,
+   note:"വാ. 35 &mdash; 'ഞാനാണ് ജീവന്റെ അപ്പം.'"},
+  {q:"'നിങ്ങളും പോകാൻ ആഗ്രഹിക്കുന്നുവോ?' എന്നു ചോദിച്ചപ്പോൾ പത്രോസ് എന്തു മറുപടി പറഞ്ഞു (വാ. 68)?",
+   opts:["'അതെ, ഞങ്ങൾ പോകുന്നു'","'കർത്താവേ, ഞങ്ങൾ ആരുടെ അടുത്തേക്കു പോകും? നിത്യജീവന്റെ വചനങ്ങൾ നിന്റെ പക്കലുണ്ട്'","'ഞങ്ങൾക്ക് അറിയില്ല'","'ഞങ്ങൾ ചിന്തിക്കട്ടെ'"], correct:1,
+   note:"വാ. 68 &mdash; 'കര്‍ത്താവേ, ഞങ്ങള്‍ ആരുടെ അടുത്തേക്കു പോകും? നിത്യജീവന്റെ വചനങ്ങള്‍ നിന്റെ പക്കലുണ്ട്.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--wheat); color:var(--umber); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

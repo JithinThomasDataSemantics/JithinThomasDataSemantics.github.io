@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 സാമുവല്‍ 4 · ഇക്കാബോദ് | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0A0A0C; --void-2:#121215; --panel:#18181D; --panel-2:#1F1F26;
+    --ash:#5C5A57; --ash-soft:#8B8781;
+    --gold:#C79A48; --gold-soft:#E4C687; --gold-dim:#6E5623;
+    --pome:#A83349; --pome-dim:#5C1F2C;
+    --olive:#77835A;
+    --parchment:#E7DFCC; --parchment-2:#DCD1B4;
+    --ink:#211A10; --text:#E4E0D6; --text-dim:#9B9992;
+    --line: rgba(199,154,72,0.18);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(199,154,72,0.08), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--pome); color:var(--parchment); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--ash), var(--pome), var(--gold-dim));
+    z-index:200; transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 14%, rgba(168,51,73,0.14), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ash-soft);
+    background:rgba(199,154,72,0.07); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--pome);box-shadow:0 0 8px var(--pome);}
+
+  .snuffed{ width:80px; height:90px; margin:0 auto 14px; position:relative; }
+  .smoke{
+    position:absolute; left:50%; top:0; width:5px; height:34px;
+    background:linear-gradient(180deg, transparent, rgba(155,153,146,0.55), transparent);
+    border-radius:40%; transform:translateX(-50%);
+    animation: rise 3.5s ease-in-out infinite;
+    filter:blur(1.5px);
+  }
+  @keyframes rise{
+    0%{ opacity:0; transform:translateX(-50%) translateY(6px) scaleX(1);}
+    30%{ opacity:.7; }
+    100%{ opacity:0; transform:translateX(-50%) translateY(-38px) scaleX(2.2);}
+  }
+
+  h1.title{
+    font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px);
+    margin:6px 0 8px; color:var(--parchment); letter-spacing:.01em;
+  }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--ash-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--pome); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- NUMBERS ---------- */
+  .numgrid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  @media(max-width:560px){ .numgrid{ grid-template-columns:repeat(2,1fr); } }
+  .num-card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 10px; text-align:center; }
+  .num-card .big{ font-family:var(--display); font-weight:800; font-size:24px; color:var(--pome); display:block; }
+  .num-card .lbl{ font-size:11.5px; color:var(--text-dim); margin-top:4px; display:block; }
+
+  /* ---------- TWO BATTLES ---------- */
+  .battles{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .battles{ grid-template-columns:1fr; } }
+  .battle-card{ background:linear-gradient(160deg, var(--panel-2), var(--panel)); border-radius:var(--radius); padding:20px; position:relative; overflow:hidden; border:1px solid var(--line); }
+  .battle-card.two{ border-color:rgba(168,51,73,0.5); }
+  .battle-name{ font-family:var(--display); font-size:18px; font-weight:700; color:var(--gold-soft); margin:0 0 4px; }
+  .battle-toll{ font-family:var(--display); font-size:30px; font-weight:800; color:var(--pome); margin:0 0 10px; }
+  .battle-card ul{ margin:0; padding-left:18px; font-size:13.5px; color:var(--text-dim); }
+  .battle-card li{ margin-bottom:6px; }
+  .battle-card li b{ color:var(--text); font-weight:600; }
+
+  /* ---------- MESSENGER ---------- */
+  .messenger{ display:flex; flex-direction:column; gap:0; }
+  .msg-step{ position:relative; padding:16px 16px 16px 56px; border-radius:14px; background:var(--panel); border:1px solid var(--line); margin-bottom:10px; }
+  .msg-num{ position:absolute; left:14px; top:16px; width:28px; height:28px; border-radius:50%; background:var(--void-2); border:2px solid var(--pome); color:var(--gold-soft); display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:700; font-size:13px; }
+  .msg-step p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.6; }
+  .msg-step p b{ color:var(--text); }
+
+  /* ---------- THREE LOSSES ---------- */
+  .losses{ display:flex; flex-direction:column; gap:10px; }
+  .loss-item{ display:flex; gap:14px; align-items:flex-start; background:var(--panel); border:1px solid var(--pome-dim); border-left:3px solid var(--pome); border-radius:14px; padding:16px; }
+  .loss-icon{ flex:none; width:36px; height:36px; border-radius:50%; background:rgba(168,51,73,0.18); display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .loss-item .lname{ font-weight:700; color:var(--parchment); font-size:14.5px; margin:0 0 4px; }
+  .loss-item p{ margin:0; font-size:13.5px; color:var(--text-dim); line-height:1.6; }
+  .loss-item p b{ color:var(--text); }
+
+  /* ---------- SCROLL (ichabod, ash-toned) ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:26px 24px; position:relative;
+    box-shadow:0 18px 40px rgba(0,0,0,0.45); border:1px solid #b8ab8a;
+  }
+  .scroll::before, .scroll::after{
+    content:""; position:absolute; left:0; right:0; height:14px;
+    background:repeating-linear-gradient(90deg, #b8ab8a 0 10px, #a89a76 10px 20px); border-radius:50%;
+  }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--serif); font-style:italic; font-size:16.5px; line-height:1.85; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:var(--pome-dim); text-transform:uppercase; }
+  .scroll .meaning{ margin-top:14px; padding-top:14px; border-top:1px dashed #b8ab8a; font-family:var(--sans); font-style:normal; font-size:13.5px; color:#4a3f2c; }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--gold-soft); background:rgba(199,154,72,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--gold); }
+  .opt.correct{ background:rgba(119,131,90,0.25); border-color:var(--olive); color:#D3DCC0; }
+  .opt.wrong{ background:rgba(168,51,73,0.22); border-color:var(--pome); color:#F0C4CC; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(199,154,72,0.07); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--gold), #8C6B29); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--gold); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--gold-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--gold); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--gold-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍ 4</div>
+    <div class="snuffed">
+      <svg width="80" height="90" viewBox="0 0 80 90">
+        <ellipse cx="40" cy="68" rx="26" ry="8" fill="#2a2a2a" opacity="0.5"/>
+        <path d="M18 56 Q40 74 62 56 Q59 44 40 44 Q21 44 18 56 Z" fill="#5C5A57"/>
+        <rect x="36" y="38" width="8" height="10" rx="2" fill="#3a3a38"/>
+      </svg>
+      <div class="smoke"></div>
+    </div>
+    <h1 class="title">ഇക്കാബോദ്</h1>
+    <p class="subtitle">"മഹത്വം ഇസ്രായേലില്‍നിന്നു വിട്ടുപോയി..."</p>
+    <p class="ref">1 സാമുവല്‍ 4 &nbsp;·&nbsp; പേടകം നഷ്ടപ്പെടുന്നു</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- NUMBERS -->
+  <section class="section" id="numbers-sec">
+    <p class="eyebrow">ആ ഇരുണ്ട ദിവസത്തിന്റെ സംഖ്യകള്‍</p>
+    <h2 class="h">ഓര്‍ത്തിരിക്കേണ്ട അക്കങ്ങള്‍</h2>
+    <p class="lede">ഈ അധ്യായത്തിലെ സംഖ്യാ ചോദ്യങ്ങള്‍ Logos Quiz-ല്‍ പതിവാണ്.</p>
+    <div class="numgrid" id="numGrid"></div>
+  </section>
+
+  <!-- TWO BATTLES -->
+  <section class="section" id="battles-sec">
+    <p class="eyebrow">പേടകത്തിനു മുമ്പും ശേഷവും</p>
+    <h2 class="h">രണ്ടു യുദ്ധങ്ങള്‍</h2>
+    <p class="lede">പേടകം കൊണ്ടുവന്നത് ജയം ഉറപ്പാക്കിയില്ല — രണ്ടാം തോല്‍വി ആദ്യത്തേതിനെക്കാള്‍ ഭീകരമായിരുന്നു.</p>
+    <div class="battles">
+      <div class="battle-card one">
+        <p class="battle-name">ഒന്നാം യുദ്ധം</p>
+        <p class="battle-toll">4,000</p>
+        <ul>
+          <li>എബനേസറില്‍ ഇസ്രായേല്‍, അഫെക്കില്‍ ഫിലിസ്ത്യര്‍</li>
+          <li>ഇസ്രായേല്‍ <b>പരാജയപ്പെട്ടു</b></li>
+          <li>ശ്രേഷ്ഠന്മാര്‍ പേടകം കൊണ്ടുവരാന്‍ തീരുമാനിച്ചു</li>
+          <li>ഹോഫ്‌നിയും ഫിനെഹാസും പേടകത്തോടൊപ്പം എത്തി</li>
+        </ul>
+      </div>
+      <div class="battle-card two">
+        <p class="battle-name">രണ്ടാം യുദ്ധം</p>
+        <p class="battle-toll">30,000</p>
+        <ul>
+          <li>ഇസ്രായേലിന്റെ ആര്‍പ്പുവിളി കേട്ട് ഫിലിസ്ത്യര്‍ ആദ്യം ഭയന്നു</li>
+          <li>"പൗരുഷത്തോടെ പൊരുതുവിന്‍" എന്നു സ്വയം പ്രോത്സാഹിപ്പിച്ചു</li>
+          <li>ഇസ്രായേല്‍ വീണ്ടും <b>പരാജയപ്പെട്ടു</b></li>
+          <li><b>പേടകം പിടിക്കപ്പെട്ടു</b>; ഹോഫ്‌നിയും ഫിനെഹാസും വധിക്കപ്പെട്ടു</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSENGER -->
+  <section class="section" id="messenger-sec">
+    <p class="eyebrow">ദുഃഖവാര്‍ത്ത യാത്ര ചെയ്യുന്നു</p>
+    <h2 class="h">ദൂതന്റെ ഓട്ടം</h2>
+    <div class="messenger">
+      <div class="msg-step"><div class="msg-num">1</div><p><b>ബഞ്ചമിന്‍ ഗോത്രജനായ</b> ഒരാള്‍ യുദ്ധരംഗത്തുനിന്ന് ഓടി ഷീലോയിലെത്തി — വസ്ത്രം കീറി, തലയില്‍ പൂഴി വിതറിയ നിലയില്‍.</p></div>
+      <div class="msg-step"><div class="msg-num">2</div><p>ഏലി, <b>98 വയസ്സുള്ള, ഏതാണ്ട് അന്ധനായ</b> വൃദ്ധന്‍, വഴിയിലേക്ക് ഉറ്റുനോക്കി പീഠത്തില്‍ ഇരിക്കുകയായിരുന്നു — പേടകത്തെക്കുറിച്ച് ആകുലനായി.</p></div>
+      <div class="msg-step"><div class="msg-num">3</div><p>പട്ടണവാസികളുടെ മുറവിളി കേട്ട് ഏലി ചോദിച്ചു; ദൂതന്‍ ഓടിവന്നു വാര്‍ത്ത അറിയിച്ചു.</p></div>
+      <div class="msg-step"><div class="msg-num">4</div><p>മൂന്നു ദുഃഖവാര്‍ത്തകള്‍ ഒരുമിച്ച്: <b>സൈന്യം തോറ്റോടി, പുത്രന്മാര്‍ മരിച്ചു, പേടകം പിടിക്കപ്പെട്ടു.</b></p></div>
+    </div>
+  </section>
+
+  <!-- THREE LOSSES -->
+  <section class="section" id="losses-sec">
+    <p class="eyebrow">ഒരൊറ്റ ദിവസത്തിലെ നഷ്ടങ്ങള്‍</p>
+    <h2 class="h">ഏലിയുടെ കുടുംബത്തിന് സംഭവിച്ചത്</h2>
+    <div class="losses">
+      <div class="loss-item">
+        <div class="loss-icon">⚔</div>
+        <div><p class="lname">ഹോഫ്‌നിയും ഫിനെഹാസും</p><p>പേടകത്തോടൊപ്പം യുദ്ധക്കളത്തില്‍ പോയി, <b>അന്നു തന്നെ വധിക്കപ്പെട്ടു</b> — അധ്യായം 2-ലെ പ്രവചനം നിറവേറി.</p></div>
+      </div>
+      <div class="loss-item">
+        <div class="loss-icon">🪑</div>
+        <div><p class="lname">ഏലി</p><p>പേടകം പിടിക്കപ്പെട്ടെന്നു കേട്ടപ്പോള്‍ പീഠത്തില്‍നിന്നു <b>പിറകോട്ടു മറിഞ്ഞു കഴുത്തൊടിഞ്ഞു മരിച്ചു</b> — 40 വര്‍ഷം ന്യായാധിപനായിരുന്നു.</p></div>
+      </div>
+      <div class="loss-item">
+        <div class="loss-icon">👶</div>
+        <div><p class="lname">ഫിനെഹാസിന്റെ ഭാര്യ</p><p>വാര്‍ത്ത കേട്ട് പ്രസവവേദന മൂര്‍ച്ഛിച്ചു; ഒരു മകനെ പ്രസവിച്ചു, എന്നാല്‍ <b>ആശ്വാസവാക്കുകള്‍ ശ്രദ്ധിക്കാതെ</b> കുഞ്ഞിന് ഇക്കാബോദ് എന്നു പേരിട്ടു.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICHABOD -->
+  <section class="section" id="ichabod-sec">
+    <p class="eyebrow">ഒരു പേരില്‍ ഒളിഞ്ഞിരിക്കുന്ന ദുഃഖം</p>
+    <h2 class="h">"ഇക്കാബോദ്" എന്ന പേര്</h2>
+    <div class="scroll">
+      <p>"മഹത്വം ഇസ്രായേലില്‍നിന്നു വിട്ടുപോയി... ദൈവത്തിന്റെ പേടകം പിടിക്കപ്പെട്ടതിനാല്‍ മഹത്വം ഇസ്രായേലില്‍നിന്നു വിട്ടുപോയിരിക്കുന്നു."</p>
+      <span class="cite">1 സാമുവല്‍ 4:21-22</span>
+      <div class="meaning">അമ്മായിയപ്പനും ഭര്‍ത്താവും മരിച്ചതിനെക്കാളും, <b>പേടകം നഷ്ടപ്പെട്ടതാണ്</b> അവള്‍ ഏറ്റവും വലിയ ദുരന്തമായി എടുത്തുപറഞ്ഞത് — ദൈവസാന്നിധ്യമായിരുന്നു അവളുടെ ഏറ്റവും വലിയ കരുതല്‍.</div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം · അധ്യായം 4</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — 1 സാമുവല്‍ 4</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🕯 Logos Quiz 2026 പഠന സഹായി · 1 സാമുവല്‍ 4</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* numbers */
+const numbers = [
+  {big:'4,000', lbl:'ഒന്നാം യുദ്ധത്തിലെ മരണം'},
+  {big:'30,000', lbl:'രണ്ടാം യുദ്ധത്തിലെ മരണം'},
+  {big:'98', lbl:'ഏലിയുടെ പ്രായം'},
+  {big:'40', lbl:'ഏലി ന്യായാധിപനായ വര്‍ഷങ്ങള്‍'},
+  {big:'2', lbl:'വധിക്കപ്പെട്ട പുത്രന്മാര്‍'},
+  {big:'1', lbl:'നഷ്ടപ്പെട്ട പേടകം'},
+];
+const numGrid = document.getElementById('numGrid');
+numbers.forEach(n=>{
+  const c = document.createElement('div');
+  c.className = 'num-card';
+  c.innerHTML = `<span class="big">${n.big}</span><span class="lbl">${n.lbl}</span>`;
+  numGrid.appendChild(c);
+});
+
+/* full text */
+const verses = [
+  ['1-2','ഫിലിസ്ത്യര്‍ ഇസ്രായേലിനെതിരേ യുദ്ധത്തിനുവന്നു; എബനേസറിലും അഫെക്കിലും പാളയമടിച്ചു. ആദ്യ യുദ്ധത്തില്‍ ഏകദേശം 4,000 പേര്‍ കൊല്ലപ്പെട്ടു.'],
+  ['3-5','ശ്രേഷ്ഠന്മാര്‍ പേടകം ഷീലോയില്‍നിന്നു കൊണ്ടുവരാന്‍ തീരുമാനിച്ചു; ഹോഫ്‌നിയും ഫിനെഹാസും അതോടൊപ്പം എത്തി; ഇസ്രായേല്‍ ആര്‍ത്തുവിളിച്ചു.'],
+  ['6-9','ഫിലിസ്ത്യര്‍ ഭയന്നു — ഈജിപ്തിനെ ബാധിച്ച ദേവന്മാരെ ഓര്‍ത്തു — എന്നാല്‍ "പൗരുഷത്തോടെ പൊരുതുവിന്‍" എന്നു സ്വയം പ്രോത്സാഹിപ്പിച്ചു.'],
+  ['10-11','ഇസ്രായേല്‍ വീണ്ടും പരാജയപ്പെട്ടു; 30,000 പടയാളികള്‍ വീണു; പേടകം പിടിക്കപ്പെട്ടു; ഹോഫ്‌നിയും ഫിനെഹാസും വധിക്കപ്പെട്ടു.'],
+  ['12-14','ബഞ്ചമിന്‍ ഗോത്രജനായ ദൂതന്‍ വസ്ത്രം കീറി തലയില്‍ പൂഴിയുമായി ഷീലോയില്‍ എത്തി; ഏലി വഴിയില്‍ ഉറ്റുനോക്കി ഇരിക്കുകയായിരുന്നു.'],
+  ['15-18','98 വയസ്സുള്ള, ഏതാണ്ട് അന്ധനായ ഏലി വാര്‍ത്ത കേട്ടു — സൈന്യം തോറ്റു, പുത്രന്മാര്‍ മരിച്ചു, പേടകം പിടിക്കപ്പെട്ടു — പീഠത്തില്‍നിന്നു പിറകോട്ടു മറിഞ്ഞു കഴുത്തൊടിഞ്ഞു മരിച്ചു; 40 വര്‍ഷം ന്യായാധിപനായിരുന്നു.'],
+  ['19-22','ഫിനെഹാസിന്റെ ഗര്‍ഭിണിയായ ഭാര്യ വാര്‍ത്ത കേട്ട് പ്രസവിച്ചു; ആശ്വാസവാക്കുകള്‍ ശ്രദ്ധിക്കാതെ കുഞ്ഞിന് ഇക്കാബോദ് എന്നു പേരിട്ടു — "മഹത്വം ഇസ്രായേലില്‍നിന്നു വിട്ടുപോയി."'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'ഇസ്രായേലും ഫിലിസ്ത്യരും യുദ്ധത്തിനായി എവിടെയാണ് പാളയമടിച്ചത്?',
+    options: ['ഗില്‍ഗാലിലും ബെഥേലിലും', 'എബനേസറിലും അഫെക്കിലും', 'ഷീലോയിലും ഗിബെയായിലും', 'ഹെബ്രോനിലും യെരൂശലേമിലും'],
+    correct: 1,
+    explain: '4:1 — "ഇസ്രായേല്‍ എബനേസറിലും ഫിലിസ്ത്യര്‍ അഫെക്കിലും പാളയമടിച്ചു."'
+  },
+  {
+    q: 'ഒന്നാം യുദ്ധത്തില്‍ ഏകദേശം എത്ര ഇസ്രായേല്യര്‍ കൊല്ലപ്പെട്ടു?',
+    options: ['1,000', '4,000', '10,000', '30,000'],
+    correct: 1,
+    explain: '4:2 — "നാലായിരത്തോളം ആളുകളെ ഫിലിസ്ത്യര്‍ വധിച്ചു."'
+  },
+  {
+    q: 'ഒന്നാം തോല്‍വിക്കു ശേഷം ഇസ്രായേല്‍ ശ്രേഷ്ഠന്മാര്‍ എന്തു തീരുമാനിച്ചു?',
+    options: ['സന്ധി ചെയ്യാന്‍', 'ഷീലോയില്‍നിന്നു പേടകം കൊണ്ടുവരാന്‍', 'പിന്മാറാന്‍', 'ഏലിയെ പുറത്താക്കാന്‍'],
+    correct: 1,
+    explain: '4:3-4 — "നമുക്ക് ഷീലോയില്‍നിന്നു കര്‍ത്താവിന്റെ ഉടമ്പടിയുടെ പേടകം കൊണ്ടുവരാം."'
+  },
+  {
+    q: 'പേടകത്തോടൊപ്പം യുദ്ധക്കളത്തിലേക്കു പോയത് ആരെല്ലാം?',
+    options: ['ഏലിയും സാമുവലും', 'ഹോഫ്‌നിയും ഫിനെഹാസും', 'സാമുവലും ഒരു ലേവ്യനും', 'ബഞ്ചമിന്‍ ഗോത്രത്തലവന്മാര്‍'],
+    correct: 1,
+    explain: '4:4 — "പേടകത്തോടൊപ്പം ഏലിയുടെ പുത്രന്‍മാരായ ഹോഫ്‌നിയും ഫിനെഹാസും ഉണ്ടായിരുന്നു."'
+  },
+  {
+    q: 'ഫിലിസ്ത്യര്‍ ആദ്യം പേടകം എത്തിയെന്നു കേട്ടപ്പോള്‍ ഭയപ്പെട്ടത് എന്തുകൊണ്ട്?',
+    options: ['ഇസ്രായേല്യര്‍ കൂടുതല്‍ പേരുണ്ടായിരുന്നതിനാല്‍', 'ഈജിപ്തുകാരെ ബാധകള്‍കൊണ്ടു ഞെരുക്കിയ ദേവന്മാരെ ഓര്‍ത്തതിനാല്‍', 'അവര്‍ക്ക് ആയുധമില്ലാതിരുന്നതിനാല്‍', 'സാമുവല്‍ അവരെ ശപിച്ചതിനാല്‍'],
+    correct: 1,
+    explain: '4:7-8 — "മരുഭൂമിയില്‍വച്ച് നിരവധി ബാധകള്‍കൊണ്ട് ഈജിപ്തുകാരെ ഞെരുക്കിയ ദേവന്‍മാരാണവര്‍."'
+  },
+  {
+    q: 'രണ്ടാം യുദ്ധത്തില്‍ എത്ര ഇസ്രായേല്യ പടയാളികള്‍ കൊല്ലപ്പെട്ടു?',
+    options: ['4,000', '10,000', '30,000', '50,000'],
+    correct: 2,
+    explain: '4:10 — "മുപ്പതിനായിരം പടയാളികള്‍ നിലംപതിച്ചു."'
+  },
+  {
+    q: 'ദുഃഖവാര്‍ത്തയുമായി ഓടിയെത്തിയ ദൂതന്‍ ഏതു ഗോത്രത്തില്‍പ്പെട്ടയാളായിരുന്നു?',
+    options: ['ലേവി', 'യൂദാ', 'ബഞ്ചമിന്‍', 'എഫ്രായിം'],
+    correct: 2,
+    explain: '4:12 — "ബഞ്ചമിന്‍ ഗോത്രജനായ ഒരാള്‍ അന്നു തന്നെ യുദ്ധരംഗത്തുനിന്നോടി ഷീലോയിലെത്തി."'
+  },
+  {
+    q: 'ഏലിക്ക് അപ്പോള്‍ എത്ര വയസ്സായിരുന്നു, എത്ര വര്‍ഷം ന്യായാധിപനായിരുന്നു?',
+    options: ['80 വയസ്സ്, 20 വര്‍ഷം', '98 വയസ്സ്, 40 വര്‍ഷം', '70 വയസ്സ്, 30 വര്‍ഷം', '100 വയസ്സ്, 45 വര്‍ഷം'],
+    correct: 1,
+    explain: '4:15,18 — "ഏലിക്കു തൊണ്ണൂറ്റെട്ടു വയസ്‌സുണ്ടായിരുന്നു... അവന്‍ നാല്‍പതു വര്‍ഷം ഇസ്രായേലില്‍ ന്യായാധിപനായിരുന്നു."'
+  },
+  {
+    q: 'ഏലി എങ്ങനെയാണ് മരിച്ചത്?',
+    options: ['യുദ്ധത്തില്‍ കൊല്ലപ്പെട്ടു', 'പീഠത്തില്‍നിന്നു പിറകോട്ടു മറിഞ്ഞു കഴുത്തൊടിഞ്ഞു', 'രോഗം ബാധിച്ചു', 'ഉറക്കത്തില്‍ മരിച്ചു'],
+    correct: 1,
+    explain: '4:18 — "പീഠത്തില്‍നിന്നു പിറകോട്ടു മറിഞ്ഞു... കഴുത്തൊടിഞ്ഞു മരിച്ചു."'
+  },
+  {
+    q: 'ഫിനെഹാസിന്റെ ഭാര്യ തന്റെ കുഞ്ഞിന് ഇക്കാബോദ് എന്നു പേരിട്ടത് എന്തുകൊണ്ട്?',
+    options: ['തന്റെ പിതാവിന്റെ ഓര്‍മയ്ക്ക്', 'ദൈവത്തിന്റെ പേടകം പിടിക്കപ്പെട്ടതിനാല്‍ "മഹത്വം ഇസ്രായേലില്‍നിന്നു വിട്ടുപോയി" എന്നതിനാല്‍', 'ജനിച്ച ദിവസത്തിന്റെ പേരനുസരിച്ച്', 'ഏലിയുടെ നിര്‍ദേശപ്രകാരം'],
+    correct: 1,
+    explain: '4:21-22 — "മഹത്വം ഇസ്രായേലില്‍നിന്നു വിട്ടുപോയി എന്നു പറഞ്ഞ്... ദൈവത്തിന്റെ പേടകം പിടിക്കപ്പെട്ടതിനാല്‍."'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

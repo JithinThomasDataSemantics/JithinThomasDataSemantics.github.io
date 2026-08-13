@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>സഭാപ്രസംഗകന്‍ 5 · ദൈവഭക്തി | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0F1116; --void-2:#171A22; --panel:#1D212B; --panel-2:#242834;
+    --mist:#B9C4D6; --mist-soft:#DCE3EE; --mist-dim:#5B6478;
+    --amber:#C9A265; --amber-soft:#E3C596;
+    --plum:#8B6FA0; --plum-dim:#4A3B58;
+    --sage:#7E9385;
+    --parchment:#EFEAE0; --parchment-2:#E2DBC9;
+    --ink:#25231E; --text:#E5E4DE; --text-dim:#9CA1B0;
+    --line: rgba(185,196,214,0.16);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(185,196,214,0.10), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--plum), var(--mist), var(--amber));
+    z-index:200; transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 10%, rgba(185,196,214,0.14), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--mist-soft);
+    background:rgba(185,196,214,0.07); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--plum);box-shadow:0 0 8px var(--plum);}
+
+  .lips-icon{ width:64px; height:64px; margin:0 auto 14px; opacity:.9; }
+  h1.title{ font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px); margin:6px 0 8px; color:var(--parchment); }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--mist-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--plum); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- THREE WARNINGS ---------- */
+  .warnings{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  @media(max-width:560px){ .warnings{ grid-template-columns:1fr; } }
+  .warn-card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px; text-align:center; }
+  .warn-card .wicon{ font-size:24px; display:block; margin-bottom:8px; }
+  .warn-card .wtitle{ font-family:var(--display); font-weight:700; font-size:14.5px; color:var(--amber-soft); display:block; margin-bottom:6px; }
+  .warn-card p{ margin:0; font-size:12.5px; color:var(--text-dim); line-height:1.6; }
+
+  /* ---------- VOW BRANCH ---------- */
+  .vow-branch{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .vow-branch{ grid-template-columns:1fr; } }
+  .vbranch-card{ border-radius:14px; padding:18px; border:1px solid var(--line); }
+  .vbranch-card.better{ background:linear-gradient(160deg, rgba(126,147,133,0.14), var(--panel)); border-color:rgba(126,147,133,0.4); }
+  .vbranch-card.worse{ background:linear-gradient(160deg, rgba(139,111,160,0.12), var(--panel)); border-color:rgba(139,111,160,0.4); }
+  .vbranch-card .vicon{ font-size:22px; margin-bottom:8px; }
+  .vbranch-card .vtitle{ font-family:var(--display); font-weight:700; font-size:14.5px; color:var(--parchment); margin:0 0 6px; }
+  .vbranch-card p{ margin:0; font-size:13px; color:var(--text-dim); line-height:1.6; }
+  .vbranch-outcome{ margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); font-size:12px; font-weight:700; }
+  .vbranch-card.better .vbranch-outcome{ color:#C3D4B9; }
+  .vbranch-card.worse .vbranch-outcome{ color:#DCC8E6; }
+
+  /* ---------- RICH MAN ARC ---------- */
+  .arc{ position:relative; padding-left:34px; margin-top:8px; }
+  .arc::before{ content:""; position:absolute; left:12px; top:6px; bottom:6px; width:2px; background:linear-gradient(180deg, var(--amber), var(--plum)); opacity:.55; }
+  .arc-item{ position:relative; padding-bottom:22px; }
+  .arc-item:last-child{ padding-bottom:2px; }
+  .arc-num{ position:absolute; left:-34px; top:0; width:26px; height:26px; border-radius:50%; background:var(--void-2); border:2px solid var(--plum); color:var(--mist-soft); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:var(--display); }
+  .arc-item p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.65; }
+  .arc-item p b{ color:var(--text); }
+
+  /* ---------- SLEEP CONTRAST ---------- */
+  .sleep{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:14px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  @media(max-width:560px){ .sleep{ grid-template-columns:1fr; text-align:center; } }
+  .sleep .sside{ text-align:center; }
+  .sleep .sicon{ font-size:28px; display:block; margin-bottom:6px; }
+  .sleep .slabel{ font-family:var(--display); font-weight:700; font-size:14.5px; color:var(--parchment); margin-bottom:4px; }
+  .sleep .sdesc{ font-size:12.5px; color:var(--text-dim); }
+  .sleep .smid{ text-align:center; color:var(--amber); font-size:20px; }
+
+  /* ---------- SCROLL ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:26px 24px; position:relative;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35); border:1px solid #cfc6ad;
+  }
+  .scroll::before, .scroll::after{ content:""; position:absolute; left:0; right:0; height:14px; background:repeating-linear-gradient(90deg, #cfc6ad 0 10px, #beb494 10px 20px); border-radius:50%; }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--serif); font-style:italic; font-size:16px; line-height:1.85; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:#5c5340; text-transform:uppercase; }
+
+  /* ---------- RESOLUTION ---------- */
+  .resolution{
+    background:linear-gradient(160deg, rgba(126,147,133,0.14), var(--panel));
+    border:1px solid rgba(126,147,133,0.4); border-radius:var(--radius); padding:22px; text-align:center;
+  }
+  .resolution .rline{ font-family:var(--display); font-weight:700; font-size:18px; color:var(--parchment); margin:0 0 8px; }
+  .resolution .rsub{ font-size:13.5px; color:var(--text-dim); }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--amber-soft); background:rgba(201,162,101,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--amber); }
+  .opt.correct{ background:rgba(126,147,133,0.25); border-color:var(--sage); color:#D3DFCF; }
+  .opt.wrong{ background:rgba(139,111,160,0.22); border-color:var(--plum); color:#E4D7EC; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(201,162,101,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--amber), #9C7A42); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--amber); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--amber-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--amber); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--amber-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍</div>
+    <svg class="lips-icon" viewBox="0 0 64 64">
+      <path d="M10 32 Q20 22 32 26 Q44 22 54 32 Q44 40 32 36 Q20 40 10 32 Z" fill="none" stroke="#C9A265" stroke-width="2.5" stroke-linejoin="round"/>
+      <line x1="14" y1="32" x2="50" y2="32" stroke="#C9A265" stroke-width="1.5" opacity="0.6"/>
+    </svg>
+    <h1 class="title">ദൈവഭക്തി</h1>
+    <p class="subtitle">"നിന്റെ വാക്കുകള്‍ ചുരുങ്ങിയിരിക്കട്ടെ"</p>
+    <p class="ref">സഭാപ്രസംഗകന്‍ 5 &nbsp;·&nbsp; ആരാധനയും ധനവും</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- THREE WARNINGS -->
+  <section class="section" id="warnings-sec">
+    <p class="eyebrow">ദേവാലയത്തിലേക്കു പോകുമ്പോള്‍</p>
+    <h2 class="h">മൂന്നു മുന്നറിയിപ്പുകള്‍</h2>
+    <p class="lede">ദൈവസന്നിധിയില്‍ എങ്ങനെ പെരുമാറണം എന്നതിനെക്കുറിച്ചുള്ള മൂന്നു പ്രായോഗിക ഉപദേശങ്ങള്‍.</p>
+    <div class="warnings">
+      <div class="warn-card"><span class="wicon">👂</span><span class="wtitle">കേള്‍ക്കാന്‍ അടുത്തു ചെല്ലുക</span><p>വിഡ്ഢിയുടെ ബലിയര്‍പ്പണത്തെക്കാള്‍ ഇതു ഉത്തമം.</p></div>
+      <div class="warn-card"><span class="wicon">🤐</span><span class="wtitle">വാക്കുകള്‍ ചുരുക്കുക</span><p>ദൈവം സ്വര്‍ഗത്തില്‍, നീ ഭൂമിയില്‍ — തിടുക്കത്തില്‍ പ്രതിജ്ഞയെടുക്കരുത്.</p></div>
+      <div class="warn-card"><span class="wicon">✅</span><span class="wtitle">നേര്‍ച്ച നിറവേറ്റുക</span><p>താമസിക്കാതെ വേണം; മൂഢരില്‍ ദൈവത്തിനു പ്രീതിയില്ല.</p></div>
+    </div>
+  </section>
+
+  <!-- VOW BRANCH -->
+  <section class="section" id="vow-sec">
+    <p class="eyebrow">നേര്‍ച്ചയെക്കുറിച്ചുള്ള തത്വം</p>
+    <h2 class="h">നേരാതിരിക്കുന്നതാണ് ഭേദം</h2>
+    <div class="vow-branch">
+      <div class="vbranch-card better">
+        <div class="vicon">🤍</div>
+        <p class="vtitle">നേരാതിരിക്കുക</p>
+        <p>ഒരു നേര്‍ച്ചയും നേരാതെ ജീവിക്കുന്നത് ലളിതവും സത്യസന്ധവുമായ വഴി.</p>
+        <div class="vbranch-outcome">ഭേദമായ തിരഞ്ഞെടുപ്പ് ✓</div>
+      </div>
+      <div class="vbranch-card worse">
+        <div class="vicon">⚠️</div>
+        <p class="vtitle">നേര്‍ന്ന് നിറവേറ്റാതിരിക്കുക</p>
+        <p>നേര്‍ച്ച നേര്‍ന്നിട്ട് നിറവേറ്റാതിരിക്കുന്നത് ദൈവത്തെ പ്രകോപിപ്പിക്കും.</p>
+        <div class="vbranch-outcome">ഒഴിവാക്കേണ്ട പിഴവ്</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RICH MAN ARC -->
+  <section class="section" id="arc-sec">
+    <p class="eyebrow">സൂര്യനു കീഴേ കണ്ട വലിയ തിന്മ</p>
+    <h2 class="h">ധനികന്റെ ദുരന്തം</h2>
+    <div class="arc" id="arcWrap"></div>
+  </section>
+
+  <!-- SLEEP -->
+  <section class="section" id="sleep-sec">
+    <p class="eyebrow">ഒരു വൈരുധ്യം</p>
+    <h2 class="h">ഉറക്കത്തിന്റെ വ്യത്യാസം</h2>
+    <div class="sleep">
+      <div class="sside"><span class="sicon">😴</span><span class="slabel">അധ്വാനിക്കുന്നവന്‍</span><span class="sdesc">അല്‍പമോ അധികമോ ഭക്ഷിച്ചാലും സുഖനിദ്ര</span></div>
+      <div class="smid">⇄</div>
+      <div class="sside"><span class="sicon">😖</span><span class="slabel">ധനികന്‍</span><span class="sdesc">അമിതസമ്പാദ്യം ഉറക്കം കെടുത്തുന്നു</span></div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="section" id="quote-sec">
+    <p class="eyebrow">വന്നതുപോലെതന്നെ പോകുന്നു</p>
+    <h2 class="h">നഗ്നനായി മടങ്ങുന്നു</h2>
+    <div class="scroll">
+      <p>"അമ്മയുടെ ഉദരത്തില്‍നിന്നു പുറത്തുവന്നതുപോലെ നഗ്നനായിത്തന്നെ അവന്‍ പോകും. അവന്റെ പ്രയത്‌നഫലത്തിലൊന്നും അവന്‍ കൊണ്ടുപോകയില്ല."</p>
+      <span class="cite">സഭാപ്രസംഗകന്‍ 5:15</span>
+    </div>
+  </section>
+
+  <!-- RESOLUTION -->
+  <section class="section" id="resolution-sec">
+    <p class="eyebrow">വീണ്ടും അതേ വെളിച്ചം</p>
+    <h2 class="h">ദൈവദത്തമായ സന്തോഷം</h2>
+    <div class="resolution">
+      <p class="rline">"തിന്നുകുടിച്ചും അധ്വാനഫലം ആസ്വദിച്ചും കഴിക്കുന്നതാണ് ഉത്തമവും യോഗ്യവും"</p>
+      <p class="rsub">ദൈവം ഹൃദയത്തില്‍ സന്തോഷം നല്‍കി അവന്റെ ദിനങ്ങള്‍ കൊണ്ട് അവനെ വ്യാപൃതനാക്കുന്നു (5:18-20)</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം · അധ്യായം 5</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — സഭാപ്രസംഗകന്‍ 5</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🕊 Logos Quiz 2026 പഠന സഹായി · സഭാപ്രസംഗകന്‍ 5</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* rich man arc */
+const arcSteps = [
+  {t:'സമ്പത്ത് സൂക്ഷിച്ചുവയ്ക്കുന്നു', b:'ധനികന്‍ തന്റെ തന്നെ നാശത്തിനു മുതല്‍ സൂക്ഷിക്കുന്നു.'},
+  {t:'സാഹസയത്‌നത്തില്‍ നഷ്ടം', b:'ഒരു സാഹസയത്‌നത്തില്‍ സമ്പത്ത് മുഴുവന്‍ നഷ്ടപ്പെടുന്നു.'},
+  {t:'പുത്രന് ഒന്നും ബാക്കിയില്ല', b:'തന്റെ പുത്രനു കൊടുക്കാന്‍ അവന്റെ കൈവശം ഒന്നുമില്ലാതായി.'},
+  {t:'വന്നതുപോലെതന്നെ പോകുന്നു', b:'അമ്മയുടെ ഉദരത്തില്‍നിന്നു വന്നതുപോലെ നഗ്നനായി മടങ്ങുന്നു.'},
+];
+const arcWrap = document.getElementById('arcWrap');
+arcSteps.forEach((item,i)=>{
+  const el = document.createElement('div');
+  el.className = 'arc-item';
+  el.innerHTML = `<div class="arc-num">${i+1}</div><p><b>${item.t}</b> — ${item.b}</p>`;
+  arcWrap.appendChild(el);
+});
+
+/* full text */
+const verses = [
+  ['1','ദേവാലയത്തിലേക്കു പോകുമ്പോള്‍ സൂക്ഷ്മതയുള്ളവനായിരിക്കുക; ശ്രദ്ധിച്ചു കേള്‍ക്കാന്‍ അടുത്തു ചെല്ലുന്നത് വിഡ്ഢിയുടെ ബലിയര്‍പ്പണത്തെക്കാള്‍ ഉത്തമം.'],
+  ['2-3','വിവേകശൂന്യമായി സംസാരിക്കരുത്; ദൈവം സ്വര്‍ഗത്തില്‍, നീ ഭൂമിയില്‍ — വാക്കുകള്‍ ചുരുങ്ങിയിരിക്കട്ടെ.'],
+  ['4-5','നേര്‍ച്ച നേര്‍ന്നാല്‍ താമസിക്കാതെ നിറവേറ്റുക; നേര്‍ന്നിട്ട് നിറവേറ്റാത്തതിനെക്കാള്‍ നേരാതിരിക്കുന്നതാണ് ഭേദം.'],
+  ['6-7','വാക്കുകളാല്‍ ദൈവത്തെ പ്രകോപിപ്പിക്കരുത്; സ്വപ്നങ്ങളും പൊള്ളവാക്കുകളും ഏറുമ്പോള്‍ ദൈവത്തെ ഭയപ്പെടുക.'],
+  ['8-9','ദരിദ്രന്‍ മര്‍ദിക്കപ്പെടുന്നതു കണ്ട് വിസ്മയിക്കരുത്; മേലധികാരികള്‍ പരസ്പരം നിരീക്ഷിക്കുന്നു; ഭൂമിയുടെ വിളവ് എല്ലാവര്‍ക്കുമുള്ളതാണ്.'],
+  ['10-12','ധനമോഹിക്ക് ധനംകൊണ്ട് തൃപ്തിവരില്ല; അധ്വാനിക്കുന്നവന് സുഖനിദ്ര, ധനികന്റെ അമിതസമ്പാദ്യം ഉറക്കം കെടുത്തുന്നു.'],
+  ['13-16','ധനികന്‍ തന്റെ നാശത്തിനു മുതല്‍ സൂക്ഷിക്കുന്നു; സാഹസയത്‌നത്തില്‍ നഷ്ടപ്പെടുന്നു; വന്നതുപോലെതന്നെ നഗ്നനായി പോകുന്നു.'],
+  ['17','വ്യര്‍ഥപ്രയത്‌നംകൊണ്ടും അന്ധകാരത്തിലും ആകുലതയിലും തള്ളിനീക്കിയ ജീവിതംകൊണ്ടും പ്രയോജനമില്ല.'],
+  ['18-20','തിന്നുകുടിച്ചും അധ്വാനഫലം ആസ്വദിച്ചും കഴിക്കുന്നതാണ് ഉത്തമം — ഇതു ദൈവത്തിന്റെ ദാനം; ദൈവം ഹൃദയത്തില്‍ സന്തോഷം നല്‍കി ദിനങ്ങള്‍ കൊണ്ട് വ്യാപൃതനാക്കുന്നു.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'ദേവാലയത്തിലേക്കു പോകുമ്പോള്‍ എന്താണ് വിഡ്ഢിയുടെ ബലിയര്‍പ്പണത്തെക്കാള്‍ ഉത്തമമെന്നു പറയുന്നു?',
+    options: ['സമ്പത്ത് ദാനം ചെയ്യുന്നത്', 'ശ്രദ്ധിച്ചു കേള്‍ക്കാന്‍ അടുത്തു ചെല്ലുന്നത്', 'ദീര്‍ഘനേരം ഉപവസിക്കുന്നത്', 'വലിയ ശബ്ദത്തില്‍ പ്രാര്‍ഥിക്കുന്നത്'],
+    correct: 1,
+    explain: '5:1 — "ശ്രദ്ധിച്ചു കേള്‍ക്കാന്‍ അടുത്തു ചെല്ലുന്നതാണ് വിഡ്ഢിയുടെ ബലിയര്‍പ്പണത്തെക്കാള്‍ ഉത്തമം."'
+  },
+  {
+    q: 'ദൈവസന്നിധിയില്‍ വാക്കുകള്‍ എങ്ങനെ ആയിരിക്കണമെന്നു നിര്‍ദേശിക്കുന്നു?',
+    options: ['ദീര്‍ഘവും വാചാലവും', 'ചുരുങ്ങിയത്', 'ഉച്ചത്തിലുള്ളത്', 'ആവര്‍ത്തിച്ചുള്ളത്'],
+    correct: 1,
+    explain: '5:2 — "ദൈവം സ്വര്‍ഗത്തിലാണ്, നീ ഭൂമിയിലും. അതുകൊണ്ട്, നിന്റെ വാക്കുകള്‍ ചുരുങ്ങിയിരിക്കട്ടെ."'
+  },
+  {
+    q: 'ദൈവത്തിനു നേര്‍ച്ച നേര്‍ന്നാല്‍ എന്തു ചെയ്യണം?',
+    options: ['ഉടനെ മറക്കണം', 'നിറവേറ്റാന്‍ താമസിക്കരുത്', 'ഒരു വര്‍ഷം കാത്തിരിക്കണം', 'പുരോഹിതനെ അറിയിക്കണം'],
+    correct: 1,
+    explain: '5:4 — "ദൈവത്തിനു നേര്‍ച്ച നേര്‍ന്നാല്‍ നിറവേറ്റാന്‍ താമസിക്കരുത്."'
+  },
+  {
+    q: 'നേര്‍ന്നിട്ട് നിറവേറ്റാത്തതിനെക്കാള്‍ എന്താണ് ഭേദമെന്നു പറയുന്നു?',
+    options: ['രണ്ടു തവണ നേരുന്നത്', 'നേരാതിരിക്കുന്നത്', 'പുരോഹിതനോട് ചോദിക്കുന്നത്', 'നേര്‍ച്ച മാറ്റുന്നത്'],
+    correct: 1,
+    explain: '5:5 — "നേര്‍ന്നിട്ട് നിറവേറ്റാത്തതിനെക്കാള്‍ ഭേദം നേരാതിരിക്കുന്നതാണ്."'
+  },
+  {
+    q: 'ദ്രവ്യാഗ്രഹിക്ക് എന്തുകൊണ്ടാണ് ഒരിക്കലും തൃപ്തി വരാത്തത്?',
+    options: ['ദ്രവ്യം എപ്പോഴും കുറവായതിനാല്‍', 'ധനം എത്ര കൂടിയാലും ധനംകൊണ്ട് തൃപ്തിവരാത്തതിനാല്‍', 'മറ്റുള്ളവര്‍ അസൂയപ്പെടുന്നതിനാല്‍', 'സര്‍ക്കാര്‍ നികുതി ചുമത്തുന്നതിനാല്‍'],
+    correct: 1,
+    explain: '5:10 — "ദ്രവ്യാഗ്രഹിക്കു ദ്രവ്യംകൊണ്ട് തൃപ്തിവരുകയില്ല."'
+  },
+  {
+    q: 'അധ്വാനിക്കുന്നവന്റെയും ധനികന്റെയും ഉറക്കം തമ്മില്‍ എന്തു വ്യത്യാസമുണ്ട്?',
+    options: ['ഇരുവര്‍ക്കും ഒരേപോലെ ഉറക്കം കിട്ടും', 'അധ്വാനിക്കുന്നവന് സുഖനിദ്ര, ധനികന്റെ അമിതസമ്പാദ്യം ഉറക്കം കെടുത്തുന്നു', 'ധനികന് എപ്പോഴും നല്ല ഉറക്കം', 'അധ്വാനിക്കുന്നവന് ഒരിക്കലും ഉറങ്ങാനാവില്ല'],
+    correct: 1,
+    explain: '5:12 — "അധ്വാനിക്കുന്നവന് സുഖനിദ്ര ലഭിക്കുന്നു. എന്നാല്‍ അമിതസമ്പാദ്യം ധനികന്റെ ഉറക്കം കെടുത്തുന്നു."'
+  },
+  {
+    q: 'ധനികന്‍ തന്റെ സമ്പത്ത് എങ്ങനെ നഷ്ടപ്പെടുത്തി എന്നാണ് ദൃഷ്ടാന്തം പറയുന്നത്?',
+    options: ['മോഷണത്തിലൂടെ', 'ഒരു സാഹസയത്‌നത്തില്‍', 'നികുതി കൊടുത്ത്', 'ദാനം ചെയ്ത്'],
+    correct: 1,
+    explain: '5:14 — "ഒരു സാഹസയത്‌നത്തില്‍ അതു നഷ്ടപ്പെടുന്നു. തന്റെ പുത്രനു കൊടുക്കാന്‍ അവന്റെ കൈവശം ഒന്നുമില്ലാതായി."'
+  },
+  {
+    q: 'മനുഷ്യന്‍ ഈ ലോകം വിട്ടുപോകുന്നത് എങ്ങനെയെന്നു 15-ാം വാക്യം പറയുന്നു?',
+    options: ['ധാരാളം സമ്പത്തുമായി', 'അമ്മയുടെ ഉദരത്തില്‍നിന്നു വന്നതുപോലെ നഗ്നനായി', 'ബഹുമാനത്തോടെ അലങ്കരിക്കപ്പെട്ട്', 'സന്താനങ്ങളോടൊപ്പം'],
+    correct: 1,
+    explain: '5:15 — "അമ്മയുടെ ഉദരത്തില്‍നിന്നു പുറത്തുവന്നതുപോലെ നഗ്നനായിത്തന്നെ അവന്‍ പോകും."'
+  },
+  {
+    q: 'ജീവിതത്തില്‍ ഉത്തമവും യോഗ്യവുമായി കണ്ടത് എന്താണെന്നു അധ്യായം പറയുന്നു?',
+    options: ['സമ്പത്ത് സംഭരിക്കുക', 'തിന്നുകുടിച്ചും അധ്വാനഫലം ആസ്വദിച്ചും കഴിയുക', 'ഏകാന്തവാസം സ്വീകരിക്കുക', 'അധികാരം സമ്പാദിക്കുക'],
+    correct: 1,
+    explain: '5:18 — "മനുഷ്യന്‍ തിന്നുകുടിച്ചും അധ്വാനഫലം ആസ്വദിച്ചും കഴിക്കുന്നതാണ് ഉത്തമവും യോഗ്യവുമായി ഞാന്‍ കണ്ടിട്ടുള്ളത്."'
+  },
+  {
+    q: 'ദൈവം ഒരാളെ ജീവിതത്തിന്റെ ഹ്രസ്വതയെക്കുറിച്ച് പര്യാകുലനാകാതെ എങ്ങനെ സൂക്ഷിക്കുന്നു?',
+    options: ['ദീര്‍ഘായുസ്‌സു നല്‍കി', 'ഹൃദയത്തില്‍ സന്തോഷം നല്‍കി ദിനങ്ങള്‍ കൊണ്ട് വ്യാപൃതനാക്കി', 'എല്ലാ ഓര്‍മകളും മായ്ച്ചുകളഞ്ഞ്', 'സമ്പത്ത് വര്‍ധിപ്പിച്ച്'],
+    correct: 1,
+    explain: '5:20 — "ദൈവം അവന്റെ ദിനങ്ങള്‍ സന്തോഷഭരിതമാക്കിയിരിക്കുന്നു."'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

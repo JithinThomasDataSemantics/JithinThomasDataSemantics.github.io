@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ജീവജലം — യോഹന്നാൻ 4 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand: #241b12; --sand-2: #2f2417;
+    --parchment: #f1e6cd; --parchment-dim: #b3a488;
+    --oasis: #4fa89d; --oasis-soft: #82d3c6;
+    --clay: #c2703f; --clay-soft: #e0996a;
+    --line: rgba(79,168,157,0.22);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(79,168,157,0.12), transparent 45%),
+      radial-gradient(ellipse at 88% 25%, rgba(194,112,63,0.10), transparent 42%),
+      var(--sand);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--oasis); color:var(--sand);}
+
+  /* ---------- HERO: WELL WITH RISING WATER ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .eyebrow{font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--oasis-soft); margin-bottom:1.6rem; font-style:italic;}
+  .well{width:130px; height:130px; margin-bottom:1.6rem; position:relative;}
+  .well svg{width:100%; height:100%;}
+  .well-ripple{fill:none; stroke:var(--oasis-soft); stroke-width:1; opacity:0; animation:wellRipple 3.2s ease-out infinite;}
+  .well-ripple.r2{animation-delay:1.1s;}
+  .well-ripple.r3{animation-delay:2.2s;}
+  @keyframes wellRipple{0%{opacity:0.7; r:14;} 100%{opacity:0; r:50;}}
+  .well-water{animation:waterGlow 3s ease-in-out infinite;}
+  @keyframes waterGlow{0%,100%{opacity:0.75;} 50%{opacity:1;}}
+
+  .hero h1{font-weight:800; font-size:clamp(2.1rem, 6.4vw, 4rem); line-height:1.25; margin:0; color:var(--parchment);}
+  .hero h1 em{font-style:normal; color:var(--oasis-soft); display:block;}
+  .hero .ref{font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--parchment-dim); margin-top:1rem;}
+  .hero p.tag{max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--parchment-dim);}
+  .scroll-cue{margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--oasis-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--oasis), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--oasis-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.35rem,3.1vw,1.95rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--sand-2), var(--sand)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--oasis);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--oasis-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--oasis-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:420px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--oasis-soft); font-size:0.88rem;}
+
+  .pull-quote{margin:1.6rem 0 0.4rem; padding:2.2rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(79,168,157,0.14), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .pull-quote p{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.1rem, 2.6vw, 1.45rem); line-height:1.9; color:var(--parchment); max-width:40ch; margin:0 auto;}
+  .pull-quote span{display:block; margin-top:0.9rem; font-family:var(--font-num); font-style:italic; color:var(--oasis-soft); font-size:0.88rem;}
+
+  .reveal-quote{margin:0.4rem 0 0.4rem; padding:2.4rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(194,112,63,0.16), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .reveal-quote .vtag{font-family:var(--font-num); font-style:italic; color:var(--clay-soft); font-size:0.85rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.8rem;}
+  .reveal-quote p{font-family:var(--font-ml); font-weight:800; font-size:clamp(1.2rem, 3.2vw, 1.75rem); line-height:1.7; color:var(--parchment); max-width:34ch; margin:0 auto;}
+
+  /* ---------- HARVEST CARDS ---------- */
+  .cards-col{display:flex; flex-direction:column; gap:0.7rem;}
+  .simple-card{background:var(--sand-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.3rem;}
+  .simple-card .sverse{font-family:var(--font-num); font-style:italic; color:var(--oasis-soft); font-size:0.82rem; margin-bottom:0.4rem;}
+  .simple-card .stext{font-size:0.96rem; line-height:1.85; color:var(--parchment);}
+  .simple-card .stext b{color:var(--clay-soft);}
+
+  /* ---------- ROYAL OFFICIAL TIMELINE ---------- */
+  .confront-line{border-left:2px solid var(--clay); margin-left:14px; padding-left:1.6rem; display:flex; flex-direction:column; gap:1.4rem;}
+  .confront-step{position:relative;}
+  .confront-step::before{content:''; position:absolute; left:-1.99rem; top:0.15rem; width:12px; height:12px; border-radius:50%; background:var(--clay-soft); box-shadow:0 0 0 4px rgba(194,112,63,0.2);}
+  .confront-step .cmeta{font-family:var(--font-num); font-style:italic; color:var(--clay-soft); font-size:0.85rem; margin-bottom:0.35rem;}
+  .confront-step .ctext{font-size:0.97rem; line-height:1.85; color:var(--parchment-dim);}
+  .confront-step .ctext b{color:var(--parchment);}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--sand-2), var(--sand)); border:1px solid var(--line); border-left:3px solid var(--oasis); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--oasis-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--clay-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--sand-2), var(--sand)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--oasis);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--oasis-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--oasis); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--oasis-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--oasis); color:var(--sand); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--oasis-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .well-ripple, .well-water, .scroll-cue span{animation:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; John / യോഹന്നാൻ</div>
+  <div class="well">
+    <svg viewBox="0 0 130 130">
+      <circle class="well-ripple r1" cx="65" cy="65" r="14"/>
+      <circle class="well-ripple r2" cx="65" cy="65" r="14"/>
+      <circle class="well-ripple r3" cx="65" cy="65" r="14"/>
+      <circle class="well-water" cx="65" cy="65" r="30" fill="url(#waterGrad)"/>
+      <defs>
+        <radialGradient id="waterGrad" cx="35%" cy="30%" r="75%">
+          <stop offset="0%" stop-color="#82d3c6"/>
+          <stop offset="70%" stop-color="#4fa89d"/>
+          <stop offset="100%" stop-color="#2c6b64"/>
+        </radialGradient>
+      </defs>
+      <circle cx="65" cy="65" r="46" fill="none" stroke="#c2703f" stroke-width="2" opacity="0.55"/>
+    </svg>
+  </div>
+  <h1>ജീവജലം<br><em>നിര്‍ഗളിക്കുന്ന അരുവി</em></h1>
+  <div class="ref">യോഹന്നാൻ 4 : 1&ndash;54</div>
+  <p class="tag">ഉച്ചവെയിലിൽ ഒരു കിണറ്റിനരികെ &mdash; യഹൂദനും സമരിയാക്കാരിയും തമ്മിലുള്ള അതിരുകൾ മറികടക്കുന്ന സംഭാഷണം, ഒടുവിൽ ഒരു അകലെയുള്ള സൗഖ്യം.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: THE WELL DIALOGUE -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>കിണറ്റിനരികിലെ സംഭാഷണം</h2></div>
+  <p class="section-sub">വാ. 1&ndash;26. യാക്കോബിന്റെ കിണറ്റിനരികെ, ആറാം മണിക്കൂറിൽ &mdash; ടാപ്പ് ചെയ്ത് വിശദാംശം കാണുക.</p>
+  <div class="prologue-grid" id="prologue"></div>
+  <div class="pull-quote">
+    <p>&ldquo;ദൈവം ആത്മാവാണ്. അവിടുത്തെ ആരാധിക്കുന്നവര്‍ ആത്മാവിലും സത്യത്തിലുമാണ് ആരാധിക്കേണ്ടത്.&rdquo;</p>
+    <span>വാ. 24</span>
+  </div>
+  <div class="reveal-quote">
+    <div class="vtag">വാ. 26</div>
+    <p>&ldquo;നിന്നോടു സംസാരിക്കുന്ന ഞാന്‍ തന്നെയാണ് അവന്‍.&rdquo;</p>
+  </div>
+</section>
+
+<!-- II: HARVEST AND SAMARITAN FAITH -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>കൊയ്ത്തിന്റെ ഉപമയും സമരിയാക്കാരുടെ വിശ്വാസവും</h2></div>
+  <p class="section-sub">വാ. 27&ndash;42. സ്ത്രീ പോയി പറഞ്ഞ സാക്ഷ്യം പട്ടണം മുഴുവൻ ചലിപ്പിക്കുന്നു.</p>
+  <div class="cards-col" id="harvestCards"></div>
+</section>
+
+<!-- III: ROYAL OFFICIAL'S SON -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>രാജസേവകന്റെ പുത്രനെ സുഖപ്പെടുത്തുന്നു</h2></div>
+  <p class="section-sub">വാ. 43&ndash;54. ഗലീലിയിലെ കാനായിൽ &mdash; യേശുവിന്റെ രണ്ടാമത്തെ അടയാളം.</p>
+  <div class="confront-line" id="confrontLine"></div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">സംഖ്യകൾ, സ്ഥലങ്ങൾ, പ്രധാന വാക്യങ്ങൾ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>യോഹന്നാൻ 4 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- SECTION I ACCORDION ---------------- */
+const prologue = [
+  {v:"4-6", text:"അവനു സമരിയായിലൂടെ കടന്നുപോകേണ്ടിയിരുന്നു. സിക്കാർ എന്ന പട്ടണത്തിൽ, യാക്കോബിന്റെ കിണറിന്റെ കരയിൽ യാത്രാക്ഷീണിതനായ യേശു ഇരുന്നു. ഏകദേശം ആറാം മണിക്കൂറായിരുന്നു.", note:"ക്വിസ് സൂചന: സ്ഥലം സിക്കാർ, യാക്കോബിന്റെ കിണർ, സമയം ആറാം മണിക്കൂർ (ഉച്ച)."},
+  {v:"7-9", text:"ഒരു സമരിയാക്കാരി വെള്ളം കോരാൻ വന്നു. യേശു: 'എനിക്കു കുടിക്കാന്‍ തരുക.' അവൾ: 'നീ യഹൂദനായിരിക്കേ, സമരിയാക്കാരിയായ എന്നോടു ചോദിക്കുന്നതെന്ത്?'", note:"യഹൂദരും സമരിയാക്കാരും തമ്മിലുള്ള ചരിത്രപരമായ അകൽച്ച."},
+  {v:"10-14", text:"യേശു 'ജീവജലം' വാഗ്ദാനം ചെയ്തു: 'ഞാൻ നൽകുന്ന ജലം അവനിൽ നിത്യജീവനിലേക്കു നിർഗളിക്കുന്ന അരുവിയാകും.'", note:"ക്വിസ് ഉദ്ധരണി: 'നിത്യജീവനിലേക്കു നിര്‍ഗളിക്കുന്ന അരുവി.'"},
+  {v:"16-18", text:"യേശു: 'നിന്റെ ഭർത്താവിനെ കൂട്ടിക്കൊണ്ടു വരുക.' അവൾ: 'എനിക്കു ഭർത്താവില്ല.' യേശു: 'ശരിയാണ് &mdash; നിനക്ക് അഞ്ചു ഭർത്താക്കന്മാരുണ്ടായിരുന്നു; ഇപ്പോഴുള്ളവൻ ഭർത്താവല്ല.'", note:"ക്വിസ് സൂചന: അഞ്ചു ഭർത്താക്കന്മാർ."},
+  {v:"19-22", text:"'അങ്ങ് ഒരു പ്രവാചകനാണെന്നു ഞാൻ മനസ്സിലാക്കുന്നു' എന്നു അവൾ പറഞ്ഞു, ആരാധനാസ്ഥലത്തെക്കുറിച്ചു ചോദിച്ചു &mdash; ഈ മലയോ ജറുസലെമോ.", note:"സമരിയാക്കാരും യഹൂദരും തമ്മിലുള്ള ആരാധനാ തർക്കം."},
+  {v:"23-24", text:"'യഥാർഥ ആരാധകർ ആത്മാവിലും സത്യത്തിലും പിതാവിനെ ആരാധിക്കുന്ന സമയം വരുന്നു &mdash; അത് ഇപ്പോൾത്തന്നെയാണ്.' ദൈവം ആത്മാവാണ്.", note:"ആരാധനയുടെ പുതിയ നിർവചനം &mdash; സ്ഥലത്തെക്കാൾ ആത്മാവും സത്യവും."},
+  {v:"25-26", text:"'മിശിഹാ വരുമെന്ന് എനിക്കറിയാം' എന്നു അവൾ പറഞ്ഞു. യേശു: 'നിന്നോടു സംസാരിക്കുന്ന ഞാൻ തന്നെയാണ് അവൻ.'", note:"യോഹന്നാന്റെ സുവിശേഷത്തിൽ യേശു തന്റെ മിശിഹാത്വം നേരിട്ട് വെളിപ്പെടുത്തുന്ന ആദ്യ സന്ദർഭം."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- SECTION II HARVEST CARDS ---------------- */
+const harvestCards = [
+  {v:"27-30", t:"ശിഷ്യന്മാർ അദ്ഭുതപ്പെട്ടു, എന്നാൽ ഒന്നും ചോദിച്ചില്ല. സ്ത്രീ കുടം അവിടെ വച്ചിട്ട് പട്ടണത്തിലേക്കു പോയി: 'ഞാൻ ചെയ്ത കാര്യങ്ങളെല്ലാം എന്നോടു പറഞ്ഞ ഒരു മനുഷ്യനെ വന്നു കാണുവിൻ. <b>ഇവൻ ക്രിസ്തുവായിരിക്കുമോ?</b>'"},
+  {v:"32-34", t:"ശിഷ്യന്മാർ ഭക്ഷണം അപേക്ഷിച്ചപ്പോൾ യേശു: 'എന്നെ അയച്ചവന്റെ ഇഷ്ടം പ്രവർത്തിക്കുകയും അവന്റെ ജോലി പൂർത്തിയാക്കുകയുമാണ് <b>എന്റെ ഭക്ഷണം.</b>'"},
+  {v:"35-38", t:"'വയലുകളിലേക്കു നോക്കുവിൻ &mdash; അവ ഇപ്പോൾത്തന്നെ <b>വിളഞ്ഞുകൊയ്ത്തിനു പാകമായിരിക്കുന്നു.</b>' വിതയ്ക്കുന്നവനും കൊയ്യുന്നവനും ഒപ്പം സന്തോഷിക്കുന്നു."},
+  {v:"39-42", t:"സ്ത്രീയുടെ സാക്ഷ്യംമൂലം അനേകർ വിശ്വസിച്ചു; യേശു <b>രണ്ടു ദിവസം</b> അവിടെ താമസിച്ചു. പിന്നീട് അവർ പറഞ്ഞു: 'ഇവനാണ് യഥാർഥത്തിൽ <b>ലോക രക്ഷകൻ</b> എന്നു ഞങ്ങൾ മനസ്സിലാക്കി.'"}
+];
+document.getElementById('harvestCards').innerHTML = harvestCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- SECTION III TIMELINE ---------------- */
+const confront = [
+  {m:"വാ. 46", t:"യേശു വീണ്ടും <b>ഗലീലിയിലെ കാനായിൽ</b> എത്തി &mdash; വെള്ളം വീഞ്ഞാക്കിയ അതേ സ്ഥലം. കഫർന്നഹൂമിൽ ഒരു <b>രാജസേവകന്റെ</b> മകൻ രോഗബാധിതനായിരുന്നു."},
+  {m:"വാ. 47&ndash;48", t:"രാജസേവകൻ ആസന്നമരണനായ മകനെ സുഖപ്പെടുത്താൻ അപേക്ഷിച്ചു. യേശു: 'അടയാളങ്ങളും അദ്ഭുതങ്ങളും കാണുന്നില്ലെങ്കിൽ നിങ്ങൾ വിശ്വസിക്കില്ലല്ലോ.'"},
+  {m:"വാ. 49&ndash;50", t:"'കർത്താവേ, എന്റെ മകൻ മരിക്കുംമുമ്പ് വരണമേ!' യേശു: '<b>പൊയ്‌ക്കൊള്ളുക. നിന്റെ മകൻ ജീവിക്കും.</b>' അവൻ ആ വചനം വിശ്വസിച്ചു പോയി."},
+  {m:"വാ. 51&ndash;53", t:"വഴിയിൽവച്ച് ഭൃത്യന്മാർ മകൻ സുഖം പ്രാപിച്ചെന്നു അറിയിച്ചു. <b>ഏഴാം മണിക്കൂറിൽ</b> പനി വിട്ടതായി അറിഞ്ഞു &mdash; യേശു വാക്കു പറഞ്ഞ അതേ നിമിഷം. അവനും കുടുംബവും വിശ്വസിച്ചു."},
+  {m:"വാ. 54", t:"ഇത് യൂദയായിൽനിന്നു ഗലീലിയിലേക്കു വന്നശേഷം യേശു പ്രവർത്തിച്ച <b>രണ്ടാമത്തെ അടയാളം.</b>"}
+];
+document.getElementById('confrontLine').innerHTML = confront.map(c=>`
+  <div class="confront-step"><div class="cmeta">${c.m}</div><div class="ctext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"കണ്ടുമുട്ടിയ സ്ഥലം", val:"<b>യാക്കോബിന്റെ കിണർ</b>, സിക്കാർ പട്ടണത്തിനടുത്ത് (വാ. 5&ndash;6)."},
+  {label:"സമയം", val:"ഏകദേശം <b>ആറാം മണിക്കൂർ</b> (ഉച്ച) (വാ. 6)."},
+  {label:"സ്ത്രീയുടെ ഭർത്താക്കന്മാർ", val:"<b>അഞ്ചു പേർ</b>; ഇപ്പോഴുള്ളവൻ ഭർത്താവല്ല (വാ. 18)."},
+  {label:"ആരാധനയുടെ പുതിയ രീതി", val:"<b>ആത്മാവിലും സത്യത്തിലും</b> (വാ. 24)."},
+  {label:"മിശിഹാത്വ പ്രഖ്യാപനം", val:"'നിന്നോടു സംസാരിക്കുന്ന ഞാൻ തന്നെ' (വാ. 26)."},
+  {label:"സമരിയായിൽ താമസിച്ചത്", val:"<b>രണ്ടു ദിവസം</b> (വാ. 40)."},
+  {label:"സൗഖ്യം സംഭവിച്ച സമയം", val:"<b>ഏഴാം മണിക്കൂർ</b> &mdash; യേശു വാക്കു പറഞ്ഞ അതേ നിമിഷം (വാ. 52&ndash;53)."},
+  {label:"ഈ അടയാളത്തിന്റെ ക്രമം", val:"യൂദയായിൽനിന്നു ഗലീലിയിലേക്കു വന്നശേഷമുള്ള <b>രണ്ടാമത്തെ അടയാളം</b> (വാ. 54)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"യേശു സമരിയാക്കാരിയെ കണ്ടുമുട്ടിയത് എവിടെയാണ് (വാ. 5&ndash;6)?",
+   opts:["ഗലീലിക്കടലിന്റെ കരയിൽ","യാക്കോബിന്റെ കിണറ്റിനരികെ","ജറുസലെം ദേവാലയത്തിൽ","ജോർദാൻ നദിയിൽ"], correct:1,
+   note:"വാ. 6 &mdash; 'യാക്കോബിന്റെ കിണര്‍ അവിടെയാണ്&hellip; യേശു ആ കിണറിന്റെ കരയില്‍ ഇരുന്നു.'"},
+  {q:"സ്ത്രീയെ കണ്ടപ്പോൾ ഏകദേശം എത്ര മണിയായിരുന്നു (വാ. 6)?",
+   opts:["മൂന്നാം മണിക്കൂർ","ആറാം മണിക്കൂർ","ഒമ്പതാം മണിക്കൂർ","പന്ത്രണ്ടാം മണിക്കൂർ"], correct:1,
+   note:"വാ. 6 &mdash; 'ഏകദേശം ആറാം മണിക്കൂറായിരുന്നു.'"},
+  {q:"യേശു നൽകുന്ന ജലം എന്തായി മാറുമെന്നാണ് പറഞ്ഞത് (വാ. 14)?",
+   opts:["ഒരു തടാകം","നിത്യജീവനിലേക്കു നിർഗളിക്കുന്ന അരുവി","ഒരു പുഴ","മഴ"], correct:1,
+   note:"വാ. 14 &mdash; 'ഞാന്‍ നല്‍കുന്ന ജലം അവനില്‍ നിത്യജീവനിലേക്കു നിര്‍ഗളിക്കുന്ന അരുവിയാകും.'"},
+  {q:"സ്ത്രീക്ക് എത്ര ഭർത്താക്കന്മാർ ഉണ്ടായിരുന്നു എന്ന് യേശു പറഞ്ഞു (വാ. 18)?",
+   opts:["മൂന്ന്","നാല്","അഞ്ച്","ആറ്"], correct:2,
+   note:"വാ. 18 &mdash; 'നിനക്ക് അഞ്ചു ഭര്‍ത്താക്കന്മാരുണ്ടായിരുന്നു.'"},
+  {q:"വാ. 24 പ്രകാരം യഥാർഥ ആരാധകർ എങ്ങനെ പിതാവിനെ ആരാധിക്കണം?",
+   opts:["ജറുസലെമിൽ മാത്രം","ആത്മാവിലും സത്യത്തിലും","ഒരു മലയിൽ മാത്രം","ബലിയർപ്പിച്ചുകൊണ്ട്"], correct:1,
+   note:"വാ. 24 &mdash; 'അവിടുത്തെ ആരാധിക്കുന്നവര്‍ ആത്മാവിലും സത്യത്തിലുമാണ് ആരാധിക്കേണ്ടത്.'"},
+  {q:"'മിശിഹാ വരും' എന്നു സ്ത്രീ പറഞ്ഞപ്പോൾ യേശു എന്തു മറുപടി പറഞ്ഞു (വാ. 26)?",
+   opts:["'അവൻ ഉടൻ വരും'","'നിന്നോടു സംസാരിക്കുന്ന ഞാൻ തന്നെയാണ് അവൻ'","'ആർക്കും അറിയില്ല'","'അവൻ ജറുസലെമിൽ വരും'"], correct:1,
+   note:"വാ. 26 &mdash; 'നിന്നോടു സംസാരിക്കുന്ന ഞാന്‍ തന്നെയാണ് അവന്‍.'"},
+  {q:"തന്റെ 'ഭക്ഷണം' എന്താണെന്ന് യേശു പറഞ്ഞു (വാ. 34)?",
+   opts:["അപ്പവും മീനും","തന്നെ അയച്ചവന്റെ ഇഷ്ടം പ്രവർത്തിക്കുകയും ജോലി പൂർത്തിയാക്കുകയും","ശിഷ്യന്മാരോടൊപ്പം ഭക്ഷിക്കുക","നോമ്പ് അനുഷ്ഠിക്കുക"], correct:1,
+   note:"വാ. 34 &mdash; 'എന്നെ അയച്ചവന്റെ ഇഷ്ടം പ്രവര്‍ത്തിക്കുകയും അവന്റെ ജോലി പൂര്‍ത്തിയാക്കുകയുമാണ് എന്റെ ഭക്ഷണം.'"},
+  {q:"രാജസേവകന്റെ പുത്രന്റെ സൗഖ്യം യേശുവിന്റെ എത്രാമത്തെ അടയാളമായിരുന്നു (വാ. 54)?",
+   opts:["ഒന്നാമത്തെ","രണ്ടാമത്തെ","മൂന്നാമത്തെ","നാലാമത്തെ"], correct:1,
+   note:"വാ. 54 &mdash; 'യൂദയായില്‍നിന്നു ഗലീലിയിലേക്കു വന്നപ്പോള്‍ യേശു പ്രവര്‍ത്തിച്ച രണ്ടാമത്തെ അടയാളമാണ്.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--oasis); color:var(--sand); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

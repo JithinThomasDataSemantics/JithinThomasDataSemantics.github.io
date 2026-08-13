@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 സാമുവല്‍ 3 · സാമുവലിനെ വിളിക്കുന്നു | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0A0F1F; --void-2:#111A31; --panel:#161F3C; --panel-2:#1C2749;
+    --gold:#E8B34C; --gold-soft:#F5D98A; --gold-dim:#8A6B2C;
+    --pome:#C13F58; --pome-dim:#7A2836;
+    --olive:#8B9A5F; --starlight:#7C90C7;
+    --parchment:#F6EEDC; --parchment-2:#EFE3C7;
+    --ink:#2A2013; --text:#EFE9DA; --text-dim:#A9B2CC;
+    --line: rgba(232,179,76,0.20);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1.5px 1.5px at 20% 15%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1.5px 1.5px at 70% 8%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 85% 22%, rgba(255,255,255,0.35), transparent),
+      radial-gradient(1px 1px at 45% 5%, rgba(255,255,255,0.3), transparent),
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(232,179,76,0.14), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--starlight), var(--gold), var(--gold-soft));
+    z-index:200; box-shadow:0 0 12px rgba(232,179,76,0.7); transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 12%, rgba(232,179,76,0.18), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--gold-soft);
+    background:rgba(232,179,76,0.09); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--pome);box-shadow:0 0 8px var(--pome);}
+  .lamp-flicker{ width:70px; height:70px; margin:0 auto 14px; position:relative; }
+  .lamp-flicker .glow{
+    position:absolute; left:50%; top:6px; transform:translateX(-50%);
+    width:14px; height:20px;
+    background: radial-gradient(circle at 50% 70%, var(--gold-soft) 0%, var(--gold) 50%, var(--pome) 90%);
+    border-radius:50% 50% 50% 50% / 65% 65% 35% 35%;
+    animation: dimflicker 3.4s ease-in-out infinite;
+  }
+  @keyframes dimflicker{
+    0%,100%{ opacity:.55; transform:translateX(-50%) scaleY(0.85);}
+    50%{ opacity:1; transform:translateX(-50%) scaleY(1.05);}
+  }
+  h1.title{
+    font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px);
+    margin:6px 0 8px; color:var(--parchment);
+  }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--gold-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--pome); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- SCENE STRIP ---------- */
+  .scene-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  @media(max-width:640px){ .scene-strip{ grid-template-columns:repeat(2,1fr); } }
+  .scene-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:16px 12px; text-align:center;
+  }
+  .scene-card .ic{ font-size:22px; display:block; margin-bottom:8px; }
+  .scene-card .sc-t{ font-size:12.5px; font-weight:600; color:var(--text); display:block; margin-bottom:3px; }
+  .scene-card .sc-d{ font-size:11.5px; color:var(--text-dim); }
+
+  /* ---------- THE FOUR CALLS ---------- */
+  .calls{ display:flex; flex-direction:column; gap:0; position:relative; }
+  .call-item{
+    position:relative; padding:18px 18px 18px 64px; border-radius:14px;
+    background:var(--panel); border:1px solid var(--line); margin-bottom:12px;
+  }
+  .call-item.final{ border-color:var(--pome); background:linear-gradient(160deg, rgba(193,63,88,0.10), var(--panel)); }
+  .call-num{
+    position:absolute; left:16px; top:18px; width:34px; height:34px; border-radius:50%;
+    background:var(--void-2); border:2px solid var(--gold); color:var(--gold-soft);
+    display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:700; font-size:15px;
+  }
+  .call-item.final .call-num{ border-color:var(--pome); color:var(--gold-soft); background:var(--pome-dim); }
+  .call-title{ font-weight:700; font-size:15px; color:var(--parchment); margin:0 0 6px; }
+  .call-row{ display:flex; gap:8px; font-size:13.5px; color:var(--text-dim); margin-bottom:4px; }
+  .call-row .lbl{ flex:none; width:82px; color:var(--gold-soft); font-weight:600; font-size:12px; }
+  .call-row b{ color:var(--text); font-weight:600; }
+
+  /* ---------- SCROLL (learned response) ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:26px 24px; position:relative;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35); border:1px solid #d8c79a;
+  }
+  .scroll::before, .scroll::after{
+    content:""; position:absolute; left:0; right:0; height:14px;
+    background:repeating-linear-gradient(90deg, #d8c79a 0 10px, #cbb888 10px 20px); border-radius:50%;
+  }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--serif); font-style:italic; font-size:16.5px; line-height:1.85; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:var(--pome-dim); text-transform:uppercase; }
+
+  /* ---------- MESSAGE GRID ---------- */
+  .msg-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:560px){ .msg-grid{ grid-template-columns:1fr; } }
+  .msg-card{
+    background:var(--panel); border:1px solid var(--pome-dim); border-radius:14px; padding:16px;
+    border-left:3px solid var(--pome);
+  }
+  .msg-card .mlabel{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--pome); font-weight:700; margin-bottom:6px; }
+  .msg-card p{ margin:0; font-size:14px; color:var(--text); line-height:1.6; }
+
+  /* ---------- AFTERMATH ---------- */
+  .aftermath{ display:flex; flex-direction:column; gap:10px; }
+  .after-item{
+    display:flex; gap:14px; align-items:flex-start; background:var(--panel);
+    border:1px solid var(--line); border-radius:14px; padding:16px;
+  }
+  .after-icon{ flex:none; width:36px; height:36px; border-radius:50%; background:rgba(139,154,95,0.25); display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .after-item p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.6; }
+  .after-item p b{ color:var(--text); }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; position:relative; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--gold-soft); background:rgba(232,179,76,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--gold); }
+  .opt.correct{ background:rgba(139,154,95,0.25); border-color:var(--olive); color:#DCE6C4; }
+  .opt.wrong{ background:rgba(193,63,88,0.22); border-color:var(--pome); color:#F3C7CF; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(232,179,76,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--gold), #C98F2E); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--gold); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--gold-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--gold); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--gold-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍ 3</div>
+    <div class="lamp-flicker">
+      <svg width="70" height="70" viewBox="0 0 70 70">
+        <ellipse cx="35" cy="54" rx="22" ry="7" fill="#3a2f1c" opacity="0.5"/>
+        <path d="M16 42 Q35 60 54 42 Q51 30 35 30 Q19 30 16 42 Z" fill="#B98A3A"/>
+        <rect x="32" y="24" width="6" height="9" rx="2" fill="#8A6B2C"/>
+      </svg>
+      <div class="glow"></div>
+    </div>
+    <h1 class="title">സാമുവലിനെ വിളിക്കുന്നു</h1>
+    <p class="subtitle">"സാമുവല്‍! സാമുവല്‍! ... അരുളിച്ചെയ്താലും, അങ്ങയുടെ ദാസന്‍ ഇതാ ശ്രവിക്കുന്നു."</p>
+    <p class="ref">1 സാമുവല്‍ 3 &nbsp;·&nbsp; ഒരു രാത്രിയിലെ വിളി</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- SCENE -->
+  <section class="section" id="scene-sec">
+    <p class="eyebrow">രംഗം ഒരുങ്ങുന്നു</p>
+    <h2 class="h">ആ രാത്രിയിലെ അവസ്ഥ</h2>
+    <p class="lede">നാല് ചെറിയ വിശദാംശങ്ങള്‍ ഈ അധ്യായത്തിന്റെ പശ്ചാത്തലം സൃഷ്ടിക്കുന്നു — ഓരോന്നും ക്വിസില്‍ വരാം.</p>
+    <div class="scene-strip">
+      <div class="scene-card"><span class="ic">🔇</span><span class="sc-t">അപൂര്‍വമായ അരുളപ്പാട്</span><span class="sc-d">വെളിപാടും ദര്‍ശനവും വിരളം</span></div>
+      <div class="scene-card"><span class="ic">👁</span><span class="sc-t">ഏലിയുടെ കാഴ്ച</span><span class="sc-d">മങ്ങിത്തുടങ്ങിയിരുന്നു</span></div>
+      <div class="scene-card"><span class="ic">🪔</span><span class="sc-t">ദീപം</span><span class="sc-d">അണഞ്ഞിരുന്നില്ല</span></div>
+      <div class="scene-card"><span class="ic">📦</span><span class="sc-t">സാമുവലിന്റെ സ്ഥാനം</span><span class="sc-d">ദൈവത്തിന്റെ പേടകത്തിനരികെ</span></div>
+    </div>
+  </section>
+
+  <!-- FOUR CALLS -->
+  <section class="section" id="calls-sec">
+    <p class="eyebrow">ഒരേ വിളി, നാലു തവണ</p>
+    <h2 class="h">നാലു വിളികള്‍</h2>
+    <p class="lede">ഓരോ തവണയും സാമുവലിന്റെ പ്രതികരണം ഒന്നുതന്നെ — എന്നാല്‍ ധാരണ ക്രമേണ വളരുന്നു. ക്രമം തന്നെയാണ് ഇവിടെ പ്രധാനം.</p>
+    <div class="calls" id="callsWrap"></div>
+  </section>
+
+  <!-- LEARNED RESPONSE -->
+  <section class="section" id="response-sec">
+    <p class="eyebrow">ഏലി പഠിപ്പിച്ച വാക്കുകള്‍</p>
+    <h2 class="h">"അങ്ങയുടെ ദാസന്‍ ശ്രവിക്കുന്നു"</h2>
+    <div class="scroll">
+      <p>"ഇനി നിന്നെ വിളിച്ചാല്‍, കര്‍ത്താവേ, അരുളിച്ചെയ്താലും, അങ്ങയുടെ ദാസന്‍ ഇതാ ശ്രവിക്കുന്നു എന്നുപറയണം."</p>
+      <span class="cite">1 സാമുവല്‍ 3:9</span>
+    </div>
+  </section>
+
+  <!-- MESSAGE -->
+  <section class="section" id="message-sec">
+    <p class="eyebrow">കര്‍ത്താവ് വെളിപ്പെടുത്തിയത്</p>
+    <h2 class="h">ഏലിയുടെ കുടുംബത്തിനെതിരായ സ്ഥിരീകരണം</h2>
+    <p class="lede">അധ്യായം 2-ല്‍ ദൈവപുരുഷന്‍ പറഞ്ഞ പ്രവചനം ഇവിടെ കര്‍ത്താവ് നേരിട്ട് സാമുവലിനോടു സ്ഥിരീകരിക്കുന്നു.</p>
+    <div class="msg-grid">
+      <div class="msg-card"><div class="mlabel">കാരണം</div><p>മക്കള്‍ ദൈവദൂഷണം പറഞ്ഞിട്ടും ഏലി അവരെ <b>തടഞ്ഞില്ല</b>.</p></div>
+      <div class="msg-card"><div class="mlabel">വിധി</div><p>കുടുംബത്തിന്മേല്‍ <b>എന്നേക്കുമായുള്ള</b> ശിക്ഷാവിധി.</p></div>
+      <div class="msg-card"><div class="mlabel">പരിഹാരമില്ല</div><p>ബലികളും കാഴ്ചകളും ഒരിക്കലും <b>പരിഹാരമാവുകയില്ല</b> എന്ന് ശപഥം.</p></div>
+      <div class="msg-card"><div class="mlabel">പ്രതികരണം</div><p>കേള്‍ക്കുന്നവരുടെ <b>ഇരുചെവികളും തരിച്ചുപോകും</b> വിധം ഗുരുതരം.</p></div>
+    </div>
+  </section>
+
+  <!-- AFTERMATH -->
+  <section class="section" id="aftermath-sec">
+    <p class="eyebrow">പിറ്റേന്ന് മുതല്‍</p>
+    <h2 class="h">സാമുവല്‍ പ്രവാചകനാകുന്നു</h2>
+    <div class="aftermath">
+      <div class="after-item"><div class="after-icon">😨</div><p>ദര്‍ശനം ഏലിയോടു പറയാന്‍ സാമുവല്‍ ആദ്യം <b>ഭയപ്പെട്ടു</b>.</p></div>
+      <div class="after-item"><div class="after-icon">🗣</div><p>ഏലി നിര്‍ബന്ധിച്ചപ്പോള്‍ സാമുവല്‍ <b>ഒന്നും മറച്ചുവയ്ക്കാതെ</b> എല്ലാം പറഞ്ഞു.</p></div>
+      <div class="after-item"><div class="after-icon">🙏</div><p>ഏലി പ്രതികരിച്ചു: <b>"അതു കര്‍ത്താവാണ്, യുക്തമെന്നു തോന്നുന്നത് പ്രവര്‍ത്തിക്കട്ടെ."</b></p></div>
+      <div class="after-item"><div class="after-icon">📈</div><p>സാമുവല്‍ വളര്‍ന്നു; അവന്റെ വാക്കുകളില്‍ ഒന്നും <b>വ്യര്‍ഥമായില്ല</b>.</p></div>
+      <div class="after-item"><div class="after-icon">🗺</div><p><b>ദാന്‍ മുതല്‍ ബേര്‍ഷെബ വരെ</b> ഇസ്രായേല്‍ ജനം മുഴുവന്‍ അവനെ പ്രവാചകനായി അറിഞ്ഞു.</p></div>
+      <div class="after-item"><div class="after-icon">🪔</div><p>കര്‍ത്താവ് <b>ഷീലോയില്‍വച്ചു തന്നെ</b> വീണ്ടും അവനോടു സംസാരിച്ചു.</p></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം · അധ്യായം 3</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — 1 സാമുവല്‍ 3</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🪔 Logos Quiz 2026 പഠന സഹായി · 1 സാമുവല്‍ 3</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* four calls */
+const calls = [
+  {n:1, title:'ഒന്നാം വിളി', action:'സാമുവല്‍ ഏലിയുടെ അടുത്തേക്ക് ഓടി', response:'"അങ്ങ് എന്നെ വിളിച്ചല്ലോ"', eli:'"ഞാന്‍ വിളിച്ചില്ല; പോയിക്കിടക്കുക"'},
+  {n:2, title:'രണ്ടാം വിളി', action:'സാമുവല്‍ വീണ്ടും ഏലിയുടെ അടുത്തേക്ക്', response:'"അങ്ങെന്നെ വിളിച്ചല്ലോ"', eli:'"മകനേ, ഞാന്‍ വിളിച്ചില്ല; പോയിക്കിടക്കുക"'},
+  {n:3, title:'മൂന്നാം വിളി', action:'സാമുവല്‍ മൂന്നാമതും ഓടിച്ചെന്നു', response:'"അങ്ങ് എന്നെ വിളിച്ചല്ലോ"', eli:'ഇപ്പോള്‍ ഏലിക്ക് മനസ്സിലായി — ഇത് കര്‍ത്താവാണ്'},
+  {n:4, title:'നാലാം വിളി', action:'കര്‍ത്താവ് വന്നുനിന്നു "സാമുവല്‍! സാമുവല്‍!"', response:'"അരുളിച്ചെയ്താലും, അങ്ങയുടെ ദാസന്‍ ഇതാ ശ്രവിക്കുന്നു"', eli:'ഏലി പഠിപ്പിച്ച മറുപടി — സാമുവല്‍ ആദ്യമായി തിരിച്ചറിയുന്നു', final:true},
+];
+const callsWrap = document.getElementById('callsWrap');
+calls.forEach(c=>{
+  const el = document.createElement('div');
+  el.className = 'call-item' + (c.final ? ' final' : '');
+  el.innerHTML = `
+    <div class="call-num">${c.n}</div>
+    <p class="call-title">${c.title}</p>
+    <div class="call-row"><span class="lbl">സംഭവം</span><span>${c.action}</span></div>
+    <div class="call-row"><span class="lbl">സാമുവല്‍</span><b>${c.response}</b></div>
+    <div class="call-row"><span class="lbl">ഏലി</span><span>${c.eli}</span></div>
+  `;
+  callsWrap.appendChild(el);
+});
+
+/* full text */
+const verses = [
+  ['1','ബാലനായ സാമുവല്‍ ഏലിയുടെ സാന്നിധ്യത്തില്‍ ശുശ്രൂഷ ചെയ്തു; അക്കാലത്ത് കര്‍ത്താവിന്റെ അരുളപ്പാടും ദര്‍ശനങ്ങളും വിരളമായിരുന്നു.'],
+  ['2-3','ഏലിയുടെ കാഴ്ച മങ്ങിയിരുന്നു; ദൈവത്തിന്റെ ദീപം അണഞ്ഞിരുന്നില്ല; സാമുവല്‍ പേടകത്തിനരികെ കിടക്കുകയായിരുന്നു.'],
+  ['4-5','കര്‍ത്താവ് സാമുവലിനെ വിളിച്ചു; അവന്‍ ഏലിയുടെ അടുത്തേക്ക് ഓടി, പക്ഷേ ഏലി വിളിച്ചിട്ടില്ലായിരുന്നു.'],
+  ['6-7','വീണ്ടും വിളി; സാമുവല്‍ വീണ്ടും ഓടിച്ചെന്നു. കര്‍ത്താവിന്റെ ശബ്ദം അവന് അതുവരെ വെളിവാക്കപ്പെട്ടിരുന്നില്ല.'],
+  ['8-9','മൂന്നാം വിളിയില്‍ ഏലിക്കു മനസ്സിലായി ഇത് കര്‍ത്താവാണെന്ന്; "അരുളിച്ചെയ്താലും, അങ്ങയുടെ ദാസന്‍ ശ്രവിക്കുന്നു" എന്നു പറയാന്‍ പഠിപ്പിച്ചു.'],
+  ['10','കര്‍ത്താവ് വന്നുനിന്നു വീണ്ടും വിളിച്ചു; സാമുവല്‍ പഠിച്ച വാക്കുകളാല്‍ പ്രതിവചിച്ചു.'],
+  ['11-14','ഏലിയുടെ കുടുംബത്തിനെതിരായ ന്യായവിധി കര്‍ത്താവ് സ്ഥിരീകരിച്ചു — ബലികളാല്‍ ഒരിക്കലും പരിഹാരമാവാത്ത പാപം.'],
+  ['15','പ്രഭാതം വരെ സാമുവല്‍ കിടന്നു; ദര്‍ശനം ഏലിയോടു പറയാന്‍ ഭയപ്പെട്ടു.'],
+  ['16-18','ഏലി നിര്‍ബന്ധിച്ചു ചോദിച്ചു; സാമുവല്‍ ഒന്നും മറയ്ക്കാതെ പറഞ്ഞു; ഏലി "അതു കര്‍ത്താവാണ്" എന്നു സ്വീകരിച്ചു.'],
+  ['19-21','സാമുവല്‍ വളര്‍ന്നു, കര്‍ത്താവ് കൂടെയുണ്ടായിരുന്നു; ദാന്‍ മുതല്‍ ബേര്‍ഷെബ വരെ അവനെ പ്രവാചകനായി അറിഞ്ഞു; ഷീലോയില്‍ കര്‍ത്താവ് വീണ്ടും വെളിപ്പെട്ടു.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'ദൈവം സാമുവലിനെ വിളിച്ചപ്പോള്‍ അവന്‍ എവിടെയാണ് കിടക്കുകയായിരുന്നത്?',
+    options: ['സ്വന്തം വീട്ടില്‍', 'ദൈവത്തിന്റെ പേടകത്തിനരികെ ദേവാലയത്തില്‍', 'ഏലിയുടെ മുറിയില്‍', 'ഷീലോയ്ക്കു പുറത്ത്'],
+    correct: 1,
+    explain: '3:3 — "സാമുവല്‍ ദേവാലയത്തില്‍ ദൈവത്തിന്റെ പേടകം സ്ഥിതിചെയ്യുന്നതിനരികേ കിടക്കുകയായിരുന്നു."'
+  },
+  {
+    q: 'ആ കാലഘട്ടത്തിന്റെ പ്രത്യേകത എന്തായിരുന്നു?',
+    options: ['ധാരാളം പ്രവാചകന്മാര്‍ ഉണ്ടായിരുന്നു', 'കര്‍ത്താവിന്റെ അരുളപ്പാടും ദര്‍ശനങ്ങളും വിരളമായിരുന്നു', 'എല്ലാ ദിവസവും ദര്‍ശനം ഉണ്ടായിരുന്നു', 'യുദ്ധകാലമായിരുന്നു'],
+    correct: 1,
+    explain: '3:1 — "കര്‍ത്താവിന്റെ അരുളപ്പാടു ചുരുക്കമായിട്ടേ ലഭിച്ചിരുന്നുള്ളു. ദര്‍ശനങ്ങള്‍ വിരളമായിരുന്നു."'
+  },
+  {
+    q: 'ഏലിക്ക് ഉണ്ടായിരുന്ന ശാരീരിക പ്രശ്നം എന്തായിരുന്നു?',
+    options: ['ചെവി കേള്‍ക്കാതിരുന്നു', 'കാഴ്ച മങ്ങിയിരുന്നു', 'നടക്കാന്‍ കഴിയാതിരുന്നു', 'സംസാരിക്കാന്‍ കഴിയാതിരുന്നു'],
+    correct: 1,
+    explain: '3:2 — "അവന് ഒന്നും കാണാന്‍ കഴിയാത്തവിധം കാഴ്ച മങ്ങിത്തുടങ്ങിയിരുന്നു."'
+  },
+  {
+    q: 'ഏലി സാമുവലിന് പഠിപ്പിച്ച മറുപടി എന്തായിരുന്നു?',
+    options: ['"ഞാനിതാ, കര്‍ത്താവേ"', '"കര്‍ത്താവേ, അരുളിച്ചെയ്താലും, അങ്ങയുടെ ദാസന്‍ ഇതാ ശ്രവിക്കുന്നു"', '"ഏലീ, ഞാന്‍ വരുന്നു"', '"കര്‍ത്താവേ, ഞാന്‍ ഭയപ്പെടുന്നു"'],
+    correct: 1,
+    explain: '3:9 — ഏലി നിര്‍ദേശിച്ച കൃത്യമായ വാക്കുകള്‍.'
+  },
+  {
+    q: 'സാമുവല്‍ ആദ്യ മൂന്നു തവണയും വിളികേട്ട് ആരുടെ അടുത്തേക്കാണ് ഓടിയത്?',
+    options: ['ഹന്നായുടെ അടുത്തേക്ക്', 'ഏലിയുടെ അടുത്തേക്ക്', 'ഹോഫ്‌നിയുടെ അടുത്തേക്ക്', 'പേടകത്തിന്റെ അടുത്തേക്ക്'],
+    correct: 1,
+    explain: '3:5-8 — ഓരോ തവണയും അവന്‍ ഏലിയാണ് വിളിച്ചതെന്നു കരുതി ഓടിച്ചെന്നു.'
+  },
+  {
+    q: 'സാമുവല്‍ ആദ്യം കര്‍ത്താവിന്റെ ശബ്ദം തിരിച്ചറിയാഞ്ഞത് എന്തുകൊണ്ട്?',
+    options: ['അവന്‍ ഉറക്കത്തിലായിരുന്നു', 'കര്‍ത്താവിന്റെ ശബ്ദം അതുവരെ അവനു വെളിവാക്കപ്പെട്ടിരുന്നില്ല', 'അവന്‍ ഭയന്നിരുന്നു', 'അവന് കേള്‍വിക്കുറവുണ്ടായിരുന്നു'],
+    correct: 1,
+    explain: '3:7 — "കാരണം, അതുവരെ കര്‍ത്താവിന്റെ ശബ്ദം അവനു വെളിവാക്കപ്പെട്ടിരുന്നില്ല."'
+  },
+  {
+    q: 'ഏലിയുടെ കുടുംബത്തിന്റെ പാപത്തിന് എന്തുകൊണ്ടാണ് ഒരിക്കലും പരിഹാരമില്ലാത്തത്?',
+    options: ['അവര്‍ വിഗ്രഹാരാധന ചെയ്തതിനാല്‍', 'മക്കളുടെ ദൈവദൂഷണം അറിഞ്ഞിട്ടും ഏലി തടയാഞ്ഞതിനാല്‍', 'അവര്‍ ബലിയര്‍പ്പിക്കാഞ്ഞതിനാല്‍', 'ഏലി ഷീലോ വിട്ടുപോയതിനാല്‍'],
+    correct: 1,
+    explain: '3:13-14 — "മക്കള്‍ ദൈവദൂഷണം പറയുന്ന കാര്യം അറിഞ്ഞിട്ടും അവരെ തടയാഞ്ഞതുമൂലം..."'
+  },
+  {
+    q: 'ദര്‍ശനത്തെക്കുറിച്ച് ഏലിയോടു പറയാന്‍ സാമുവലിന് ആദ്യം എന്തു തോന്നി?',
+    options: ['സന്തോഷം', 'ഭയം', 'നിസ്സംഗത', 'അഭിമാനം'],
+    correct: 1,
+    explain: '3:15 — "തനിക്കുണ്ടായ ദര്‍ശനം ഏലിയോടു പറയാന്‍ അവന്‍ ഭയപ്പെട്ടു."'
+  },
+  {
+    q: 'സാമുവല്‍ എല്ലാം പറഞ്ഞപ്പോള്‍ ഏലിയുടെ പ്രതികരണം എന്തായിരുന്നു?',
+    options: ['അവന്‍ കോപിച്ചു', '"അതു കര്‍ത്താവാണ്, യുക്തമെന്നു തോന്നുന്നത് പ്രവര്‍ത്തിക്കട്ടെ"', 'അവന്‍ സാമുവലിനെ ശപിച്ചു', 'അവന്‍ ഒന്നും പറഞ്ഞില്ല'],
+    correct: 1,
+    explain: '3:18 — ഏലി ദൈവഹിതത്തിനു കീഴടങ്ങി.'
+  },
+  {
+    q: 'സാമുവല്‍ കര്‍ത്താവിന്റെ പ്രവാചകനായി എന്ന് ആരൊക്കെ അറിഞ്ഞു?',
+    options: ['ഷീലോയിലെ പുരോഹിതന്മാര്‍ മാത്രം', 'ദാന്‍ മുതല്‍ ബേര്‍ഷെബ വരെയുള്ള ഇസ്രായേല്‍ ജനം മുഴുവന്‍', 'എല്ക്കാന കുടുംബം മാത്രം', 'ഫെലിസ്ത്യര്‍ മാത്രം'],
+    correct: 1,
+    explain: '3:20 — ദേശം മുഴുവന്‍ (വടക്കുതെക്ക് അതിരുകള്‍) അവനെ പ്രവാചകനായി അംഗീകരിച്ചു.'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>നീതിമാൻ വിശ്വാസത്താൽ ജീവിക്കും — ഗലാത്തിയര്‍ 3 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --earth: #201811;
+    --earth-2: #2a2015;
+    --sand: #eeddb8;
+    --sand-dim: #b4a380;
+    --gold: #d9a256;
+    --gold-soft: #f0c689;
+    --rust: #a24a34;
+    --rust-soft: #cc7156;
+    --line: rgba(217,162,86,0.22);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 12% 0%, rgba(217,162,86,0.10), transparent 45%),
+      radial-gradient(ellipse at 90% 20%, rgba(162,74,52,0.12), transparent 42%),
+      var(--earth);
+    color:var(--sand);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold); color:var(--earth);}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .eyebrow{font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--gold-soft); margin-bottom:1.6rem; font-style:italic;}
+  .seed-track{position:relative; width:min(70vw,520px); height:2px; background:var(--line); margin-bottom:2.4rem;}
+  .seed-track .seed{position:absolute; top:50%; left:0; width:9px; height:9px; margin-top:-4.5px; border-radius:50%; background:var(--gold-soft); box-shadow:0 0 14px var(--gold-soft); animation:travel 5s ease-in-out infinite;}
+  .seed-track .stop{position:absolute; top:50%; width:6px; height:6px; margin-top:-3px; border-radius:50%; background:var(--sand-dim);}
+  .seed-track .stop.s1{left:2%;} .seed-track .stop.s2{left:34%;} .seed-track .stop.s3{left:66%;} .seed-track .stop.s4{left:98%;}
+  @keyframes travel{0%{left:0%;} 100%{left:100%;}}
+  .hero h1{font-weight:800; font-size:clamp(2rem, 6.2vw, 3.8rem); line-height:1.3; margin:0; color:var(--sand);}
+  .hero h1 em{font-style:normal; color:var(--gold-soft); display:block;}
+  .hero .ref{font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--sand-dim); margin-top:1rem;}
+  .hero p.tag{max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--sand-dim);}
+  .scroll-cue{margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--gold-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--gold), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--gold-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.35rem,3.1vw,1.95rem); margin:0; color:var(--sand);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--sand-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--earth-2), var(--earth)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--gold);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--sand); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--gold-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:400px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--sand-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:0.88rem;}
+
+  /* ---------- CURSE / BLESSING CARDS ---------- */
+  .cb-wrap{display:flex; flex-direction:column; gap:0.7rem;}
+  .cb-card{display:flex; gap:1rem; align-items:flex-start; background:var(--earth-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.2rem;}
+  .cb-icon{flex-shrink:0; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--font-num); font-style:italic; font-size:1.1rem;}
+  .cb-icon.curse{background:rgba(162,74,52,0.18); color:var(--rust-soft); border:1px solid rgba(162,74,52,0.4);}
+  .cb-icon.bless{background:rgba(217,162,86,0.16); color:var(--gold-soft); border:1px solid var(--line);}
+  .cb-body .cbverse{font-family:var(--font-num); font-style:italic; color:var(--sand-dim); font-size:0.82rem; margin-bottom:0.3rem;}
+  .cb-body .cbtext{font-size:0.96rem; line-height:1.8; color:var(--sand);}
+  .cb-body .cbtext b{color:var(--gold-soft);}
+
+  /* ---------- COVENANT TIMELINE ---------- */
+  .route-wrap{background:var(--earth-2); border:1px solid var(--line); border-radius:14px; padding:1.4rem 1.2rem 0.6rem;}
+  .route-wrap svg{width:100%; height:auto; display:block;}
+  .route-line{stroke:var(--gold); stroke-width:1.6; stroke-dasharray:5 5; fill:none; opacity:0.55;}
+  .stop-circle{fill:var(--earth); stroke:var(--gold-soft); stroke-width:1.6; cursor:pointer; transition:all .25s ease;}
+  .stop-circle:hover, .stop-circle.active{fill:var(--rust-soft); stroke:var(--rust-soft);}
+  .stop-label{fill:var(--sand); font-family:'Noto Sans Malayalam',sans-serif; font-size:12.5px; font-weight:600; pointer-events:none;}
+  .stop-sub{fill:var(--sand-dim); font-family:var(--font-num); font-style:italic; font-size:10px; pointer-events:none;}
+  .route-year{fill:var(--gold-soft); font-family:var(--font-num); font-style:italic; font-size:12px; text-anchor:middle;}
+  #route-detail{margin-top:1.2rem; padding:1.1rem 1.3rem; background:rgba(217,162,86,0.06); border:1px solid var(--line); border-radius:10px; min-height:60px; font-size:0.94rem; line-height:1.85; color:var(--sand-dim);}
+  #route-detail b{color:var(--gold-soft);}
+  #route-detail .hint{font-family:var(--font-num); font-style:italic;}
+
+  /* ---------- GUARDIAN CHAIN ---------- */
+  .chain{display:flex; flex-direction:column; gap:0;}
+  .chain-item{position:relative; display:flex; gap:1.1rem; padding:1.1rem 0; border-bottom:1px dashed var(--line);}
+  .chain-item:last-child{border-bottom:none;}
+  .chain-mark{flex-shrink:0; width:34px; height:34px; border-radius:50%; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:0.85rem;}
+  .chain-body{font-size:0.97rem; line-height:1.85; color:var(--sand-dim);}
+  .chain-body b{color:var(--gold-soft);}
+
+  /* ---------- UNITY MOSAIC ---------- */
+  .mosaic-wrap{background:var(--earth-2); border:1px solid var(--line); border-radius:14px; padding:2rem 1.4rem; text-align:center;}
+  .pairs{display:flex; flex-direction:column; gap:0.8rem; max-width:420px; margin:0 auto 1.6rem;}
+  .pair-row{display:flex; align-items:center; justify-content:center; gap:0.8rem; transition:opacity .6s ease, transform .6s ease;}
+  .pair-row .pchip{background:rgba(238,221,184,0.06); border:1px solid var(--line); padding:0.5rem 1rem; border-radius:20px; font-size:0.9rem; color:var(--sand-dim);}
+  .pair-row .vs{font-family:var(--font-num); font-style:italic; color:var(--rust-soft); font-size:0.85rem;}
+  .mosaic-wrap.merged .pair-row{opacity:0; transform:scale(0.7); }
+  .unify-btn{background:var(--gold); color:var(--earth); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:700; cursor:pointer; font-size:0.95rem;}
+  .one-circle{width:0; height:0; border-radius:50%; background:radial-gradient(circle, var(--gold-soft), var(--gold) 70%); margin:0 auto; display:flex; align-items:center; justify-content:center; overflow:hidden; transition:all .8s cubic-bezier(.2,.9,.25,1); opacity:0;}
+  .mosaic-wrap.merged .one-circle{width:160px; height:160px; opacity:1; box-shadow:0 0 50px rgba(217,162,86,0.4);}
+  .one-circle span{font-family:var(--font-ml); font-weight:800; color:var(--earth); font-size:1.15rem; opacity:0; transition:opacity .4s ease .5s;}
+  .mosaic-wrap.merged .one-circle span{opacity:1;}
+  .mosaic-cite{margin-top:1.4rem; font-family:var(--font-num); font-style:italic; color:var(--sand-dim); font-size:0.85rem;}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--earth-2), var(--earth)); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--sand);}
+  .fact-card .fval b{color:var(--rust-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--earth-2), var(--earth)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--gold);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--sand);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--sand-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--gold); color:var(--sand);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--gold-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--gold); color:var(--earth); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--sand-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--gold-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--sand-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .seed-track .seed, .scroll-cue span{animation:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} .pair-row{flex-direction:column; gap:0.3rem;} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; Galatians / ഗലാത്തിയര്‍</div>
+  <div class="seed-track">
+    <div class="stop s1"></div><div class="stop s2"></div><div class="stop s3"></div><div class="stop s4"></div>
+    <div class="seed"></div>
+  </div>
+  <h1>നീതിമാൻ<br><em>വിശ്വാസത്താൽ ജീവിക്കും</em></h1>
+  <div class="ref">ഗലാത്തിയര്‍ 3 : 1&ndash;29</div>
+  <p class="tag">അബ്രാഹത്തിന്റെ വാഗ്ദാനം മുതൽ ക്രിസ്തുവിലുള്ള നമ്മുടെ അവകാശംവരെ &mdash; നിയമവും വിശ്വാസവും തമ്മിലുള്ള പൗലോസിന്റെ ഏറ്റവും സാന്ദ്രമായ വാദം.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: RHETORICAL QUESTIONS -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>നിയമമോ വിശ്വാസമോ?</h2></div>
+  <p class="section-sub">വാ. 1&ndash;5. ഗലാത്തിയാക്കാരോട് പൗലോസ് തുടരെ ചോദ്യങ്ങൾ ചോദിക്കുന്നു. ടാപ്പ് ചെയ്ത് വിശദാംശം കാണുക.</p>
+  <div class="prologue-grid" id="prologue"></div>
+</section>
+
+<!-- II: ABRAHAM / CURSE & BLESSING -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>അബ്രാഹത്തിന്റെ വിശ്വാസം, ശാപം, മോചനം</h2></div>
+  <p class="section-sub">വാ. 6&ndash;14. നിയമത്തിന്റെ ശാപവും ക്രിസ്തുവിന്റെ മോചനവും &mdash; ഇടകലർന്ന്.</p>
+  <div class="cb-wrap" id="cbWrap"></div>
+</section>
+
+<!-- III: COVENANT TIMELINE -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>നിയമവും വാഗ്ദാനവും</h2></div>
+  <p class="section-sub">വാ. 15&ndash;20. ചരിത്രത്തിലെ ക്രമം പ്രധാനമാണ് &mdash; ഓരോ ഘട്ടവും ടാപ്പ് ചെയ്യുക.</p>
+  <div class="route-wrap">
+    <svg viewBox="0 0 640 150" id="routeSvg">
+      <path class="route-line" d="M60,70 L220,70 L420,70 L580,70"/>
+      <text class="route-year" x="140" y="55">430 വർഷം</text>
+      <g class="stop" data-key="abraham">
+        <circle class="stop-circle" cx="60" cy="70" r="22"/>
+        <text class="stop-label" x="60" y="110" text-anchor="middle">അബ്രാഹം</text>
+        <text class="stop-sub" x="60" y="124" text-anchor="middle">(വാഗ്ദാനം)</text>
+      </g>
+      <g class="stop" data-key="law">
+        <circle class="stop-circle" cx="220" cy="70" r="22"/>
+        <text class="stop-label" x="220" y="110" text-anchor="middle">നിയമം</text>
+        <text class="stop-sub" x="220" y="124" text-anchor="middle">(മധ്യവർത്തിവഴി)</text>
+      </g>
+      <g class="stop" data-key="christ">
+        <circle class="stop-circle" cx="420" cy="70" r="22"/>
+        <text class="stop-label" x="420" y="110" text-anchor="middle">ക്രിസ്തു</text>
+        <text class="stop-sub" x="420" y="124" text-anchor="middle">(സന്തതി)</text>
+      </g>
+      <g class="stop" data-key="us">
+        <circle class="stop-circle" cx="580" cy="70" r="22"/>
+        <text class="stop-label" x="580" y="110" text-anchor="middle">നമ്മൾ</text>
+        <text class="stop-sub" x="580" y="124" text-anchor="middle">(അവകാശികൾ)</text>
+      </g>
+    </svg>
+    <div id="route-detail"><span class="hint">ഒരു ഘട്ടത്തിൽ ടാപ്പ് ചെയ്ത് തുടങ്ങുക &rarr;</span></div>
+  </div>
+</section>
+
+<!-- IV: GUARDIAN -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>നിയമത്തിന്റെ ഉദ്ദേശ്യം</h2></div>
+  <p class="section-sub">വാ. 21&ndash;25. നിയമം എന്തിനുവേണ്ടിയായിരുന്നു എന്ന് പൗലോസ് വിശദീകരിക്കുന്നു.</p>
+  <div class="chain" id="chain"></div>
+</section>
+
+<!-- V: UNITY MOSAIC -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>പുത്രത്വവും അവകാശവും</h2></div>
+  <p class="section-sub">വാ. 26&ndash;29. ക്രിസ്തുവിൽ എല്ലാ വ്യത്യാസങ്ങളും ഇല്ലാതാകുന്നു. ബട്ടൺ അമർത്തുക.</p>
+  <div class="mosaic-wrap" id="mosaicWrap">
+    <div class="pairs">
+      <div class="pair-row"><span class="pchip">യഹൂദൻ</span><span class="vs">/</span><span class="pchip">ഗ്രീക്കുകാരൻ</span></div>
+      <div class="pair-row"><span class="pchip">അടിമ</span><span class="vs">/</span><span class="pchip">സ്വതന്ത്രൻ</span></div>
+      <div class="pair-row"><span class="pchip">പുരുഷൻ</span><span class="vs">/</span><span class="pchip">സ്ത്രീ</span></div>
+    </div>
+    <div class="one-circle"><span>എല്ലാവരും<br>ഒന്ന്</span></div>
+    <div><button class="unify-btn" id="unifyBtn">വാ. 28 &mdash; ഐക്യപ്പെടുത്തുക</button></div>
+    <div class="mosaic-cite">&ldquo;നിങ്ങളെല്ലാവരും യേശുക്രിസ്തുവില്‍ ഒന്നാണ്.&rdquo; &mdash; സ്‌നാനത്താൽ ക്രിസ്തുവിനെ ധരിച്ചവർ, അബ്രാഹത്തിന്റെ സന്തതികളും വാഗ്ദാനത്തിന്റെ അവകാശികളും (വാ. 27, 29)</div>
+  </div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s6">
+  <div class="section-head"><span class="num">VI</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">സംഖ്യകൾ, പ്രധാന വാക്യങ്ങൾ &mdash; ക്വിസ് ചോദ്യങ്ങളിൽ പലപ്പോഴും വരുന്നവ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s7">
+  <div class="section-head"><span class="num">VII</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>ഗലാത്തിയര്‍ 3 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- SECTION I ACCORDION ---------------- */
+const prologue = [
+  {v:"1", text:"ഭോഷന്മാരായ ഗലാത്തിയാക്കാരേ, യേശുക്രിസ്തു നിങ്ങളുടെ കണ്‍മുമ്പില്‍ ക്രൂശിതനായി ചിത്രീകരിക്കപ്പെട്ടിരിക്കേ നിങ്ങളെ ആരാണ് ആഭിചാരം ചെയ്തത്?", note:"ശക്തമായ ആരംഭം &mdash; 'ഭോഷന്മാർ' എന്ന വിളി ഈ അധ്യായത്തിൽ ആവർത്തിക്കുന്നു (വാ. 1, 3)."},
+  {v:"2", text:"ആത്മാവിനെ സ്വീകരിച്ചത് നിയമത്തിന്റെ അനുഷ്ഠാനത്താലോ, വിശ്വാസത്തിന്റെ അനുസരണം പ്രഘോഷിക്കപ്പെട്ടത് വിശ്വസിച്ചതുകൊണ്ടോ?", note:"ഈ അധ്യായത്തിലെ കേന്ദ്ര ചോദ്യം."},
+  {v:"3", text:"ആത്മാവില്‍ ആരംഭിച്ചിട്ട് ഇപ്പോള്‍ ശരീരത്തില്‍ അവസാനിപ്പിക്കുവാന്‍മാത്രം ഭോഷന്മാരാണോ നിങ്ങള്‍?", note:"ആത്മാവ് &harr; ശരീരം (നിയമാനുഷ്ഠാനം) എന്ന വൈരുദ്ധ്യം."},
+  {v:"5", text:"നിങ്ങള്‍ക്ക് ആത്മാവിനെ നല്‍കുകയും അദ്ഭുതങ്ങള്‍ പ്രവര്‍ത്തിക്കുകയും ചെയ്യുന്നവന്‍ അതു ചെയ്യുന്നത് നിയമാനുഷ്ഠാനം നിമിത്തമോ, വിശ്വാസം നിമിത്തമോ?", note:"അദ്ഭുതങ്ങളും ആത്മാവിന്റെ ദാനവും വിശ്വാസത്തിന്റെ തെളിവായി ഉപയോഗിക്കുന്നു."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- SECTION II CURSE/BLESSING CARDS ---------------- */
+const cbData = [
+  {type:"bless", v:"6-7", t:"അബ്രാഹം ദൈവത്തെ വിശ്വസിച്ചു; അത് അവനു <b>നീതിയായി</b> പരിഗണിക്കപ്പെട്ടു. വിശ്വാസമുള്ളവരാണ് അബ്രാഹത്തിന്റെ മക്കൾ."},
+  {type:"bless", v:"8-9", t:"'നിന്നിൽ ജനതകളെല്ലാം അനുഗൃഹീതരാകും' എന്നു ഗ്രന്ഥം മുൻകൂട്ടി അബ്രാഹത്തെ അറിയിച്ചു. വിശ്വാസമുള്ളവർ അബ്രാഹത്തോടൊത്ത് <b>അനുഗ്രഹം</b> പ്രാപിക്കുന്നു."},
+  {type:"curse", v:"10", t:"നിയമാനുഷ്ഠാനത്തിൽ ആശ്രയമർപ്പിക്കുന്ന എല്ലാവരും <b>ശാപത്തിന് വിധേയരാണ്.</b>"},
+  {type:"bless", v:"11", t:"<b>നീതിമാൻ വിശ്വാസംവഴിയാണു ജീവിക്കുക</b> &mdash; ഒരുവനും നിയമംവഴി ദൈവസന്നിധിയിൽ നീതീകരിക്കപ്പെടുന്നില്ല."},
+  {type:"curse", v:"13", t:"ക്രിസ്തു നമ്മെപ്രതി <b>ശപിക്കപ്പെട്ടവനായിത്തീർന്നു</b> &mdash; 'മരത്തിൽ തൂക്കപ്പെടുന്നവൻ ശപിക്കപ്പെട്ടവനാണ്' എന്ന് എഴുതിയിരിക്കുന്നു."},
+  {type:"bless", v:"14", t:"അബ്രാഹത്തിനു ലഭിച്ച അനുഗ്രഹം യേശുക്രിസ്തുവഴി <b>വിജാതീയരിലേക്കും വ്യാപിച്ചു;</b> ആത്മാവിന്റെ വാഗ്ദാനം വിശ്വാസംവഴി പ്രാപിക്കാൻ."}
+];
+document.getElementById('cbWrap').innerHTML = cbData.map(c=>`
+  <div class="cb-card">
+    <div class="cb-icon ${c.type}">${c.type==='curse'?'&#9760;':'&#10022;'}</div>
+    <div class="cb-body"><div class="cbverse">വാ. ${c.v}</div><div class="cbtext">${c.t}</div></div>
+  </div>
+`).join('');
+
+/* ---------------- SECTION III COVENANT TIMELINE ---------------- */
+const routeInfo = {
+  abraham: "<b>അബ്രാഹം &mdash; വാഗ്ദാനം.</b> ദൈവം സ്ഥിരീകരിച്ച ഉടമ്പടി ആരും അസാധുവാക്കുകയോ കൂട്ടിച്ചേർക്കുകയോ ചെയ്യാറില്ല (വാ. 15). വാഗ്ദാനം ലഭിച്ചത് അബ്രാഹത്തിനും അവന്റെ 'സന്തതി'ക്കും &mdash; ഏകവചനത്തിൽ, ക്രിസ്തുവിനെ ഉദ്ദേശിച്ച് (വാ. 16).",
+  law: "<b>നിയമം.</b> വാഗ്ദാനത്തിനു <b>430 വർഷങ്ങൾക്കുശേഷം</b> നിലവിൽ വന്നു (വാ. 17). അത് ദൈവത്തിന്റെ പഴയ ഉടമ്പടിയെ അസാധുവാക്കുന്നില്ല. പാപങ്ങൾ നിമിത്തം നൽകപ്പെട്ടു; ദൂതന്മാർവഴി ഒരു <b>മധ്യവർത്തിയിലൂടെ</b> വിളംബരം ചെയ്യപ്പെട്ടു (വാ. 19&ndash;20).",
+  christ: "<b>ക്രിസ്തു &mdash; സന്തതി.</b> വാഗ്ദാനം 'നിന്റെ സന്തതിക്ക്' എന്നു പറഞ്ഞത് ക്രിസ്തുവിനെ ഉദ്ദേശിച്ചാണ് (വാ. 16). മധ്യവർത്തി ഒന്നിൽക്കൂടുതൽ പേരുള്ളപ്പോൾ വേണ്ടതാണ്; ദൈവം ഏകനാണ് (വാ. 20).",
+  us: "<b>നമ്മൾ &mdash; അവകാശികൾ.</b> ക്രിസ്തുവിനുള്ളവർ അബ്രാഹത്തിന്റെ സന്തതികളും വാഗ്ദാനമനുസരിച്ചുള്ള അവകാശികളുമാണ് (വാ. 29)."
+};
+document.querySelectorAll('#routeSvg .stop').forEach(n=>{
+  n.addEventListener('click', ()=>{
+    document.querySelectorAll('#routeSvg .stop-circle').forEach(c=>c.classList.remove('active'));
+    n.querySelector('.stop-circle').classList.add('active');
+    document.getElementById('route-detail').innerHTML = routeInfo[n.dataset.key];
+  });
+});
+
+/* ---------------- SECTION IV GUARDIAN CHAIN ---------------- */
+const chainData = [
+  {m:"21", t:"നിയമം ദൈവത്തിന്റെ വാഗ്ദാനങ്ങൾക്കു <b>വിരുദ്ധമല്ല.</b> ജീവദായകമായ ഒരു നിയമം ഉണ്ടായിരുന്നെങ്കിൽ നീതി ആ നിയമംവഴി ഉണ്ടാകുമായിരുന്നു."},
+  {m:"22", t:"എല്ലാവരും പാപത്തിന് അധീനരാണെന്ന് ഗ്രന്ഥം പ്രഖ്യാപിച്ചു &mdash; വിശ്വാസികൾ <b>യേശുക്രിസ്തുവിലുള്ള വിശ്വാസംവഴി</b> വാഗ്ദാനം പ്രാപിക്കേണ്ടതിന്."},
+  {m:"23", t:"വിശ്വാസം ആവിർഭവിക്കുന്നതിനുമുമ്പ് നമ്മൾ <b>നിയമത്തിന്റെ കാവലിലായിരുന്നു;</b> നിയന്ത്രണാധീനർ."},
+  {m:"24", t:"ക്രിസ്തുവിന്റെ ആഗമനംവരെ നിയമം നമ്മുടെ <b>പാലകനായിരുന്നു</b> &mdash; വിശ്വാസത്താൽ നീതീകരിക്കപ്പെടേണ്ടതിന്."},
+  {m:"25", t:"ഇപ്പോൾ വിശ്വാസം സമാഗതമായതിനാൽ നമ്മൾ <b>പാലകന് അധീനരല്ല.</b>"}
+];
+document.getElementById('chain').innerHTML = chainData.map(c=>`
+  <div class="chain-item"><div class="chain-mark">${c.m}</div><div class="chain-body">${c.t}</div></div>
+`).join('');
+
+/* ---------------- SECTION V UNITY MOSAIC ---------------- */
+document.getElementById('unifyBtn').addEventListener('click', function(){
+  document.getElementById('mosaicWrap').classList.toggle('merged');
+});
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"നിയമം വന്ന സമയം", val:"വാഗ്ദാനത്തിനു <b>430 വർഷങ്ങൾക്കുശേഷം</b> (വാ. 17)."},
+  {label:"അബ്രാഹത്തിന്റെ വിശ്വാസം", val:"ദൈവത്തെ വിശ്വസിച്ചു; അത് <b>നീതിയായി</b> പരിഗണിക്കപ്പെട്ടു (വാ. 6)."},
+  {label:"ക്രിസ്തു ശാപമായത്", val:"<b>മരത്തിൽ തൂക്കപ്പെട്ട്</b> നമ്മെപ്രതി ശാപമായി (വാ. 13)."},
+  {label:"'സന്തതി' (ഏകവചനം)", val:"ക്രിസ്തുവിനെ ഉദ്ദേശിച്ചു പറഞ്ഞത് (വാ. 16)."},
+  {label:"മധ്യവർത്തിയും ദൈവവും", val:"മധ്യവർത്തി ഒന്നിലധികം പേർക്കാവശ്യം; <b>ദൈവം ഏകൻ</b> (വാ. 20)."},
+  {label:"നിയമത്തിന്റെ പങ്ക്", val:"ക്രിസ്തുവിന്റെ ആഗമനംവരെയുള്ള <b>പാലകൻ</b> (വാ. 24)."},
+  {label:"സ്നാനത്തിന്റെ അർഥം", val:"ക്രിസ്തുവിനെ <b>ധരിച്ചിരിക്കുന്നു</b> (വാ. 27)."},
+  {label:"ഐക്യ പ്രഖ്യാപനം", val:"യഹൂദൻ/ഗ്രീക്കുകാരൻ, അടിമ/സ്വതന്ത്രൻ, പുരുഷൻ/സ്ത്രീ &mdash; <b>ഒന്ന്</b> (വാ. 28)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"വാ. 1 പ്രകാരം, ഗലാത്തിയാക്കാരുടെ കണ്‍മുമ്പിൽ എന്താണ് ചിത്രീകരിക്കപ്പെട്ടിരുന്നത്?",
+   opts:["അബ്രാഹത്തിന്റെ ബലി","യേശുക്രിസ്തു ക്രൂശിതനായി","മോശയുടെ നിയമം","ജറുസലെം ദേവാലയം"], correct:1,
+   note:"വാ. 1 &mdash; 'യേശുക്രിസ്തു നിങ്ങളുടെ കണ്‍മുമ്പില്‍ ക്രൂശിതനായി ചിത്രീകരിക്കപ്പെട്ടിരിക്കേ.'"},
+  {q:"അബ്രാഹം ദൈവത്തെ വിശ്വസിച്ചപ്പോൾ എന്തു സംഭവിച്ചു (വാ. 6)?",
+   opts:["അവനു സന്തതി ലഭിച്ചു","അത് അവനു നീതിയായി പരിഗണിക്കപ്പെട്ടു","അവൻ പരിച്ഛേദനം സ്വീകരിച്ചു","അവൻ കാനാനിലേക്കു പോയി"], correct:1,
+   note:"വാ. 6 &mdash; 'അബ്രാഹം തന്നെയും ദൈവത്തെ വിശ്വസിച്ചു. അത് അവനു നീതിയായി പരിഗണിക്കപ്പെട്ടു.'"},
+  {q:"വാ. 10 പ്രകാരം ആരാണ് ശാപത്തിന് വിധേയർ?",
+   opts:["വിശ്വാസമുള്ളവർ","നിയമാനുഷ്ഠാനത്തിൽ ആശ്രയമർപ്പിക്കുന്നവർ","വിജാതീയർ","അപ്പസ്‌തോലന്മാർ"], correct:1,
+   note:"വാ. 10 &mdash; 'നിയമാനുഷ്ഠാനത്തില്‍ ആശ്രയമര്‍പ്പിക്കുന്ന എല്ലാവരും ശാപത്തിന് വിധേയരാണ്.'"},
+  {q:"'നീതിമാൻ ______ ജീവിക്കും' (വാ. 11) &mdash; ശൂന്യസ്ഥലം പൂരിപ്പിക്കുക.",
+   opts:["നിയമംവഴി","പ്രവൃത്തിവഴി","വിശ്വാസംവഴി","പരിച്ഛേദനവഴി"], correct:2,
+   note:"വാ. 11 &mdash; 'നീതിമാന്‍ വിശ്വാസംവഴിയാണു ജീവിക്കുക.'"},
+  {q:"ക്രിസ്തു നമ്മെ നിയമത്തിന്റെ ശാപത്തിൽനിന്നു എങ്ങനെ രക്ഷിച്ചു (വാ. 13)?",
+   opts:["നിയമം റദ്ദാക്കിക്കൊണ്ട്","നമുക്കുവേണ്ടി ശപിക്കപ്പെട്ടവനായിത്തീർന്നുകൊണ്ട്","ജറുസലെമിലേക്കു പോയിക്കൊണ്ട്","ഒരു പുതിയ നിയമം എഴുതിക്കൊണ്ട്"], correct:1,
+   note:"വാ. 13 &mdash; 'ക്രിസ്തു നമ്മെപ്രതി ശപിക്കപ്പെട്ടവനായിത്തീര്‍ന്നുകൊണ്ടു നിയമത്തിന്റെ ശാപത്തില്‍നിന്നു നമ്മെ രക്ഷിച്ചു.'"},
+  {q:"വാഗ്ദാനത്തിനു എത്ര വർഷങ്ങൾക്കുശേഷമാണ് നിയമം നിലവിൽ വന്നത് (വാ. 17)?",
+   opts:["100 വർഷം","250 വർഷം","430 വർഷം","500 വർഷം"], correct:2,
+   note:"വാ. 17 &mdash; 'നാനൂറ്റിമുപ്പതുവര്‍ഷങ്ങള്‍ക്കുശേഷം നിലവില്‍ വന്ന നിയമം.'"},
+  {q:"വാ. 20 പ്രകാരം ദൈവത്തെക്കുറിച്ച് എന്താണു പറയുന്നത്?",
+   opts:["ദൈവം മൂവരാണ്","ദൈവം ഏകനാണ്","ദൈവത്തിന് മധ്യവർത്തി ആവശ്യമാണ്","ദൈവം ദൂതന്മാരിലൂടെ മാത്രം സംസാരിക്കുന്നു"], correct:1,
+   note:"വാ. 20 &mdash; 'ഒന്നില്‍ക്കൂടുതല്‍ പേരുണ്ടെങ്കിലേ മധ്യവര്‍ത്തി വേണ്ടൂ; എന്നാല്‍, ദൈവം ഏകനാണ്.'"},
+  {q:"വാ. 28 പ്രകാരം ക്രിസ്തുവിൽ ഏതെല്ലാം വ്യത്യാസങ്ങൾ ഇല്ലാതാകുന്നു?",
+   opts:["ധനികൻ/ദരിദ്രൻ മാത്രം","യഹൂദൻ/ഗ്രീക്കുകാരൻ, അടിമ/സ്വതന്ത്രൻ, പുരുഷൻ/സ്ത്രീ","പ്രായവ്യത്യാസങ്ങൾ മാത്രം","ഭാഷാവ്യത്യാസങ്ങൾ മാത്രം"], correct:1,
+   note:"വാ. 28 &mdash; 'യഹൂദനെന്നോ ഗ്രീക്കുകാരനെന്നോ അടിമയെന്നോ സ്വതന്ത്രനെന്നോ പുരുഷനെന്നോ സ്ത്രീയെന്നോ വ്യത്യാസമില്ല.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--sand-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--gold); color:var(--earth); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

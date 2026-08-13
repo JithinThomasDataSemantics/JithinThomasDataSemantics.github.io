@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>സഭാപ്രസംഗകന്‍ 2 · സുഖഭോഗങ്ങള്‍ മിഥ്യ | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0F1116; --void-2:#171A22; --panel:#1D212B; --panel-2:#242834;
+    --mist:#B9C4D6; --mist-soft:#DCE3EE; --mist-dim:#5B6478;
+    --amber:#C9A265; --amber-soft:#E3C596;
+    --plum:#8B6FA0; --plum-dim:#4A3B58;
+    --sage:#7E9385;
+    --parchment:#EFEAE0; --parchment-2:#E2DBC9;
+    --ink:#25231E; --text:#E5E4DE; --text-dim:#9CA1B0;
+    --line: rgba(185,196,214,0.16);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(185,196,214,0.10), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--plum), var(--mist), var(--amber));
+    z-index:200; transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 10%, rgba(201,162,101,0.14), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--mist-soft);
+    background:rgba(185,196,214,0.07); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--plum);box-shadow:0 0 8px var(--plum);}
+
+  .crown-icon{ width:70px; height:60px; margin:0 auto 14px; opacity:.9; }
+  h1.title{ font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px); margin:6px 0 8px; color:var(--parchment); }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--mist-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--plum); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- ROYAL INVENTORY ---------- */
+  .inventory{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  @media(max-width:640px){ .inventory{ grid-template-columns:repeat(2,1fr); } }
+  .inv-card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 8px; text-align:center; }
+  .inv-card .iicon{ font-size:20px; display:block; margin-bottom:6px; }
+  .inv-card .iname{ font-size:11.5px; color:var(--text-dim); line-height:1.4; }
+
+  /* ---------- EXPERIMENT RESULT ---------- */
+  .result-callout{
+    background:linear-gradient(160deg, rgba(139,111,160,0.14), var(--panel));
+    border:1px solid var(--line); border-radius:var(--radius); padding:22px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .result-callout .ricon{ font-size:30px; flex:none; }
+  .result-callout p{ margin:0; font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .result-callout p b{ color:var(--text); }
+
+  /* ---------- SAME FATE CONVERGE ---------- */
+  .fate{ display:flex; flex-direction:column; align-items:center; gap:0; }
+  .fate-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; width:100%; }
+  @media(max-width:560px){ .fate-row{ grid-template-columns:1fr; } }
+  .fate-card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px; text-align:center; }
+  .fate-card .ficon{ font-size:26px; display:block; margin-bottom:8px; }
+  .fate-card .ftitle{ font-family:var(--display); font-weight:700; font-size:15.5px; color:var(--amber-soft); margin:0 0 6px; }
+  .fate-card p{ margin:0; font-size:13px; color:var(--text-dim); line-height:1.6; }
+  .fate-connector{ font-size:20px; color:var(--mist-dim); margin:10px 0; }
+  .fate-outcome{
+    background:linear-gradient(160deg, rgba(201,162,101,0.15), var(--panel));
+    border:1px solid var(--amber); border-radius:14px; padding:16px 22px; text-align:center;
+    font-family:var(--display); font-weight:700; font-size:16px; color:var(--amber-soft);
+  }
+
+  /* ---------- SCROLL ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:26px 24px; position:relative;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35); border:1px solid #cfc6ad;
+  }
+  .scroll::before, .scroll::after{ content:""; position:absolute; left:0; right:0; height:14px; background:repeating-linear-gradient(90deg, #cfc6ad 0 10px, #beb494 10px 20px); border-radius:50%; }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--serif); font-style:italic; font-size:16px; line-height:1.85; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:#5c5340; text-transform:uppercase; }
+
+  /* ---------- RESOLUTION ---------- */
+  .resolution{
+    background:linear-gradient(160deg, rgba(126,147,133,0.14), var(--panel));
+    border:1px solid rgba(126,147,133,0.4); border-radius:var(--radius); padding:22px; text-align:center;
+  }
+  .resolution .rline{ font-family:var(--display); font-weight:700; font-size:18px; color:var(--parchment); margin:0 0 8px; }
+  .resolution .rsub{ font-size:13.5px; color:var(--text-dim); }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--amber-soft); background:rgba(201,162,101,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--amber); }
+  .opt.correct{ background:rgba(126,147,133,0.25); border-color:var(--sage); color:#D3DFCF; }
+  .opt.wrong{ background:rgba(139,111,160,0.22); border-color:var(--plum); color:#E4D7EC; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(201,162,101,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--amber), #9C7A42); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--amber); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--amber-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--amber); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--amber-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍</div>
+    <svg class="crown-icon" viewBox="0 0 70 60">
+      <path d="M10 50 L14 24 L26 38 L35 18 L44 38 L56 24 L60 50 Z" fill="none" stroke="#C9A265" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="14" cy="24" r="3" fill="#E3C596"/>
+      <circle cx="35" cy="18" r="3" fill="#E3C596"/>
+      <circle cx="56" cy="24" r="3" fill="#E3C596"/>
+    </svg>
+    <h1 class="title">സുഖഭോഗങ്ങള്‍ മിഥ്യ</h1>
+    <p class="subtitle">"സൂര്യനു കീഴേ ഒരു നേട്ടവുമില്ല"</p>
+    <p class="ref">സഭാപ്രസംഗകന്‍ 2 &nbsp;·&nbsp; ഒരു രാജാവിന്റെ പരീക്ഷണം</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- INVENTORY -->
+  <section class="section" id="inventory-sec">
+    <p class="eyebrow">ഒരു രാജാവിന് സാധ്യമായതെല്ലാം</p>
+    <h2 class="h">നേടിയവയുടെ പട്ടിക</h2>
+    <p class="lede">സന്തോഷം കണ്ടെത്താന്‍ അദ്ദേഹം സാധ്യമായതെല്ലാം ചെയ്തു നോക്കി — ഓരോ ഇനവും ക്വിസില്‍ ചോദിക്കാം.</p>
+    <div class="inventory">
+      <div class="inv-card"><span class="iicon">🏛</span><span class="iname">മാളികകള്‍</span></div>
+      <div class="inv-card"><span class="iicon">🍇</span><span class="iname">മുന്തിരിത്തോട്ടങ്ങള്‍</span></div>
+      <div class="inv-card"><span class="iicon">🌳</span><span class="iname">ഉദ്യാനങ്ങളും ഉപവനങ്ങളും</span></div>
+      <div class="inv-card"><span class="iicon">💧</span><span class="iname">ജലസേചന കുളങ്ങള്‍</span></div>
+      <div class="inv-card"><span class="iicon">👥</span><span class="iname">ദാസന്‍മാരും ദാസിമാരും</span></div>
+      <div class="inv-card"><span class="iicon">🐑</span><span class="iname">ആടുമാടുകള്‍</span></div>
+      <div class="inv-card"><span class="iicon">💰</span><span class="iname">സ്വര്‍ണവും വെള്ളിയും</span></div>
+      <div class="inv-card"><span class="iicon">🎵</span><span class="iname">ഗായകന്‍മാരും ഗായികമാരും</span></div>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="section" id="result-sec">
+    <p class="eyebrow">എല്ലാം സ്വന്തമാക്കിയശേഷം</p>
+    <h2 class="h">നിരൂപണത്തിന്റെ ഫലം</h2>
+    <div class="result-callout">
+      <div class="ricon">🪞</div>
+      <p>താന്‍ ഉണ്ടാക്കിയവയെയും അധ്വാനത്തെയും തിരിഞ്ഞുനോക്കിയപ്പോള്‍ സഭാപ്രസംഗകന്‍ കണ്ടത്: <b>"എല്ലാം മിഥ്യയും പാഴ്‌വേലയുമായിരുന്നു! സൂര്യനു കീഴേ ഒരു നേട്ടവുമില്ല."</b> ധനവും സൗകര്യവും അര്‍ഥം നല്‍കിയില്ല.</p>
+    </div>
+  </section>
+
+  <!-- SAME FATE -->
+  <section class="section" id="fate-sec">
+    <p class="eyebrow">ജ്ഞാനിയും ഭോഷനും</p>
+    <h2 class="h">ഒരേ ഗതി</h2>
+    <p class="lede">ജ്ഞാനം ഭോഷത്തത്തെ അതിശയിക്കുന്നു എന്നു തുടങ്ങിയാലും, ഒടുവില്‍ ഇരുവരും ഒരേ വഴിയില്‍ എത്തുന്നു.</p>
+    <div class="fate">
+      <div class="fate-row">
+        <div class="fate-card"><span class="ficon">👁</span><p class="ftitle">ജ്ഞാനി</p><p>"കാണാന്‍ കണ്ണുണ്ട്" — പ്രകാശം അന്ധകാരത്തെ അതിശയിക്കുന്നതുപോലെ ഭോഷത്തത്തെ അതിശയിക്കുന്നു.</p></div>
+        <div class="fate-card"><span class="ficon">🌑</span><p class="ftitle">ഭോഷന്‍</p><p>ഇരുട്ടില്‍ നടക്കുന്നു — അറിവില്ലാതെ വഴി തെറ്റുന്നു.</p></div>
+      </div>
+      <div class="fate-connector">↓ &nbsp; ↓</div>
+      <div class="fate-outcome">ഇരുവര്‍ക്കും ഗതി ഒന്നുതന്നെ — ശാശ്വത സ്മരണയില്ല, മരണം</div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="section" id="quote-sec">
+    <p class="eyebrow">അധ്വാനത്തിന്റെ ദുഃഖം</p>
+    <h2 class="h">ഭാവിയിലേക്കുള്ള അനിശ്ചിതത്വം</h2>
+    <div class="scroll">
+      <p>"ഒരുവന്‍ ജ്ഞാനവും അറിവും സാമര്‍ഥ്യവും ഉപയോഗിച്ച് അധ്വാനിച്ചുണ്ടാക്കിയവ അവയ്ക്കുവേണ്ടി അശേഷം അധ്വാനിക്കാത്തവന് ആസ്വദിക്കാന്‍ വിട്ടുകൊടുക്കേണ്ടിവരുന്നു. ഇതും മിഥ്യയും വലിയ നിര്‍ഭാഗ്യവുമാണ്."</p>
+      <span class="cite">സഭാപ്രസംഗകന്‍ 2:21</span>
+    </div>
+  </section>
+
+  <!-- RESOLUTION -->
+  <section class="section" id="resolution-sec">
+    <p class="eyebrow">അധ്യായത്തിന്റെ ചെറിയ വെളിച്ചം</p>
+    <h2 class="h">ഒരു എളിയ ഉപദേശം</h2>
+    <div class="resolution">
+      <p class="rline">"തിന്നുകുടിച്ച് സ്വന്തം പ്രയത്‌നത്തില്‍ ആനന്ദിക്കുന്നതിനെക്കാള്‍ നല്ലതായി മനുഷ്യനു വേറൊന്നില്ല"</p>
+      <p class="rsub">ഇതും ദൈവകരങ്ങളില്‍നിന്നാണ് — ലാളിത്യമുള്ള ആനന്ദമാണ് ദൈവം നല്‍കുന്ന സമ്മാനം (2:24)</p>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം · അധ്യായം 2</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — സഭാപ്രസംഗകന്‍ 2</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>👑 Logos Quiz 2026 പഠന സഹായി · സഭാപ്രസംഗകന്‍ 2</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* full text */
+const verses = [
+  ['1-2','സുഖഭോഗങ്ങളില്‍ മുഴുകി ആസ്വാദ്യത പരീക്ഷിച്ചു — ഇതും മിഥ്യ; ചിരി ഭ്രാന്താണെന്നും സുഖഭോഗങ്ങള്‍ നിഷ്ഫലമാണെന്നും മനസ്‌സിലാക്കി.'],
+  ['3','ജ്ഞാനത്തില്‍നിന്നു മനസ്‌സിളകാതെ വീഞ്ഞുകൊണ്ട് ശരീരത്തെ ആഹ്ലാദിപ്പിക്കാന്‍ നോക്കി; മനുഷ്യന് നല്ലതെന്തെന്ന് അറിയാന്‍ ഭോഷത്തത്തെ ആശ്ലേഷിച്ചു.'],
+  ['4-8','മാളികകള്‍, മുന്തിരിത്തോട്ടങ്ങള്‍, ഉദ്യാനങ്ങള്‍, കുളങ്ങള്‍, ദാസന്‍മാര്‍, ആടുമാടുകള്‍, സ്വര്‍ണവെള്ളി, ഗായകര്‍ — സകലവും സമ്പാദിച്ചു.'],
+  ['9-10','മുന്‍ഗാമികളെക്കാള്‍ ഉന്നതനായി; ജ്ഞാനത്തില്‍നിന്ന് അകന്നില്ല; നയനങ്ങള്‍ അഭിലഷിച്ചതൊന്നും നിഷേധിച്ചില്ല.'],
+  ['11','ഉണ്ടാക്കിയവയെ നിരൂപണം ചെയ്തപ്പോള്‍ എല്ലാം മിഥ്യയും പാഴ്‌വേലയുമായിരുന്നു; സൂര്യനു കീഴേ നേട്ടമില്ല.'],
+  ['12-14','ജ്ഞാനവും ഭോഷത്തവും വിവേചിച്ചു; പ്രകാശം അന്ധകാരത്തെ അതിശയിക്കുന്നതുപോലെ ജ്ഞാനം ഭോഷത്തത്തെ അതിശയിക്കുന്നു; എന്നാല്‍ ഇരുവര്‍ക്കും ഗതി ഒന്നുതന്നെ.'],
+  ['15-17','ഭോഷന്റെയും ജ്ഞാനിയുടെയും ഗതി ഒന്നാണെങ്കില്‍ ജ്ഞാനിയാകുന്നതില്‍ എന്തു കാര്യം? ഇരുവരും വിസ്മൃതരാകും, ജീവിതം വെറുത്തു.'],
+  ['18-21','അധ്വാനത്തിന്റെ ഫലം പിന്‍ഗാമിക്കു വിട്ടുകൊടുക്കണം എന്നതില്‍ ദുഃഖിച്ചു; അധ്വാനിക്കാത്തവന് അതു ലഭിക്കുന്നത് വലിയ നിര്‍ഭാഗ്യം.'],
+  ['22-23','കഠിനാധ്വാനംകൊണ്ട് നേട്ടമില്ല; ദിനങ്ങള്‍ വേദനനിറഞ്ഞത്, രാത്രിയില്‍പ്പോലും മനസ്‌സിനു സ്വസ്ഥതയില്ല.'],
+  ['24-26','തിന്നുകുടിച്ച് പ്രയത്‌നത്തില്‍ ആനന്ദിക്കുന്നതാണ് നല്ലത് — ഇതു ദൈവത്തില്‍നിന്ന്; ദൈവം പ്രസാദിക്കുന്നവന് ജ്ഞാനവും ആനന്ദവും നല്‍കുന്നു.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'സഭാപ്രസംഗകന്‍ ആദ്യം എന്താണ് സ്വയം പരീക്ഷിച്ചത്?',
+    options: ['ജ്ഞാനം മാത്രം', 'സുഖഭോഗങ്ങള്‍', 'ഏകാന്തവാസം', 'ദീര്‍ഘയാത്ര'],
+    correct: 1,
+    explain: '2:1 — "സുഖഭോഗങ്ങളില്‍ ഞാന്‍ മുഴുകും; ഞാന്‍ അതിന്റെ ആസ്വാദ്യത പരീക്ഷിക്കും."'
+  },
+  {
+    q: 'ചിരിയെക്കുറിച്ച് അദ്ദേഹം എന്തു നിഗമനത്തിലെത്തി?',
+    options: ['ചിരി ജ്ഞാനത്തിന്റെ അടയാളമാണ്', 'ചിരി ഭ്രാന്താണ്', 'ചിരി ദൈവത്തിന്റെ സമ്മാനമാണ്', 'ചിരിയെക്കുറിച്ച് ഒന്നും പറഞ്ഞില്ല'],
+    correct: 1,
+    explain: '2:2 — "ചിരി ഭ്രാന്താണെന്നും സുഖഭോഗങ്ങള്‍ നിഷ്ഫലമാണെന്നും ഞാന്‍ മനസ്‌സിലാക്കി."'
+  },
+  {
+    q: 'തോട്ടം നനയ്ക്കാന്‍ അദ്ദേഹം എന്താണ് നിര്‍മിച്ചത്?',
+    options: ['കിണറുകള്‍', 'കുളങ്ങള്‍', 'കനാലുകള്‍ മാത്രം', 'അണക്കെട്ടുകള്‍'],
+    correct: 1,
+    explain: '2:6 — "തോട്ടം നനയ്ക്കാന്‍ കുളങ്ങള്‍ കുഴിച്ചു."'
+  },
+  {
+    q: 'താന്‍ ജറുസലെമിലെ മുന്‍ഗാമികളെക്കാള്‍ അധികമായി ഉണ്ടായിരുന്നത് എന്താണെന്ന് അദ്ദേഹം പറഞ്ഞു?',
+    options: ['സൈന്യബലം', 'ആടുമാടുകള്‍', 'സന്താനങ്ങള്‍', 'ദേവാലയങ്ങള്‍'],
+    correct: 1,
+    explain: '2:7 — "ജറുസലെമിലെ എന്റെ മുന്‍ഗാമികള്‍ക്കുണ്ടായിരുന്നതിനെക്കാള്‍ അധികം ആടുമാടുകളും എനിക്കുണ്ടായിരുന്നു."'
+  },
+  {
+    q: 'തന്റെ എല്ലാ നേട്ടങ്ങളും നിരൂപണം ചെയ്തശേഷം എന്താണ് അദ്ദേഹം കണ്ടെത്തിയത്?',
+    options: ['പൂര്‍ണ സംതൃപ്തി', 'എല്ലാം മിഥ്യയും പാഴ്‌വേലയും, സൂര്യനു കീഴേ നേട്ടമില്ല', 'കൂടുതല്‍ സമ്പാദിക്കണമെന്ന ആഗ്രഹം', 'തന്റെ ജ്ഞാനം അപര്യാപ്തമെന്ന്'],
+    correct: 1,
+    explain: '2:11 — "എല്ലാം മിഥ്യയും പാഴ്‌വേലയുമായിരുന്നു! സൂര്യനു കീഴേ ഒരു നേട്ടവുമില്ലെന്ന് എനിക്കു ബോധ്യപ്പെട്ടു."'
+  },
+  {
+    q: 'ജ്ഞാനവും ഭോഷത്തവും തമ്മിലുള്ള വ്യത്യാസത്തെ എന്തിനോടാണ് താരതമ്യം ചെയ്യുന്നത്?',
+    options: ['സ്വര്‍ണവും വെള്ളിയും പോലെ', 'പ്രകാശം അന്ധകാരത്തെ അതിശയിക്കുന്നതുപോലെ', 'സൂര്യനും ചന്ദ്രനും പോലെ', 'കടലും കരയും പോലെ'],
+    correct: 1,
+    explain: '2:13 — "പ്രകാശം അന്ധകാരത്തെയെന്നപോലെ ജ്ഞാനം ഭോഷത്തത്തെ അതിശയിക്കുന്നു."'
+  },
+  {
+    q: 'ജ്ഞാനിക്കും ഭോഷനും ഒടുവില്‍ എന്തു സംഭവിക്കുന്നു എന്നാണ് പറയുന്നത്?',
+    options: ['ജ്ഞാനി എന്നും ഓര്‍മിക്കപ്പെടും', 'ഇരുവര്‍ക്കും ഗതി ഒന്നുതന്നെ — ശാശ്വത സ്മരണ ലഭിക്കാതെ മരിക്കുന്നു', 'ഭോഷന്‍ മാത്രം മരിക്കുന്നു', 'ജ്ഞാനി കൂടുതല്‍ കാലം ജീവിക്കുന്നു'],
+    correct: 1,
+    explain: '2:16 — "ഭോഷനെപ്പോലെതന്നെ ജ്ഞാനിക്കും ശാശ്വതസ്മരണ ലഭിക്കുകയില്ല... ഭോഷനും ജ്ഞാനിയും ഒന്നുപോലെ മരിക്കുന്നു."'
+  },
+  {
+    q: 'അധ്വാനത്തിന്റെ ഫലത്തെക്കുറിച്ച് അദ്ദേഹത്തിന് എന്തു ദുഃഖം ഉണ്ടായിരുന്നു?',
+    options: ['അധ്വാനത്തിന് ഫലമേ ഇല്ലായിരുന്നു', 'ഫലം പിന്‍ഗാമിക്കു വിട്ടുകൊടുക്കണം, അവന്‍ ജ്ഞാനിയോ ഭോഷനോ എന്നറിയില്ല', 'ഫലം ദൈവം എടുത്തുകളയും', 'ഫലം ജനങ്ങള്‍ക്കു വീതിക്കണം'],
+    correct: 1,
+    explain: '2:18-19 — "അവന്‍ ജ്ഞാനിയായിരിക്കുമോ ഭോഷനായിരിക്കുമോ എന്ന് ആര്‍ക്കറിയാം?"'
+  },
+  {
+    q: 'അധ്യായത്തിന്റെ ഒടുവില്‍ എന്താണ് ഏറ്റവും നല്ലതെന്നു നിര്‍ദേശിക്കുന്നത്?',
+    options: ['എല്ലാ അധ്വാനവും ഉപേക്ഷിക്കുക', 'തിന്നുകുടിച്ച് സ്വന്തം പ്രയത്‌നത്തില്‍ ആനന്ദിക്കുക', 'കൂടുതല്‍ ധനം സമ്പാദിക്കുക', 'ഏകാന്തതയില്‍ ജീവിക്കുക'],
+    correct: 1,
+    explain: '2:24 — "തിന്നുകുടിച്ച് സ്വന്തം പ്രയത്‌നത്തില്‍ ആനന്ദിക്കുന്നതിനെക്കാള്‍ നല്ലതായി മനുഷ്യനു വേറൊന്നില്ല."'
+  },
+  {
+    q: 'ദൈവത്തെ പ്രസാദിപ്പിക്കാത്ത പാപിക്ക് എന്താണ് ലഭിക്കുന്നതെന്നു പറയുന്നു?',
+    options: ['ജ്ഞാനവും സന്തോഷവും', 'ധനം ശേഖരിച്ചുകൂട്ടി ദൈവം പ്രസാദിക്കുന്നവന് കൊടുക്കാനുള്ള അധ്വാനം മാത്രം', 'ശാശ്വത ദണ്ഡനം', 'ഒന്നും ലഭിക്കുന്നില്ല'],
+    correct: 1,
+    explain: '2:26 — "പാപിക്കാകട്ടെ, അവിടുത്തെ പ്രസാദിപ്പിക്കുന്നതിനുവേണ്ടി ധനം ശേഖരിച്ചുകൂട്ടാനുള്ള ജോലിമാത്രം കൊടുക്കുന്നു."'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

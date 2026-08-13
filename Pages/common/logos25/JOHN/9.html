@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ഞാന്‍ അന്ധനായിരുന്നു; ഇപ്പോള്‍ കാണുന്നു — യോഹന്നാൻ 9 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #14181a; --night-2: #1e2427;
+    --parchment: #e8e6df; --parchment-dim: #a3a099;
+    --clear: #6fb8d1; --clear-soft: #9fd6e8;
+    --fog: #7a7d7f; --fog-soft: #a3a6a8;
+    --line: rgba(111,184,209,0.2);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(111,184,209,0.11), transparent 45%),
+      radial-gradient(ellipse at 88% 25%, rgba(122,125,127,0.10), transparent 42%),
+      var(--night);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--clear); color:var(--night);}
+
+  /* ---------- HERO: EYE OPENING ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .eyebrow{font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--clear-soft); margin-bottom:1.6rem; font-style:italic;}
+  .eye{width:150px; height:90px; margin-bottom:1.8rem; position:relative;}
+  .eye svg{width:100%; height:100%;}
+  .eyelid-top{transform-origin:75px 45px; animation:blinkOpen 3.5s ease-in-out infinite;}
+  @keyframes blinkOpen{0%,15%{transform:scaleY(1);} 35%,100%{transform:scaleY(0.02);}}
+  .iris{opacity:0; animation:irisIn 3.5s ease-in-out infinite;}
+  @keyframes irisIn{0%,30%{opacity:0;} 55%,100%{opacity:1;}}
+
+  .hero h1{position:relative; z-index:1; font-weight:800; font-size:clamp(1.9rem, 5.6vw, 3.4rem); line-height:1.35; margin:0; color:var(--parchment);}
+  .hero h1 em{font-style:normal; color:var(--clear-soft); display:block;}
+  .hero .ref{position:relative; z-index:1; font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--parchment-dim); margin-top:1rem;}
+  .hero p.tag{position:relative; z-index:1; max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--parchment-dim);}
+  .scroll-cue{position:relative; z-index:1; margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--clear-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--clear), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--clear-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.3rem,3vw,1.9rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--clear);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--clear-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--clear-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:420px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--clear-soft); font-size:0.88rem;}
+
+  /* ---------- INTERROGATION CARDS ---------- */
+  .cards-col{display:flex; flex-direction:column; gap:0.7rem;}
+  .simple-card{background:var(--night-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.3rem;}
+  .simple-card .sverse{font-family:var(--font-num); font-style:italic; color:var(--clear-soft); font-size:0.82rem; margin-bottom:0.4rem;}
+  .simple-card .stext{font-size:0.96rem; line-height:1.85; color:var(--parchment);}
+  .simple-card .stext b{color:var(--clear-soft);}
+
+  .fear-note{margin-top:1.2rem; padding:1.1rem 1.3rem; background:rgba(122,125,127,0.1); border:1px solid rgba(122,125,127,0.3); border-left:3px solid var(--fog); border-radius:8px; font-size:0.94rem; line-height:1.8; color:var(--parchment-dim);}
+  .fear-note b{color:var(--fog-soft);}
+
+  /* ---------- I WAS BLIND GIANT QUOTE ---------- */
+  .blind-quote{margin:0.4rem 0 1.6rem; padding:3rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(111,184,209,0.18), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .blind-quote .vtag{font-family:var(--font-num); font-style:italic; color:var(--clear-soft); font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;}
+  .blind-quote p{font-family:var(--font-ml); font-weight:800; font-size:clamp(1.25rem, 3.4vw, 1.9rem); line-height:1.7; color:var(--parchment); max-width:30ch; margin:0 auto;}
+
+  /* ---------- GROWING TESTIMONY LADDER ---------- */
+  .ladder{display:flex; flex-direction:column; gap:0;}
+  .ladder-item{position:relative; display:flex; gap:1.1rem; padding:1.1rem 0; border-bottom:1px dashed var(--line);}
+  .ladder-item:last-child{border-bottom:none;}
+  .ladder-mark{flex-shrink:0; width:36px; height:36px; border-radius:50%; border:1px solid var(--clear); display:flex; align-items:center; justify-content:center; font-family:var(--font-num); font-style:italic; color:var(--clear-soft); font-size:0.85rem;}
+  .ladder-body b{color:var(--clear-soft);}
+  .ladder-body{font-size:0.97rem; line-height:1.85; color:var(--parchment-dim);}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--night-2), var(--night)); border:1px solid var(--line); border-left:3px solid var(--clear); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--clear-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--fog-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--clear);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--clear-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--clear); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--clear-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--clear); color:var(--night); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--clear-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .eyelid-top, .iris, .scroll-cue span{animation:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; John / യോഹന്നാൻ</div>
+  <div class="eye">
+    <svg viewBox="0 0 150 90">
+      <path d="M10,45 Q75,85 140,45 Q75,60 10,45 Z" fill="#1e2427" stroke="#6fb8d1" stroke-width="1.4"/>
+      <circle class="iris" cx="75" cy="47" r="15" fill="#6fb8d1" opacity="0.9"/>
+      <circle class="iris" cx="75" cy="47" r="6" fill="#14181a"/>
+      <path class="eyelid-top" d="M10,45 Q75,5 140,45 Q75,45 10,45 Z" fill="#14181a"/>
+    </svg>
+  </div>
+  <h1>ഞാന്‍ അന്ധനായിരുന്നു;<br><em>ഇപ്പോള്‍ ഞാന്‍ കാണുന്നു</em></h1>
+  <div class="ref">യോഹന്നാൻ 9 : 1&ndash;41</div>
+  <p class="tag">ചെളിയും തുപ്പലും, സീലോഹാ കുളവും ഒരു കാഴ്ചയും &mdash; അതിനെക്കാൾ ആഴമായി, കാഴ്ചയുള്ളവർ അന്ധരാകുന്ന ഒരു വിരോധാഭാസം.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: HEALING -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>അന്ധനെ സുഖപ്പെടുത്തുന്നു</h2></div>
+  <p class="section-sub">വാ. 1&ndash;12. ജന്മനാ അന്ധനായ ഒരുവൻ &mdash; ടാപ്പ് ചെയ്ത് വിശദാംശം കാണുക.</p>
+  <div class="prologue-grid" id="prologue"></div>
+</section>
+
+<!-- II: FIRST INTERROGATION -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>ഫരിസേയരുടെ ആദ്യ ചോദ്യംചെയ്യൽ</h2></div>
+  <p class="section-sub">വാ. 13&ndash;17. സാബത്തിലെ സൗഖ്യം ഭിന്നത സൃഷ്ടിക്കുന്നു.</p>
+  <div class="cards-col" id="firstCards"></div>
+</section>
+
+<!-- III: PARENTS QUESTIONED -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>മാതാപിതാക്കളും ഭയവും</h2></div>
+  <p class="section-sub">വാ. 18&ndash;23. യഹൂദരെ ഭയന്ന ഒരു കുടുംബം.</p>
+  <div class="fear-note">'അവന്‍ ഞങ്ങളുടെ മകനാണെന്നും അന്ധനായി ജനിച്ചു എന്നും ഞങ്ങൾക്കറിയാം; എന്നാൽ എങ്ങനെ കാണുന്നു എന്ന് അറിഞ്ഞുകൂടാ &mdash; <b>അവനോടുതന്നെ ചോദിക്കുവിൻ, അവനു പ്രായമായല്ലോ.</b>' (വാ. 20&ndash;21) &mdash; ക്രിസ്തുവിനെ ഏറ്റുപറഞ്ഞാൽ <b>സിനഗോഗിൽനിന്നു പുറത്താക്കും</b> എന്ന ഭീഷണിയെ ഭയന്നായിരുന്നു ഇത് (വാ. 22).</div>
+</section>
+
+<!-- IV: SECOND INTERROGATION -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>രണ്ടാം ചോദ്യംചെയ്യലും പുറത്താക്കലും</h2></div>
+  <p class="section-sub">വാ. 24&ndash;34. അയാളുടെ മറുപടികൾ ധൈര്യപ്പെടുന്നു; ഫരിസേയരുടെ ദേഷ്യം വർധിക്കുന്നു.</p>
+  <div class="blind-quote">
+    <div class="vtag">വാ. 25</div>
+    <p>&ldquo;അവന്‍ പാപിയാണോ എന്ന് എനിക്കറിഞ്ഞുകൂടാ. ഒരു കാര്യം എനിക്കറിയാം: ഞാന്‍ അന്ധനായിരുന്നു; ഇപ്പോള്‍ ഞാന്‍ കാണുന്നു.&rdquo;</p>
+  </div>
+  <div class="cards-col" id="secondCards"></div>
+</section>
+
+<!-- V: SPIRITUAL BLINDNESS -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>ആത്മീയാന്ധത</h2></div>
+  <p class="section-sub">വാ. 35&ndash;41. യേശു അവനെ വീണ്ടും കണ്ടെത്തുന്നു &mdash; ഇത്തവണ ആത്മീയമായി.</p>
+  <div class="cards-col" id="spiritCards"></div>
+</section>
+
+<!-- GROWING TESTIMONY -->
+<section class="block" id="s6">
+  <div class="section-head"><span class="num">VI</span><h2>വളരുന്ന സാക്ഷ്യം</h2></div>
+  <p class="section-sub">അധ്യായത്തിലുടനീളം, യേശുവിനെക്കുറിച്ചുള്ള അയാളുടെ വിവരണം ഘട്ടംഘട്ടമായി ആഴപ്പെടുന്നു.</p>
+  <div class="ladder" id="ladderGrid"></div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s7">
+  <div class="section-head"><span class="num">VII</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">പ്രധാന വാക്യങ്ങളും വസ്തുതകളും.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s8">
+  <div class="section-head"><span class="num">VIII</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>യോഹന്നാൻ 9 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- SECTION I ACCORDION ---------------- */
+const prologue = [
+  {v:"1-3", text:"ജന്മനാ അന്ധനായ ഒരുവനെ യേശു കണ്ടു. ശിഷ്യന്മാർ ചോദിച്ചു: 'ഇവൻ അന്ധനായി ജനിച്ചത് ആരുടെ പാപം നിമിത്തമാണ്?' യേശു: 'ആരുടെയും പാപം നിമിത്തമല്ല, <b>ദൈവത്തിന്റെ പ്രവൃത്തികൾ ഇവനിൽ പ്രകടമാകേണ്ടതിനാണ്.</b>'", note:"കഷ്ടതയും പാപവും തമ്മിലുള്ള നേരിട്ടുള്ള ബന്ധം യേശു നിരാകരിക്കുന്നു."},
+  {v:"4-5", text:"'പകലായിരിക്കുവോളം നാം പ്രവർത്തിക്കണം; രാത്രി വരുന്നു. ഞാൻ ലോകത്തിന്റെ പ്രകാശമാണ്.'", note:"ഈ പ്രഖ്യാപനത്തിനുശേഷം ഉടനെ ഒരു അന്ധന് കാഴ്ച നൽകുന്നു &mdash; വാക്കും പ്രവൃത്തിയും ഒന്നിക്കുന്നു."},
+  {v:"6-7", text:"യേശു നിലത്തു തുപ്പി, ചെളിയുണ്ടാക്കി അവന്റെ കണ്ണുകളിൽ പൂശി: 'സീലോഹാ കുളത്തിൽ പോയി കഴുകുക.' അവൻ പോയി കഴുകി, കാഴ്ചയുള്ളവനായി തിരിച്ചുവന്നു.", note:"ക്വിസ് സൂചന: <b>സീലോഹാ</b> = 'അയയ്ക്കപ്പെട്ടവൻ' എന്നർഥം."},
+  {v:"8-12", text:"അയൽക്കാർ ആശയക്കുഴപ്പത്തിലായി: 'ഇവൻതന്നെയല്ലേ ഭിക്ഷ യാചിച്ചിരുന്നവൻ?' ചിലർ അതെ എന്നും ചിലർ സാദൃശ്യം മാത്രം എന്നും പറഞ്ഞു. അവൻ: 'ഞാൻ തന്നെ.' യേശു എവിടെയെന്നു ചോദിച്ചപ്പോൾ: 'എനിക്കറിഞ്ഞുകൂടാ.'", note:"ഈ ഘട്ടത്തിൽ അവന് യേശുവിനെക്കുറിച്ച് 'ഒരു മനുഷ്യൻ' എന്നു മാത്രമേ അറിയൂ."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- SECTION II FIRST INTERROGATION CARDS ---------------- */
+const firstCards = [
+  {v:"14", t:"യേശു ചെളിയുണ്ടാക്കി കണ്ണുകൾ തുറന്നത് <b>ഒരു സാബത്തു ദിവസമായിരുന്നു.</b>"},
+  {v:"16", t:"ചിലർ: 'സാബത്ത് ആചരിക്കാത്തതിനാൽ ഇവൻ ദൈവത്തിൽനിന്നല്ല.' മറ്റുള്ളവർ: 'പാപിയായ മനുഷ്യന് എങ്ങനെ ഇത്തരം അടയാളങ്ങൾ പ്രവർത്തിക്കാൻ കഴിയും?' &mdash; <b>അവർക്കിടയിൽ ഭിന്നത.</b>"},
+  {v:"17", t:"'അവനെപ്പറ്റി നീ എന്തു പറയുന്നു?' അവൻ പറഞ്ഞു: '<b>അവൻ ഒരു പ്രവാചകനാണ്.</b>'"}
+];
+document.getElementById('firstCards').innerHTML = firstCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- SECTION IV SECOND INTERROGATION CARDS ---------------- */
+const secondCards = [
+  {v:"26-27", t:"'അവൻ നിനക്കുവേണ്ടി എന്തു ചെയ്തു?' അവൻ: 'ഞാൻ പറഞ്ഞുകഴിഞ്ഞുവല്ലോ. നിങ്ങളും അവന്റെ <b>ശിഷ്യരാകുവാൻ ഇച്ഛിക്കുന്നുവോ?</b>' (ധൈര്യമേറിയ പരിഹാസം)"},
+  {v:"28-29", t:"അവർ അവനെ ശകാരിച്ചു: 'നീയാണ് അവന്റെ ശിഷ്യൻ; ഞങ്ങൾ <b>മോശയുടെ ശിഷ്യന്മാരാണ്.</b> ഇവൻ എവിടെനിന്നാണെന്നു ഞങ്ങൾക്കറിഞ്ഞുകൂടാ.'"},
+  {v:"30-33", t:"'ഇതു വിചിത്രം! അവൻ എവിടെനിന്നാണെന്നു നിങ്ങൾ അറിയുന്നില്ല, എന്നാൽ അവൻ <b>എന്റെ കണ്ണുകൾ തുറന്നു.</b> ഈ മനുഷ്യൻ ദൈവത്തിൽനിന്നുള്ളവനല്ലെങ്കിൽ ഒന്നും ചെയ്യാൻ കഴിയുമായിരുന്നില്ല.'"},
+  {v:"34", t:"'തികച്ചും പാപത്തിൽ പിറന്ന നീ ഞങ്ങളെ പഠിപ്പിക്കുന്നുവോ?' <b>അവർ അവനെ പുറത്താക്കി.</b> (സിനഗോഗിൽനിന്നുള്ള പുറത്താക്കൽ)"}
+];
+document.getElementById('secondCards').innerHTML = secondCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- SECTION V SPIRITUAL BLINDNESS CARDS ---------------- */
+const spiritCards = [
+  {v:"35-38", t:"യേശു അവനെ കണ്ടെത്തി: 'മനുഷ്യപുത്രനിൽ നീ വിശ്വസിക്കുന്നുവോ?' 'അവൻ ആരാണ്?' 'നിന്നോടു സംസാരിക്കുന്നവൻതന്നെ.' 'കർത്താവേ, <b>ഞാൻ വിശ്വസിക്കുന്നു</b>' &mdash; അവൻ യേശുവിനെ പ്രണമിച്ചു."},
+  {v:"39", t:"'കാഴ്ചയില്ലാത്തവർ കാണുകയും കാഴ്ചയുള്ളവർ അന്ധരായിത്തീരുകയും ചെയ്യേണ്ടതിന് <b>ന്യായവിധിക്കായിട്ടാണ്</b> ഞാൻ ഈ ലോകത്തിലേക്കു വന്നത്.'"},
+  {v:"40-41", t:"ഫരിസേയർ: 'ഞങ്ങളും അന്ധരാണോ?' യേശു: 'അന്ധരായിരുന്നെങ്കിൽ പാപം ഉണ്ടാകുമായിരുന്നില്ല. എന്നാൽ, <b>'ഞങ്ങൾ കാണുന്നു' എന്നു നിങ്ങൾ പറയുന്നതിനാൽ പാപം നിലനിൽക്കുന്നു.</b>'"}
+];
+document.getElementById('spiritCards').innerHTML = spiritCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- GROWING TESTIMONY LADDER ---------------- */
+const ladderData = [
+  {m:"1", t:"'യേശു എന്നു പേരുള്ള <b>മനുഷ്യൻ</b>' (വാ. 11) &mdash; തുടക്കത്തിൽ വെറുമൊരു പേര് മാത്രം."},
+  {m:"2", t:"'അവൻ ഒരു <b>പ്രവാചകൻ</b>ആണ്' (വാ. 17) &mdash; ആദ്യ ചോദ്യംചെയ്യലിനുശേഷം."},
+  {m:"3", t:"'ഈ മനുഷ്യൻ <b>ദൈവത്തിൽനിന്നുള്ളവനല്ലെങ്കിൽ</b> ഒന്നും ചെയ്യാൻ കഴിയുമായിരുന്നില്ല' (വാ. 33) &mdash; യുക്തിസഹമായ നിഗമനം."},
+  {m:"4", t:"'<b>കർത്താവേ, ഞാൻ വിശ്വസിക്കുന്നു</b>' &mdash; പ്രണാമത്തോടെ (വാ. 38) &mdash; പൂർണമായ ആരാധന."}
+];
+document.getElementById('ladderGrid').innerHTML = ladderData.map(l=>`
+  <div class="ladder-item"><div class="ladder-mark">${l.m}</div><div class="ladder-body">${l.t}</div></div>
+`).join('');
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"ശിഷ്യന്മാരുടെ ചോദ്യം", val:"ആരുടെ <b>പാപം</b> നിമിത്തമാണ് അന്ധത &mdash; ഇവന്റെയോ മാതാപിതാക്കളുടെയോ (വാ. 2)."},
+  {label:"യേശുവിന്റെ മറുപടി", val:"<b>ദൈവത്തിന്റെ പ്രവൃത്തികൾ</b> പ്രകടമാകാൻ (വാ. 3)."},
+  {label:"സൗഖ്യരീതി", val:"തുപ്പൽകൊണ്ടുള്ള <b>ചെളി</b>, കണ്ണുകളിൽ പൂശി (വാ. 6)."},
+  {label:"കുളത്തിന്റെ പേരും അർഥവും", val:"<b>സീലോഹാ</b> = 'അയയ്ക്കപ്പെട്ടവൻ' (വാ. 7)."},
+  {label:"സൗഖ്യദിനം", val:"<b>സാബത്ത്</b> (വാ. 14)."},
+  {label:"മാതാപിതാക്കളുടെ ഭയം", val:"ക്രിസ്തുവിനെ ഏറ്റുപറഞ്ഞാൽ <b>സിനഗോഗിൽനിന്നു പുറത്താക്കൽ</b> (വാ. 22)."},
+  {label:"പ്രശസ്തമായ മറുപടി", val:"'ഞാൻ അന്ധനായിരുന്നു; ഇപ്പോൾ <b>കാണുന്നു</b>' (വാ. 25)."},
+  {label:"യേശുവിന്റെ ദൗത്യപ്രഖ്യാപനം", val:"കാഴ്ചയില്ലാത്തവർ കാണാനും കാഴ്ചയുള്ളവർ <b>അന്ധരാകാനും</b> (വാ. 39)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"അന്ധനായി ജനിച്ചത് ആരുടെ പാപം നിമിത്തമാണെന്നാണ് ശിഷ്യന്മാർ ചോദിച്ചത് (വാ. 2)?",
+   opts:["രാജാവിന്റെ","ഇവന്റെയോ മാതാപിതാക്കളുടെയോ","പുരോഹിതരുടെ","ഗ്രാമത്തിന്റെ"], correct:1,
+   note:"വാ. 2 &mdash; 'ഇവന്‍ അന്ധനായി ജനിച്ചത് ആരുടെ പാപം നിമിത്തമാണ്, ഇവന്റെയോ ഇവന്റെ മാതാപിതാക്കന്‍മാരുടെയോ?'"},
+  {q:"അന്ധത എന്തിനുവേണ്ടിയാണെന്ന് യേശു മറുപടി പറഞ്ഞു (വാ. 3)?",
+   opts:["ശിക്ഷയായി","ദൈവത്തിന്റെ പ്രവൃത്തികൾ പ്രകടമാകാൻ","ഒരു പരീക്ഷണമായി","ആരും അറിയില്ല"], correct:1,
+   note:"വാ. 3 &mdash; 'ദൈവത്തിന്റെ പ്രവൃത്തികള്‍ ഇവനില്‍ പ്രകടമാകേണ്ടതിനാണ്.'"},
+  {q:"യേശു എന്തുപയോഗിച്ചാണ് അവന്റെ കണ്ണുകൾ സൗഖ്യമാക്കിയത് (വാ. 6)?",
+   opts:["എണ്ണ","തുപ്പൽകൊണ്ടുള്ള ചെളി","വെള്ളം മാത്രം","ഒരു തുണി"], correct:1,
+   note:"വാ. 6 &mdash; 'തുപ്പല്‍കൊണ്ടു ചെളിയുണ്ടാക്കി, അവന്റെ കണ്ണുകളില്‍ പൂശി.'"},
+  {q:"'സീലോഹാ' എന്ന വാക്കിന്റെ അർഥം എന്താണ് (വാ. 7)?",
+   opts:["'ശുദ്ധി'","'അയയ്ക്കപ്പെട്ടവൻ'","'ജീവജലം'","'വെളിച്ചം'"], correct:1,
+   note:"വാ. 7 &mdash; 'സീലോഹാ - അയയ്ക്കപ്പെട്ടവന്‍ എന്നര്‍ഥം.'"},
+  {q:"ഈ സൗഖ്യം നടന്ന ദിവസം ഏതായിരുന്നു (വാ. 14)?",
+   opts:["പെസഹാ","സാബത്ത്","പെന്തക്കുസ്ത","ആദ്യ ദിവസം"], correct:1,
+   note:"വാ. 14 &mdash; 'യേശു ചെളിയുണ്ടാക്കി അവന്റെ കണ്ണുകള്‍ തുറന്നത് ഒരു സാബത്തു ദിവസമാണ്.'"},
+  {q:"മാതാപിതാക്കൾ വ്യക്തമായ ഉത്തരം ഒഴിവാക്കിയത് എന്തുകൊണ്ട് (വാ. 22)?",
+   opts:["അവർക്ക് അറിയില്ലായിരുന്നു","സിനഗോഗിൽനിന്നു പുറത്താക്കുമെന്ന ഭയം","അവർ ദൂരെയായിരുന്നു","അവർ യേശുവിനെ വെറുത്തിരുന്നു"], correct:1,
+   note:"വാ. 22 &mdash; 'യേശുവിനെ ക്രിസ്തു എന്ന് ആരെങ്കിലും ഏറ്റുപറഞ്ഞാല്‍ അവനെ സിനഗോഗില്‍നിന്നു പുറത്താക്കണം എന്ന് യഹൂദര്‍ തീരുമാനിച്ചിരുന്നു.'"},
+  {q:"വീണ്ടും വീണ്ടും ചോദ്യം ചെയ്യപ്പെട്ടപ്പോൾ അയാൾ എന്തു മറുപടി പറഞ്ഞു (വാ. 25)?",
+   opts:["'എനിക്ക് ഒന്നും അറിയില്ല'","'ഞാൻ അന്ധനായിരുന്നു; ഇപ്പോൾ ഞാൻ കാണുന്നു'","'അവൻ ഒരു മാന്ത്രികനാണ്'","'എന്നെ വെറുതെ വിടുക'"], correct:1,
+   note:"വാ. 25 &mdash; 'ഞാന്‍ അന്ധനായിരുന്നു; ഇപ്പോള്‍ ഞാന്‍ കാണുന്നു.'"},
+  {q:"താൻ ലോകത്തിലേക്കു വന്നതിന്റെ ഉദ്ദേശ്യമായി യേശു എന്തു പറഞ്ഞു (വാ. 39)?",
+   opts:["എല്ലാവരെയും സുഖപ്പെടുത്താൻ","കാഴ്ചയില്ലാത്തവർ കാണാനും കാഴ്ചയുള്ളവർ അന്ധരാകാനും","നിയമം റദ്ദാക്കാൻ","റോമാക്കാരെ പുറത്താക്കാൻ"], correct:1,
+   note:"വാ. 39 &mdash; 'കാഴ്ചയില്ലാത്തവര്‍ കാണുകയും കാഴ്ചയുള്ളവര്‍ അന്ധരായിത്തീരുകയും ചെയ്യേണ്ടതിന് ന്യായവിധിക്കായിട്ടാണു ഞാന്‍ ഈ ലോകത്തിലേക്കു വന്നത്.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--clear); color:var(--night); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

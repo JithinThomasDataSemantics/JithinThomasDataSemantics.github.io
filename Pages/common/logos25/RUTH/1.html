@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>റൂത്ത് 1 · റൂത്തിന്റെ ശപഥം | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#150F0A; --void-2:#1E1610; --panel:#241A12; --panel-2:#2C2016;
+    --wheat:#D9A441; --wheat-soft:#EAC479; --wheat-dim:#8A651F;
+    --rust:#C1652F; --rust-dim:#6B3419;
+    --rose:#C97B84; --rose-dim:#6E3A40;
+    --olive:#8B9A5F;
+    --parchment:#F5EBDA; --parchment-2:#EEE0C4;
+    --ink:#2A1E12; --text:#EFE6D8; --text-dim:#BBAC93;
+    --line: rgba(217,164,65,0.20);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(217,164,65,0.16), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--wheat); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--rose), var(--rust), var(--wheat));
+    z-index:200; box-shadow:0 0 12px rgba(217,164,65,0.6); transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 16%, rgba(217,164,65,0.18), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--wheat-soft);
+    background:rgba(217,164,65,0.09); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--rose);box-shadow:0 0 8px var(--rose);}
+
+  .path-icon{ width:90px; height:56px; margin:0 auto 14px; }
+  h1.title{ font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px); margin:6px 0 8px; color:var(--parchment); }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--wheat-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--rust); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- FAMILY ---------- */
+  .family{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  @media(max-width:640px){ .family{ grid-template-columns:repeat(2,1fr); } }
+  .fam-card{ background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px 10px; text-align:center; }
+  .fam-card.gone{ opacity:.62; }
+  .fam-card .ficon{ font-size:20px; display:block; margin-bottom:6px; }
+  .fam-card .fname{ font-size:13px; font-weight:700; color:var(--wheat-soft); display:block; }
+  .fam-card .frole{ font-size:11px; color:var(--text-dim); margin-top:2px; }
+
+  /* ---------- LOSS TIMELINE ---------- */
+  .loss-arc{ position:relative; padding-left:34px; margin-top:8px; }
+  .loss-arc::before{ content:""; position:absolute; left:12px; top:6px; bottom:6px; width:2px; background:linear-gradient(180deg, var(--wheat), var(--rust-dim)); opacity:.55; }
+  .loss-item{ position:relative; padding-bottom:22px; }
+  .loss-item:last-child{ padding-bottom:2px; }
+  .loss-num{ position:absolute; left:-34px; top:0; width:26px; height:26px; border-radius:50%; background:var(--void-2); border:2px solid var(--rust); color:var(--wheat-soft); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:var(--display); }
+  .loss-item p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.65; }
+  .loss-item p b{ color:var(--text); }
+
+  /* ---------- FORK ---------- */
+  .fork{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:560px){ .fork{ grid-template-columns:1fr; } }
+  .fork-card{ border-radius:14px; padding:20px; border:1px solid var(--line); text-align:center; }
+  .fork-card.turn{ background:linear-gradient(160deg, rgba(110,58,64,0.18), var(--panel)); border-color:var(--rose-dim); }
+  .fork-card.cling{ background:linear-gradient(160deg, rgba(217,164,65,0.16), var(--panel)); border-color:var(--wheat); }
+  .fork-card .fkicon{ font-size:28px; margin-bottom:8px; }
+  .fork-card .fktitle{ font-family:var(--display); font-weight:700; font-size:15.5px; color:var(--parchment); margin:0 0 8px; }
+  .fork-card p{ margin:0; font-size:13px; color:var(--text-dim); line-height:1.6; }
+
+  /* ---------- VOW SCROLL (featured) ---------- */
+  .vow-scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:18px; padding:32px 26px; position:relative;
+    box-shadow:0 22px 46px rgba(0,0,0,0.4); border:1px solid #d8c39a;
+  }
+  .vow-scroll::before, .vow-scroll::after{
+    content:""; position:absolute; left:0; right:0; height:16px;
+    background:repeating-linear-gradient(90deg, #d8c39a 0 11px, #c7ab7c 11px 22px); border-radius:50%;
+  }
+  .vow-scroll::before{ top:-8px; } .vow-scroll::after{ bottom:-8px; }
+  .vow-scroll p{ font-family:var(--serif); font-style:italic; font-size:17.5px; line-height:1.9; margin:0; color:var(--ink); text-align:center; }
+  .vow-scroll .cite{ display:block; margin-top:16px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:var(--rust-dim); text-transform:uppercase; text-align:center; }
+
+  /* ---------- NAME CHANGE ---------- */
+  .name-change{ display:flex; align-items:center; justify-content:center; gap:20px; background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:24px; flex-wrap:wrap; }
+  .name-change .nside{ text-align:center; }
+  .name-change .nword{ font-family:var(--display); font-weight:800; font-size:26px; }
+  .name-change .nold .nword{ color:var(--text-dim); text-decoration:line-through; text-decoration-color:var(--rose); }
+  .name-change .nnew .nword{ color:var(--wheat-soft); }
+  .name-change .nmeaning{ font-size:12px; color:var(--text-dim); margin-top:4px; }
+  .name-change .narrow{ font-size:22px; color:var(--rust); }
+
+  /* ---------- STORY STAGES ---------- */
+  .stages{ position:relative; padding-left:34px; margin-top:8px; }
+  .stages::before{ content:""; position:absolute; left:12px; top:6px; bottom:6px; width:2px; background:linear-gradient(180deg, var(--rose), var(--wheat), var(--rust)); opacity:.55; }
+  .stage-item{ position:relative; padding-bottom:22px; cursor:pointer; }
+  .stage-item:last-child{ padding-bottom:2px; }
+  .stage-num{ position:absolute; left:-34px; top:0; width:26px; height:26px; border-radius:50%; background:var(--void-2); border:2px solid var(--wheat); color:var(--wheat-soft); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:var(--display); }
+  .stage-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .stage-title{ font-weight:600; font-size:15px; color:var(--text); }
+  .stage-caret{ color:var(--wheat); transition:transform .25s ease; font-size:13px; flex:none; }
+  .stage-item.open .stage-caret{ transform:rotate(90deg); }
+  .stage-body{ max-height:0; overflow:hidden; transition:max-height .3s ease; font-family:var(--serif); font-size:13.5px; color:var(--text-dim); line-height:1.7; }
+  .stage-item.open .stage-body{ max-height:160px; padding-top:8px; }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--wheat-soft); background:rgba(217,164,65,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--wheat); }
+  .opt.correct{ background:rgba(139,154,95,0.25); border-color:var(--olive); color:#DCE6C4; }
+  .opt.wrong{ background:rgba(110,58,64,0.3); border-color:var(--rose); color:#F0CBD1; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(217,164,65,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--wheat), #A97323); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--wheat); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--wheat-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--wheat); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--wheat-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍</div>
+    <svg class="path-icon" viewBox="0 0 90 56">
+      <path d="M10 50 Q30 20 45 30 Q60 40 80 8" fill="none" stroke="#D9A441" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 9"/>
+      <circle cx="10" cy="50" r="4" fill="#C97B84"/>
+      <circle cx="80" cy="8" r="4" fill="#EAC479"/>
+    </svg>
+    <h1 class="title">റൂത്തിന്റെ ശപഥം</h1>
+    <p class="subtitle">"അമ്മ പോകുന്നിടത്തു ഞാനും വരും"</p>
+    <p class="ref">റൂത്ത് 1 &nbsp;·&nbsp; നഷ്ടത്തില്‍നിന്നു കൂറിലേക്ക്</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- FAMILY -->
+  <section class="section" id="family-sec">
+    <p class="eyebrow">ബേത്‌ലെഹെമില്‍നിന്നു മൊവാബിലേക്ക്</p>
+    <h2 class="h">കുടുംബം</h2>
+    <p class="lede">ക്ഷാമം കാരണം എഫ്രാത്യരായ ഈ കുടുംബം മൊവാബിലേക്കു കുടിയേറി — പേരുകള്‍ ക്വിസില്‍ പതിവായി ചോദിക്കപ്പെടും.</p>
+    <div class="family">
+      <div class="fam-card gone"><span class="ficon">👨</span><span class="fname">എലിമെലെക്ക്</span><span class="frole">ഭര്‍ത്താവ് · മരിച്ചു</span></div>
+      <div class="fam-card"><span class="ficon">👩</span><span class="fname">നവോമി</span><span class="frole">ഭാര്യ</span></div>
+      <div class="fam-card gone"><span class="ficon">👦</span><span class="fname">മഹ്‌ലോന്‍</span><span class="frole">പുത്രന്‍ · മരിച്ചു</span></div>
+      <div class="fam-card gone"><span class="ficon">👦</span><span class="fname">കിലിയോന്‍</span><span class="frole">പുത്രന്‍ · മരിച്ചു</span></div>
+      <div class="fam-card"><span class="ficon">👰</span><span class="fname">ഓര്‍ഫ</span><span class="frole">മരുമകള്‍ (മൊവാബ്യ)</span></div>
+      <div class="fam-card"><span class="ficon">👰</span><span class="fname">റൂത്ത്</span><span class="frole">മരുമകള്‍ (മൊവാബ്യ)</span></div>
+    </div>
+  </section>
+
+  <!-- LOSS -->
+  <section class="section" id="loss-sec">
+    <p class="eyebrow">പത്തു വര്‍ഷത്തിനിടയില്‍</p>
+    <h2 class="h">നവോമിയുടെ നഷ്ടങ്ങള്‍</h2>
+    <div class="loss-arc" id="lossWrap"></div>
+  </section>
+
+  <!-- FORK -->
+  <section class="section" id="fork-sec">
+    <p class="eyebrow">വഴിയില്‍വച്ചുള്ള തീരുമാനം</p>
+    <h2 class="h">ഓര്‍ഫയും റൂത്തും</h2>
+    <p class="lede">നവോമി ഇരുവരെയും മടങ്ങിപ്പോകാന്‍ പ്രേരിപ്പിച്ചപ്പോള്‍ ഇരുവരും വ്യത്യസ്ത വഴികള്‍ തിരഞ്ഞെടുത്തു.</p>
+    <div class="fork">
+      <div class="fork-card turn">
+        <div class="fkicon">👋</div>
+        <p class="fktitle">ഓര്‍ഫ</p>
+        <p>അമ്മായിയമ്മയെ ചുംബിച്ച് വിടവാങ്ങി — <b>ചാർച്ചക്കാരുടെയും ദേവന്മാരുടെയും അടുത്തേക്ക്</b> മടങ്ങിപ്പോയി.</p>
+      </div>
+      <div class="fork-card cling">
+        <div class="fkicon">🤝</div>
+        <p class="fktitle">റൂത്ത്</p>
+        <p>നവോമിയെ <b>പിരിയാതെ നിന്നു</b> — തന്റെ ഭാവി മുഴുവന്‍ അമ്മായിയമ്മയോടു ബന്ധിപ്പിച്ചു.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOW -->
+  <section class="section" id="vow-sec">
+    <p class="eyebrow">ബൈബിളിലെ ഏറ്റവും അറിയപ്പെടുന്ന കൂറിന്റെ വാക്കുകള്‍</p>
+    <h2 class="h">റൂത്തിന്റെ ശപഥം</h2>
+    <div class="vow-scroll">
+      <p>"അമ്മയെ ഉപേക്ഷിക്കാനോ കൂടെപ്പോരാതിരിക്കാനോ എന്നോടു പറയരുത്. അമ്മ പോകുന്നിടത്തു ഞാനും വരും; വസിക്കുന്നിടത്തു ഞാനും വസിക്കും. അമ്മയുടെ ചാർച്ചക്കാർ എന്റെ ചാർച്ചക്കാരും അമ്മയുടെ ദൈവം എന്റെ ദൈവവുമായിരിക്കും; അമ്മ മരിക്കുന്നിടത്ത് ഞാനും മരിച്ച് അടക്കപ്പെടും."</p>
+      <span class="cite">റൂത്ത് 1:16-17</span>
+    </div>
+  </section>
+
+  <!-- NAME CHANGE -->
+  <section class="section" id="name-sec">
+    <p class="eyebrow">തിരിച്ചെത്തിയപ്പോള്‍</p>
+    <h2 class="h">നവോമി → മാറാ</h2>
+    <div class="name-change">
+      <div class="nside nold"><span class="nword">നവോമി</span><div class="nmeaning">"മധുരമുള്ളവള്‍"</div></div>
+      <div class="narrow">→</div>
+      <div class="nside nnew"><span class="nword">മാറാ</span><div class="nmeaning">"കയ്‌പുള്ളവള്‍" — സര്‍വശക്തന്‍ കഠിനമായി പ്രവര്‍ത്തിച്ചു</div></div>
+    </div>
+  </section>
+
+  <!-- STAGES -->
+  <section class="section" id="stages-sec">
+    <p class="eyebrow">അധ്യായത്തിന്റെ ക്രമം</p>
+    <h2 class="h">ബേത്‌ലെഹെമിലേക്കുള്ള മടക്കം</h2>
+    <p class="lede">ഓരോ ഘട്ടത്തിലും ടാപ്പ് ചെയ്ത് വിശദാംശം കാണുക.</p>
+    <div class="stages" id="stagesWrap"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — റൂത്ത് 1</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🌾 Logos Quiz 2026 പഠന സഹായി · റൂത്ത് 1</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* loss timeline */
+const losses = [
+  {t:'ക്ഷാമവും കുടിയേറ്റവും', b:'ന്യായാധിപന്മാരുടെ കാലത്ത് ക്ഷാമം നിമിത്തം കുടുംബം ബേത്‌ലെഹെമില്‍നിന്നു മൊവാബിലേക്കു കുടിയേറി.'},
+  {t:'എലിമെലെക്കിന്റെ മരണം', b:'നവോമിയുടെ ഭര്‍ത്താവ് മരിച്ചു; അവളും പുത്രന്മാരും ശേഷിച്ചു.'},
+  {t:'പുത്രന്മാരുടെ വിവാഹം', b:'മഹ്‌ലോനും കിലിയോനും ഓര്‍ഫയെയും റൂത്തിനെയും വിവാഹം ചെയ്തു; പത്തുവര്‍ഷം അവിടെ കഴിഞ്ഞു.'},
+  {t:'രണ്ടു പുത്രന്മാരുടെയും മരണം', b:'മഹ്‌ലോനും കിലിയോനും മരിച്ചു; നവോമിക്ക് ഭര്‍ത്താവും പുത്രന്മാരും നഷ്ടപ്പെട്ടു.'},
+];
+const lossWrap = document.getElementById('lossWrap');
+losses.forEach((item,i)=>{
+  const el = document.createElement('div');
+  el.className = 'loss-item';
+  el.innerHTML = `<div class="loss-num">${i+1}</div><p><b>${item.t}</b> — ${item.b}</p>`;
+  lossWrap.appendChild(el);
+});
+
+/* stages */
+const stages = [
+  {t:'വീട്ടിലേക്കു മടങ്ങാന്‍ തീരുമാനം', b:'കര്‍ത്താവ് തന്റെ ജനത്തെ അനുഗ്രഹിച്ചു എന്നു കേട്ട് നവോമി മരുമക്കളോടുകൂടെ പുറപ്പെട്ടു.'},
+  {t:'വഴിയിലെ അപേക്ഷ', b:'നവോമി മരുമക്കളോട് സ്വന്തം വീടുകളിലേക്കു മടങ്ങാന്‍ അപേക്ഷിച്ചു, അവരെ അനുഗ്രഹിച്ചു.'},
+  {t:'ഓര്‍ഫയുടെ മടക്കം', b:'ഓര്‍ഫ കരഞ്ഞ് അമ്മായിയമ്മയെ ചുംബിച്ചു മടങ്ങിപ്പോയി.'},
+  {t:'റൂത്തിന്റെ ശപഥം', b:'റൂത്ത് നവോമിയെ പിരിയാതെ നിന്ന് തന്റെ പ്രശസ്തമായ കൂറ് പ്രഖ്യാപിച്ചു.'},
+  {t:'ബേത്‌ലെഹെമില്‍ എത്തിച്ചേരല്‍', b:'പട്ടണം മുഴുവന്‍ അവരെ കണ്ടു വിസ്മയിച്ചു; "ഇതു നവോമിയോ?" എന്നു ചോദിച്ചു.'},
+  {t:'നവോമിയുടെ കയ്‌പ്', b:'എന്നെ മാറാ എന്നു വിളിക്കുക എന്നു നവോമി പറഞ്ഞു — സര്‍വശക്തന്‍ കഠിനമായി പ്രവര്‍ത്തിച്ചു.'},
+  {t:'ബാര്‍ലിക്കൊയ്ത്തിന്റെ തുടക്കം', b:'ബാര്‍ലിക്കൊയ്ത്തു തുടങ്ങിയപ്പോഴാണ് അവര്‍ ബേത്‌ലെഹെമില്‍ എത്തിയത് — അടുത്ത അധ്യായത്തിനുള്ള സൂചന.'},
+];
+const stagesWrap = document.getElementById('stagesWrap');
+stages.forEach((item,i)=>{
+  const el = document.createElement('div');
+  el.className = 'stage-item';
+  el.innerHTML = `
+    <div class="stage-num">${i+1}</div>
+    <div class="stage-head"><span class="stage-title">${item.t}</span><span class="stage-caret">▸</span></div>
+    <div class="stage-body"><p style="margin:0;">${item.b}</p></div>
+  `;
+  el.addEventListener('click', ()=> el.classList.toggle('open'));
+  stagesWrap.appendChild(el);
+});
+
+/* full text */
+const verses = [
+  ['1-2','ന്യായാധിപന്മാരുടെ കാലത്ത് ക്ഷാമം നിമിത്തം എലിമെലെക്ക്, ഭാര്യ നവോമി, പുത്രന്മാരായ മഹ്‌ലോനും കിലിയോനും ബേത്‌ലെഹെമില്‍നിന്നു മൊവാബില്‍ കുടിയേറി.'],
+  ['3-5','എലിമെലെക്ക് മരിച്ചു; പുത്രന്മാര്‍ ഓര്‍ഫയെയും റൂത്തിനെയും വിവാഹം ചെയ്തു, പത്തുവര്‍ഷം കഴിഞ്ഞു; മഹ്‌ലോനും കിലിയോനും മരിച്ചു.'],
+  ['6-7','കര്‍ത്താവ് തന്റെ ജനത്തെ അനുഗ്രഹിച്ചു എന്നു കേട്ട് നവോമി മരുമക്കളോടുകൂടെ യൂദായിലേക്കു പുറപ്പെട്ടു.'],
+  ['8-13','നവോമി മരുമക്കളോട് സ്വന്തം വീടുകളിലേക്കു മടങ്ങാന്‍ അപേക്ഷിച്ചു; തനിക്ക് ഇനി പുത്രന്മാരില്ലെന്നും കര്‍ത്താവിന്റെ കരം തനിക്കെതിരാണെന്നും പറഞ്ഞു.'],
+  ['14-15','ഓര്‍ഫ ചുംബിച്ചു മടങ്ങിപ്പോയി; റൂത്ത് പിരിയാതെ നിന്നു; നവോമി ഓര്‍ഫയെപ്പോലെ പോകാന്‍ റൂത്തിനോടും പറഞ്ഞു.'],
+  ['16-17','റൂത്ത് തന്റെ ശപഥം പ്രഖ്യാപിച്ചു: "അമ്മ പോകുന്നിടത്തു ഞാനും വരും... അമ്മയുടെ ദൈവം എന്റെ ദൈവം."'],
+  ['18-19','റൂത്ത് ഉറച്ചുനിന്നു എന്നു കണ്ട് നവോമി നിര്‍ബന്ധിച്ചില്ല; അവര്‍ ബേത്‌ലെഹെമില്‍ എത്തി, പട്ടണം വിസ്മയിച്ചു.'],
+  ['20-22','നവോമി തന്നെ മാറാ എന്നു വിളിക്കാന്‍ പറഞ്ഞു — സര്‍വശക്തന്‍ കഠിനമായി പ്രവര്‍ത്തിച്ചു; ബാര്‍ലിക്കൊയ്ത്തിന്റെ തുടക്കത്തിലാണ് അവര്‍ എത്തിയത്.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'റൂത്തിന്റെ കഥ ഏതു കാലഘട്ടത്തിലാണ് നടക്കുന്നത്?',
+    options: ['രാജാക്കന്മാരുടെ ഭരണകാലം', 'ന്യായാധിപന്മാരുടെ ഭരണകാലം', 'പുരോഹിതരാജാക്കന്മാരുടെ കാലം', 'പ്രവാസകാലം'],
+    correct: 1,
+    explain: '1:1 — "ന്യായാധിപന്മാരുടെ ഭരണകാലത്ത് നാട്ടിൽ ക്ഷാമമുണ്ടായി."'
+  },
+  {
+    q: 'ക്ഷാമം നിമിത്തം എലിമെലെക്കിന്റെ കുടുംബം എവിടേക്കാണ് കുടിയേറിയത്?',
+    options: ['ഈജിപ്ത്', 'മൊവാബ്', 'അസീറിയ', 'ഫിലിസ്ത്യ'],
+    correct: 1,
+    explain: '1:1 — "മൊവാബ് ദേശത്ത് കുടിയേറിപ്പാർത്തു."'
+  },
+  {
+    q: 'എലിമെലെക്കിന്റെയും നവോമിയുടെയും പുത്രന്മാരുടെ പേരുകള്‍ എന്തെല്ലാം?',
+    options: ['ഓര്‍ഫ, റൂത്ത്', 'മഹ്‌ലോന്‍, കിലിയോന്‍', 'ബോവസ്, ഓബേദ്', 'ദാവീദ്, ശലോമോന്‍'],
+    correct: 1,
+    explain: '1:2 — "പുത്രന്മാർ മഹ്‌ലോനും കിലിയോനും."'
+  },
+  {
+    q: 'മഹ്‌ലോനും കിലിയോനും ആരെയാണ് വിവാഹം ചെയ്തത്?',
+    options: ['ഇസ്രായേല്‍ സ്ത്രീകളെ', 'മൊവാബ്യസ്ത്രീകളായ ഓര്‍ഫയെയും റൂത്തിനെയും', 'ഫിലിസ്ത്യ സ്ത്രീകളെ', 'ഈജിപ്ഷ്യന്‍ സ്ത്രീകളെ'],
+    correct: 1,
+    explain: '1:4 — "പുത്രന്മാർ ഓർഫാ, റൂത്ത് എന്നീ മൊവാബ്യസ്ത്രീകളെ വിവാഹം ചെയ്തു."'
+  },
+  {
+    q: 'നവോമി ബേത്‌ലെഹെമിലേക്കു മടങ്ങാന്‍ തീരുമാനിച്ചത് എന്തു കേട്ടിട്ടാണ്?',
+    options: ['മഹ്‌ലോന്‍ ജീവിച്ചിരിക്കുന്നു എന്ന്', 'കര്‍ത്താവ് തന്റെ ജനത്തെ ഭക്ഷണം നല്‍കി അനുഗ്രഹിക്കുന്നു എന്ന്', 'ബേത്‌ലെഹെമില്‍ പുതിയ രാജാവ് വാണു എന്ന്', 'മൊവാബില്‍ യുദ്ധം തുടങ്ങി എന്ന്'],
+    correct: 1,
+    explain: '1:6 — "കർത്താവ് തന്റെ ജനത്തെ ഭക്ഷണം നൽകി അനുഗ്രഹിക്കുന്നു എന്നു കേട്ട്."'
+  },
+  {
+    q: 'ഓര്‍ഫയും റൂത്തും തമ്മിലുള്ള പ്രധാന വ്യത്യാസം എന്ത്?',
+    options: ['ഓര്‍ഫ പ്രായം കൂടിയവളായിരുന്നു', 'ഓര്‍ഫ മടങ്ങിപ്പോയി, റൂത്ത് നവോമിയെ പിരിയാതെ നിന്നു', 'ഓര്‍ഫയ്ക്കു മക്കളുണ്ടായിരുന്നു', 'റൂത്ത് ഇസ്രായേല്യയായിരുന്നു'],
+    correct: 1,
+    explain: '1:14 — "ഓർഫാ അമ്മായിയമ്മയെ ചുംബിച്ച് വിടവാങ്ങി; റൂത്ത് അവളെ പിരിയാതെ നിന്നു."'
+  },
+  {
+    q: 'റൂത്തിന്റെ പ്രശസ്തമായ ശപഥത്തില്‍ ഉള്‍പ്പെടാത്തത് ഏത്?',
+    options: ['"അമ്മ പോകുന്നിടത്തു ഞാനും വരും"', '"അമ്മയുടെ ദൈവം എന്റെ ദൈവം"', '"അമ്മ മരിക്കുന്നിടത്ത് ഞാനും മരിക്കും"', '"ഞാന്‍ എന്റെ സ്വന്തം നാട്ടിലേക്കു മടങ്ങും"'],
+    correct: 3,
+    explain: '1:16-17 — അവസാനത്തെ വാചകം റൂത്തിന്റെ ശപഥത്തിനു നേരെ വിപരീതമാണ്; അവള്‍ ഒരിക്കലും അങ്ങനെ പറഞ്ഞില്ല.'
+  },
+  {
+    q: 'ബേത്‌ലെഹെമില്‍ എത്തിയപ്പോള്‍ നവോമി തന്നെ എന്തു വിളിക്കാനാണ് ആവശ്യപ്പെട്ടത്?',
+    options: ['റൂത്ത്', 'മാറാ', 'ഓര്‍ഫ', 'എലിമെലെക്ക്'],
+    correct: 1,
+    explain: '1:20 — "എന്നെ നവോമിയെന്നല്ല മാറാ എന്നാണു വിളിക്കേണ്ടത്."'
+  },
+  {
+    q: '"മാറാ" എന്ന പേരു തിരഞ്ഞെടുത്തതിന്റെ കാരണം എന്ത്?',
+    options: ['അതു അവളുടെ ജനിച്ച നാടിന്റെ പേരായിരുന്നു', 'സര്‍വശക്തന്‍ അവളോടു കഠിനമായി പ്രവര്‍ത്തിച്ചു', 'അതു റൂത്തിന്റെ നിര്‍ദേശപ്രകാരമായിരുന്നു', 'ബേത്‌ലെഹെമിലെ ആചാരപ്രകാരം'],
+    correct: 1,
+    explain: '1:20-21 — "സർവശക്തൻ എന്നോടു വളരെ കഠിനമായിട്ടാണ് പ്രവർത്തിച്ചത്."'
+  },
+  {
+    q: 'നവോമിയും റൂത്തും ബേത്‌ലെഹെമില്‍ എത്തിയത് ഏതു സമയത്താണ്?',
+    options: ['ഗോതമ്പുകൊയ്ത്തിന്റെ അവസാനം', 'ബാര്‍ലിക്കൊയ്ത്തു തുടങ്ങിയപ്പോള്‍', 'വീഞ്ഞു വിളവെടുപ്പിന്റെ സമയത്ത്', 'ശീതകാലത്ത്'],
+    correct: 1,
+    explain: '1:22 — "ബാർലിക്കൊയ്ത്തു തുടങ്ങിയപ്പോഴാണ് അവർ ബേത്‌ലെഹെമിൽ എത്തിയത്."'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

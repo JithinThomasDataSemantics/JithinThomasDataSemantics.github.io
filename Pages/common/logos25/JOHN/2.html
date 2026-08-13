@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ജലം വീഞ്ഞായി — യോഹന്നാൻ 2 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #1c1420;
+    --night-2: #261b2b;
+    --parchment: #ecdfd0;
+    --parchment-dim: #ada098;
+    --wine: #8a2f45;
+    --wine-soft: #c76a80;
+    --gold: #d9a95c;
+    --gold-soft: #f0c98a;
+    --water: #7b93a0;
+    --line: rgba(217,169,92,0.2);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(138,47,69,0.14), transparent 45%),
+      radial-gradient(ellipse at 88% 25%, rgba(217,169,92,0.09), transparent 42%),
+      var(--night);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--wine-soft); color:var(--night);}
+
+  /* ---------- HERO: SIX JARS TURNING TO WINE ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .eyebrow{font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--gold-soft); margin-bottom:1.6rem; font-style:italic;}
+  .jars{display:flex; gap:10px; margin-bottom:1.8rem;}
+  .jar{width:26px; height:56px; border:1.6px solid var(--gold-soft); border-radius:4px 4px 10px 10px; position:relative; overflow:hidden; background:rgba(236,223,208,0.03);}
+  .jar .fill{position:absolute; left:0; right:0; bottom:0; height:0%; background:linear-gradient(180deg, var(--water), var(--water)); animation:turnWine 5s ease-in-out infinite;}
+  .jar:nth-child(1) .fill{animation-delay:0s;}
+  .jar:nth-child(2) .fill{animation-delay:0.15s;}
+  .jar:nth-child(3) .fill{animation-delay:0.3s;}
+  .jar:nth-child(4) .fill{animation-delay:0.45s;}
+  .jar:nth-child(5) .fill{animation-delay:0.6s;}
+  .jar:nth-child(6) .fill{animation-delay:0.75s;}
+  @keyframes turnWine{
+    0%{height:78%; background:var(--water);}
+    45%{height:78%; background:var(--water);}
+    70%{height:78%; background:var(--wine);}
+    100%{height:78%; background:var(--wine);}
+  }
+  .hero h1{font-weight:800; font-size:clamp(2.1rem, 6.4vw, 4rem); line-height:1.25; margin:0; color:var(--parchment);}
+  .hero h1 em{font-style:normal; color:var(--gold-soft); display:block;}
+  .hero .ref{font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--parchment-dim); margin-top:1rem;}
+  .hero p.tag{max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--parchment-dim);}
+  .scroll-cue{margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--gold-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--gold), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--gold-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.35rem,3.1vw,1.95rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--gold);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--gold-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:420px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:0.88rem;}
+
+  .sign-quote{margin:0.4rem 0 0.4rem; padding:2rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(217,169,92,0.13), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .sign-quote p{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.05rem, 2.6vw, 1.4rem); line-height:1.9; color:var(--parchment); max-width:40ch; margin:0 auto;}
+  .sign-quote span{display:block; margin-top:0.9rem; font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:0.88rem;}
+
+  /* ---------- TEMPLE CLEANSING TIMELINE ---------- */
+  .confront-line{border-left:2px solid var(--wine); margin-left:14px; padding-left:1.6rem; display:flex; flex-direction:column; gap:1.4rem;}
+  .confront-step{position:relative;}
+  .confront-step::before{content:''; position:absolute; left:-1.99rem; top:0.15rem; width:12px; height:12px; border-radius:50%; background:var(--wine-soft); box-shadow:0 0 0 4px rgba(138,47,69,0.2);}
+  .confront-step .cmeta{font-family:var(--font-num); font-style:italic; color:var(--wine-soft); font-size:0.85rem; margin-bottom:0.35rem;}
+  .confront-step .ctext{font-size:0.97rem; line-height:1.85; color:var(--parchment-dim);}
+  .confront-step .ctext b{color:var(--parchment);}
+
+  .scattered-wrap{display:flex; flex-wrap:wrap; gap:0.55rem; margin-top:1.4rem;}
+  .scatter-chip{
+    background:rgba(138,47,69,0.12);
+    border:1px solid rgba(199,106,128,0.3);
+    color:var(--wine-soft);
+    padding:0.5rem 0.9rem;
+    font-size:0.85rem;
+    border-radius:4px;
+  }
+  .scatter-chip:nth-child(odd){transform:rotate(-2deg);}
+  .scatter-chip:nth-child(even){transform:rotate(2deg);}
+
+  .body-temple{margin-top:1.4rem; padding:1.1rem 1.3rem; background:rgba(217,169,92,0.06); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:8px; font-size:0.94rem; line-height:1.8; color:var(--parchment-dim);}
+  .body-temple b{color:var(--gold-soft);}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--night-2), var(--night)); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--wine-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--night-2), var(--night)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--gold);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--gold-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--gold); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--gold-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--gold); color:var(--night); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--gold-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .jar .fill, .scroll-cue span{animation:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} .jars{gap:6px;} .jar{width:20px; height:44px;} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; John / യോഹന്നാൻ</div>
+  <div class="jars">
+    <div class="jar"><div class="fill"></div></div>
+    <div class="jar"><div class="fill"></div></div>
+    <div class="jar"><div class="fill"></div></div>
+    <div class="jar"><div class="fill"></div></div>
+    <div class="jar"><div class="fill"></div></div>
+    <div class="jar"><div class="fill"></div></div>
+  </div>
+  <h1>ജലം<br><em>വീഞ്ഞായി</em></h1>
+  <div class="ref">യോഹന്നാൻ 2 : 1&ndash;25</div>
+  <p class="tag">കാനായിലെ ആദ്യ അടയാളം മുതൽ ജറുസലെം ദേവാലയത്തിലെ തീക്ഷ്ണത വരെ &mdash; യേശുവിന്റെ മഹത്വം ആദ്യമായി വെളിപ്പെടുന്ന അധ്യായം.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: WEDDING AT CANA -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>കാനായിലെ വിവാഹവിരുന്ന്</h2></div>
+  <p class="section-sub">വാ. 1&ndash;12. യേശുവിന്റെ ആദ്യ അടയാളം &mdash; ടാപ്പ് ചെയ്ത് വിശദാംശം കാണുക.</p>
+  <div class="prologue-grid" id="prologue"></div>
+  <div class="sign-quote">
+    <p>&ldquo;നീ നല്ല വീഞ്ഞ് ഇതുവരെയും സൂക്ഷിച്ചുവച്ചുവല്ലോ.&rdquo;</p>
+    <span>വാ. 10 &mdash; കലവറക്കാരൻ മണവാളനോടു പറഞ്ഞത്, അറിയാതെതന്നെ</span>
+  </div>
+</section>
+
+<!-- II: TEMPLE CLEANSING -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>യേശു ദേവാലയം ശുദ്ധീകരിക്കുന്നു</h2></div>
+  <p class="section-sub">വാ. 13&ndash;22. പെസഹായ്ക്കായി ജറുസലെമിൽ &mdash; ക്രമത്തിൽ.</p>
+  <div class="confront-line" id="confrontLine"></div>
+  <div class="scattered-wrap">
+    <div class="scatter-chip">കാളകൾ പുറത്താക്കപ്പെട്ടു</div>
+    <div class="scatter-chip">ആടുകൾ പുറത്താക്കപ്പെട്ടു</div>
+    <div class="scatter-chip">നാണയങ്ങൾ ചിതറി</div>
+    <div class="scatter-chip">മേശകൾ തട്ടിമറിഞ്ഞു</div>
+  </div>
+  <div class="body-temple">വാ. 19&ndash;21: &ldquo;ഈ ദേവാലയം നശിപ്പിക്കുക; മൂന്നു ദിവസത്തിനകം ഞാന്‍ അതു പുനരുദ്ധരിക്കും&rdquo; &mdash; യഹൂദർ കരുതി അക്ഷരാർഥത്തിൽ ദേവാലയത്തെക്കുറിച്ചാണെന്ന്; എന്നാൽ യേശു പറഞ്ഞത് <b>തന്റെ ശരീരമാകുന്ന ആലയത്തെപ്പറ്റി</b>യാണ്.</div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">സംഖ്യകൾ, സ്ഥലങ്ങൾ &mdash; ക്വിസ് ചോദ്യങ്ങളിൽ പലപ്പോഴും വരുന്നവ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>യോഹന്നാൻ 2 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- SECTION I ACCORDION ---------------- */
+const prologue = [
+  {v:"1-2", text:"മൂന്നാം ദിവസം ഗലീലിയിലെ കാനായില്‍ ഒരു വിവാഹവിരുന്നു നടന്നു. യേശുവിന്റെ അമ്മ അവിടെയുണ്ടായിരുന്നു; യേശുവും ശിഷ്യന്മാരും ക്ഷണിക്കപ്പെട്ടിരുന്നു.", note:"സ്ഥലം: ഗലീലിയിലെ കാനാ. 'മൂന്നാം ദിവസം' എന്ന സൂചന ശ്രദ്ധിക്കുക."},
+  {v:"3-4", text:"വീഞ്ഞു തീര്‍ന്നപ്പോള്‍ അമ്മ യേശുവിനോടു പറഞ്ഞു: 'അവര്‍ക്കു വീഞ്ഞില്ല.' യേശു മറുപടി പറഞ്ഞു: 'സ്ത്രീയേ, എനിക്കും നിനക്കും എന്ത്? എന്റെ സമയം ഇനിയും ആയിട്ടില്ല.'", note:"ക്വിസ് ഉദ്ധരണി: 'എന്റെ സമയം ഇനിയും ആയിട്ടില്ല' &mdash; യോഹന്നാന്റെ സുവിശേഷത്തിലെ ആവർത്തിക്കുന്ന പ്രമേയം."},
+  {v:"5", text:"അമ്മ പരിചാരകരോടു പറഞ്ഞു: 'അവന്‍ നിങ്ങളോടു പറയുന്നതു ചെയ്യുവിന്‍.'", note:"മറിയത്തിന്റെ ഏക വാക്കുകൾ ഈ സുവിശേഷഭാഗത്ത് &mdash; വിശ്വാസത്തിന്റെ മാതൃക."},
+  {v:"6", text:"യഹൂദരുടെ ശുദ്ധീകരണകര്‍മത്തിനുള്ള ആറു കല്‍ഭരണികള്‍ അവിടെ ഉണ്ടായിരുന്നു; ഓരോന്നിലും രണ്ടോ മൂന്നോ അളവു കൊള്ളും.", note:"ക്വിസ് സൂചന: ആറ് ഭരണികൾ, ഓരോന്നിലും 2&ndash;3 അളവ്."},
+  {v:"7-8", text:"ഭരണികളില്‍ വെള്ളം നിറയ്ക്കുവിന്‍ എന്ന് യേശു കല്‍പിച്ചു; അവർ വക്കോളം നിറച്ചു. പിന്നീട് കലവറക്കാരന്റെ അടുത്തു കൊണ്ടുചെല്ലാൻ പറഞ്ഞു.", note:"'വക്കോളം' എന്ന വാക്ക് ശ്രദ്ധിക്കുക &mdash; പൂർണമായ അനുസരണം."},
+  {v:"9-10", text:"കലവറക്കാരന്‍ വീഞ്ഞായി മാറിയ വെള്ളം രുചിച്ചു; അതിന്റെ ഉറവിടം അറിഞ്ഞില്ല, എന്നാൽ പരിചാരകർ അറിഞ്ഞിരുന്നു. അവൻ മണവാളനോടു പറഞ്ഞു: 'നീ നല്ല വീഞ്ഞ് ഇതുവരെയും സൂക്ഷിച്ചുവച്ചു.'", note:"സാധാരണ ക്രമം തിരിച്ചിട്ടു &mdash; മേല്‍ത്തരം വീഞ്ഞ് അവസാനം."},
+  {v:"11", text:"ഇത് യേശുവിന്റെ അടയാളങ്ങളുടെ ആരംഭം, ഗലീലിയിലെ കാനായിൽ. അവന്‍ തന്റെ മഹത്വം വെളിപ്പെടുത്തി; ശിഷ്യന്മാർ അവനിൽ വിശ്വസിച്ചു.", note:"ക്വിസ് പ്രധാന വസ്തുത: ഇത് യേശുവിന്റെ <b>ആദ്യ അടയാളം</b>."},
+  {v:"12", text:"ഇതിനുശേഷം അമ്മയോടും സഹോദരന്മാരോടും ശിഷ്യന്മാരോടുംകൂടി കഫര്‍ണാമിലേക്കു പോയി; ഏതാനും ദിവസം അവിടെ താമസിച്ചു.", note:"അടുത്ത ലക്ഷ്യസ്ഥാനം: കഫർന്നഹൂം."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- SECTION II TEMPLE TIMELINE ---------------- */
+const confront = [
+  {m:"വാ. 13&ndash;14", t:"യഹൂദരുടെ പെസഹാ അടുത്തിരുന്നതിനാൽ യേശു ജറുസലെമിലേക്കു പോയി. ദേവാലയത്തിൽ <b>കാള, ആട്, പ്രാവ് വില്‍ക്കുന്നവരെയും നാണയം മാറ്റുന്നവരെയും</b> കണ്ടു."},
+  {m:"വാ. 15", t:"കയറുകൊണ്ട് ഒരു <b>ചമ്മട്ടിയുണ്ടാക്കി</b> അവരെയെല്ലാം പുറത്താക്കി; നാണയങ്ങൾ ചിതറിക്കുകയും മേശകൾ തട്ടിമറിക്കുകയും ചെയ്തു."},
+  {m:"വാ. 16", t:"'എന്റെ പിതാവിന്റെ ആലയം നിങ്ങള്‍ <b>കച്ചവടസ്ഥലമാക്കരുത്.</b>'"},
+  {m:"വാ. 17", t:"ശിഷ്യന്മാർ അനുസ്മരിച്ചു: 'അവിടുത്തെ ആലയത്തെക്കുറിച്ചുള്ള <b>തീക്ഷ്ണത എന്നെ വിഴുങ്ങിക്കളയും</b>' എന്നെഴുതപ്പെട്ടിരിക്കുന്നത്."},
+  {m:"വാ. 18&ndash;20", t:"യഹൂദർ അടയാളം ചോദിച്ചു. യേശു: 'ഈ ദേവാലയം നശിപ്പിക്കുക; <b>മൂന്നു ദിവസത്തിനകം</b> ഞാൻ പുനരുദ്ധരിക്കും.' യഹൂദർ: ഇതു പണിയാൻ <b>46 വർഷം</b> എടുത്തു!"},
+  {m:"വാ. 21&ndash;22", t:"എന്നാൽ അവൻ പറഞ്ഞത് <b>തന്റെ ശരീരമാകുന്ന ആലയത്തെപ്പറ്റി</b>യാണ്. ഉയിർപ്പിക്കപ്പെട്ടശേഷം ശിഷ്യന്മാർ ഇതു ഓർമിച്ചു വിശ്വസിച്ചു."}
+];
+document.getElementById('confrontLine').innerHTML = confront.map(c=>`
+  <div class="confront-step"><div class="cmeta">${c.m}</div><div class="ctext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"വിവാഹസ്ഥലം", val:"<b>ഗലീലിയിലെ കാനാ</b> (വാ. 1)."},
+  {label:"കല്‍ഭരണികളുടെ എണ്ണം", val:"<b>ആറ്</b>, ഓരോന്നിലും 2&ndash;3 അളവ് (വാ. 6)."},
+  {label:"വീഞ്ഞിന്റെ ഉറവിടം അറിഞ്ഞവർ", val:"കലവറക്കാരനല്ല, <b>പരിചാരകർ</b> (വാ. 9)."},
+  {label:"ആദ്യ അടയാളം", val:"കാനായിലെ ഈ അദ്ഭുതം യേശുവിന്റെ <b>ആദ്യ അടയാളം</b> (വാ. 11)."},
+  {label:"കാനായ്ക്കുശേഷം", val:"കുടുംബത്തോടൊപ്പം <b>കഫര്‍ണാമിലേക്ക്</b> (വാ. 12)."},
+  {label:"ദേവാലയത്തിൽ ഉപയോഗിച്ചത്", val:"കയറുകൊണ്ടുള്ള <b>ചമ്മട്ടി</b> (വാ. 15)."},
+  {label:"ദേവാലയം പണിയാൻ എടുത്ത കാലം", val:"<b>46 വർഷം</b> (വാ. 20)."},
+  {label:"'ഈ ദേവാലയം' എന്നതിന്റെ അർഥം", val:"<b>യേശുവിന്റെ ശരീരം</b> (വാ. 21)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"വിവാഹവിരുന്ന് നടന്നത് എവിടെയാണ് (വാ. 1)?",
+   opts:["ബേത്‌ലഹേം","ഗലീലിയിലെ കാനാ","കഫര്‍ണാം","ജറുസലെം"], correct:1,
+   note:"വാ. 1 &mdash; 'ഗലീലിയിലെ കാനായില്‍ ഒരു വിവാഹവിരുന്നു നടന്നു.'"},
+  {q:"വീഞ്ഞില്ലെന്ന് അമ്മ പറഞ്ഞപ്പോൾ യേശു എന്തു മറുപടി പറഞ്ഞു (വാ. 4)?",
+   opts:["'ഉടനെ ശരിയാക്കാം'","'സ്ത്രീയേ, എനിക്കും നിനക്കും എന്ത്? എന്റെ സമയം ഇനിയും ആയിട്ടില്ല'","'അപ്പനോടു ചോദിക്കൂ'","'ക്ഷമിക്കണം, എനിക്കറിയില്ല'"], correct:1,
+   note:"വാ. 4 &mdash; 'സ്ത്രീയേ, എനിക്കും നിനക്കും എന്ത്? എന്റെ സമയം ഇനിയും ആയിട്ടില്ല.'"},
+  {q:"അവിടെ എത്ര കല്‍ഭരണികൾ ഉണ്ടായിരുന്നു (വാ. 6)?",
+   opts:["നാല്","അഞ്ച്","ആറ്","ഏഴ്"], correct:2,
+   note:"വാ. 6 &mdash; 'ആറു കല്‍ഭരണികള്‍ അവിടെ ഉണ്ടായിരുന്നു.'"},
+  {q:"വീഞ്ഞായി മാറിയ വെള്ളത്തിന്റെ ഉറവിടം ആർക്കാണ് അറിയാമായിരുന്നത് (വാ. 9)?",
+   opts:["കലവറക്കാരന്","മണവാളന്","വെള്ളം കോരിയ പരിചാരകർക്ക്","അതിഥികൾക്ക്"], correct:2,
+   note:"വാ. 9 &mdash; 'വെള്ളം കോരിയ പരിചാരകര്‍ അറിഞ്ഞിരുന്നു.'"},
+  {q:"കാനായിലെ ഈ അദ്ഭുതം എന്തായിരുന്നു (വാ. 11)?",
+   opts:["യേശുവിന്റെ അവസാന അടയാളം","യേശുവിന്റെ ആദ്യ അടയാളം","യോഹന്നാന്റെ അടയാളം","ഒരു ദൃഷ്ടാന്തകഥ മാത്രം"], correct:1,
+   note:"വാ. 11 &mdash; 'യേശു തന്റെ മഹത്വം വെളിപ്പെടുത്തുന്നതിനുപ്രവര്‍ത്തിച്ച അടയാളങ്ങളുടെ ആരംഭമാണ് ഈ അദ്ഭുതം.'"},
+  {q:"ദേവാലയത്തിൽനിന്നു കച്ചവടക്കാരെ പുറത്താക്കാൻ യേശു എന്തുണ്ടാക്കി (വാ. 15)?",
+   opts:["ഒരു വടി","കയറുകൊണ്ട് ഒരു ചമ്മട്ടി","ഒരു കല്ല്","ഒരു അഗ്നിജ്വാല"], correct:1,
+   note:"വാ. 15 &mdash; 'അവന്‍ കയറുകൊണ്ട് ഒരു ചമ്മട്ടിയുണ്ടാക്കി അവരെയെല്ലാം പുറത്താക്കി.'"},
+  {q:"യഹൂദരുടെ അഭിപ്രായത്തിൽ ദേവാലയം പണിയാൻ എത്ര വർഷം എടുത്തു (വാ. 20)?",
+   opts:["30 വർഷം","40 വർഷം","46 വർഷം","70 വർഷം"], correct:2,
+   note:"വാ. 20 &mdash; 'ഈ ദേവാലയം പണിയുവാന്‍ നാല്‍പത്താറു സംവത്സരമെടുത്തു.'"},
+  {q:"'ഈ ദേവാലയം നശിപ്പിക്കുക; മൂന്നു ദിവസത്തിനകം ഞാൻ പുനരുദ്ധരിക്കും' എന്നു പറഞ്ഞപ്പോൾ യേശു യഥാർഥത്തിൽ എന്തിനെക്കുറിച്ചാണ് സംസാരിച്ചത് (വാ. 21)?",
+   opts:["ജറുസലെം നഗരത്തെക്കുറിച്ച്","സ്വന്തം ശരീരമാകുന്ന ആലയത്തെക്കുറിച്ച്","സോളമന്റെ ദേവാലയത്തെക്കുറിച്ച്","സിനഗോഗിനെക്കുറിച്ച്"], correct:1,
+   note:"വാ. 21 &mdash; 'അവന്‍ പറഞ്ഞത് തന്റെ ശരീരമാകുന്ന ആലയത്തെപ്പറ്റിയാണ്.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--gold); color:var(--night); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

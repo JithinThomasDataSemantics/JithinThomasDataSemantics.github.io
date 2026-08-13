@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>വെളിച്ചം ഇരുളില്‍ — യോഹന്നാൻ 1 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #080b16;
+    --night: #0e1730;
+    --night-2: #131f3d;
+    --gold: #d9ac5c;
+    --gold-soft: #f0d49a;
+    --ember: #c9703f;
+    --parchment: #f4ecd8;
+    --parchment-dim: #cabf9f;
+    --ink: #1c1608;
+    --line: rgba(217,172,92,0.22);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold); color:var(--ink);}
+
+  /* ---------- ambient stars ---------- */
+  #stars{position:fixed; inset:0; z-index:0; pointer-events:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6vh 6vw;
+    overflow:hidden;
+  }
+  .glow{
+    position:absolute;
+    width:min(70vw, 620px); height:min(70vw, 620px);
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(240,212,154,0.55) 0%, rgba(217,172,92,0.18) 38%, rgba(217,172,92,0) 70%);
+    filter:blur(6px);
+    animation:breathe 7s ease-in-out infinite;
+    z-index:0;
+  }
+  @keyframes breathe{
+    0%,100%{transform:scale(1); opacity:0.85;}
+    50%{transform:scale(1.12); opacity:1;}
+  }
+  .eyebrow{
+    position:relative; z-index:1;
+    font-family:var(--font-num);
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:0.78rem;
+    color:var(--gold-soft);
+    margin-bottom:1.4rem;
+    font-style:italic;
+  }
+  .hero h1{
+    position:relative; z-index:1;
+    font-family:var(--font-ml);
+    font-weight:800;
+    font-size:clamp(2.6rem, 8vw, 5.2rem);
+    line-height:1.15;
+    margin:0;
+    background:linear-gradient(180deg, var(--parchment) 20%, var(--gold-soft) 65%, var(--ember) 130%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    text-shadow:0 0 60px rgba(217,172,92,0.25);
+  }
+  .hero .ref{
+    position:relative; z-index:1;
+    font-family:var(--font-num);
+    font-style:italic;
+    font-size:clamp(1.1rem,2.4vw,1.5rem);
+    color:var(--parchment-dim);
+    margin-top:1rem;
+    letter-spacing:0.05em;
+  }
+  .hero p.tag{
+    position:relative; z-index:1;
+    max-width:560px;
+    margin:2rem auto 0;
+    font-size:1.02rem;
+    line-height:1.9;
+    color:var(--parchment-dim);
+  }
+  .scroll-cue{
+    position:relative; z-index:1;
+    margin-top:3.2rem;
+    font-family:var(--font-num);
+    font-style:italic;
+    font-size:0.9rem;
+    color:var(--gold);
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+    opacity:0.85;
+  }
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--gold), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  /* ---------- SECTION FRAME ---------- */
+  section.block{
+    position:relative;
+    z-index:1;
+    max-width:960px;
+    margin:0 auto;
+    padding:5.5rem 6vw 3rem;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:1rem;
+    margin-bottom:0.6rem;
+    border-bottom:1px solid var(--line);
+    padding-bottom:1.1rem;
+  }
+  .section-head .num{
+    font-family:var(--font-num);
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--gold);
+    white-space:nowrap;
+  }
+  .section-head h2{
+    font-family:var(--font-ml);
+    font-weight:700;
+    font-size:clamp(1.5rem,3.4vw,2.1rem);
+    margin:0;
+    color:var(--parchment);
+  }
+  .section-sub{
+    font-family:var(--font-num);
+    font-style:italic;
+    color:var(--parchment-dim);
+    font-size:0.95rem;
+    margin:0.9rem 0 2.2rem;
+    max-width:60ch;
+  }
+
+  /* ---------- PROLOGUE ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{
+    background:linear-gradient(180deg, var(--night-2), var(--night));
+    border:1px solid var(--line);
+    border-radius:10px;
+    overflow:hidden;
+    transition:border-color .3s ease;
+  }
+  .verse-card.open{border-color:var(--gold);}
+  .verse-card button.vtrig{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    background:none;
+    border:none;
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    text-align:left;
+    padding:1rem 1.2rem;
+    cursor:pointer;
+    font-size:1rem;
+  }
+  .verse-card .vnum{
+    font-family:var(--font-num);
+    font-style:italic;
+    color:var(--gold);
+    font-size:1.15rem;
+    min-width:1.6rem;
+  }
+  .verse-card .vplus{
+    margin-left:auto;
+    font-family:var(--font-num);
+    font-size:1.3rem;
+    color:var(--gold-soft);
+    transition:transform .3s ease;
+    flex-shrink:0;
+  }
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s ease;
+  }
+  .verse-card.open .verse-body{max-height:400px;}
+  .verse-body-inner{
+    padding:0 1.2rem 1.2rem 2.9rem;
+    color:var(--parchment-dim);
+    font-size:0.97rem;
+    line-height:1.85;
+    border-top:1px dashed var(--line);
+    padding-top:1rem;
+  }
+  .verse-body-inner .note{
+    display:inline-block;
+    margin-top:0.7rem;
+    font-family:var(--font-num);
+    font-style:italic;
+    color:var(--gold);
+    font-size:0.88rem;
+  }
+
+  /* ---------- TESTIMONY: Q&A THREAD ---------- */
+  .qa-thread{display:flex; flex-direction:column; gap:0.9rem;}
+  .qa-row{display:flex; gap:0.9rem; align-items:flex-start;}
+  .qa-tag{
+    flex-shrink:0;
+    font-family:var(--font-num);
+    font-style:italic;
+    font-size:0.82rem;
+    padding:0.3rem 0.7rem;
+    border-radius:20px;
+    margin-top:0.15rem;
+    white-space:nowrap;
+  }
+  .qa-tag.q{background:rgba(217,172,92,0.14); color:var(--gold-soft); border:1px solid var(--line);}
+  .qa-tag.a{background:rgba(201,112,63,0.16); color:#f0b78e; border:1px solid rgba(201,112,63,0.35);}
+  .qa-text{font-size:0.98rem; line-height:1.8; color:var(--parchment);}
+  .qa-text b{color:var(--gold-soft);}
+
+  .setting-strip{
+    margin-top:2.2rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.8rem;
+  }
+  .chip{
+    border:1px solid var(--line);
+    background:rgba(217,172,92,0.06);
+    padding:0.55rem 1rem;
+    border-radius:8px;
+    font-size:0.88rem;
+    color:var(--parchment-dim);
+  }
+  .chip b{color:var(--gold-soft); font-weight:600;}
+
+  /* ---------- LAMB OF GOD / BAPTISM VISUAL ---------- */
+  .dove-scene{
+    position:relative;
+    background:radial-gradient(ellipse at 50% 0%, rgba(217,172,92,0.14), transparent 65%), var(--night);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:3rem 1.5rem 2.2rem;
+    text-align:center;
+    overflow:hidden;
+  }
+  .dove-scene svg{width:70px; height:70px; margin-bottom:1rem; animation:descend 3.4s ease-in-out infinite;}
+  @keyframes descend{
+    0%,100%{transform:translateY(-8px);}
+    50%{transform:translateY(6px);}
+  }
+  .dove-scene .decl{
+    font-family:var(--font-ml);
+    font-weight:600;
+    font-size:1.1rem;
+    color:var(--parchment);
+    max-width:46ch;
+    margin:0 auto;
+    line-height:1.9;
+  }
+  .dove-scene .decl em{color:var(--gold-soft); font-style:normal; font-weight:700;}
+  .dove-scene .cite{
+    margin-top:1rem;
+    font-family:var(--font-num);
+    font-style:italic;
+    color:var(--gold);
+    font-size:0.85rem;
+  }
+
+  /* ---------- DISCIPLES CONSTELLATION ---------- */
+  .constellation-wrap{
+    position:relative;
+    background:var(--night);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.2rem;
+  }
+  .constellation-wrap svg{width:100%; height:auto; display:block;}
+  .node-circle{fill:var(--night-2); stroke:var(--gold); stroke-width:1.4; cursor:pointer; transition:all .25s ease;}
+  .node-circle:hover, .node-circle.active{fill:var(--gold); }
+  .node-label{fill:var(--parchment); font-family:'Noto Sans Malayalam',sans-serif; font-size:13px; font-weight:600; pointer-events:none;}
+  .node-sub{fill:var(--parchment-dim); font-family:var(--font-num); font-style:italic; font-size:10.5px; pointer-events:none;}
+  .link-line{stroke:var(--line); stroke-width:1; fill:none;}
+
+  #node-detail{
+    margin-top:1.4rem;
+    padding:1.1rem 1.3rem;
+    background:rgba(217,172,92,0.06);
+    border:1px solid var(--line);
+    border-radius:10px;
+    min-height:64px;
+    font-size:0.94rem;
+    line-height:1.85;
+    color:var(--parchment-dim);
+    transition:opacity .2s ease;
+  }
+  #node-detail b{color:var(--gold-soft);}
+  #node-detail .hint{color:var(--parchment-dim); font-family:var(--font-num); font-style:italic;}
+
+  /* ---------- QUIZ CHEAT SHEET ---------- */
+  .fact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+    gap:1rem;
+  }
+  .fact-card{
+    background:linear-gradient(160deg, var(--night-2), var(--night));
+    border:1px solid var(--line);
+    border-left:3px solid var(--gold);
+    border-radius:8px;
+    padding:1.1rem 1.2rem;
+  }
+  .fact-card .flabel{
+    font-family:var(--font-num);
+    font-style:italic;
+    color:var(--gold);
+    font-size:0.82rem;
+    margin-bottom:0.5rem;
+    letter-spacing:0.02em;
+  }
+  .fact-card .fval{
+    font-size:0.98rem;
+    line-height:1.75;
+    color:var(--parchment);
+  }
+
+  /* ---------- SELF-QUIZ ---------- */
+  .quiz-shell{
+    background:linear-gradient(180deg, var(--night-2), var(--night));
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:1.8rem 1.6rem 2rem;
+  }
+  .quiz-progress{
+    display:flex; gap:5px; margin-bottom:1.4rem;
+  }
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--gold);}
+  .qmeta{
+    font-family:var(--font-num);
+    font-style:italic;
+    color:var(--gold);
+    font-size:0.85rem;
+    margin-bottom:0.5rem;
+  }
+  .qtext{
+    font-size:1.08rem;
+    font-weight:600;
+    line-height:1.7;
+    margin-bottom:1.3rem;
+    color:var(--parchment);
+  }
+  .opt{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:rgba(255,255,255,0.02);
+    border:1px solid var(--line);
+    color:var(--parchment-dim);
+    padding:0.85rem 1rem;
+    border-radius:8px;
+    margin-bottom:0.6rem;
+    cursor:pointer;
+    font-family:var(--font-ml);
+    font-size:0.95rem;
+    transition:all .2s ease;
+  }
+  .opt:hover{border-color:var(--gold); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{
+    margin-top:1rem;
+    font-size:0.88rem;
+    line-height:1.7;
+    color:var(--gold-soft);
+    font-style:italic;
+    display:none;
+  }
+  .qexplain.show{display:block;}
+  .quiz-nav{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:1.6rem;
+  }
+  .quiz-nav button{
+    background:var(--gold);
+    color:var(--ink);
+    border:none;
+    padding:0.65rem 1.4rem;
+    border-radius:8px;
+    font-family:var(--font-ml);
+    font-weight:600;
+    cursor:pointer;
+    font-size:0.9rem;
+  }
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--gold-soft);}
+
+  footer{
+    text-align:center;
+    padding:3rem 6vw 5rem;
+    font-family:var(--font-num);
+    font-style:italic;
+    color:var(--parchment-dim);
+    font-size:0.85rem;
+    opacity:0.7;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .glow, .scroll-cue span, .dove-scene svg{animation:none !important;}
+  }
+
+  @media (max-width:600px){
+    section.block{padding:3.6rem 5vw 2rem;}
+    .qa-row{flex-direction:column; gap:0.35rem;}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="glow"></div>
+  <div class="eyebrow">Logos Quiz 2026 &middot; John / യോഹന്നാൻ</div>
+  <h1>വചനം<br>മനുഷ്യനായി</h1>
+  <div class="ref">യോഹന്നാൻ 1 : 1&ndash;51</div>
+  <p class="tag">ആ വെളിച്ചം ഇരുളില്‍ പ്രകാശിക്കുന്നു; അതിനെ കീഴടക്കാന്‍ ഇരുളിനു കഴിഞ്ഞില്ല. താഴെ, ഈ അധ്യായത്തെ നാലു ഭാഗങ്ങളായി അടുത്തറിയാം — ക്വിസിനുവേണ്ടി പ്രത്യേകം തയാറാക്കിയത്.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- SECTION 1: PROLOGUE -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>മുഖവുര &mdash; വചനം ദൈവമായിരുന്നു</h2></div>
+  <p class="section-sub">വാ. 1&ndash;18. ഓരോ വാക്യവും ഒരു ദൈവശാസ്ത്ര പ്രസ്താവനയാണ്. ടാപ്പ് ചെയ്ത് വിശദാംശം കാണുക.</p>
+  <div class="prologue-grid" id="prologue"></div>
+</section>
+
+<!-- SECTION 2: JOHN'S TESTIMONY -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>യോഹന്നാന്റെ സാക്ഷ്യം</h2></div>
+  <p class="section-sub">വാ. 19&ndash;28. യഹൂദ നേതാക്കൾ അയച്ച പുരോഹിതരും ലേവ്യരും യോഹന്നാനെ ചോദ്യം ചെയ്യുന്നു &mdash; മൂന്നു ചോദ്യങ്ങൾ, മൂന്നു നിഷേധങ്ങൾ.</p>
+  <div class="qa-thread" id="qathread"></div>
+  <div class="setting-strip">
+    <div class="chip">സ്ഥലം: <b>ബഥാനിയ, ജോർദാന്റെ അക്കരെ</b></div>
+    <div class="chip">ചോദ്യം ചെയ്തവർ: <b>പുരോഹിതരും ലേവ്യരും</b> (ഫരിസേയർ അയച്ചത്)</div>
+    <div class="chip">ഉദ്ധരണി: <b>ഏശയ്യാ പ്രവാചകൻ</b></div>
+  </div>
+</section>
+
+<!-- SECTION 3: LAMB OF GOD -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>ദൈവത്തിന്റെ കുഞ്ഞാട്</h2></div>
+  <p class="section-sub">വാ. 29&ndash;34. യേശുവിനെ കണ്ടപ്പോൾ യോഹന്നാൻ നൽകുന്ന അന്തിമ പ്രഖ്യാപനം.</p>
+  <div class="dove-scene">
+    <svg viewBox="0 0 64 64" fill="none"><path d="M32 8c6 4 10 10 10 18 0 4-2 7-5 9 4 1 8 4 10 8-6 2-13 1-17-3-1 5-4 9-8 12-1-6 0-11 3-15-5 0-10-2-13-6 5-2 10-2 14 0-3-5-3-11 0-16 1 5 4 8 8 10-1-6 0-12 -2-17z" fill="#d9ac5c" opacity="0.9"/></svg>
+    <div class="decl">ഇതാ, ലോകത്തിന്റെ പാപം നീക്കുന്ന <em>ദൈവത്തിന്റെ കുഞ്ഞാട്.</em><br>ആത്മാവ് <em>പ്രാവിനെപ്പോലെ</em> സ്വർഗത്തിൽനിന്ന് ഇറങ്ങിവന്ന് അവന്റെമേൽ ആവസിച്ചു.</div>
+    <div class="cite">വാ. 29, 32 &mdash; ജലസ്നാനത്തിന്റെ അടയാളം: പരിശുദ്ധാത്മാവുകൊണ്ടുള്ള സ്നാനം നൽകുന്നവൻ</div>
+  </div>
+</section>
+
+<!-- SECTION 4: FIRST DISCIPLES CONSTELLATION -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>ആദ്യ ശിഷ്യന്മാർ</h2></div>
+  <p class="section-sub">വാ. 35&ndash;51. ഓരോ പേരും ടാപ്പ് ചെയ്ത് ആ വ്യക്തിയെക്കുറിച്ചുള്ള ക്വിസ്-പ്രധാന വിവരം കാണുക.</p>
+  <div class="constellation-wrap">
+    <svg viewBox="0 0 640 340" id="constSvg">
+      <!-- links -->
+      <path class="link-line" d="M320,60 L150,150"/>
+      <path class="link-line" d="M320,60 L320,150"/>
+      <path class="link-line" d="M320,60 L490,150"/>
+      <path class="link-line" d="M150,150 L100,250"/>
+      <path class="link-line" d="M490,150 L540,250"/>
+      <path class="link-line" d="M490,150 L420,250"/>
+      <!-- Jesus (center top) -->
+      <g class="node" data-key="jesus">
+        <circle class="node-circle" cx="320" cy="60" r="30"/>
+        <text class="node-label" x="320" y="65" text-anchor="middle">യേശു</text>
+      </g>
+      <!-- Andrew -->
+      <g class="node" data-key="andrew">
+        <circle class="node-circle" cx="150" cy="150" r="26"/>
+        <text class="node-label" x="150" y="154" text-anchor="middle">അന്ത്രയോസ്</text>
+      </g>
+      <!-- unnamed disciple -->
+      <g class="node" data-key="unnamed">
+        <circle class="node-circle" cx="320" cy="150" r="26"/>
+        <text class="node-label" x="320" y="154" text-anchor="middle">പേരില്ലാത്ത ശിഷ്യൻ</text>
+      </g>
+      <!-- Philip -->
+      <g class="node" data-key="philip">
+        <circle class="node-circle" cx="490" cy="150" r="26"/>
+        <text class="node-label" x="490" y="154" text-anchor="middle">പീലിപ്പോസ്</text>
+      </g>
+      <!-- Peter -->
+      <g class="node" data-key="peter">
+        <circle class="node-circle" cx="100" cy="250" r="26"/>
+        <text class="node-label" x="100" y="254" text-anchor="middle">ശിമയോൻ</text>
+        <text class="node-sub" x="100" y="270" text-anchor="middle">(പത്രോസ്)</text>
+      </g>
+      <!-- Nathanael -->
+      <g class="node" data-key="nathanael">
+        <circle class="node-circle" cx="420" cy="250" r="26"/>
+        <text class="node-label" x="420" y="254" text-anchor="middle">നഥാനയേൽ</text>
+      </g>
+      <!-- Bethsaida label node -->
+      <g class="node" data-key="bethsaida">
+        <circle class="node-circle" cx="540" cy="250" r="26"/>
+        <text class="node-label" x="540" y="254" text-anchor="middle">ബേത്സയ്ദാ</text>
+      </g>
+    </svg>
+    <div id="node-detail"><span class="hint">ഒരു പേരിൽ ടാപ്പ് ചെയ്ത് തുടങ്ങുക &rarr;</span></div>
+  </div>
+</section>
+
+<!-- QUIZ CHEAT SHEET -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">സംഖ്യകൾ, പേരുകൾ, സ്ഥലങ്ങൾ &mdash; ക്വിസ് ചോദ്യങ്ങളിൽ പലപ്പോഴും വരുന്നവ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s6">
+  <div class="section-head"><span class="num">VI</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>യോഹന്നാൻ 1 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- starfield ---------------- */
+(function(){
+  const c = document.getElementById('stars');
+  const ctx = c.getContext('2d');
+  let stars = [];
+  function resize(){
+    c.width = window.innerWidth;
+    c.height = document.body.scrollHeight;
+    stars = [];
+    const count = Math.floor((c.width*c.height)/9000);
+    for(let i=0;i<count;i++){
+      stars.push({x:Math.random()*c.width, y:Math.random()*c.height, r:Math.random()*1.2+0.2, a:Math.random(), s:Math.random()*0.015+0.003});
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.fillStyle = '#f0d49a';
+    stars.forEach(st=>{
+      st.a += st.s;
+      const alpha = (Math.sin(st.a)+1)/2*0.6+0.15;
+      ctx.globalAlpha = alpha;
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, Math.PI*2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+/* ---------------- PROLOGUE DATA ---------------- */
+const prologue = [
+  {v:"1", text:"ആദിയില്‍ വചനമുണ്ടായിരുന്നു; വചനം ദൈവത്തോടുകൂടെയായിരുന്നു; വചനം ദൈവമായിരുന്നു.", note:"മൂന്നു പ്രസ്താവനകൾ: വചനത്തിന്റെ നിത്യത, ദൈവത്തോടുള്ള ബന്ധം, ദൈവികത."},
+  {v:"3", text:"സമസ്തവും അവനിലൂടെ ഉണ്ടായി; ഒന്നും അവനെക്കൂടാതെ ഉണ്ടായിട്ടില്ല.", note:"സൃഷ്ടികർത്താവായ വചനം."},
+  {v:"4-5", text:"അവനില്‍ ജീവനുണ്ടായിരുന്നു. ആ ജീവന്‍ മനുഷ്യരുടെ വെളിച്ചമായിരുന്നു. ആ വെളിച്ചം ഇരുളില്‍ പ്രകാശിക്കുന്നു; അതിനെ കീഴടക്കാന്‍ ഇരുളിനു കഴിഞ്ഞില്ല.", note:"ഈ അധ്യായത്തിന്റെ കേന്ദ്ര പ്രമേയം: വെളിച്ചവും ഇരുളും."},
+  {v:"6-8", text:"ദൈവം അയച്ച ഒരു മനുഷ്യൻ &mdash; യോഹന്നാൻ. അവൻ വെളിച്ചമായിരുന്നില്ല; വെളിച്ചത്തിനു സാക്ഷ്യം നല്‍കാൻ വന്നവനാണ്.", note:"ക്വിസ് സൂചന: യോഹന്നാൻ = സാക്ഷി, വെളിച്ചമല്ല."},
+  {v:"11-12", text:"അവന്‍ സ്വജനത്തിന്റെ അടുത്തേക്കു വന്നു; അവര്‍ അവനെ സ്വീകരിച്ചില്ല. എന്നാൽ സ്വീകരിച്ചവർക്ക് ദൈവമക്കളാകാൻ കഴിവു നൽകി.", note:"നിരാകരണവും സ്വീകരണവും തമ്മിലുള്ള വൈരുദ്ധ്യം."},
+  {v:"13", text:"അവർ ജനിച്ചത് രക്തത്തിൽനിന്നോ ശാരീരികാഭിലാഷത്തിൽനിന്നോ പുരുഷന്റെ ഇച്ഛയിൽനിന്നോ അല്ല, ദൈവത്തിൽനിന്നത്രേ.", note:"പുതുജനനത്തിന്റെ മൂന്നു നിഷേധങ്ങൾ."},
+  {v:"14", text:"വചനം മാംസമായി നമ്മുടെയിടയിൽ വസിച്ചു. അവന്റെ മഹത്വം നമ്മൾ ദർശിച്ചു &mdash; കൃപയും സത്യവും നിറഞ്ഞത്.", note:"ദൈവശാസ്ത്രത്തിലെ ഏറ്റവും പ്രധാന വാക്യങ്ങളിലൊന്ന് &mdash; ഇൻകാർനേഷൻ."},
+  {v:"17", text:"നിയമം മോശവഴി നൽകപ്പെട്ടു; കൃപയും സത്യവുമാകട്ടെ, യേശുക്രിസ്തുവഴി ഉണ്ടായി.", note:"ക്വിസ് ജോടി: മോശ &rarr; നിയമം | യേശു &rarr; കൃപ, സത്യം."},
+  {v:"18", text:"ദൈവത്തെ ആരും ഒരിക്കലും കണ്ടിട്ടില്ല. പിതാവുമായി ഗാഢബന്ധം പുലർത്തുന്ന ഏകജാതനാണ് അവിടുത്തെ വെളിപ്പെടുത്തിയത്.", note:"ഏകജാതൻ = പിതാവിനെ വെളിപ്പെടുത്തുന്നവൻ."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach((p,i)=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=>{
+    card.classList.toggle('open');
+  });
+});
+
+/* ---------------- QA THREAD ---------------- */
+const qa = [
+  {q:"നീ ആരാണ്?", a:"ഞാൻ ക്രിസ്തുവല്ല &mdash; അസന്ദിഗ്ധമായി പ്രഖ്യാപിച്ചു."},
+  {q:"എങ്കിൽ, നീ ഏലിയായോ?", a:"അല്ല."},
+  {q:"നീ പ്രവാചകനാണോ?", a:"അല്ല."},
+  {q:"പിന്നെ നീ ആരാണ്? നിന്നെക്കുറിച്ചു നീ എന്തു പറയുന്നു?", a:"<b>ഏശയ്യാ പ്രവചിച്ചതുപോലെ,</b> കർത്താവിന്റെ വഴികൾ നേരേയാക്കുവിൻ എന്നു മരുഭൂമിയിൽ വിളിച്ചുപറയുന്നവന്റെ ശബ്ദമാണു ഞാൻ."},
+  {q:"ക്രിസ്തുവോ ഏലിയായോ പ്രവാചകനോ അല്ലെങ്കിൽ, സ്നാനം നൽകാൻ കാരണമെന്ത്?", a:"ഞാൻ ജലംകൊണ്ടു സ്നാനം നൽകുന്നു; എന്നാൽ എന്റെ പിന്നാലെ വരുന്നവന്റെ <b>ചെരിപ്പിന്റെ വാറഴിക്കുവാൻപോലും ഞാൻ യോഗ്യനല്ല.</b>"}
+];
+const qaWrap = document.getElementById('qathread');
+qa.forEach(pair=>{
+  qaWrap.innerHTML += `
+    <div class="qa-row"><span class="qa-tag q">ചോദ്യം</span><span class="qa-text">${pair.q}</span></div>
+    <div class="qa-row"><span class="qa-tag a">യോഹന്നാൻ</span><span class="qa-text">${pair.a}</span></div>`;
+});
+
+/* ---------------- CONSTELLATION DATA ---------------- */
+const nodeInfo = {
+  jesus: "<b>യേശു</b> &mdash; ദൈവത്തിന്റെ കുഞ്ഞാട് എന്നു യോഹന്നാൻ വിശേഷിപ്പിച്ചു. നഥാനയേലിനെ അത്തിമരത്തിന്റെ ചുവട്ടിൽ 'കണ്ടു' എന്നു പറഞ്ഞ് അത്ഭുതപ്പെടുത്തി.",
+  andrew: "<b>അന്ത്രയോസ്</b> &mdash; യോഹന്നാന്റെ ശിഷ്യനായിരുന്നു; ശിമയോൻ പത്രോസിന്റെ സഹോദരൻ. ആദ്യം യേശുവിനെ അനുഗമിച്ച രണ്ടുപേരിൽ ഒരാൾ. ഉടൻ സഹോദരനെ അന്വേഷിച്ചു.",
+  unnamed: "<b>പേരില്ലാത്ത ശിഷ്യൻ</b> &mdash; അന്ത്രയോസിനോടൊപ്പം ആദ്യം യേശുവിനെ അനുഗമിച്ച രണ്ടാമത്തെ ശിഷ്യൻ. പേര് വാചകത്തിൽ പറയുന്നില്ല (ക്വിസ് ട്രിക്ക്!).",
+  philip: "<b>പീലിപ്പോസ്</b> &mdash; ബേത്സയ്ദായിൽനിന്നുള്ളവൻ, അന്ത്രയോസിന്റെയും പത്രോസിന്റെയും അതേ പട്ടണം. യേശു നേരിട്ട് 'എന്നെ അനുഗമിക്കുക' എന്നു വിളിച്ചു. നഥാനയേലിനെ കൊണ്ടുവന്നു.",
+  peter: "<b>ശിമയോൻ</b> &mdash; യോഹന്നാന്റെ പുത്രൻ. യേശു അവനെ <b>കേപ്പാ (പാറ)</b> എന്നു പുനർനാമകരണം ചെയ്തു. അന്ത്രയോസ് അവനെ യേശുവിന്റെ അടുത്തു കൊണ്ടുവന്നു.",
+  nathanael: "<b>നഥാനയേൽ</b> &mdash; 'നസ്രത്തിൽനിന്ന് എന്തെങ്കിലും നന്‍മ ഉണ്ടാകുമോ?' എന്നു സംശയിച്ചവൻ. യേശു അവനെ 'നിഷ്‌കപടനായ ഒരു യഥാർഥ ഇസ്രായേൽക്കാരൻ' എന്നു വിളിച്ചു. അത്തിമരത്തിന്റെ ചുവട്ടിൽ കണ്ടതു കേട്ട് 'അങ്ങു ദൈവപുത്രൻ, ഇസ്രായേലിന്റെ രാജാവ്' എന്നു ഏറ്റുപറഞ്ഞു.",
+  bethsaida: "<b>ബേത്സയ്ദാ</b> &mdash; അന്ത്രയോസിന്റെയും പത്രോസിന്റെയും പട്ടണം; പീലിപ്പോസും ഇവിടെനിന്നു തന്നെ. മൂന്നു ശിഷ്യന്മാർക്കും ഒരേ നാട്."
+};
+document.querySelectorAll('#constSvg .node').forEach(n=>{
+  n.addEventListener('click', ()=>{
+    document.querySelectorAll('#constSvg .node-circle').forEach(c=>c.classList.remove('active'));
+    n.querySelector('.node-circle').classList.add('active');
+    document.getElementById('node-detail').innerHTML = nodeInfo[n.dataset.key];
+  });
+});
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"സമയം", val:"ഏകദേശം <b>പത്താം മണിക്കൂർ</b> &mdash; അന്ത്രയോസും കൂട്ടുകാരനും യേശുവിനോടൊപ്പം താമസിച്ച സമയം (വാ. 39)."},
+  {label:"പുനർനാമകരണം", val:"ശിമയോൻ &rarr; <b>കേപ്പാ / പത്രോസ്</b> (പാറ എന്നർഥം), യേശു നൽകിയത് (വാ. 42)."},
+  {label:"സ്നാന സ്ഥലം", val:"<b>ബഥാനിയ</b>, ജോർദാന്റെ അക്കരെ (വാ. 28)."},
+  {label:"പൊതു പട്ടണം", val:"അന്ത്രയോസ്, പത്രോസ്, പീലിപ്പോസ് &mdash; മൂവരും <b>ബേത്സയ്ദാ</b>യിൽനിന്ന് (വാ. 44)."},
+  {label:"ഉദ്ധരിച്ച പ്രവാചകൻ", val:"<b>ഏശയ്യാ</b> &mdash; 'വഴി നേരേയാക്കുവിൻ' എന്ന വാക്യം (വാ. 23)."},
+  {label:"നഥാനയേലിനെ കണ്ട സ്ഥലം", val:"<b>അത്തിമരത്തിന്റെ ചുവട്ടിൽ</b> (വാ. 48)."},
+  {label:"മൂന്നു നിഷേധങ്ങൾ", val:"യോഹന്നാൻ താൻ <b>ക്രിസ്തുവല്ല, ഏലിയാവല്ല, പ്രവാചകനല്ല</b> എന്നു പറഞ്ഞു (വാ. 20&ndash;21)."},
+  {label:"ആത്മാവിന്റെ അടയാളം", val:"<b>പ്രാവിനെപ്പോലെ</b> സ്വർഗത്തിൽനിന്ന് ഇറങ്ങിവന്നു (വാ. 32)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"'ആ വെളിച്ചം ഇരുളില്‍ പ്രകാശിക്കുന്നു' &mdash; ഈ വാക്യപ്രകാരം ഇരുളിന് എന്തു ചെയ്യാൻ കഴിഞ്ഞില്ല?",
+   opts:["വെളിച്ചത്തെ കീഴടക്കാൻ","വെളിച്ചത്തെ കാണാൻ","വെളിച്ചത്തെ സൃഷ്ടിക്കാൻ","വെളിച്ചത്തെ നിഷേധിക്കാൻ"], correct:0,
+   note:"വാ. 5 &mdash; 'അതിനെ കീഴടക്കാൻ ഇരുളിനു കഴിഞ്ഞില്ല.'"},
+  {q:"യോഹന്നാൻ ആരാണ് എന്നു ചോദിച്ചപ്പോൾ, അവൻ ആദ്യം എന്താണ് അസന്ദിഗ്ധമായി പ്രഖ്യാപിച്ചത്?",
+   opts:["ഞാൻ പ്രവാചകനാണ്","ഞാൻ ഏലിയായാണ്","ഞാൻ ക്രിസ്തുവല്ല","ഞാൻ പാപിയാണ്"], correct:2,
+   note:"വാ. 20 &mdash; 'ഞാൻ ക്രിസ്തുവല്ല' എന്നു അസന്ദിഗ്ധമായി പ്രഖ്യാപിച്ചു."},
+  {q:"യോഹന്നാൻ സ്നാനം നൽകിക്കൊണ്ടിരുന്ന സ്ഥലം ഏതാണ്?",
+   opts:["ഗലീലി കടൽ","ബഥാനിയ, ജോർദാന്റെ അക്കരെ","ബേത്‌ലഹേം","നസ്രത്ത്"], correct:1,
+   note:"വാ. 28 &mdash; ജോർദാന്റെ അക്കരെ ബഥാനിയയിൽ."},
+  {q:"യേശു ശിമയോനെ എന്തു പേരാണ് നൽകിയത്?",
+   opts:["നഥാനയേൽ","കേപ്പാ (പാറ)","ബർന്നബാസ്","ബർത്തലോമായി"], correct:1,
+   note:"വാ. 42 &mdash; 'കേപ്പാ - പാറ - എന്നു നീ വിളിക്കപ്പെടും.'"},
+  {q:"പീലിപ്പോസ്, അന്ത്രയോസ്, പത്രോസ് എന്നിവരുടെ പട്ടണം ഏതാണ്?",
+   opts:["ബേത്‌ലഹേം","ബേത്സയ്ദാ","കഫർന്നഹൂം","കാനാ"], correct:1,
+   note:"വാ. 44 &mdash; 'അന്ത്രയോസിന്റെയും പത്രോസിന്റെയും പട്ടണമായ ബേത്‌സയ്ദായിൽനിന്നുള്ളവനായിരുന്നു.'"},
+  {q:"നഥാനയേലിനെ യേശു ആദ്യം എവിടെ 'കണ്ടു' എന്നാണ് പറഞ്ഞത്?",
+   opts:["കിണറ്റിനരികെ","അത്തിമരത്തിന്റെ ചുവട്ടിൽ","സിനഗോഗിൽ","മീൻപിടിത്ത വള്ളത്തിൽ"], correct:1,
+   note:"വാ. 48 &mdash; 'നീ അത്തിമരത്തിന്റെ ചുവട്ടിൽ ഇരിക്കുമ്പോൾ ഞാൻ നിന്നെക്കണ്ടു.'"},
+  {q:"ആത്മാവ് സ്വർഗത്തിൽനിന്ന് ഇറങ്ങിവന്ന് യേശുവിന്റെമേൽ ആവസിച്ചത് ഏതു രൂപത്തിലാണ്?",
+   opts:["അഗ്നിജ്വാല പോലെ","കാറ്റ് പോലെ","പ്രാവിനെപ്പോലെ","മേഘം പോലെ"], correct:2,
+   note:"വാ. 32 &mdash; 'ആത്മാവ് പ്രാവിനെപ്പോലെ സ്വർഗത്തിൽനിന്ന് ഇറങ്ങിവന്ന് അവന്റെമേൽ ആവസിക്കുന്നത്.'"},
+  {q:"'നിയമം മോശവഴി നൽകപ്പെട്ടു; ______ യേശുക്രിസ്തുവഴി ഉണ്ടായി.' &mdash; ശൂന്യസ്ഥലം പൂരിപ്പിക്കുക.",
+   opts:["ന്യായവിധിയും ശിക്ഷയും","കൃപയും സത്യവും","ബലിയും യാഗവും","ജ്ഞാനവും ശക്തിയും"], correct:1,
+   note:"വാ. 17 &mdash; 'കൃപയും സത്യവുമാകട്ടെ, യേശുക്രിസ്തുവഴി ഉണ്ടായി.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--gold); color:var(--ink); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  const nb = document.getElementById('nextBtn');
+  nb.addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

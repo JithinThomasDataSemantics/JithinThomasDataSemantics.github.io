@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>സഭാപ്രസംഗകന്‍ 4 · മുപ്പിരിച്ചരട് | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500;600;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&family=Noto+Serif+Malayalam:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0F1116; --void-2:#171A22; --panel:#1D212B; --panel-2:#242834;
+    --mist:#B9C4D6; --mist-soft:#DCE3EE; --mist-dim:#5B6478;
+    --amber:#C9A265; --amber-soft:#E3C596;
+    --plum:#8B6FA0; --plum-dim:#4A3B58;
+    --sage:#7E9385;
+    --parchment:#EFEAE0; --parchment-2:#E2DBC9;
+    --ink:#25231E; --text:#E5E4DE; --text-dim:#9CA1B0;
+    --line: rgba(185,196,214,0.16);
+    --radius: 18px;
+    --serif: 'Noto Serif Malayalam', serif;
+    --sans: 'Noto Sans Malayalam', sans-serif;
+    --display: 'Baloo Chettan 2', 'Noto Sans Malayalam', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(185,196,214,0.10), transparent 60%),
+      linear-gradient(180deg,var(--void) 0%, var(--void-2) 100%);
+    color:var(--text); font-family:var(--sans); line-height:1.65;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  ::selection{ background:var(--amber); color:var(--ink); }
+  #wick{
+    position:fixed; top:0; left:0; height:4px; width:0%;
+    background:linear-gradient(90deg, var(--plum), var(--mist), var(--amber));
+    z-index:200; transition:width .12s linear;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 20px 90px; }
+
+  .hero{ position:relative; padding:56px 20px 44px; text-align:center; overflow:hidden; }
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 10%, rgba(185,196,214,0.14), transparent 55%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--mist-soft);
+    background:rgba(185,196,214,0.07); border:1px solid var(--line); padding:7px 16px;
+    border-radius:999px; margin-bottom:22px;
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--plum);box-shadow:0 0 8px var(--plum);}
+
+  .cord-icon{ width:90px; height:60px; margin:0 auto 14px; }
+  h1.title{ font-family:var(--display); font-weight:800; font-size:clamp(28px,7vw,44px); margin:6px 0 8px; color:var(--parchment); }
+  .subtitle{ font-family:var(--serif); font-style:italic; font-size:clamp(15px,3.6vw,19px); color:var(--mist-soft); margin:0 0 4px; }
+  .ref{ font-size:13px; color:var(--text-dim); letter-spacing:.04em; }
+
+  .section{ padding:52px 0 0; }
+  .eyebrow{ font-weight:700; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--plum); margin:0 0 8px; }
+  h2.h{ font-family:var(--display); font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--parchment); margin:0 0 6px; }
+  .lede{ color:var(--text-dim); font-size:15px; margin:0 0 26px; max-width:60ch; }
+
+  /* ---------- OPPRESSION ---------- */
+  .oppress-card{
+    background:linear-gradient(160deg, rgba(139,111,160,0.14), var(--panel));
+    border:1px solid var(--line); border-radius:var(--radius); padding:22px;
+    display:flex; gap:16px; align-items:flex-start;
+  }
+  .oppress-card .oicon{ font-size:30px; flex:none; }
+  .oppress-card p{ margin:0; font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .oppress-card p b{ color:var(--text); }
+
+  /* ---------- FORTUNE RANKING ---------- */
+  .rank-list{ display:flex; flex-direction:column; gap:0; }
+  .rank-item{ position:relative; padding:16px 16px 16px 56px; border-radius:14px; background:var(--panel); border:1px solid var(--line); margin-bottom:10px; }
+  .rank-item.best{ border-color:var(--amber); background:linear-gradient(160deg, rgba(201,162,101,0.14), var(--panel)); }
+  .rank-num{ position:absolute; left:14px; top:16px; width:28px; height:28px; border-radius:50%; background:var(--void-2); border:2px solid var(--mist-dim); color:var(--mist-soft); display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:700; font-size:13px; }
+  .rank-item.best .rank-num{ border-color:var(--amber); color:var(--amber-soft); }
+  .rank-item p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.6; }
+  .rank-item p b{ color:var(--text); }
+
+  /* ---------- LONE TOILER ---------- */
+  .lone-card{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px; text-align:center; }
+  .lone-card .licon{ font-size:30px; margin-bottom:8px; }
+  .lone-card p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.7; max-width:52ch; margin:0 auto; }
+  .lone-card p b{ color:var(--text); }
+
+  /* ---------- FOUR REASONS ---------- */
+  .reasons{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:560px){ .reasons{ grid-template-columns:1fr; } }
+  .reason-card{ background:linear-gradient(160deg, var(--panel-2), var(--panel)); border:1px solid var(--line); border-radius:14px; padding:18px; }
+  .reason-card .ricon{ font-size:24px; display:block; margin-bottom:8px; }
+  .reason-card .rtitle{ font-family:var(--display); font-weight:700; font-size:15px; color:var(--amber-soft); margin:0 0 6px; }
+  .reason-card p{ margin:0; font-size:13px; color:var(--text-dim); line-height:1.6; }
+
+  /* ---------- CORD ---------- */
+  .scroll{
+    background:linear-gradient(160deg, var(--parchment), var(--parchment-2));
+    color:var(--ink); border-radius:16px; padding:26px 24px; position:relative; text-align:center;
+    box-shadow:0 18px 40px rgba(0,0,0,0.35); border:1px solid #cfc6ad;
+  }
+  .scroll::before, .scroll::after{ content:""; position:absolute; left:0; right:0; height:14px; background:repeating-linear-gradient(90deg, #cfc6ad 0 10px, #beb494 10px 20px); border-radius:50%; }
+  .scroll::before{ top:-7px; } .scroll::after{ bottom:-7px; }
+  .scroll p{ font-family:var(--serif); font-style:italic; font-size:16.5px; line-height:1.85; margin:0; color:var(--ink); }
+  .scroll .cite{ display:block; margin-top:14px; font-family:var(--sans); font-style:normal; font-weight:700; font-size:12.5px; letter-spacing:.06em; color:#5c5340; text-transform:uppercase; }
+
+  /* ---------- POWER ARC ---------- */
+  .power-arc{ position:relative; padding-left:34px; margin-top:8px; }
+  .power-arc::before{ content:""; position:absolute; left:12px; top:6px; bottom:6px; width:2px; background:linear-gradient(180deg, var(--plum), var(--amber)); opacity:.55; }
+  .p-item{ position:relative; padding-bottom:22px; }
+  .p-item:last-child{ padding-bottom:2px; }
+  .p-num{ position:absolute; left:-34px; top:0; width:26px; height:26px; border-radius:50%; background:var(--void-2); border:2px solid var(--amber); color:var(--amber-soft); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:var(--display); }
+  .p-item p{ margin:0; font-size:14px; color:var(--text-dim); line-height:1.65; }
+  .p-item p b{ color:var(--text); }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; }
+  .quiz-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:10px; }
+  .quiz-progress{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+  .quiz-score{ font-family:var(--display); font-weight:700; font-size:14px; color:var(--amber-soft); background:rgba(201,162,101,0.1); border:1px solid var(--line); padding:5px 12px; border-radius:999px; display:flex; align-items:center; gap:6px; }
+  .qtext{ font-size:16.5px; font-weight:600; color:var(--parchment); margin:0 0 16px; line-height:1.6; }
+  .options{ display:flex; flex-direction:column; gap:10px; }
+  .opt{ text-align:left; font-size:14.5px; color:var(--text); background:var(--panel-2); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; transition:.15s ease; width:100%; font-family:var(--sans); }
+  .opt:hover{ border-color:var(--amber); }
+  .opt.correct{ background:rgba(126,147,133,0.25); border-color:var(--sage); color:#D3DFCF; }
+  .opt.wrong{ background:rgba(139,111,160,0.22); border-color:var(--plum); color:#E4D7EC; }
+  .opt[disabled]{ cursor:default; }
+  .explain{ margin-top:14px; padding:12px 14px; border-radius:12px; background:rgba(201,162,101,0.08); border:1px solid var(--line); font-size:13.5px; color:var(--text-dim); display:none; }
+  .explain.show{ display:block; }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:16px; }
+  .btn{ font-family:var(--sans); font-weight:700; font-size:14px; background:linear-gradient(135deg, var(--amber), #9C7A42); color:var(--ink); border:none; padding:11px 22px; border-radius:999px; cursor:pointer; transition:transform .15s ease; }
+  .btn:hover{ transform:translateY(-1px); }
+  .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .quiz-done{ text-align:center; padding:10px 0; display:none; }
+  .quiz-done.show{ display:block; }
+  .quiz-done .score-big{ font-family:var(--display); font-size:44px; color:var(--amber); font-weight:800; }
+  .quiz-done p{ color:var(--text-dim); font-size:14px; }
+
+  details.fulltext{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; }
+  details.fulltext summary{ cursor:pointer; font-family:var(--display); font-weight:700; color:var(--amber-soft); font-size:16px; list-style:none; display:flex; align-items:center; justify-content:space-between; }
+  details.fulltext summary::-webkit-details-marker{ display:none; }
+  details.fulltext summary::after{ content:"+"; font-size:22px; color:var(--amber); }
+  details.fulltext[open] summary::after{ content:"–"; }
+  .verses{ margin-top:16px; font-family:var(--serif); font-size:14.5px; color:var(--text-dim); line-height:1.9; max-height:420px; overflow-y:auto; padding-right:6px; }
+  .verses .v{ margin-bottom:10px; }
+  .verses .v b{ color:var(--amber-soft); font-family:var(--sans); font-weight:700; margin-right:6px; }
+
+  footer{ text-align:center; padding:50px 20px 10px; color:var(--text-dim); font-size:12px; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<div id="wick"></div>
+
+<section class="hero">
+  <div class="wrap" style="padding:0;">
+    <div class="badge"><span class="dot"></span> LOGOS QUIZ 2026 · പഠന ക്യാപ്‌സൂള്‍</div>
+    <svg class="cord-icon" viewBox="0 0 90 60">
+      <path d="M8 30 Q22 10 36 30 T64 30 T90 30" fill="none" stroke="#C9A265" stroke-width="3" stroke-linecap="round" opacity="0.9"/>
+      <path d="M8 30 Q22 50 36 30 T64 30 T90 30" fill="none" stroke="#B9C4D6" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+      <path d="M8 30 Q22 30 36 12 T64 48 T90 30" fill="none" stroke="#8B6FA0" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+    </svg>
+    <h1 class="title">മുപ്പിരിച്ചരട്</h1>
+    <p class="subtitle">"രണ്ടുപേർ ഒരാളെക്കാൾ മെച്ചമാണ്"</p>
+    <p class="ref">സഭാപ്രസംഗകന്‍ 4 &nbsp;·&nbsp; മർദനവും ഏകാന്തതയും കൂട്ടായ്മയും</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- OPPRESSION -->
+  <section class="section" id="oppress-sec">
+    <p class="eyebrow">കണ്ണീരും നിസ്സഹായതയും</p>
+    <h2 class="h">മർദിതരുടെ കണ്ണീര്</h2>
+    <div class="oppress-card">
+      <div class="oicon">😢</div>
+      <p>സൂര്യനു കീഴേയുള്ള മർദനങ്ങൾ കണ്ടപ്പോൾ സഭാപ്രസംഗകൻ ശ്രദ്ധിച്ചത്: <b>മർദിതരെ ആശ്വസിപ്പിക്കാൻ ആരുമുണ്ടായിരുന്നില്ല</b>. ശക്തി മർദകർക്കായിരുന്നു; <b>പ്രതികാരം ചെയ്യാൻ ആരും ഉണ്ടായിരുന്നില്ല</b>.</p>
+    </div>
+  </section>
+
+  <!-- FORTUNE RANKING -->
+  <section class="section" id="rank-sec">
+    <p class="eyebrow">ഒരു അസ്വസ്ഥജനകമായ താരതമ്യം</p>
+    <h2 class="h">ഭാഗ്യത്തിന്റെ ക്രമം</h2>
+    <p class="lede">മർദനം കണ്ടപ്പോൾ അദ്ദേഹം മൂന്നു അവസ്ഥകളെ താരതമ്യം ചെയ്തു — ഏറ്റവും ഭാഗ്യം കുറഞ്ഞതു മുതൽ കൂടിയതു വരെ.</p>
+    <div class="rank-list">
+      <div class="rank-item"><div class="rank-num">1</div><p><b>ജീവിച്ചിരിക്കുന്നവർ</b> — മർദനം സഹിക്കുന്നവർ</p></div>
+      <div class="rank-item"><div class="rank-num">2</div><p><b>മരിച്ചുപോയവർ</b> — ജീവിച്ചിരിക്കുന്നവരെക്കാൾ ഭാഗ്യവാന്മാർ</p></div>
+      <div class="rank-item best"><div class="rank-num">3</div><p><b>ഇനിയും ജനിച്ചിട്ടില്ലാത്തവർ</b> — സൂര്യനു കീഴേ നടക്കുന്ന തിന്മകൾ കണ്ടിട്ടില്ലാത്തതിനാൽ ഏറ്റവും ഭാഗ്യവാന്മാർ</p></div>
+    </div>
+  </section>
+
+  <!-- LONE TOILER -->
+  <section class="section" id="lone-sec">
+    <p class="eyebrow">ഏകാന്തമായ അധ്വാനം</p>
+    <h2 class="h">ആർക്കുവേണ്ടി?</h2>
+    <div class="lone-card">
+      <div class="licon">🧍‍♂️</div>
+      <p><b>പുത്രനോ സഹോദരനോ ഇല്ലാത്തവന്</b> അധ്വാനത്തിന് അറുതിയില്ല; ധനം എത്ര കൂടിയാലും <b>മതിവരുന്നില്ല</b>. ആർക്കുവേണ്ടിയാണ് അധ്വാനിക്കുന്നതെന്നും സന്തോഷങ്ങൾ ഉപേക്ഷിക്കുന്നതെന്നും അവൻ ചിന്തിക്കുന്നില്ല — "ഇതും മിഥ്യയും പരിതാപകരവുമാണ്."</p>
+    </div>
+  </section>
+
+  <!-- FOUR REASONS -->
+  <section class="section" id="reasons-sec">
+    <p class="eyebrow">ഏകാന്തതയ്ക്കുള്ള മറുപടി</p>
+    <h2 class="h">രണ്ടുപേർ ഒരാളെക്കാൾ മെച്ചം — നാലു കാരണങ്ങൾ</h2>
+    <div class="reasons">
+      <div class="reason-card"><span class="ricon">💪</span><p class="rtitle">ഫലപ്രദമായ അധ്വാനം</p><p>ഒരുമിച്ച് കൂടുതൽ ഫലപ്രദമായി അധ്വാനിക്കാൻ കഴിയും.</p></div>
+      <div class="reason-card"><span class="ricon">🤝</span><p class="rtitle">വീണാൽ താങ്ങാൻ</p><p>ഒരുവൻ വീണാൽ അപരനു താങ്ങാൻ കഴിയും; ഒറ്റയ്ക്കുള്ളവന്റെ കാര്യം കഷ്ടം.</p></div>
+      <div class="reason-card"><span class="ricon">🔥</span><p class="rtitle">ഊഷ്മളത</p><p>രണ്ടുപേർ ഒരുമിച്ചു കിടന്നാൽ ചൂടുകിട്ടും; തനിച്ചായാൽ എങ്ങനെ?</p></div>
+      <div class="reason-card"><span class="ricon">🛡</span><p class="rtitle">പ്രതിരോധം</p><p>ഒറ്റയ്ക്കുള്ളവനെ കീഴ്‌പ്പെടുത്താം; രണ്ടു പേർക്ക് ചെറുക്കാൻ കഴിയും.</p></div>
+    </div>
+  </section>
+
+  <!-- THREEFOLD CORD -->
+  <section class="section" id="cord-sec">
+    <p class="eyebrow">ഏറ്റവും അറിയപ്പെടുന്ന വരി</p>
+    <h2 class="h">മുപ്പിരിച്ചരട് പൊട്ടില്ല</h2>
+    <div class="scroll">
+      <p>"ഒറ്റയ്ക്കായിരിക്കുന്നവനെ കീഴ്‌പ്പെടുത്താൻ സാധിച്ചേക്കാം. രണ്ടു പേരാണെങ്കിൽ ചെറുക്കാൻ കഴിയും; മുപ്പിരിച്ചരട് വേഗം പൊട്ടുകയില്ല."</p>
+      <span class="cite">സഭാപ്രസംഗകന്‍ 4:12</span>
+    </div>
+  </section>
+
+  <!-- POWER FADES -->
+  <section class="section" id="power-sec">
+    <p class="eyebrow">സ്ഥാനവും പ്രശസ്തിയും</p>
+    <h2 class="h">അധികാരത്തിന്റെ മിഥ്യ</h2>
+    <div class="power-arc" id="powerWrap"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" id="quiz">
+    <p class="eyebrow">സ്വയം പരീക്ഷിക്കുക</p>
+    <h2 class="h">Logos Quiz പരിശീലനം · അധ്യായം 4</h2>
+    <p class="lede">10 ചോദ്യങ്ങള്‍. ഓരോ ഉത്തരവും ഉടന്‍ വിലയിരുത്തും.</p>
+    <div class="quiz-shell">
+      <div class="quiz-top">
+        <span class="quiz-progress" id="qProgress">ചോദ്യം 1 / 10</span>
+        <span class="quiz-score">🔥 <span id="qScore">0</span>/10</span>
+      </div>
+      <div id="qBody">
+        <p class="qtext" id="qText"></p>
+        <div class="options" id="qOptions"></div>
+        <div class="explain" id="qExplain"></div>
+        <div class="quiz-nav"><button class="btn" id="qNext" disabled>അടുത്തത് →</button></div>
+      </div>
+      <div class="quiz-done" id="qDone">
+        <div class="score-big" id="qFinalScore">0/10</div>
+        <p id="qFinalMsg">വീണ്ടും ശ്രമിക്കാം!</p>
+        <button class="btn" id="qRestart">വീണ്ടും തുടങ്ങുക</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL TEXT -->
+  <section class="section" id="fulltext-sec">
+    <details class="fulltext">
+      <summary>പൂര്‍ണ്ണ അധ്യായം വായിക്കുക — സഭാപ്രസംഗകന്‍ 4</summary>
+      <div class="verses" id="versesWrap"></div>
+    </details>
+  </section>
+
+  <footer>🧵 Logos Quiz 2026 പഠന സഹായി · സഭാപ്രസംഗകന്‍ 4</footer>
+</div>
+
+<script>
+const wick = document.getElementById('wick');
+function updateWick(){
+  const h = document.documentElement;
+  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+  wick.style.width = (scrolled||0) + '%';
+}
+document.addEventListener('scroll', updateWick);
+updateWick();
+
+/* power arc */
+const power = [
+  {t:'നിർധനനും ബുദ്ധിമാനുമായ യുവാവ്', b:'ഉപദേശം നിരസിക്കുന്ന വിഡ്ഢിയും വൃദ്ധനുമായ രാജാവിനെക്കാൾ ഭേദമായി കണക്കാക്കപ്പെടുന്നു.'},
+  {t:'കാരാഗൃഹത്തിൽനിന്ന് സിംഹാസനത്തിലേക്ക്', b:'ദരിദ്രനായി ജനിച്ച ഒരുവന് പോലും രാജ്യം ഭരിക്കാൻ കഴിഞ്ഞേക്കാം.'},
+  {t:'അസംഖ്യം പ്രജകൾ', b:'അവന്റെ പ്രജകൾക്ക് എണ്ണമില്ല; അവൻ എല്ലാവർക്കും അധിപനായി.'},
+  {t:'പ്രീതി മങ്ങുന്നു', b:'എങ്കിലും പിന്നീട് വരുന്നവർക്ക് അവനിൽ പ്രീതി തോന്നുകയില്ല — ഇതും മിഥ്യയും പാഴ്‌വേലയും.'},
+];
+const powerWrap = document.getElementById('powerWrap');
+power.forEach((item,i)=>{
+  const el = document.createElement('div');
+  el.className = 'p-item';
+  el.innerHTML = `<div class="p-num">${i+1}</div><p><b>${item.t}</b> — ${item.b}</p>`;
+  powerWrap.appendChild(el);
+});
+
+/* full text */
+const verses = [
+  ['1','സൂര്യനു കീഴേയുള്ള മർദനങ്ങൾ വീക്ഷിച്ചു; മർദിതരെ ആശ്വസിപ്പിക്കാൻ ആരുമുണ്ടായിരുന്നില്ല; ശക്തി മർദകർക്കായിരുന്നു.'],
+  ['2-3','ജീവിച്ചിരിക്കുന്നവരെക്കാൾ മരിച്ചവർ ഭാഗ്യവാന്മാർ; ഇരുകൂട്ടരെക്കാളും ഭാഗ്യവാന്മാർ ഇനിയും ജനിച്ചിട്ടില്ലാത്തവർ.'],
+  ['4-6','അധ്വാനവും വൈദഗ്ധ്യവും പരസ്പരസ്പർധയുടെ ഫലം; ഭോഷൻ കൈയുംകെട്ടി ക്ഷയിക്കുന്നു; ഒരുപിടി സ്വസ്ഥത ഇരുകൈയും നിറയെ പാഴ്‌വേലയെക്കാൾ ഉത്തമം.'],
+  ['7-8','പുത്രനോ സഹോദരനോ ഇല്ലാത്തവന് അധ്വാനത്തിന് അറുതിയില്ല; ധനത്തിൽ തൃപ്തിയില്ല; ആർക്കുവേണ്ടിയെന്ന് ചിന്തിക്കുന്നില്ല.'],
+  ['9-10','രണ്ടുപേർ ഒരാളെക്കാൾ മെച്ചം — കൂടുതൽ ഫലപ്രദമായി അധ്വാനിക്കാം; ഒരുവൻ വീണാൽ അപരൻ താങ്ങും.'],
+  ['11-12','ഒരുമിച്ചു കിടന്നാൽ ചൂടുകിട്ടും; ഒറ്റയ്ക്കുള്ളവനെ കീഴ്‌പ്പെടുത്താം, രണ്ടു പേർക്ക് ചെറുക്കാം; മുപ്പിരിച്ചരട് വേഗം പൊട്ടില്ല.'],
+  ['13-14','നിർധനനും ബുദ്ധിമാനുമായ യുവാവ് ഉപദേശം നിരസിക്കുന്ന വൃദ്ധരാജാവിനെക്കാൾ ഭേദം; കാരാഗൃഹത്തിൽനിന്ന് സിംഹാസനത്തിലെത്താം.'],
+  ['15-16','എല്ലാ ജീവികളും പുതിയ യുവാവിനെ പിന്തുടർന്നു; പ്രജകൾക്ക് എണ്ണമില്ല; എങ്കിലും പിന്നീട് വരുന്നവർക്ക് അവനിൽ പ്രീതി തോന്നുകയില്ല.'],
+];
+const versesWrap = document.getElementById('versesWrap');
+verses.forEach(([n,txt])=>{
+  const p = document.createElement('div');
+  p.className = 'v';
+  p.innerHTML = `<b>${n}</b>${txt}`;
+  versesWrap.appendChild(p);
+});
+
+/* quiz */
+const questions = [
+  {
+    q: 'മർദിതരെ ആശ്വസിപ്പിക്കാൻ ആരുണ്ടായിരുന്നു എന്നാണ് സഭാപ്രസംഗകൻ കണ്ടത്?',
+    options: ['രാജാവ്', 'ആരും ഉണ്ടായിരുന്നില്ല', 'പുരോഹിതന്മാർ', 'അയൽക്കാർ'],
+    correct: 1,
+    explain: '4:1 — "മർദിതരുടെ കണ്ണീരു ഞാൻ കണ്ടു, അവരെ ആശ്വസിപ്പിക്കാൻ ആരുമുണ്ടായിരുന്നില്ല."'
+  },
+  {
+    q: 'ജീവിച്ചിരിക്കുന്നവരെക്കാൾ ഭാഗ്യവാന്മാരായി അദ്ദേഹം ആരെയാണ് കണക്കാക്കിയത്?',
+    options: ['ധനികരെ', 'മരിച്ചുപോയവരെ', 'രാജാക്കന്മാരെ', 'ജ്ഞാനികളെ'],
+    correct: 1,
+    explain: '4:2 — "ജീവിച്ചിരിക്കുന്നവരെക്കാൾ ഭാഗ്യവാന്മാരാണ് മരിച്ചുപോയവരെന്നു ഞാൻ വിചാരിച്ചു."'
+  },
+  {
+    q: 'മരിച്ചവരെക്കാളും ജീവിച്ചിരിക്കുന്നവരെക്കാളും ഭാഗ്യവാന്മാർ ആരാണെന്നു പറയുന്നു?',
+    options: ['ഇനിയും ജനിച്ചിട്ടില്ലാത്തവർ', 'വൃദ്ധരായവർ', 'കുട്ടികൾ', 'വിദേശികൾ'],
+    correct: 0,
+    explain: '4:3 — "ഇനിയും ജനിച്ചിട്ടില്ലാത്തവരും സൂര്യനുകീഴേ നടക്കുന്ന തിന്‍മകൾ കണ്ടിട്ടില്ലാത്തവരുമാണ്" ഏറ്റവും ഭാഗ്യവാന്മാർ.'
+  },
+  {
+    q: '"ഒരുപിടി സ്വസ്ഥത"യെ എന്തിനെക്കാൾ ഉത്തമമെന്നാണ് പറയുന്നത്?',
+    options: ['ഒരു കിരീടത്തെക്കാൾ', 'ഇരുകൈകളും നിറയെ അധ്വാനത്തെയും പാഴ്‌വേലയെയുംകാൾ', 'ധാരാളം സുഹൃത്തുക്കളെക്കാൾ', 'ഒരു വലിയ വീടിനെക്കാൾ'],
+    correct: 1,
+    explain: '4:6 — "ഒരുപിടി സ്വസ്ഥതയാണ് ഇരുകൈകളും നിറയെ അധ്വാനത്തെക്കാളും പാഴ്‌വേലയെക്കാളും ഉത്തമം."'
+  },
+  {
+    q: 'പുത്രനോ സഹോദരനോ ഇല്ലാത്ത ഏകാകിയായ അധ്വാനിയുടെ പ്രശ്നം എന്താണ്?',
+    options: ['അധ്വാനിക്കാൻ ആരോഗ്യമില്ല', 'അധ്വാനത്തിന് അറുതിയില്ല, ധനത്തിൽ മതിവരുന്നില്ല', 'അധ്വാനിക്കാൻ അനുവാദമില്ല', 'അധ്വാനഫലം കവർച്ച ചെയ്യപ്പെടുന്നു'],
+    correct: 1,
+    explain: '4:8 — "അധ്വാനത്തിന് അറുതിയില്ല. ധനം എത്രയായാലും അവനു മതിവരുന്നില്ല."'
+  },
+  {
+    q: '"രണ്ടുപേർ ഒരാളെക്കാൾ മെച്ചമാണ്" എന്നതിനുള്ള കാരണങ്ങളിൽ പെടാത്തത് ഏത്?',
+    options: ['കൂടുതൽ ഫലപ്രദമായി അധ്വാനിക്കാം', 'വീണാൽ പരസ്പരം താങ്ങാം', 'കൂടുതൽ ധനം സമ്പാദിക്കാം', 'ഒരുമിച്ചു ചൂടുകിട്ടും'],
+    correct: 2,
+    explain: '4:9-11 — കാരണങ്ങൾ: ഫലപ്രദമായ അധ്വാനം, വീണാൽ താങ്ങൽ, ഊഷ്മളത, പ്രതിരോധം — "കൂടുതൽ ധനം" പ്രത്യേകം പറയുന്നില്ല.'
+  },
+  {
+    q: '"മുപ്പിരിച്ചരട് വേഗം പൊട്ടുകയില്ല" എന്ന വാക്യം എന്തിനെ ഊന്നിപ്പറയുന്നു?',
+    options: ['നൂൽനൂൽപ്പിന്റെ വൈദഗ്ധ്യം', 'കൂട്ടായ്മയുടെ ശക്തി', 'വ്യാപാരത്തിന്റെ പ്രാധാന്യം', 'വസ്ത്രനിർമാണം'],
+    correct: 1,
+    explain: '4:12 — ഒറ്റയ്ക്കുള്ളവനെ കീഴ്‌പ്പെടുത്താം, എന്നാൽ കൂട്ടായ്മ (മുപ്പിരിച്ചരട്) എളുപ്പം തകരില്ല.'
+  },
+  {
+    q: 'നിർധനനും ബുദ്ധിമാനുമായ യുവാവിനെ ആരുമായി താരതമ്യം ചെയ്യുന്നു?',
+    options: ['ധനികനും യുവാവുമായ രാജകുമാരൻ', 'ഉപദേശം നിരസിക്കുന്ന വിഡ്ഢിയും വൃദ്ധനുമായ രാജാവ്', 'ജ്ഞാനിയായ ഒരു പുരോഹിതൻ', 'സമ്പന്നനായ ഒരു വ്യാപാരി'],
+    correct: 1,
+    explain: '4:13 — "നിർധനനെങ്കിലും ബുദ്ധിമാനായ യുവാവാണ് ഉപദേശം നിരസിക്കുന്ന വിഡ്ഢിയും വൃദ്ധനുമായ രാജാവിനെക്കാൾ ഭേദം."'
+  },
+  {
+    q: 'ഒരുവന് എവിടെനിന്ന് സിംഹാസനത്തിലെത്താൻ കഴിഞ്ഞേക്കാം എന്നു പറയുന്നു?',
+    options: ['വിദേശ രാജ്യത്തുനിന്ന്', 'കാരാഗൃഹത്തിൽനിന്ന്', 'സൈന്യത്തിൽനിന്ന്', 'ദേവാലയത്തിൽനിന്ന്'],
+    correct: 1,
+    explain: '4:14 — "ഒരുവന് കാരാഗൃഹത്തിൽനിന്ന് സിംഹാസനത്തിലെത്താൻ കഴിഞ്ഞേക്കാം."'
+  },
+  {
+    q: 'പുതിയ ഭരണാധികാരിയെക്കുറിച്ച് അധ്യായത്തിന്റെ അവസാനം എന്തു പറയുന്നു?',
+    options: ['അവൻ എന്നും ബഹുമാനിക്കപ്പെടും', 'പിന്നീട് വരുന്നവർക്ക് അവനിൽ പ്രീതി തോന്നുകയില്ല', 'അവന്റെ രാജ്യം ശാശ്വതമായിരിക്കും', 'പ്രജകൾ അവനെ എതിർക്കും'],
+    correct: 1,
+    explain: '4:16 — "പിന്നീട് വരുന്നവർക്ക് അവനിൽ പ്രീതി തോന്നുകയില്ല. ഇതും മിഥ്യയും പാഴ്‌വേലയുമാണ്."'
+  },
+];
+
+let qi = 0, score = 0, answered = false;
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const qExplain = document.getElementById('qExplain');
+const qNext = document.getElementById('qNext');
+const qProgress = document.getElementById('qProgress');
+const qScore = document.getElementById('qScore');
+const qBody = document.getElementById('qBody');
+const qDone = document.getElementById('qDone');
+const qFinalScore = document.getElementById('qFinalScore');
+const qFinalMsg = document.getElementById('qFinalMsg');
+
+function renderQ(){
+  answered = false;
+  const item = questions[qi];
+  qText.textContent = item.q;
+  qProgress.textContent = `ചോദ്യം ${qi+1} / ${questions.length}`;
+  qExplain.classList.remove('show'); qExplain.textContent = '';
+  qNext.disabled = true;
+  qOptions.innerHTML = '';
+  item.options.forEach((opt, idx)=>{
+    const b = document.createElement('button');
+    b.className = 'opt'; b.textContent = opt;
+    b.addEventListener('click', ()=> selectOpt(idx));
+    qOptions.appendChild(b);
+  });
+}
+function selectOpt(idx){
+  if(answered) return;
+  answered = true;
+  const item = questions[qi];
+  const btns = qOptions.querySelectorAll('.opt');
+  btns.forEach((b,i)=>{
+    b.disabled = true;
+    if(i === item.correct) b.classList.add('correct');
+    else if(i === idx) b.classList.add('wrong');
+  });
+  if(idx === item.correct){ score++; qScore.textContent = score; }
+  qExplain.textContent = item.explain;
+  qExplain.classList.add('show');
+  qNext.disabled = false;
+}
+qNext.addEventListener('click', ()=>{
+  qi++;
+  if(qi >= questions.length){
+    qBody.style.display = 'none';
+    qDone.classList.add('show');
+    qFinalScore.textContent = `${score}/${questions.length}`;
+    qFinalMsg.textContent = score >= 8 ? 'മികച്ചത്! Logos Quiz-ന് തയ്യാര്‍!' :
+      score >= 5 ? 'നല്ല തുടക്കം — ഒന്നുകൂടി ശ്രമിക്കൂ.' :
+      'വീണ്ടും വായിച്ച് ശ്രമിക്കൂ, ജയിക്കും!';
+  } else { renderQ(); }
+});
+document.getElementById('qRestart').addEventListener('click', ()=>{
+  qi = 0; score = 0; qScore.textContent = 0;
+  qBody.style.display = ''; qDone.classList.remove('show');
+  renderQ();
+});
+renderQ();
+</script>
+</body>
+</html>

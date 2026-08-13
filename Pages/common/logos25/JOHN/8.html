@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ഞാന്‍ ലോകത്തിന്റെ പ്രകാശമാണ് — യോഹന്നാൻ 8 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #0d0d0f; --void-2: #18181b;
+    --parchment: #eae6dc; --parchment-dim: #a5a29a;
+    --light: #f0d98c; --light-soft: #f7e9b8;
+    --stone: #857f74; --stone-soft: #aca690;
+    --line: rgba(240,217,140,0.18);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(240,217,140,0.10), transparent 45%),
+      var(--void);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--light); color:var(--void);}
+
+  /* ---------- HERO: LIGHT BURST ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .glow{position:absolute; width:min(60vw,520px); height:min(60vw,520px); border-radius:50%; background:radial-gradient(circle, rgba(240,217,140,0.45) 0%, rgba(240,217,140,0.1) 45%, transparent 72%); filter:blur(4px); animation:breathe 6s ease-in-out infinite; z-index:0;}
+  @keyframes breathe{0%,100%{transform:scale(1); opacity:0.8;} 50%{transform:scale(1.1); opacity:1;}}
+  .eyebrow{position:relative; z-index:1; font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--light-soft); margin-bottom:1.6rem; font-style:italic;}
+  .hero h1{position:relative; z-index:1; font-weight:800; font-size:clamp(2rem, 6.2vw, 3.9rem); line-height:1.3; margin:0; color:var(--parchment);}
+  .hero h1 em{font-style:normal; color:var(--light-soft); display:block; text-shadow:0 0 40px rgba(240,217,140,0.3);}
+  .hero .ref{position:relative; z-index:1; font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--parchment-dim); margin-top:1rem;}
+  .hero p.tag{position:relative; z-index:1; max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--parchment-dim);}
+  .scroll-cue{position:relative; z-index:1; margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--light-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--light), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--light-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.35rem,3.1vw,1.95rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--void-2), var(--void)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--light);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--light-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--light-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:420px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--light-soft); font-size:0.88rem;}
+
+  /* ---------- STONE ROW (dropping) ---------- */
+  .stone-row{display:flex; gap:8px; justify-content:center; margin-top:1.6rem;}
+  .stone-icon{width:22px; height:20px; border-radius:50% 50% 45% 45%; background:linear-gradient(160deg, var(--stone-soft), var(--stone)); opacity:0.85; animation:stoneFade 4s ease-in-out infinite;}
+  .stone-icon:nth-child(1){animation-delay:0s;} .stone-icon:nth-child(2){animation-delay:0.3s;} .stone-icon:nth-child(3){animation-delay:0.6s;} .stone-icon:nth-child(4){animation-delay:0.9s;} .stone-icon:nth-child(5){animation-delay:1.2s;}
+  @keyframes stoneFade{0%,60%{opacity:0.85; transform:translateY(0);} 80%{opacity:0.15; transform:translateY(10px);} 100%{opacity:0.85; transform:translateY(0);}}
+  .mercy-quote{margin-top:1rem; text-align:center; font-family:var(--font-ml); font-weight:700; font-size:1.05rem; color:var(--light-soft);}
+  .mercy-quote span{display:block; margin-top:0.4rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.82rem; font-weight:400;}
+
+  /* ---------- LIGHT GIANT QUOTE ---------- */
+  .light-quote{margin:0.4rem 0 1.6rem; padding:3rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(240,217,140,0.18), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .light-quote .vtag{font-family:var(--font-num); font-style:italic; color:var(--light-soft); font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;}
+  .light-quote p{font-family:var(--font-ml); font-weight:800; font-size:clamp(1.3rem, 3.6vw, 2rem); line-height:1.7; color:var(--parchment); max-width:34ch; margin:0 auto;}
+
+  .cards-col{display:flex; flex-direction:column; gap:0.7rem;}
+  .simple-card{background:var(--void-2); border:1px solid var(--line); border-radius:10px; padding:1.1rem 1.3rem;}
+  .simple-card .sverse{font-family:var(--font-num); font-style:italic; color:var(--light-soft); font-size:0.82rem; margin-bottom:0.4rem;}
+  .simple-card .stext{font-size:0.96rem; line-height:1.85; color:var(--parchment);}
+  .simple-card .stext b{color:var(--light-soft);}
+
+  /* ---------- SLAVE / SON CONTRAST ---------- */
+  .contrast-wrap{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;}
+  @media (max-width:640px){.contrast-wrap{grid-template-columns:1fr;}}
+  .contrast-col{border-radius:12px; padding:1.4rem 1.2rem; border:1px solid var(--line);}
+  .contrast-col.slave{background:linear-gradient(180deg, rgba(133,127,116,0.14), transparent); border-color:rgba(133,127,116,0.35);}
+  .contrast-col.free{background:linear-gradient(180deg, rgba(240,217,140,0.12), transparent); border-color:var(--line);}
+  .contrast-col h3{margin:0 0 0.6rem; font-family:var(--font-ml); font-size:1.05rem;}
+  .contrast-col.slave h3{color:var(--stone-soft);}
+  .contrast-col.free h3{color:var(--light-soft);}
+  .contrast-col p{margin:0; font-size:0.92rem; line-height:1.7; color:var(--parchment-dim);}
+
+  /* ---------- ABRAHAM CLIMAX QUOTE ---------- */
+  .climax-quote{margin:0.4rem 0 0.4rem; padding:3.2rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(240,217,140,0.2), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .climax-quote .vtag{font-family:var(--font-num); font-style:italic; color:var(--light-soft); font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;}
+  .climax-quote p{font-family:var(--font-ml); font-weight:800; font-size:clamp(1.5rem, 4vw, 2.3rem); line-height:1.5; color:var(--parchment); max-width:26ch; margin:0 auto;}
+  .stones-raised{margin-top:1.4rem; text-align:center; font-family:var(--font-num); font-style:italic; color:var(--stone-soft); font-size:0.9rem;}
+
+  /* ---------- "I AM" TRACKER ---------- */
+  .iam-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-top:1rem;}
+  .iam-card{background:var(--void-2); border:1px solid var(--line); border-left:3px solid var(--light); border-radius:8px; padding:1.1rem 1.2rem;}
+  .iam-card .iverse{font-family:var(--font-num); font-style:italic; color:var(--light-soft); font-size:0.82rem; margin-bottom:0.4rem;}
+  .iam-card .itext{font-size:0.96rem; line-height:1.7; color:var(--parchment);}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--void-2), var(--void)); border:1px solid var(--line); border-left:3px solid var(--light); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--light-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--stone-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--void-2), var(--void)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--light);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--light-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--light); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--light-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--light); color:var(--void); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--light-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .glow, .stone-icon, .scroll-cue span{animation:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="glow"></div>
+  <div class="eyebrow">Logos Quiz 2026 &middot; John / യോഹന്നാൻ</div>
+  <h1>ഞാന്‍ ലോകത്തിന്റെ<br><em>പ്രകാശമാണ്</em></h1>
+  <div class="ref">യോഹന്നാൻ 8 : 1&ndash;59</div>
+  <p class="tag">താഴെയിടുന്ന കല്ലുകൾ മുതൽ ഉയർത്തുന്ന കല്ലുകൾ വരെ &mdash; കരുണയുടെ ഒരു പ്രഭാതം, തുടർന്ന് ദൈവികസ്വത്വത്തെക്കുറിച്ചുള്ള ഏറ്റവും ധീരമായ പ്രഖ്യാപനങ്ങൾ.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: WOMAN CAUGHT IN ADULTERY -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>പിടിക്കപ്പെട്ട വ്യഭിചാരിണി</h2></div>
+  <p class="section-sub">വാ. 1&ndash;11. ഒരു കെണിയായി ഒരുക്കിയ ചോദ്യം, നിലത്ത് എഴുതിയ വാക്കുകൾ, ഒഴിഞ്ഞുപോകുന്ന ജനക്കൂട്ടം.</p>
+  <div class="prologue-grid" id="prologue"></div>
+  <div class="stone-row">
+    <div class="stone-icon"></div><div class="stone-icon"></div><div class="stone-icon"></div><div class="stone-icon"></div><div class="stone-icon"></div>
+  </div>
+  <div class="mercy-quote">&ldquo;ഞാനും നിന്നെ വിധിക്കുന്നില്ല; പൊയ്‌ക്കൊള്ളുക. ഇനിമേല്‍ പാപം ചെയ്യരുത്.&rdquo;<span>വാ. 11</span></div>
+</section>
+
+<!-- II: LIGHT OF THE WORLD -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>യേശു ലോകത്തിന്റെ പ്രകാശം</h2></div>
+  <p class="section-sub">വാ. 12&ndash;20. ഒരു പ്രഖ്യാപനം, ഒരു വെല്ലുവിളി, രണ്ടു സാക്ഷികൾ.</p>
+  <div class="light-quote">
+    <div class="vtag">വാ. 12</div>
+    <p>&ldquo;ഞാന്‍ ലോകത്തിന്റെ പ്രകാശമാണ്. എന്നെ അനുഗമിക്കുന്നവന്‍ ഒരിക്കലും അന്ധകാരത്തില്‍ നടക്കുകയില്ല.&rdquo;</p>
+  </div>
+  <div class="cards-col" id="witnessCards"></div>
+</section>
+
+<!-- III: TRUTH AND FREEDOM -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>യഹൂദര്‍ക്കു മുന്നറിയിപ്പും സത്യം സ്വതന്ത്രരാക്കുന്നതും</h2></div>
+  <p class="section-sub">വാ. 21&ndash;38. ഒരു മുന്നറിയിപ്പിൽനിന്ന് ഒരു വാഗ്ദാനത്തിലേക്ക്.</p>
+  <div class="cards-col" id="truthCards"></div>
+  <div class="contrast-wrap">
+    <div class="contrast-col slave">
+      <h3>പാപത്തിന്റെ അടിമ</h3>
+      <p>'പാപം ചെയ്യുന്നവന്‍ പാപത്തിന്റെ അടിമയാണ്.' അടിമ എക്കാലവും ഭവനത്തിൽ വസിക്കുന്നില്ല (വാ. 34&ndash;35)</p>
+    </div>
+    <div class="contrast-col free">
+      <h3>പുത്രനിലൂടെ സ്വാതന്ത്ര്യം</h3>
+      <p>'പുത്രന്‍ നിങ്ങളെ സ്വതന്ത്രരാക്കിയാല്‍ നിങ്ങള്‍ യഥാര്‍ഥത്തില്‍ സ്വതന്ത്രരാകും.' പുത്രൻ എക്കാലവും വസിക്കുന്നു (വാ. 35&ndash;36)</p>
+    </div>
+  </div>
+</section>
+
+<!-- IV: DEVIL AS FATHER -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>പിശാച് നിങ്ങളുടെ പിതാവ്</h2></div>
+  <p class="section-sub">വാ. 39&ndash;47. അബ്രാഹത്തിന്റെ മക്കൾ എന്ന അവകാശവാദവും യേശുവിന്റെ കടുത്ത മറുപടിയും.</p>
+  <div class="cards-col" id="devilCards"></div>
+</section>
+
+<!-- V: BEFORE ABRAHAM -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>അബ്രാഹത്തിനുമുമ്പു ഞാനുണ്ട്</h2></div>
+  <p class="section-sub">വാ. 48&ndash;59. അധ്യായത്തിന്റെ ഏറ്റവും ധീരമായ പ്രഖ്യാപനം.</p>
+  <div class="climax-quote">
+    <div class="vtag">വാ. 58</div>
+    <p>&ldquo;അബ്രാഹം ഉണ്ടാകുന്നതിനുമുമ്പ് ഞാന്‍ ഉണ്ട്.&rdquo;</p>
+  </div>
+  <div class="stones-raised">വാ. 59: അപ്പോൾ അവർ അവനെ എറിയാൻ കല്ലുകളെടുത്തു &mdash; എന്നാൽ യേശു അവരിൽനിന്നു മറഞ്ഞ് ദേവാലയത്തിൽനിന്നു പുറത്തുപോയി.</div>
+</section>
+
+<!-- "I AM" TRACKER -->
+<section class="block" id="s6">
+  <div class="section-head"><span class="num">VI</span><h2>&ldquo;ഞാന്‍&rdquo; പ്രഖ്യാപനങ്ങൾ</h2></div>
+  <p class="section-sub">ഈ അധ്യായത്തിലുടനീളമുള്ള സ്വത്വപ്രഖ്യാപനങ്ങൾ &mdash; ക്വിസിന് ഒരുമിച്ചു കാണുക.</p>
+  <div class="iam-grid" id="iamGrid"></div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s7">
+  <div class="section-head"><span class="num">VII</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">പ്രധാന വാക്യങ്ങളും വസ്തുതകളും.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s8">
+  <div class="section-head"><span class="num">VIII</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>യോഹന്നാൻ 8 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- SECTION I ACCORDION ---------------- */
+const prologue = [
+  {v:"3-5", text:"നിയമജ്ഞരും ഫരിസേയരും വ്യഭിചാരത്തിൽ പിടിക്കപ്പെട്ട ഒരു സ്ത്രീയെ കൊണ്ടുവന്നു നടുവിൽ നിർത്തി: 'ഇങ്ങനെയുള്ളവരെ കല്ലെറിയണമെന്നാണ് മോശ കൽപിച്ചിരിക്കുന്നത്. നീ എന്തു പറയുന്നു?'", note:"ഇത് ഒരു കെണിയായിരുന്നു &mdash; അവനിൽ കുറ്റമാരോപിക്കാൻ (വാ. 6)."},
+  {v:"6-8", text:"യേശു കുനിഞ്ഞ് വിരൽകൊണ്ടു നിലത്ത് എഴുതിക്കൊണ്ടിരുന്നു. അവർ ആവർത്തിച്ചു ചോദിച്ചപ്പോൾ: 'നിങ്ങളിൽ പാപം ഇല്ലാത്തവൻ ആദ്യം അവളെ കല്ലെറിയട്ടെ.' വീണ്ടും കുനിഞ്ഞ് എഴുതി.", note:"ക്വിസ് ഉദ്ധരണി: 'പാപം ഇല്ലാത്തവന്‍ ആദ്യം കല്ലെറിയട്ടെ.'"},
+  {v:"9", text:"ഇതു കേട്ടപ്പോൾ മുതിർന്നവർ തുടങ്ങി ഓരോരുത്തരായി സ്ഥലം വിട്ടു. ഒടുവിൽ യേശുവും ആ സ്ത്രീയും മാത്രം ശേഷിച്ചു.", note:"ക്വിസ് സൂചന: <b>മുതിർന്നവർ ആദ്യം</b> പോയി."},
+  {v:"10-11", text:"'സ്ത്രീയേ, അവർ എവിടെ? ആരും നിന്നെ വിധിച്ചില്ലേ?' 'ഇല്ല, കർത്താവേ!' 'ഞാനും നിന്നെ വിധിക്കുന്നില്ല; പൊയ്‌ക്കൊള്ളുക. ഇനിമേൽ പാപം ചെയ്യരുത്.'", note:"ന്യായവിധിയും കരുണയും ഒരുമിച്ച് &mdash; വിധിക്കാതെ, എന്നാൽ അവഗണിക്കാതെയും."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- SECTION II WITNESS CARDS ---------------- */
+const witnessCards = [
+  {v:"13-14", t:"ഫരിസേയർ: 'നീതന്നെ നിനക്കു സാക്ഷ്യം നൽകുന്നു; സത്യമല്ല.' യേശു: 'ഞാൻ എവിടെനിന്നു വന്നുവെന്നും എവിടേക്കു പോകുന്നുവെന്നും <b>എനിക്കറിയാം</b> &mdash; നിങ്ങൾക്കറിയില്ല.'"},
+  {v:"17-18", t:"'രണ്ടുപേരുടെ സാക്ഷ്യം സത്യമാണെന്നു നിങ്ങളുടെ നിയമത്തിൽത്തന്നെ എഴുതിയിട്ടുണ്ട്.' <b>ഞാൻ തന്നെയും എന്നെ അയച്ച പിതാവും</b> സാക്ഷ്യം നൽകുന്നു (അധ്യായം 5-ലെ 'നാലു സാക്ഷികൾ' പ്രമേയത്തിന്റെ തുടർച്ച)."},
+  {v:"19-20", t:"'നിന്റെ പിതാവ് എവിടെ?' 'നിങ്ങൾ എന്നെയോ പിതാവിനെയോ അറിയുന്നില്ല.' ഭണ്ഡാരസ്ഥലത്തു പഠിപ്പിച്ചിട്ടും <b>ആരും അവനെ പിടിച്ചില്ല</b> &mdash; സമയം വന്നിരുന്നില്ല."}
+];
+document.getElementById('witnessCards').innerHTML = witnessCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- SECTION III TRUTH CARDS ---------------- */
+const truthCards = [
+  {v:"21-24", t:"'ഞാൻ പോകുന്നു. നിങ്ങൾ എന്നെ അന്വേഷിക്കും; നിങ്ങളുടെ പാപത്തിൽ നിങ്ങൾ മരിക്കും.' <b>ഞാൻ ഞാൻ തന്നെ എന്നു വിശ്വസിക്കുന്നില്ലെങ്കിൽ</b> നിങ്ങൾ പാപങ്ങളിൽ മരിക്കും (വാ. 24)."},
+  {v:"31-32", t:"തന്നിൽ വിശ്വസിച്ചവരോട്: 'എന്റെ വചനത്തിൽ നിലനിൽക്കുമെങ്കിൽ നിങ്ങൾ യഥാർഥത്തിൽ എന്റെ ശിഷ്യരാണ്. നിങ്ങൾ <b>സത്യം അറിയുകയും സത്യം നിങ്ങളെ സ്വതന്ത്രരാക്കുകയും</b> ചെയ്യും.'"}
+];
+document.getElementById('truthCards').innerHTML = truthCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- SECTION IV DEVIL CARDS ---------------- */
+const devilCards = [
+  {v:"39-41", t:"'ഞങ്ങളുടെ പിതാവ് അബ്രാഹം.' യേശു: 'അബ്രാഹത്തിന്റെ മക്കളാണെങ്കിൽ അബ്രാഹത്തിന്റെ പ്രവൃത്തികൾ ചെയ്യുമായിരുന്നു. <b>എന്നെ കൊല്ലാൻ ആലോചിക്കുന്നു</b> &mdash; അബ്രാഹം ഇങ്ങനെ ചെയ്തിട്ടില്ല.'"},
+  {v:"42-44", t:"'ദൈവമാണ് പിതാവെങ്കിൽ നിങ്ങൾ എന്നെ സ്നേഹിക്കുമായിരുന്നു.' <b>'നിങ്ങൾ നിങ്ങളുടെ പിതാവായ പിശാചിൽനിന്നുള്ളവരാണ്.'</b> അവൻ ആദിമുതൽ കൊലപാതകിയും നുണയുടെ പിതാവുമാണ്."},
+  {v:"46-47", t:"'നിങ്ങളിൽ ആർക്ക് എന്നിൽ പാപം തെളിയിക്കാൻ കഴിയും? ദൈവത്തിൽനിന്നുള്ളവൻ ദൈവത്തിന്റെ വാക്കു ശ്രവിക്കുന്നു. നിങ്ങൾ <b>ദൈവത്തിൽനിന്നുള്ളവരല്ല.</b>'"}
+];
+document.getElementById('devilCards').innerHTML = devilCards.map(c=>`
+  <div class="simple-card"><div class="sverse">വാ. ${c.v}</div><div class="stext">${c.t}</div></div>
+`).join('');
+
+/* ---------------- "I AM" TRACKER ---------------- */
+const iamData = [
+  {v:"വാ. 12", t:"'ഞാൻ ലോകത്തിന്റെ പ്രകാശമാണ്.'"},
+  {v:"വാ. 24", t:"'ഞാൻ ഞാൻ തന്നെ എന്നു വിശ്വസിക്കുന്നില്ലെങ്കിൽ നിങ്ങൾ പാപങ്ങളിൽ മരിക്കും.'"},
+  {v:"വാ. 28", t:"'മനുഷ്യപുത്രനെ ഉയർത്തിക്കഴിയുമ്പോൾ ഞാൻ ഞാൻ തന്നെയെന്നു നിങ്ങൾ അറിയും.'"},
+  {v:"വാ. 58", t:"'അബ്രാഹം ഉണ്ടാകുന്നതിനുമുമ്പ് ഞാൻ ഉണ്ട്.'"}
+];
+document.getElementById('iamGrid').innerHTML = iamData.map(i=>`
+  <div class="iam-card"><div class="iverse">${i.v}</div><div class="itext">${i.t}</div></div>
+`).join('');
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"ആദ്യം സ്ഥലം വിട്ടത്", val:"<b>മുതിർന്നവർ</b>, ഓരോരുത്തരായി (വാ. 9)."},
+  {label:"സ്ത്രീയോടുള്ള അന്തിമ വാക്കുകൾ", val:"'ഞാനും നിന്നെ വിധിക്കുന്നില്ല; <b>പൊയ്‌ക്കൊള്ളുക</b>' (വാ. 11)."},
+  {label:"പ്രഖ്യാപനം", val:"'ഞാൻ <b>ലോകത്തിന്റെ പ്രകാശം</b>ആണ്' (വാ. 12)."},
+  {label:"സാക്ഷികളുടെ എണ്ണം", val:"<b>രണ്ട്</b> &mdash; യേശുവും പിതാവും (വാ. 17&ndash;18)."},
+  {label:"സത്യത്തിന്റെ ഫലം", val:"'സത്യം നിങ്ങളെ <b>സ്വതന്ത്രരാക്കും</b>' (വാ. 32)."},
+  {label:"പാപത്തിന്റെ സ്വഭാവം", val:"പാപം ചെയ്യുന്നവൻ പാപത്തിന്റെ <b>അടിമ</b> (വാ. 34)."},
+  {label:"'നിങ്ങളുടെ പിതാവ്'", val:"യേശുവിന്റെ ആരോപണം: <b>പിശാച്</b> (വാ. 44)."},
+  {label:"അന്തിമ പ്രഖ്യാപനം", val:"'അബ്രാഹത്തിനുമുമ്പ് <b>ഞാൻ ഉണ്ട്</b>' (വാ. 58)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"സ്ത്രീയെ കുറ്റപ്പെടുത്താൻ വന്നവരിൽ ആദ്യം സ്ഥലം വിട്ടത് ആരാണ് (വാ. 9)?",
+   opts:["യുവാക്കൾ","മുതിർന്നവർ","ശിഷ്യന്മാർ","ഫരിസേയരുടെ നേതാവ്"], correct:1,
+   note:"വാ. 9 &mdash; 'മുതിര്‍ന്നവര്‍ തുടങ്ങി ഓരോരുത്തരായി സ്ഥലം വിട്ടു.'"},
+  {q:"സ്ത്രീയോട് യേശു അവസാനം എന്തു പറഞ്ഞു (വാ. 11)?",
+   opts:["'നിന്നെ ഞാൻ വിധിക്കുന്നു'","'ഇനിമേൽ പാപം ചെയ്യരുത്'","'നീ ശിക്ഷിക്കപ്പെടും'","'ദേവാലയത്തിൽ താമസിക്കുക'"], correct:1,
+   note:"വാ. 11 &mdash; 'ഞാനും നിന്നെ വിധിക്കുന്നില്ല; പൊയ്‌ക്കൊള്ളുക. ഇനിമേല്‍ പാപം ചെയ്യരുത്.'"},
+  {q:"യേശു തന്നെക്കുറിച്ചു എന്തു പ്രഖ്യാപിച്ചു (വാ. 12)?",
+   opts:["'ഞാൻ വഴിയാണ്'","'ഞാൻ ലോകത്തിന്റെ പ്രകാശമാണ്'","'ഞാൻ നല്ല ഇടയനാണ്'","'ഞാൻ വാതിലാണ്'"], correct:1,
+   note:"വാ. 12 &mdash; 'ഞാന്‍ ലോകത്തിന്റെ പ്രകാശമാണ്.'"},
+  {q:"യേശുവിനെക്കുറിച്ചു സാക്ഷ്യം നൽകുന്നത് എത്ര പേരാണ് (വാ. 17&ndash;18)?",
+   opts:["ഒരാൾ","രണ്ടു പേർ &mdash; യേശുവും പിതാവും","മൂന്നു പേർ","പന്ത്രണ്ടു പേർ"], correct:1,
+   note:"വാ. 18 &mdash; 'എന്നെക്കുറിച്ചു ഞാന്‍ തന്നെ സാക്ഷ്യം നല്‍കുന്നു. എന്നെ അയച്ച പിതാവും എന്നെക്കുറിച്ച് സാക്ഷ്യം നല്‍കുന്നു.'"},
+  {q:"വാ. 32 പ്രകാരം സത്യം എന്തു ചെയ്യും?",
+   opts:["നിങ്ങളെ ജ്ഞാനിയാക്കും","നിങ്ങളെ സ്വതന്ത്രരാക്കും","നിങ്ങളെ സമ്പന്നരാക്കും","നിങ്ങളെ ബഹുമാനിക്കും"], correct:1,
+   note:"വാ. 32 &mdash; 'സത്യം നിങ്ങളെ സ്വതന്ത്രരാക്കുകയും ചെയ്യും.'"},
+  {q:"വാ. 34 പ്രകാരം പാപം ചെയ്യുന്നവൻ എന്താണ്?",
+   opts:["ദൈവത്തിന്റെ മകൻ","പാപത്തിന്റെ അടിമ","ഒരു പ്രവാചകൻ","അബ്രാഹത്തിന്റെ സന്തതി"], correct:1,
+   note:"വാ. 34 &mdash; 'പാപം ചെയ്യുന്നവന്‍ പാപത്തിന്റെ അടിമയാണ്.'"},
+  {q:"വാ. 44 പ്രകാരം യേശു ആരെയാണ് 'നുണയുടെ പിതാവ്' എന്നു വിളിച്ചത്?",
+   opts:["മോശയെ","സീസറിനെ","പിശാചിനെ","ഹേറോദിനെ"], correct:2,
+   note:"വാ. 44 &mdash; 'അവന്‍ നുണയനും നുണയുടെ പിതാവുമാണ്.'"},
+  {q:"'അബ്രാഹം ഉണ്ടാകുന്നതിനുമുമ്പ് ഞാൻ ഉണ്ട്' എന്നു പറഞ്ഞപ്പോൾ ജനങ്ങൾ എന്തു ചെയ്തു (വാ. 59)?",
+   opts:["അവനെ ആരാധിച്ചു","അവനെ എറിയാൻ കല്ലുകളെടുത്തു","കൈയടിച്ചു","നിശബ്ദരായി നിന്നു"], correct:1,
+   note:"വാ. 59 &mdash; 'അപ്പോള്‍ അവര്‍ അവനെ എറിയാന്‍ കല്ലുകളെടുത്തു.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--light); color:var(--void); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

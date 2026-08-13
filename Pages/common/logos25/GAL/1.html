@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>മറ്റൊരു സുവിശേഷമില്ല — ഗലാത്തിയര്‍ 1 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal: #201810;
+    --charcoal-2: #2a2015;
+    --parchment: #efe3c8;
+    --parchment-dim: #c8b892;
+    --wax: #8a2432;
+    --wax-bright: #b9394a;
+    --wax-glow: rgba(185,57,74,0.35);
+    --bronze: #b78a4a;
+    --bronze-soft: #dcb877;
+    --ink: #1c1408;
+    --line: rgba(183,138,74,0.24);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(183,138,74,0.08), transparent 45%),
+      radial-gradient(ellipse at 90% 30%, rgba(138,36,50,0.10), transparent 40%),
+      var(--charcoal);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--wax-bright); color:var(--parchment);}
+  #grain{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.05; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* ---------- HERO / WAX SEAL ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6vh 6vw;
+  }
+  .eyebrow{
+    font-family:var(--font-num);
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:0.78rem;
+    color:var(--bronze-soft);
+    margin-bottom:1.6rem;
+    font-style:italic;
+    z-index:1;
+  }
+  .seal{
+    position:relative;
+    width:170px; height:170px;
+    margin-bottom:2rem;
+    z-index:1;
+  }
+  .seal svg{width:100%; height:100%;}
+  .seal-ring{fill:none; stroke:var(--bronze); stroke-width:1.4; opacity:0.7;}
+  .seal-disc{fill:url(#waxGrad); transform-origin:center; animation:wobble 6s ease-in-out infinite;}
+  @keyframes wobble{0%,100%{transform:scale(1) rotate(0deg);} 50%{transform:scale(1.02) rotate(0.6deg);}}
+  .seal-crack{stroke:var(--charcoal); stroke-width:1.6; fill:none; stroke-dasharray:120; stroke-dashoffset:120; animation:crack 2.2s ease-out 0.6s forwards;}
+  @keyframes crack{to{stroke-dashoffset:0;}}
+  .seal-glyph{fill:var(--bronze-soft); font-family:var(--font-ml); font-weight:700; font-size:15px; text-anchor:middle;}
+
+  .hero h1{
+    position:relative; z-index:1;
+    font-weight:800;
+    font-size:clamp(2.3rem, 7vw, 4.4rem);
+    line-height:1.2;
+    margin:0;
+    color:var(--parchment);
+    text-shadow:0 0 50px rgba(185,57,74,0.18);
+  }
+  .hero h1 em{
+    display:block;
+    font-style:normal;
+    color:var(--wax-bright);
+    -webkit-text-stroke:0;
+  }
+  .hero .ref{
+    position:relative; z-index:1;
+    font-family:var(--font-num);
+    font-style:italic;
+    font-size:clamp(1.05rem,2.2vw,1.4rem);
+    color:var(--parchment-dim);
+    margin-top:1rem;
+  }
+  .hero p.tag{
+    position:relative; z-index:1;
+    max-width:560px;
+    margin:2rem auto 0;
+    font-size:1rem;
+    line-height:1.9;
+    color:var(--parchment-dim);
+  }
+  .scroll-cue{
+    position:relative; z-index:1;
+    margin-top:3rem;
+    font-family:var(--font-num);
+    font-style:italic;
+    font-size:0.88rem;
+    color:var(--bronze-soft);
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+    opacity:0.85;
+  }
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--bronze), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  /* ---------- SECTION FRAME ---------- */
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--bronze-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.4rem,3.2vw,2rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- GREETING ACCORDION (reuse pattern, new palette) ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--charcoal-2), var(--charcoal)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--bronze);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:1.15rem; min-width:1.6rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--bronze-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:400px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 2.9rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:0.88rem;}
+
+  /* ---------- TWIN CURSE SEALS ---------- */
+  .curse-wrap{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.2rem;}
+  .curse-card{
+    position:relative;
+    background:radial-gradient(ellipse at 50% 0%, rgba(138,36,50,0.18), transparent 60%), var(--charcoal-2);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:2rem 1.4rem 1.6rem;
+    text-align:center;
+  }
+  .curse-stamp{
+    width:64px; height:64px; margin:0 auto 1rem;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--wax-bright), var(--wax) 70%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 26px var(--wax-glow), inset 0 -6px 10px rgba(0,0,0,0.35);
+    font-family:var(--font-num); font-style:italic; color:var(--parchment); font-size:1.5rem;
+  }
+  .curse-card .cverse{font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:0.85rem; margin-bottom:0.7rem;}
+  .curse-card .ctext{font-size:0.98rem; line-height:1.85; color:var(--parchment);}
+  .curse-card .ctext b{color:var(--wax-bright);}
+
+  /* ---------- CALLING CHAIN ---------- */
+  .chain{display:flex; flex-direction:column; gap:0;}
+  .chain-item{
+    position:relative;
+    display:flex;
+    gap:1.1rem;
+    padding:1.1rem 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .chain-item:last-child{border-bottom:none;}
+  .chain-mark{
+    flex-shrink:0;
+    width:34px; height:34px;
+    border-radius:50%;
+    border:1px solid var(--bronze);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:0.9rem;
+  }
+  .chain-body b{color:var(--bronze-soft);}
+  .chain-body{font-size:0.97rem; line-height:1.85; color:var(--parchment-dim);}
+
+  /* ---------- JOURNEY ROUTE ---------- */
+  .route-wrap{background:var(--charcoal-2); border:1px solid var(--line); border-radius:14px; padding:1.4rem 1.2rem 0.6rem;}
+  .route-wrap svg{width:100%; height:auto; display:block;}
+  .route-line{stroke:var(--bronze); stroke-width:1.6; stroke-dasharray:5 5; fill:none; opacity:0.65;}
+  .stop-circle{fill:var(--charcoal); stroke:var(--bronze-soft); stroke-width:1.6; cursor:pointer; transition:all .25s ease;}
+  .stop-circle:hover, .stop-circle.active{fill:var(--wax-bright); stroke:var(--wax-bright);}
+  .stop-label{fill:var(--parchment); font-family:'Noto Sans Malayalam',sans-serif; font-size:12.5px; font-weight:600; pointer-events:none;}
+  .stop-sub{fill:var(--parchment-dim); font-family:var(--font-num); font-style:italic; font-size:10px; pointer-events:none;}
+  #route-detail{margin-top:1.2rem; padding:1.1rem 1.3rem; background:rgba(183,138,74,0.06); border:1px solid var(--line); border-radius:10px; min-height:60px; font-size:0.94rem; line-height:1.85; color:var(--parchment-dim);}
+  #route-detail b{color:var(--bronze-soft);}
+  #route-detail .hint{font-family:var(--font-num); font-style:italic;}
+
+  /* ---------- FACT GRID ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--charcoal-2), var(--charcoal)); border:1px solid var(--line); border-left:3px solid var(--bronze); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--wax-bright);}
+
+  /* ---------- QUIZ (same mechanics, new palette) ---------- */
+  .quiz-shell{background:linear-gradient(180deg, var(--charcoal-2), var(--charcoal)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--bronze);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--bronze-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--bronze); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--bronze-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--bronze-soft); color:var(--ink); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--wax-bright);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .seal-disc, .scroll-cue span{animation:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} }
+</style>
+</head>
+<body>
+<div id="grain"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; Galatians / ഗലാത്തിയര്‍</div>
+  <div class="seal">
+    <svg viewBox="0 0 170 170">
+      <defs>
+        <radialGradient id="waxGrad" cx="35%" cy="30%" r="75%">
+          <stop offset="0%" stop-color="#c14456"/>
+          <stop offset="70%" stop-color="#8a2432"/>
+          <stop offset="100%" stop-color="#5e1620"/>
+        </radialGradient>
+      </defs>
+      <circle class="seal-ring" cx="85" cy="85" r="80"/>
+      <circle class="seal-disc" cx="85" cy="85" r="68"/>
+      <text class="seal-glyph" x="85" y="80">Χ Ρ</text>
+      <text class="seal-glyph" x="85" y="100" style="font-size:10px; opacity:0.85;">ΓΑΛ. 1</text>
+      <path class="seal-crack" d="M40,55 L70,90 L55,130 M70,90 L110,75 L130,110"/>
+    </svg>
+  </div>
+  <h1>മറ്റൊരു<br><em>സുവിശേഷമില്ല</em></h1>
+  <div class="ref">ഗലാത്തിയര്‍ 1 : 1&ndash;24</div>
+  <p class="tag">ഒരു കോപാകുലനായ, തിടുക്കപ്പെട്ട കത്ത് &mdash; സാധാരണ അഭിവാദനംപോലുമില്ലാതെ പൗലോസ് നേരെ വിഷയത്തിലേക്കു കടക്കുന്നു. തന്റെ അപ്പസ്‌തോലത്വത്തിന്റെ ഉറവിടം സ്ഥാപിക്കാൻ സ്വന്തം ജീവിതകഥ വിവരിക്കുന്നു.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: GREETING -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>അഭിവാദനം</h2></div>
+  <p class="section-sub">വാ. 1&ndash;5. പൗലോസ് തന്റെ അധികാരം ആദ്യ വാക്യത്തില്‍ത്തന്നെ ഊന്നിപ്പറയുന്നു. ടാപ്പ് ചെയ്ത് വിശദാംശം കാണുക.</p>
+  <div class="prologue-grid" id="prologue"></div>
+</section>
+
+<!-- II: TWIN CURSES -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>രണ്ട് ശാപങ്ങൾ</h2></div>
+  <p class="section-sub">വാ. 6&ndash;10. ഒരേ മുന്നറിയിപ്പ് പൗലോസ് രണ്ടുതവണ ആവര്‍ത്തിക്കുന്നു &mdash; ക്വിസില്‍ പലപ്പോഴും വരുന്ന ഭാഗം.</p>
+  <div class="curse-wrap">
+    <div class="curse-card">
+      <div class="curse-stamp">1</div>
+      <div class="cverse">വാ. 8</div>
+      <div class="ctext">ഞങ്ങള്‍ പ്രസംഗിച്ചതില്‍നിന്നു വ്യത്യസ്തമായ സുവിശേഷം <b>ഞങ്ങള്‍തന്നെയോ സ്വര്‍ഗത്തില്‍നിന്ന് ഒരു ദൂതന്‍തന്നെയോ</b> പ്രസംഗിച്ചാല്‍ അവന്‍ ശപിക്കപ്പെട്ടവനാകട്ടെ!</div>
+    </div>
+    <div class="curse-card">
+      <div class="curse-stamp">2</div>
+      <div class="cverse">വാ. 9</div>
+      <div class="ctext">നിങ്ങള്‍ സ്വീകരിച്ച സുവിശേഷമല്ലാതെ <b>മറ്റൊന്ന് ആരെങ്കിലും</b> പ്രസംഗിച്ചാല്‍ അവന്‍ ശപിക്കപ്പെട്ടവനാകട്ടെ!</div>
+    </div>
+  </div>
+  <div class="setting-strip" style="margin-top:1.4rem; display:flex; flex-wrap:wrap; gap:0.8rem;">
+    <div class="chip" style="border:1px solid var(--line); background:rgba(183,138,74,0.06); padding:0.55rem 1rem; border-radius:8px; font-size:0.88rem; color:var(--parchment-dim);">വാ. 10: <b style="color:var(--bronze-soft);">മനുഷ്യരെയോ ദൈവത്തെയോ?</b> &mdash; പൗലോസിന്റെ വെല്ലുവിളി ചോദ്യം.</div>
+  </div>
+</section>
+
+<!-- III: THE CALLING CHAIN -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>അപ്പസ്‌തോലനാകാനുള്ള വിളി</h2></div>
+  <p class="section-sub">വാ. 11&ndash;17. തന്റെ സുവിശേഷം മാനുഷികമല്ല എന്നു പൗലോസ് ഘട്ടംഘട്ടമായി തെളിയിക്കുന്നു.</p>
+  <div class="chain" id="chain"></div>
+</section>
+
+<!-- IV: JOURNEY ROUTE -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>യാത്രാ പാത</h2></div>
+  <p class="section-sub">വാ. 17&ndash;24. പരിവര്‍ത്തനത്തിനുശേഷം പൗലോസ് സഞ്ചരിച്ച വഴി &mdash; ഓരോ നിലയവും ടാപ്പ് ചെയ്യുക.</p>
+  <div class="route-wrap">
+    <svg viewBox="0 0 640 160" id="routeSvg">
+      <path class="route-line" d="M60,80 L180,80 L300,80 L420,80 L540,80"/>
+      <g class="stop" data-key="damascus1">
+        <circle class="stop-circle" cx="60" cy="80" r="22"/>
+        <text class="stop-label" x="60" y="120" text-anchor="middle">ദമാസ്‌ക്കസ്</text>
+        <text class="stop-sub" x="60" y="134" text-anchor="middle">(വിളി ലഭിച്ചത്)</text>
+      </g>
+      <g class="stop" data-key="arabia">
+        <circle class="stop-circle" cx="180" cy="80" r="22"/>
+        <text class="stop-label" x="180" y="120" text-anchor="middle">അറേബ്യ</text>
+      </g>
+      <g class="stop" data-key="damascus2">
+        <circle class="stop-circle" cx="300" cy="80" r="22"/>
+        <text class="stop-label" x="300" y="120" text-anchor="middle">ദമാസ്‌ക്കസ്</text>
+        <text class="stop-sub" x="300" y="134" text-anchor="middle">(തിരിച്ചുവരവ്)</text>
+      </g>
+      <g class="stop" data-key="jerusalem">
+        <circle class="stop-circle" cx="420" cy="80" r="22"/>
+        <text class="stop-label" x="420" y="120" text-anchor="middle">ജറുസലെം</text>
+        <text class="stop-sub" x="420" y="134" text-anchor="middle">(3 വര്‍ഷത്തിനുശേഷം)</text>
+      </g>
+      <g class="stop" data-key="syriacilicia">
+        <circle class="stop-circle" cx="540" cy="80" r="22"/>
+        <text class="stop-label" x="540" y="120" text-anchor="middle">സിറിയ / കിലിക്യ</text>
+      </g>
+    </svg>
+    <div id="route-detail"><span class="hint">ഒരു നിലയത്തില്‍ ടാപ്പ് ചെയ്ത് തുടങ്ങുക &rarr;</span></div>
+  </div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">സംഖ്യകൾ, പേരുകൾ, സ്ഥലങ്ങൾ &mdash; ക്വിസ് ചോദ്യങ്ങളിൽ പലപ്പോഴും വരുന്നവ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s6">
+  <div class="section-head"><span class="num">VI</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>ഗലാത്തിയര്‍ 1 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+/* ---------------- GREETING ACCORDION ---------------- */
+const prologue = [
+  {v:"1", text:"മനുഷ്യരില്‍നിന്നോ മനുഷ്യന്‍മുഖേനയോ അല്ല, യേശുക്രിസ്തുമുഖേനയും അവനെ മരിച്ചവരില്‍നിന്നുയിര്‍പ്പിച്ച പിതാവുമുഖേനയും അപ്പസ്‌തോലനായിരിക്കുന്ന പൗലോസായ ഞാനും&hellip;", note:"സാധാരണ കത്തുകളില്‍നിന്നു വ്യത്യസ്തമായി, പൗലോസ് തന്റെ അധികാരത്തിന്റെ ഉറവിടം ആദ്യമേ വ്യക്തമാക്കുന്നു."},
+  {v:"2-3", text:"എന്നോടുകൂടെയുള്ള എല്ലാ സഹോദരരും, ഗലാത്തിയായിലെ സഭകള്‍ക്ക് എഴുതുന്നത്: നിങ്ങള്‍ക്കു കൃപയും സമാധാനവും.", note:"സ്വീകര്‍ത്താക്കള്‍: ഗലാത്തിയായിലെ സഭകള്‍ (ഒരു നഗരമല്ല, ഒരു പ്രദേശം)."},
+  {v:"4", text:"തിന്‍മനിറഞ്ഞ ഈ യുഗത്തില്‍നിന്നു നമ്മെ മോചിപ്പിക്കേണ്ടതിന്, നമ്മുടെ പാപങ്ങള്‍ക്കുവേണ്ടി അവന്‍ തന്നെത്തന്നെ ബലിയര്‍പ്പിച്ചു.", note:"ക്രിസ്തുവിന്റെ ബലിയുടെ ഉദ്ദേശ്യം: മോചനം."},
+  {v:"5", text:"ദൈവത്തിന് എന്നേക്കും മഹത്വമുണ്ടായിരിക്കട്ടെ. ആമേന്‍.", note:"ഒരു ഹ്രസ്വമായ സ്തുതിവാക്യത്തോടെ അഭിവാദനം അവസാനിക്കുന്നു &mdash; ഉടനെ വിഷയത്തിലേക്കു കടക്കാന്‍."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- CALLING CHAIN ---------------- */
+const chainData = [
+  {m:"11", t:"തന്റെ സുവിശേഷം <b>മാനുഷികമല്ല</b> എന്നു പൗലോസ് പ്രഖ്യാപിക്കുന്നു."},
+  {m:"12", t:"അതു മനുഷ്യനില്‍നിന്നു സ്വീകരിച്ചതല്ല, ആരും പഠിപ്പിച്ചതുമല്ല &mdash; <b>യേശുക്രിസ്തുവിന്റെ വെളിപാടിലൂടെ</b> ലഭിച്ചത്."},
+  {m:"13-14", t:"മുമ്പ് പൗലോസ് <b>സഭയെ കഠിനമായി പീഡിപ്പിച്ച</b> ഒരു തീക്ഷ്ണ യഹൂദനായിരുന്നു."},
+  {m:"15", t:"മാതാവിന്റെ ഉദരത്തില്‍ ആയിരിക്കുമ്പോള്‍ത്തന്നെ ദൈവം അവനെ <b>പ്രത്യേകം തെരഞ്ഞെടുത്തു.</b>"},
+  {m:"16", t:"വിജാതീയരുടെയിടയില്‍ പുത്രനെ പ്രസംഗിക്കാനായിരുന്നു വിളി &mdash; ഒരു മനുഷ്യന്റെയും ഉപദേശം തേടിയില്ല."},
+  {m:"17", t:"ജറുസലെമിലേക്കല്ല, <b>അറേബ്യായിലേക്കു</b> പോയി, പിന്നീട് ദമാസ്‌ക്കസിലേക്കു തിരിച്ചുവന്നു."}
+];
+document.getElementById('chain').innerHTML = chainData.map(c=>`
+  <div class="chain-item"><div class="chain-mark">${c.m}</div><div class="chain-body">${c.t}</div></div>
+`).join('');
+
+/* ---------------- JOURNEY ROUTE ---------------- */
+const routeInfo = {
+  damascus1: "<b>ദമാസ്‌ക്കസ്</b> &mdash; വഴിയില്‍വച്ച് ക്രിസ്തുവിന്റെ വെളിപാട് ലഭിച്ച സ്ഥലം (ഈ അധ്യായത്തില്‍ നേരിട്ടു പറയുന്നില്ലെങ്കിലും യാത്രയുടെ കേന്ദ്രം).",
+  arabia: "<b>അറേബ്യ</b> &mdash; വിളിക്കുശേഷം പൗലോസ് ആദ്യം പോയത് ജറുസലെമിലേക്കല്ല, ഇവിടേക്കാണ് (വാ. 17).",
+  damascus2: "<b>ദമാസ്‌ക്കസ്</b> &mdash; അറേബ്യയില്‍നിന്നു തിരിച്ചുവന്നത് (വാ. 17).",
+  jerusalem: "<b>ജറുസലെം</b> &mdash; <b>മൂന്നു വര്‍ഷത്തിനുശേഷം</b> കേപ്പായെ കാണാന്‍ പോയി; അവനോടൊത്തു <b>15 ദിവസം</b> താമസിച്ചു. യാക്കോബിനെയല്ലാതെ മറ്റ് അപ്പസ്‌തോലന്മാരെ കണ്ടില്ല (വാ. 18&ndash;19).",
+  syriacilicia: "<b>സിറിയ, കിലിക്യ</b> &mdash; ജറുസലെമിനുശേഷം പോയ പ്രദേശങ്ങള്‍. യൂദയായിലെ സഭകള്‍ അപ്പോഴും അവനെ നേരിട്ട് അറിഞ്ഞിരുന്നില്ല (വാ. 21&ndash;22)."
+};
+document.querySelectorAll('#routeSvg .stop').forEach(n=>{
+  n.addEventListener('click', ()=>{
+    document.querySelectorAll('#routeSvg .stop-circle').forEach(c=>c.classList.remove('active'));
+    n.querySelector('.stop-circle').classList.add('active');
+    document.getElementById('route-detail').innerHTML = routeInfo[n.dataset.key];
+  });
+});
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"ശാപം ആവര്‍ത്തിച്ചത്", val:"<b>രണ്ടു തവണ</b> &mdash; വാ. 8, 9 ഇരട്ട 'ശപിക്കപ്പെട്ടവനാകട്ടെ' പ്രഖ്യാപനം."},
+  {label:"ദമാസ്‌ക്കസ് വിളിക്കുശേഷം", val:"ജറുസലെമിലേക്കല്ല, <b>അറേബ്യായിലേക്ക്</b> പോയി (വാ. 17)."},
+  {label:"ജറുസലെം സന്ദര്‍ശനം", val:"പരിവര്‍ത്തനത്തിനുശേഷം <b>3 വര്‍ഷം</b> കഴിഞ്ഞ്‌ (വാ. 18)."},
+  {label:"കേപ്പായോടൊപ്പം", val:"ജറുസലെമില്‍ <b>15 ദിവസം</b> താമസിച്ചു (വാ. 18)."},
+  {label:"കണ്ട ഏക അപ്പസ്‌തോലന്‍", val:"കേപ്പാ ഒഴികെ, <b>കര്‍ത്താവിന്റെ സഹോദരന്‍ യാക്കോബ്</b> മാത്രം (വാ. 19)."},
+  {label:"ജറുസലെമിനുശേഷം", val:"<b>സിറിയ, കിലിക്യ</b> പ്രദേശങ്ങളിലേക്കു പോയി (വാ. 21)."},
+  {label:"മുന്‍ ജീവിതം", val:"ദൈവത്തിന്റെ സഭയെ <b>കഠിനമായി പീഡിപ്പിച്ചവന്‍</b> (വാ. 13)."},
+  {label:"തെരഞ്ഞെടുപ്പിന്റെ സമയം", val:"<b>മാതാവിന്റെ ഉദരത്തില്‍</b> ആയിരിക്കുമ്പോള്‍ത്തന്നെ (വാ. 15)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"ഗലാത്തിയരെക്കുറിച്ച് പൗലോസിനെ ആശ്ചര്യപ്പെടുത്തിയത് എന്താണ് (വാ. 6)?",
+   opts:["അവര്‍ പൗലോസിനെ മറന്നു","അവര്‍ വേഗം മറ്റൊരു സുവിശേഷത്തിലേക്കു തിരിഞ്ഞു","അവര്‍ പീഡനത്തിലായി","അവര്‍ ജറുസലെമിലേക്കു പോയി"], correct:1,
+   note:"വാ. 6 &mdash; 'നിങ്ങള്‍ ഇത്ര പെട്ടെന്ന് ഉപേക്ഷിക്കുകയും വ്യത്യസ്തമായ ഒരു സുവിശേഷത്തിലേക്കു തിരിയുകയും ചെയ്യുന്നതില്‍ എനിക്ക് ആശ്ചര്യം.'"},
+  {q:"'ശപിക്കപ്പെട്ടവനാകട്ടെ' എന്ന പ്രഖ്യാപനം ഈ അധ്യായത്തില്‍ എത്ര തവണ ആവര്‍ത്തിക്കുന്നു?",
+   opts:["ഒരു തവണ","രണ്ടു തവണ","മൂന്നു തവണ","നാലു തവണ"], correct:1,
+   note:"വാ. 8ഉം 9ഉം &mdash; ഇരട്ട ശാപ പ്രഖ്യാപനം."},
+  {q:"തന്റെ സുവിശേഷം എവിടെനിന്നു ലഭിച്ചു എന്നാണ് പൗലോസ് പറയുന്നത് (വാ. 12)?",
+   opts:["അപ്പസ്‌തോലന്മാരില്‍നിന്ന്","മനുഷ്യരില്‍നിന്നല്ല, യേശുക്രിസ്തുവിന്റെ വെളിപാടിലൂടെ","യഹൂദ റബ്ബിമാരില്‍നിന്ന്","ജറുസലെം സഭയില്‍നിന്ന്"], correct:1,
+   note:"വാ. 12 &mdash; 'യേശുക്രിസ്തുവിന്റെ വെളിപാടിലൂടെയാണ് അത് എനിക്കു ലഭിച്ചത്.'"},
+  {q:"ദൈവം പൗലോസിനെ എപ്പോള്‍ 'പ്രത്യേകം തെരഞ്ഞെടുത്തു' എന്നാണ് പറയുന്നത് (വാ. 15)?",
+   opts:["ദമാസ്‌ക്കസ് യാത്രയില്‍","മാതാവിന്റെ ഉദരത്തില്‍ ആയിരിക്കുമ്പോള്‍ത്തന്നെ","ജറുസലെമില്‍ പഠിക്കുമ്പോള്‍","അറേബ്യായില്‍ ആയിരിക്കുമ്പോള്‍"], correct:1,
+   note:"വാ. 15 &mdash; 'ഞാന്‍ മാതാവിന്റെ ഉദരത്തില്‍ ആയിരിക്കുമ്പോള്‍ത്തന്നെ ദൈവം എന്നെ പ്രത്യേകം തെരഞ്ഞെടുത്തു.'"},
+  {q:"വിളി ലഭിച്ചശേഷം പൗലോസ് ആദ്യം എവിടേക്കാണ് പോയത് (വാ. 17)?",
+   opts:["ജറുസലെം","അറേബ്യ","റോം","അന്ത്യോക്യ"], correct:1,
+   note:"വാ. 17 &mdash; 'ഞാന്‍ അറേബ്യായിലേക്കു പോവുകയും ദമാസ്‌ക്കസിലേക്കു തിരിച്ചുവരുകയും ചെയ്തു.'"},
+  {q:"ജറുസലെമില്‍ കേപ്പായോടൊപ്പം പൗലോസ് എത്ര ദിവസം താമസിച്ചു (വാ. 18)?",
+   opts:["7 ദിവസം","15 ദിവസം","40 ദിവസം","3 വര്‍ഷം"], correct:1,
+   note:"വാ. 18 &mdash; 'അവനോടൊത്തു പതിനഞ്ചു ദിവസം താമസിക്കുകയും ചെയ്തു.'"},
+  {q:"കേപ്പാ ഒഴികെ, പൗലോസ് ജറുസലെമില്‍ കണ്ട ഏക അപ്പസ്‌തോലന്‍ ആരാണ് (വാ. 19)?",
+   opts:["യോഹന്നാന്‍","യാക്കോബ്, കര്‍ത്താവിന്റെ സഹോദരന്‍","അന്ത്രയോസ്","തോമസ്"], correct:1,
+   note:"വാ. 19 &mdash; 'കര്‍ത്താവിന്റെ സഹോദരനായ യാക്കോബിനെയല്ലാതെ അപ്പസ്‌തോലന്മാരില്‍ മറ്റാരെയും ഞാന്‍ കണ്ടില്ല.'"},
+  {q:"ജറുസലെം സന്ദര്‍ശനത്തിനുശേഷം പൗലോസ് ഏതു പ്രദേശങ്ങളിലേക്കാണ് പോയത് (വാ. 21)?",
+   opts:["മാസിഡോണിയ, അഖായ","സിറിയ, കിലിക്യ","ഏഷ്യ, ബിഥുന്യ","ഈജിപ്ത്, ലിബിയ"], correct:1,
+   note:"വാ. 21 &mdash; 'ഞാന്‍ സിറിയാ, കിലിക്യാ എന്നീ പ്രദേശങ്ങളിലേക്കു പോയി.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--bronze-soft); color:var(--ink); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ആത്മാവിന്റെ ഫലം — ഗലാത്തിയര്‍ 5 | Logos Quiz 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Manjari:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --soil: #191d14;
+    --soil-2: #22271b;
+    --parchment: #e9e6d6;
+    --parchment-dim: #a6a68f;
+    --leaf: #7fa65a;
+    --leaf-soft: #a8cf85;
+    --ash: #77695c;
+    --ash-soft: #a3907d;
+    --line: rgba(127,166,90,0.22);
+    --font-ml: 'Noto Sans Malayalam', 'Manjari', sans-serif;
+    --font-display: 'Fraunces', serif;
+    --font-num: 'Cormorant Garamond', serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(127,166,90,0.10), transparent 45%),
+      radial-gradient(ellipse at 88% 25%, rgba(119,105,92,0.12), transparent 42%),
+      var(--soil);
+    color:var(--parchment);
+    font-family:var(--font-ml);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--leaf); color:var(--soil);}
+
+  /* ---------- HERO: BROKEN YOKE ---------- */
+  .hero{position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:6vh 6vw; overflow:hidden;}
+  .eyebrow{font-family:var(--font-num); letter-spacing:0.35em; text-transform:uppercase; font-size:0.78rem; color:var(--leaf-soft); margin-bottom:1.4rem; font-style:italic;}
+  .yoke{width:220px; height:100px; margin-bottom:1.6rem;}
+  .yoke svg{width:100%; height:100%;}
+  .yoke-half{transition:transform 1.4s cubic-bezier(.2,.9,.25,1);}
+  .yoke-l{transform:translate(-4px,4px) rotate(-3deg);}
+  .yoke-r{transform:translate(4px,4px) rotate(3deg);}
+  .yoke.snapped .yoke-l{transform:translate(-34px,20px) rotate(-18deg);}
+  .yoke.snapped .yoke-r{transform:translate(34px,20px) rotate(18deg);}
+  .yoke-spark{opacity:0; animation:spark 0.5s ease-out 1.3s forwards;}
+  @keyframes spark{0%{opacity:0; transform:scale(0.5);} 40%{opacity:1; transform:scale(1.3);} 100%{opacity:0; transform:scale(1.8);}}
+
+  .hero h1{font-weight:800; font-size:clamp(2.1rem, 6.4vw, 4rem); line-height:1.25; margin:0; color:var(--parchment);}
+  .hero h1 em{font-style:normal; color:var(--leaf-soft); display:block;}
+  .hero .ref{font-family:var(--font-num); font-style:italic; font-size:clamp(1.05rem,2.2vw,1.4rem); color:var(--parchment-dim); margin-top:1rem;}
+  .hero p.tag{max-width:580px; margin:2rem auto 0; font-size:1rem; line-height:1.9; color:var(--parchment-dim);}
+  .scroll-cue{margin-top:3rem; font-family:var(--font-num); font-style:italic; font-size:0.88rem; color:var(--leaf-soft); display:flex; flex-direction:column; align-items:center; gap:0.5rem; opacity:0.85;}
+  .scroll-cue span{display:block; width:1px; height:34px; background:linear-gradient(var(--leaf), transparent); animation:drop 1.8s ease-in-out infinite;}
+  @keyframes drop{0%{opacity:0; transform:translateY(-6px);} 50%{opacity:1;} 100%{opacity:0; transform:translateY(10px);}}
+
+  section.block{position:relative; z-index:1; max-width:960px; margin:0 auto; padding:5.5rem 6vw 3rem;}
+  .section-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem; border-bottom:1px solid var(--line); padding-bottom:1.1rem;}
+  .section-head .num{font-family:var(--font-num); font-style:italic; font-size:1.05rem; color:var(--leaf-soft); white-space:nowrap;}
+  .section-head h2{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.35rem,3.1vw,1.95rem); margin:0; color:var(--parchment);}
+  .section-sub{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.95rem; margin:0.9rem 0 2.2rem; max-width:62ch;}
+
+  /* ---------- ACCORDION ---------- */
+  .prologue-grid{display:flex; flex-direction:column; gap:0.65rem;}
+  .verse-card{background:linear-gradient(180deg, var(--soil-2), var(--soil)); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:border-color .3s ease;}
+  .verse-card.open{border-color:var(--leaf);}
+  .verse-card button.vtrig{width:100%; display:flex; align-items:center; gap:1rem; background:none; border:none; color:var(--parchment); font-family:var(--font-ml); text-align:left; padding:1rem 1.2rem; cursor:pointer; font-size:1rem;}
+  .verse-card .vnum{font-family:var(--font-num); font-style:italic; color:var(--leaf-soft); font-size:1.15rem; min-width:1.8rem;}
+  .verse-card .vplus{margin-left:auto; font-family:var(--font-num); font-size:1.3rem; color:var(--leaf-soft); transition:transform .3s ease; flex-shrink:0;}
+  .verse-card.open .vplus{transform:rotate(45deg);}
+  .verse-body{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .verse-card.open .verse-body{max-height:420px;}
+  .verse-body-inner{padding:0 1.2rem 1.2rem 3.2rem; color:var(--parchment-dim); font-size:0.97rem; line-height:1.85; border-top:1px dashed var(--line); padding-top:1rem;}
+  .verse-body-inner .note{display:inline-block; margin-top:0.7rem; font-family:var(--font-num); font-style:italic; color:var(--leaf-soft); font-size:0.88rem;}
+
+  /* ---------- LOVE-SERVICE PULL QUOTE ---------- */
+  .pull-quote{margin:0.4rem 0 0.4rem; padding:2.2rem 1.6rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(127,166,90,0.14), transparent 65%); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .pull-quote p{font-family:var(--font-ml); font-weight:700; font-size:clamp(1.1rem, 2.6vw, 1.45rem); line-height:1.9; color:var(--parchment); max-width:38ch; margin:0 auto;}
+  .pull-quote span{display:block; margin-top:0.9rem; font-family:var(--font-num); font-style:italic; color:var(--leaf-soft); font-size:0.88rem;}
+  .warn-chip{margin-top:1.4rem; text-align:center; font-family:var(--font-num); font-style:italic; color:var(--ash-soft); font-size:0.9rem;}
+
+  /* ---------- FLESH VS SPIRIT ---------- */
+  .fvs-wrap{display:flex; flex-direction:column; gap:2.4rem;}
+  .fvs-block h3{font-family:var(--font-ml); font-size:1.05rem; margin:0 0 1rem; display:flex; align-items:center; gap:0.6rem;}
+  .fvs-block h3 .tag-verse{font-family:var(--font-num); font-style:italic; font-size:0.82rem; color:var(--parchment-dim); font-weight:400;}
+
+  .thorn-grid{display:flex; flex-wrap:wrap; gap:0.55rem;}
+  .thorn-chip{
+    background:rgba(119,105,92,0.14);
+    border:1px solid rgba(163,144,125,0.35);
+    color:var(--ash-soft);
+    padding:0.5rem 0.95rem;
+    font-size:0.87rem;
+    clip-path:polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+  }
+  .thorn-chip:nth-child(odd){transform:rotate(-1.4deg);}
+  .thorn-chip:nth-child(even){transform:rotate(1.2deg);}
+  h3.flesh-h{color:var(--ash-soft);}
+
+  .fruit-grid{display:flex; flex-wrap:wrap; gap:0.7rem; justify-content:flex-start;}
+  .fruit-chip{
+    background:radial-gradient(circle at 35% 30%, var(--leaf-soft), var(--leaf) 75%);
+    color:var(--soil);
+    font-weight:700;
+    padding:0.6rem 1.1rem;
+    border-radius:50px;
+    font-size:0.9rem;
+    box-shadow:0 4px 14px rgba(127,166,90,0.22);
+  }
+  h3.fruit-h{color:var(--leaf-soft);}
+  .no-law-note{margin-top:1rem; font-family:var(--font-num); font-style:italic; color:var(--leaf-soft); font-size:0.88rem;}
+
+  .crucified-line{margin-top:0.6rem; padding:1.1rem 1.3rem; background:rgba(127,166,90,0.07); border:1px solid var(--line); border-left:3px solid var(--leaf); border-radius:8px; font-size:0.94rem; line-height:1.8; color:var(--parchment-dim);}
+  .crucified-line b{color:var(--parchment);}
+
+  /* ---------- FACT GRID / QUIZ (shared mechanics) ---------- */
+  .fact-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1rem;}
+  .fact-card{background:linear-gradient(160deg, var(--soil-2), var(--soil)); border:1px solid var(--line); border-left:3px solid var(--leaf); border-radius:8px; padding:1.1rem 1.2rem;}
+  .fact-card .flabel{font-family:var(--font-num); font-style:italic; color:var(--leaf-soft); font-size:0.82rem; margin-bottom:0.5rem;}
+  .fact-card .fval{font-size:0.98rem; line-height:1.75; color:var(--parchment);}
+  .fact-card .fval b{color:var(--ash-soft);}
+
+  .quiz-shell{background:linear-gradient(180deg, var(--soil-2), var(--soil)); border:1px solid var(--line); border-radius:14px; padding:1.8rem 1.6rem 2rem;}
+  .quiz-progress{display:flex; gap:5px; margin-bottom:1.4rem;}
+  .quiz-progress .dot{flex:1; height:4px; border-radius:2px; background:var(--line);}
+  .quiz-progress .dot.done{background:var(--leaf);}
+  .qmeta{font-family:var(--font-num); font-style:italic; color:var(--leaf-soft); font-size:0.85rem; margin-bottom:0.5rem;}
+  .qtext{font-size:1.06rem; font-weight:600; line-height:1.7; margin-bottom:1.3rem; color:var(--parchment);}
+  .opt{display:block; width:100%; text-align:left; background:rgba(255,255,255,0.02); border:1px solid var(--line); color:var(--parchment-dim); padding:0.85rem 1rem; border-radius:8px; margin-bottom:0.6rem; cursor:pointer; font-family:var(--font-ml); font-size:0.95rem; transition:all .2s ease;}
+  .opt:hover{border-color:var(--leaf); color:var(--parchment);}
+  .opt.correct{background:rgba(120,180,120,0.14); border-color:#7fbf7f; color:#d9f0d9;}
+  .opt.wrong{background:rgba(201,80,80,0.14); border-color:#c95050; color:#f0d9d9;}
+  .opt[disabled]{cursor:default;}
+  .qexplain{margin-top:1rem; font-size:0.88rem; line-height:1.7; color:var(--leaf-soft); font-style:italic; display:none;}
+  .qexplain.show{display:block;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; margin-top:1.6rem;}
+  .quiz-nav button{background:var(--leaf-soft); color:var(--soil); border:none; padding:0.65rem 1.4rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer; font-size:0.9rem;}
+  .quiz-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .quiz-score{font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.9rem;}
+  .quiz-done{text-align:center; padding:2rem 0;}
+  .quiz-done .big{font-family:var(--font-display); font-size:3rem; color:var(--leaf-soft);}
+
+  footer{text-align:center; padding:3rem 6vw 5rem; font-family:var(--font-num); font-style:italic; color:var(--parchment-dim); font-size:0.85rem; opacity:0.7;}
+
+  @media (prefers-reduced-motion: reduce){ .yoke-l, .yoke-r, .yoke-spark, .scroll-cue span{animation:none !important; transition:none !important;} }
+  @media (max-width:600px){ section.block{padding:3.6rem 5vw 2rem;} }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Logos Quiz 2026 &middot; Galatians / ഗലാത്തിയര്‍</div>
+  <div class="yoke" id="yoke">
+    <svg viewBox="0 0 220 100">
+      <g class="yoke-half yoke-l">
+        <rect x="20" y="40" width="80" height="14" rx="6" fill="#a3907d"/>
+      </g>
+      <g class="yoke-half yoke-r">
+        <rect x="120" y="40" width="80" height="14" rx="6" fill="#a3907d"/>
+      </g>
+      <g class="yoke-spark">
+        <circle cx="110" cy="47" r="16" fill="none" stroke="#a8cf85" stroke-width="2"/>
+      </g>
+    </svg>
+  </div>
+  <h1>സ്വാതന്ത്ര്യത്തിലേക്ക്<br><em>മോചിതർ</em></h1>
+  <div class="ref">ഗലാത്തിയര്‍ 5 : 1&ndash;26</div>
+  <p class="tag">അടിമത്തത്തിന്റെ നുകം പൊട്ടിച്ചെറിഞ്ഞ്, സ്‌നേഹത്തിലൂടെ സേവിക്കാൻ വിളിക്കപ്പെട്ടവർ &mdash; ജഡത്തിന്റെ വ്യാപാരങ്ങൾക്കും ആത്മാവിന്റെ ഫലങ്ങൾക്കും ഇടയിലുള്ള തിരഞ്ഞെടുപ്പ്.</p>
+  <div class="scroll-cue"><span></span>സ്‌ക്രോൾ ചെയ്യുക</div>
+</div>
+
+<!-- I: FREEDOM & THE CIRCUMCISION WARNING -->
+<section class="block" id="s1">
+  <div class="section-head"><span class="num">I</span><h2>ക്രിസ്തീയ സ്വാതന്ത്ര്യം</h2></div>
+  <p class="section-sub">വാ. 1&ndash;12. പരിച്‌ഛേദനത്തിലേക്കു മടങ്ങുന്നതിനെതിരെയുള്ള ശക്തമായ മുന്നറിയിപ്പ്.</p>
+  <div class="prologue-grid" id="prologue"></div>
+</section>
+
+<!-- II: LOVE THROUGH SERVICE -->
+<section class="block" id="s2">
+  <div class="section-head"><span class="num">II</span><h2>സ്‌നേഹത്തിലൂടെ സേവനം</h2></div>
+  <p class="section-sub">വാ. 13&ndash;15. സ്വാതന്ത്ര്യം ഭോഗാസക്തിക്കുള്ള അനുവാദമല്ല.</p>
+  <div class="pull-quote">
+    <p>&ldquo;നിന്നെപ്പോലെ നിന്റെ അയല്‍ക്കാരനെയും സ്‌നേഹിക്കുക.&rdquo;</p>
+    <span>വാ. 14 &mdash; ഈ ഒരു കൽപനയിൽ നിയമം മുഴുവനും അടങ്ങിയിരിക്കുന്നു</span>
+  </div>
+  <div class="warn-chip">വാ. 15: &ldquo;അന്യോന്യം കടിച്ചുകീറുകയും വിഴുങ്ങുകയും ചെയ്യരുത്&rdquo; &mdash; സ്വാതന്ത്ര്യത്തിനെതിരായ മുന്നറിയിപ്പ്</div>
+</section>
+
+<!-- III: FLESH VS SPIRIT -->
+<section class="block" id="s3">
+  <div class="section-head"><span class="num">III</span><h2>ജഡത്തിന്റെ വ്യാപാരങ്ങളും ആത്മാവിന്റെ ഫലങ്ങളും</h2></div>
+  <p class="section-sub">വാ. 16&ndash;26. ഈ അധ്യായത്തിലെ ഏറ്റവും ക്വിസ്-പ്രധാനമായ ഭാഗം &mdash; രണ്ടു പട്ടികകളും കൃത്യമായി അറിഞ്ഞിരിക്കുക.</p>
+  <div class="fvs-wrap">
+    <div class="fvs-block">
+      <h3 class="flesh-h">ജഡത്തിന്റെ വ്യാപാരങ്ങൾ <span class="tag-verse">(വാ. 19&ndash;21 &mdash; 15 എണ്ണം)</span></h3>
+      <div class="thorn-grid" id="thornGrid"></div>
+    </div>
+    <div class="fvs-block">
+      <h3 class="fruit-h">ആത്മാവിന്റെ ഫലങ്ങൾ <span class="tag-verse">(വാ. 22&ndash;23 &mdash; 9 എണ്ണം)</span></h3>
+      <div class="fruit-grid" id="fruitGrid"></div>
+      <div class="no-law-note">&ldquo;ഇവയ്‌ക്കെതിരായി ഒരു നിയമവുമില്ല&rdquo; &mdash; വാ. 23</div>
+    </div>
+  </div>
+  <div class="crucified-line">വാ. 24&ndash;25: യേശുക്രിസ്തുവിനുള്ളവർ തങ്ങളുടെ <b>ജഡത്തെ അതിന്റെ വികാരങ്ങളോടും മോഹങ്ങളോടുംകൂടെ ക്രൂശിച്ചിരിക്കുന്നു.</b> ആത്മാവിലാണ് ജീവിക്കുന്നതെങ്കിൽ ആത്മാവിൽ വ്യാപരിക്കാം.</div>
+</section>
+
+<!-- FACT GRID -->
+<section class="block" id="s4">
+  <div class="section-head"><span class="num">IV</span><h2>ക്വിക്ക്-റഫറൻസ്: ക്വിസിനുള്ള പ്രധാന വസ്തുതകൾ</h2></div>
+  <p class="section-sub">സംഖ്യകൾ, പട്ടികകൾ &mdash; ക്വിസ് ചോദ്യങ്ങളിൽ പലപ്പോഴും വരുന്നവ.</p>
+  <div class="fact-grid" id="factGrid"></div>
+</section>
+
+<!-- SELF QUIZ -->
+<section class="block" id="s5">
+  <div class="section-head"><span class="num">V</span><h2>സ്വയം പരീക്ഷ</h2></div>
+  <p class="section-sub">8 ചോദ്യങ്ങൾ. ഉത്തരം തിരഞ്ഞെടുക്കുക.</p>
+  <div class="quiz-shell">
+    <div class="quiz-progress" id="qprog"></div>
+    <div id="quizArea"></div>
+  </div>
+</section>
+
+<footer>ഗലാത്തിയര്‍ 5 &middot; Logos Quiz 2026 &middot; സ്വകാര്യ പഠനത്തിനായി തയാറാക്കിയത്</footer>
+
+<script>
+setTimeout(()=>document.getElementById('yoke').classList.add('snapped'), 400);
+
+/* ---------------- SECTION I ACCORDION ---------------- */
+const prologue = [
+  {v:"1", text:"സ്വാതന്ത്ര്യത്തിലേക്കു ക്രിസ്തു നമ്മെ മോചിപ്പിച്ചു. നിങ്ങള്‍ സ്ഥിരതയോടെ നില്‍ക്കുവിന്‍. അടിമത്തത്തിന്റെ നുകത്തിന് ഇനിയും വിധേയരാകരുത്.", note:"ഈ അധ്യായത്തിന്റെ കേന്ദ്ര പ്രഖ്യാപനം: നിലനില്‍ക്കുക, തിരികെപ്പോകരുത്."},
+  {v:"2-3", text:"പരിച്‌ഛേദനം സ്വീകരിക്കുന്നെങ്കില്‍ ക്രിസ്തു ഒന്നിനും പ്രയോജനപ്പെടുകയില്ല. പരിച്‌ഛേദനം സ്വീകരിക്കുന്നവൻ നിയമം മുഴുവനും പാലിക്കാൻ കടപ്പെട്ടവനാണ്.", note:"ഭാഗികമായി നിയമം സ്വീകരിക്കാൻ കഴിയില്ല എന്ന മുന്നറിയിപ്പ്."},
+  {v:"4", text:"നിയമത്തിലാണു നീതീകരിക്കപ്പെടുന്നത് എന്നു കരുതുന്നെങ്കില്‍ ക്രിസ്തുവിനോടുള്ള ബന്ധം വിച്‌ഛേദിക്കപ്പെട്ടിരിക്കുന്നു; കൃപാവരത്തില്‍നിന്നു വീണുപോയിരിക്കുന്നു.", note:"ശക്തമായ ഭാഷ: 'വിച്‌ഛേദിക്കപ്പെട്ടു', 'വീണുപോയി'."},
+  {v:"6", text:"യേശുക്രിസ്തുവില്‍ വിശ്വസിക്കുന്നവര്‍ക്കു പരിച്‌ഛേദനമോ അപരിച്‌ഛേദനമോ കാര്യമല്ല. സ്‌നേഹത്തിലൂടെ പ്രവര്‍ത്തനനിരതമായ വിശ്വാസമാണ് സുപ്രധാനം.", note:"ക്വിസ് ഉദ്ധരണി: 'സ്‌നേഹത്തിലൂടെ പ്രവര്‍ത്തനനിരതമായ വിശ്വാസം'."},
+  {v:"9", text:"അല്‍പം പുളിപ്പ് മുഴുവന്‍ മാവിനെയും പുളിപ്പിക്കുന്നു.", note:"ചെറിയ തെറ്റായ ഉപദേശം സഭ മുഴുവനെയും ബാധിക്കും എന്ന താക്കീത്."},
+  {v:"11-12", text:"പൗലോസ് പരിച്‌ഛേദനത്തിന് അനുകൂലമായി പ്രസംഗിച്ചിരുന്നെങ്കില്‍ പീഡിപ്പിക്കപ്പെടില്ലായിരുന്നു; കുരിശിന്റെ പേരിലുള്ള ഇടര്‍ച്ചയും ഉണ്ടാകില്ലായിരുന്നു.", note:"പൗലോസിന്റെ വൈകാരികമായ, തീക്ഷ്ണമായ ഭാഷ ശ്രദ്ധിക്കുക."}
+];
+const pWrap = document.getElementById('prologue');
+prologue.forEach(p=>{
+  const card = document.createElement('div');
+  card.className = 'verse-card';
+  card.innerHTML = `
+    <button class="vtrig"><span class="vnum">${p.v}</span><span>${p.text}</span><span class="vplus">+</span></button>
+    <div class="verse-body"><div class="verse-body-inner">${p.text}<br><span class="note">${p.note}</span></div></div>`;
+  pWrap.appendChild(card);
+  card.querySelector('.vtrig').addEventListener('click', ()=> card.classList.toggle('open'));
+});
+
+/* ---------------- FLESH / SPIRIT LISTS ---------------- */
+const thorns = ["വ്യഭിചാരം","അശുദ്ധി","ദുര്‍വൃത്തി","വിഗ്രഹാരാധന","ആഭിചാരം","ശത്രുത","കലഹം","അസൂയ","കോപം","മാത്‌സര്യം","ഭിന്നത","വിഭാഗീയചിന്ത","വിദ്വേഷം","മദ്യപാനം","മദിരോത്‌സവം"];
+document.getElementById('thornGrid').innerHTML = thorns.map(t=>`<div class="thorn-chip">${t}</div>`).join('');
+
+const fruits = ["സ്‌നേഹം","ആനന്ദം","സമാധാനം","ക്ഷമ","ദയ","നന്മ","വിശ്വസ്തത","സൗമ്യത","ആത്മസംയമനം"];
+document.getElementById('fruitGrid').innerHTML = fruits.map(f=>`<div class="fruit-chip">${f}</div>`).join('');
+
+/* ---------------- FACT GRID ---------------- */
+const facts = [
+  {label:"സ്വാതന്ത്ര്യത്തിന്റെ ഉറവിടം", val:"<b>ക്രിസ്തു</b> നമ്മെ സ്വാതന്ത്ര്യത്തിലേക്കു മോചിപ്പിച്ചു (വാ. 1)."},
+  {label:"പരിച്‌ഛേദനത്തിന്റെ അനന്തരഫലം", val:"നിയമം <b>മുഴുവനും</b> പാലിക്കാൻ കടപ്പെടും (വാ. 3)."},
+  {label:"സുപ്രധാനമായത്", val:"<b>സ്‌നേഹത്തിലൂടെ പ്രവര്‍ത്തനനിരതമായ വിശ്വാസം</b> (വാ. 6)."},
+  {label:"നിയമം മുഴുവനും", val:"'നിന്നെപ്പോലെ അയൽക്കാരനെ സ്‌നേഹിക്കുക' എന്ന <b>ഒരേയൊരു കൽപനയിൽ</b> (വാ. 14)."},
+  {label:"ജഡത്തിന്റെ വ്യാപാരങ്ങൾ", val:"<b>15 എണ്ണം</b> പട്ടികപ്പെടുത്തിയിരിക്കുന്നു (വാ. 19&ndash;21)."},
+  {label:"ആത്മാവിന്റെ ഫലങ്ങൾ", val:"<b>9 എണ്ണം</b> &mdash; സ്‌നേഹം മുതൽ ആത്മസംയമനം വരെ (വാ. 22&ndash;23)."},
+  {label:"ഫലങ്ങൾക്കെതിരെ", val:"<b>ഒരു നിയമവുമില്ല</b> (വാ. 23)."},
+  {label:"ജഡത്തോടു ചെയ്തത്", val:"വികാരങ്ങളോടും മോഹങ്ങളോടുംകൂടെ <b>ക്രൂശിച്ചു</b> (വാ. 24)."}
+];
+document.getElementById('factGrid').innerHTML = facts.map(f=>`
+  <div class="fact-card"><div class="flabel">${f.label}</div><div class="fval">${f.val}</div></div>
+`).join('');
+
+/* ---------------- QUIZ ---------------- */
+const quizData = [
+  {q:"വാ. 1 പ്രകാരം ക്രിസ്തു നമ്മെ എന്തിലേക്കാണ് മോചിപ്പിച്ചത്?",
+   opts:["സമ്പത്തിലേക്ക്","സ്വാതന്ത്ര്യത്തിലേക്ക്","ജ്ഞാനത്തിലേക്ക്","അധികാരത്തിലേക്ക്"], correct:1,
+   note:"വാ. 1 &mdash; 'സ്വാതന്ത്ര്യത്തിലേക്കു ക്രിസ്തു നമ്മെ മോചിപ്പിച്ചു.'"},
+  {q:"പരിച്‌ഛേദനം സ്വീകരിക്കുന്ന ഒരാൾ എന്തിനു കടപ്പെട്ടവനാണ് (വാ. 3)?",
+   opts:["ഒരു ബലി അർപ്പിക്കാൻ","നിയമം മുഴുവനും പാലിക്കാൻ","ജറുസലെമിലേക്കു യാത്ര ചെയ്യാൻ","ഉപവസിക്കാൻ"], correct:1,
+   note:"വാ. 3 &mdash; 'അവന്‍ നിയമം മുഴുവനും പാലിക്കാന്‍ കടപ്പെട്ടവനാണ്.'"},
+  {q:"വാ. 6 പ്രകാരം യേശുക്രിസ്തുവിൽ എന്താണ് സുപ്രധാനം?",
+   opts:["പരിച്‌ഛേദനം","അപരിച്‌ഛേദനം","സ്‌നേഹത്തിലൂടെ പ്രവര്‍ത്തനനിരതമായ വിശ്വാസം","നിയമാനുഷ്ഠാനം"], correct:2,
+   note:"വാ. 6 &mdash; 'സ്‌നേഹത്തിലൂടെ പ്രവര്‍ത്തനനിരതമായ വിശ്വാസമാണ് സുപ്രധാനം.'"},
+  {q:"'അല്‍പം ______ മുഴുവന്‍ മാവിനെയും പുളിപ്പിക്കുന്നു' (വാ. 9).",
+   opts:["ഉപ്പ്","പുളിപ്പ്","എണ്ണ","തേൻ"], correct:1,
+   note:"വാ. 9 &mdash; 'അല്‍പം പുളിപ്പ് മുഴുവന്‍ മാവിനെയും പുളിപ്പിക്കുന്നു.'"},
+  {q:"വാ. 14 പ്രകാരം നിയമം മുഴുവനും ഏതു കൽപനയിൽ അടങ്ങിയിരിക്കുന്നു?",
+   opts:["ദൈവത്തെ സ്‌നേഹിക്കുക","അയൽക്കാരനെ സ്വയത്തെപ്പോലെ സ്‌നേഹിക്കുക","സാബത്ത് ആചരിക്കുക","മാതാപിതാക്കളെ ബഹുമാനിക്കുക"], correct:1,
+   note:"വാ. 14 &mdash; 'നിന്നെപ്പോലെ നിന്റെ അയല്‍ക്കാരനെയും സ്‌നേഹിക്കുക എന്ന ഒരേയൊരു കല്‍പനയില്‍ നിയമം മുഴുവനും അടങ്ങിയിരിക്കുന്നു.'"},
+  {q:"താഴെപ്പറയുന്നവയിൽ ഏതാണ് 'ജഡത്തിന്റെ വ്യാപാരങ്ങളിൽ' (വാ. 19&ndash;21) ഉൾപ്പെടാത്തത്?",
+   opts:["അസൂയ","കോപം","സമാധാനം","ശത്രുത"], correct:2,
+   note:"'സമാധാനം' ആത്മാവിന്റെ ഫലമാണ് (വാ. 22), ജഡത്തിന്റെ വ്യാപാരമല്ല."},
+  {q:"ആത്മാവിന്റെ ഫലങ്ങളിൽ (വാ. 22&ndash;23) എത്ര ഗുണങ്ങൾ പട്ടികപ്പെടുത്തിയിരിക്കുന്നു?",
+   opts:["7","9","12","15"], correct:1,
+   note:"സ്‌നേഹം, ആനന്ദം, സമാധാനം, ക്ഷമ, ദയ, നന്മ, വിശ്വസ്തത, സൗമ്യത, ആത്മസംയമനം &mdash; ആകെ 9."},
+  {q:"യേശുക്രിസ്തുവിനുള്ളവർ തങ്ങളുടെ ജഡത്തോട് എന്തു ചെയ്തിരിക്കുന്നു (വാ. 24)?",
+   opts:["ശുദ്ധീകരിച്ചു","ക്രൂശിച്ചു","അവഗണിച്ചു","ബലിയർപ്പിച്ചു"], correct:1,
+   note:"വാ. 24 &mdash; 'തങ്ങളുടെ ജഡത്തെ അതിന്റെ വികാരങ്ങളോടും മോഹങ്ങളോടുംകൂടെ ക്രൂശിച്ചിരിക്കുന്നു.'"}
+];
+let qi = 0, score = 0, answered = [];
+function renderProgress(){
+  document.getElementById('qprog').innerHTML = quizData.map((_,i)=>
+    `<div class="dot ${answered[i]!==undefined ? 'done':''}"></div>`).join('');
+}
+function renderQuiz(){
+  if(qi >= quizData.length){
+    document.getElementById('quizArea').innerHTML = `
+      <div class="quiz-done">
+        <div class="big">${score} / ${quizData.length}</div>
+        <p style="color:var(--parchment-dim); font-family:var(--font-num); font-style:italic; margin-top:0.6rem;">
+          ${score===quizData.length ? 'മികച്ചത്! പൂർണ്ണ സ്കോർ.' : score >= quizData.length*0.6 ? 'നല്ല തുടക്കം &mdash; വീണ്ടും പരിശീലിക്കുക.' : 'ഒരിക്കൽ കൂടി മുകളിലെ ഭാഗങ്ങൾ വായിക്കുക, എന്നിട്ട് വീണ്ടും ശ്രമിക്കുക.'}
+        </p>
+        <button onclick="restartQuiz()" style="margin-top:1.4rem; background:var(--leaf-soft); color:var(--soil); border:none; padding:0.7rem 1.6rem; border-radius:8px; font-family:var(--font-ml); font-weight:600; cursor:pointer;">വീണ്ടും ആരംഭിക്കുക</button>
+      </div>`;
+    renderProgress();
+    return;
+  }
+  const item = quizData[qi];
+  const already = answered[qi];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="qmeta">ചോദ്യം ${qi+1} / ${quizData.length}</div>
+    <div class="qtext">${item.q}</div>
+    <div id="optsWrap"></div>
+    <div class="qexplain ${already!==undefined?'show':''}" id="qexplain">${item.note}</div>
+    <div class="quiz-nav">
+      <span class="quiz-score">സ്കോർ: ${score}</span>
+      <button id="nextBtn" ${already===undefined?'disabled':''}>${qi===quizData.length-1?'ഫലം കാണുക':'അടുത്തത്'}</button>
+    </div>`;
+  const optsWrap = document.getElementById('optsWrap');
+  item.opts.forEach((opt,idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = opt;
+    if(already!==undefined){
+      btn.disabled = true;
+      if(idx===item.correct) btn.classList.add('correct');
+      else if(idx===already) btn.classList.add('wrong');
+    }
+    btn.addEventListener('click', ()=>{
+      if(answered[qi]!==undefined) return;
+      answered[qi] = idx;
+      if(idx===item.correct) score++;
+      renderQuiz();
+    });
+    optsWrap.appendChild(btn);
+  });
+  document.getElementById('nextBtn').addEventListener('click', ()=>{ qi++; renderQuiz(); });
+  renderProgress();
+}
+function restartQuiz(){ qi=0; score=0; answered=[]; renderQuiz(); }
+renderQuiz();
+</script>
+</body>
+</html>
