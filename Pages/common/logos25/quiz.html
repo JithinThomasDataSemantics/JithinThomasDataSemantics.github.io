@@ -26,12 +26,14 @@
     button.opt{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;font-size:0.98rem;text-align:left;cursor:pointer;box-shadow:0 4px 14px rgba(2,6,23,0.45);min-height:58px}
     button.opt .label{display:inline-block;width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;margin-right:10px;font-weight:700}
     button.opt:active{transform:translateY(1px)}
+    button.opt.speaking{outline:2px solid var(--accent)}
 
     .hint{margin-top:10px;color:var(--muted);font-size:0.88rem}
 
-    .footer{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:14px}
+    .footer{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:14px;flex-wrap:wrap}
     button.primary{background:var(--accent);color:#022;padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
     button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:10px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+    button.ghost.active{color:var(--accent);border-color:var(--accent)}
 
     .result{padding:14px;border-radius:10px;margin-top:10px;background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:none}
     .result.show{display:block}
@@ -80,7 +82,8 @@
           <button class="ghost" id="prevBtn" disabled>Previous</button>
           <button class="primary" id="nextBtn" disabled>Next</button>
         </div>
-        <div>
+        <div style="display:flex;gap:8px">
+          <button class="ghost active" id="autoPlayBtn">🔊 Auto Play: On</button>
           <button class="ghost" id="showScoreBtn">Show score</button>
         </div>
       </div>
@@ -105,10 +108,6 @@
 <script>
 function startQuiz(){
 
-  // const params = new URLSearchParams(window.location.search);
-  // const subgroup = params.get('subgroup'); 
-
-  // const QUESTIONS = quizData[group][subgroup];
   const params = new URLSearchParams(window.location.search);
   const subgroup = params.get('subgroup');
   const part = parseInt(params.get('part') || "1");
@@ -130,6 +129,37 @@ function startQuiz(){
   const total = QUESTIONS.length;
   const userAnswers = new Array(total).fill(null);
 
+  // ---- TTS state ----
+  let autoPlayEnabled = true;      // narration + auto-advance on by default
+  let sequenceId = 0;              // bumped on any navigation, cancels stale callbacks
+  let answerFlowStarted = false;   // guards against double-triggering the "reveal answer" step
+  let mlVoice = null;
+
+  function loadVoice(){
+    const voices = speechSynthesis.getVoices();
+    mlVoice = voices.find(v => v.lang === 'ml-IN') || null;
+  }
+  loadVoice();
+  speechSynthesis.onvoiceschanged = loadVoice;
+
+  // Speak one piece of text, calling onDone when finished (or on error, so the
+  // sequence never gets stuck if a voice fails to load).
+  function speak(text, onDone){
+    if(!text){ if(onDone) onDone(); return; }
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'ml-IN';
+    if(mlVoice) utter.voice = mlVoice;
+    utter.onend = () => { if(onDone) onDone(); };
+    utter.onerror = () => { if(onDone) onDone(); };
+    speechSynthesis.speak(utter);
+  }
+
+  // Speak an array of texts one after another.
+  function speakSequence(texts, i, onDone){
+    if(i >= texts.length){ if(onDone) onDone(); return; }
+    speak(texts[i], () => speakSequence(texts, i + 1, onDone));
+  }
+
   // DOM refs
   const qNumber = document.getElementById('qNumber');
   const progressBar = document.getElementById('progressBar');
@@ -142,13 +172,14 @@ function startQuiz(){
   const restartBtn = document.getElementById('restartBtn');
   const showScoreBtn = document.getElementById('showScoreBtn');
   const reviewBtn = document.getElementById('reviewBtn');
+  const autoPlayBtn = document.getElementById('autoPlayBtn');
 
   const maintitle = document.getElementById('quiztitle');
   const groups = groupsData[group];
 
   maintitle.innerHTML =
   `${groups.display} – അധ്യായം ${subgroup} – Part ${part}`;
-  // maintitle.innerHTML = groups.display + ' ' + subgroup;
+
   function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -157,7 +188,58 @@ function startQuiz(){
     return arr;
   }
 
+  function stopSpeaking(){
+    speechSynthesis.cancel();
+  }
+
+  function advance(){
+    if(current < total - 1){
+      current++;
+      renderQuestion(current);
+    } else {
+      showResults();
+    }
+  }
+
+  // Outline the correct option (used when nobody tapped an answer in time).
+  function revealCorrect(index){
+    const q = QUESTIONS[index];
+    const nodes = optionsWrap.querySelectorAll('button.opt');
+    nodes.forEach(node => {
+      if(node.dataset.key === q.Ans){
+        node.style.outline = '2px solid green';
+      }
+      node.disabled = true;
+    });
+  }
+
+  // Wait 2s, speak the correct answer, wait a beat, then auto-advance.
+  // mySeq guards against firing after the user has navigated away.
+  function runAnswerFlow(index, mySeq){
+    if(answerFlowStarted) return;
+    answerFlowStarted = true;
+    if(!autoPlayEnabled) return; // manual mode: don't auto-speak or auto-advance
+
+    setTimeout(() => {
+      if(mySeq !== sequenceId) return;
+      if(!userAnswers[index]) revealCorrect(index);
+      const q = QUESTIONS[index];
+      speak(`ശരിയായ ഉത്തരം: ${q[q.Ans]}`, () => {
+        if(mySeq !== sequenceId) return;
+        setTimeout(() => {
+          if(mySeq !== sequenceId) return;
+          advance();
+        }, 1000);
+      });
+    }, 2000);
+  }
+
   function renderQuestion(index){
+    stopSpeaking();
+    sequenceId++;
+    const mySeq = sequenceId;
+    answerFlowStarted = false;
+
     const q = QUESTIONS[index];
 
     qNumber.textContent = `Question ${index+1} / ${total}`;
@@ -185,6 +267,16 @@ function startQuiz(){
     prevBtn.disabled = index === 0;
     nextBtn.disabled = index === total - 1;
     resultBox.classList.remove('show');
+
+    // Auto-narrate the question + options, then hand off to the answer flow
+    // if the user hasn't already tapped an answer.
+    if(autoPlayEnabled && !userAnswers[index]){
+      const texts = [q.Question, ...keys.map(k => q[k])];
+      speakSequence(texts, 0, () => {
+        if(mySeq !== sequenceId) return;
+        runAnswerFlow(index, mySeq);
+      });
+    }
   }
 
   function onOptionClick(e){
@@ -197,11 +289,17 @@ function startQuiz(){
       score += 1;
     }
 
+    stopSpeaking();
     applyFeedback(current);
 
     if(current < total -1){
       nextBtn.disabled = false;
-    } else {
+    }
+
+    const mySeq = sequenceId;
+    if(autoPlayEnabled){
+      runAnswerFlow(current, mySeq);
+    } else if(current === total - 1){
       showResults();
     }
   }
@@ -221,23 +319,36 @@ function startQuiz(){
     });
   }
 
-  prevBtn.onclick = ()=>{ if(current>0){ current--; renderQuestion(current);} };
-  nextBtn.onclick = ()=>{ if(current<total-1){ current++; renderQuestion(current);} };
-  showScoreBtn.onclick = showResults;
+  prevBtn.onclick = ()=>{ if(current>0){ stopSpeaking(); current--; renderQuestion(current);} };
+  nextBtn.onclick = ()=>{ if(current<total-1){ stopSpeaking(); current++; renderQuestion(current);} };
+  showScoreBtn.onclick = ()=>{ stopSpeaking(); showResults(); };
+
+  autoPlayBtn.onclick = () => {
+    autoPlayEnabled = !autoPlayEnabled;
+    autoPlayBtn.textContent = autoPlayEnabled ? '🔊 Auto Play: On' : '🔇 Auto Play: Off';
+    autoPlayBtn.classList.toggle('active', autoPlayEnabled);
+    if(!autoPlayEnabled){
+      stopSpeaking();
+    } else {
+      renderQuestion(current); // restart narration for the current question
+    }
+  };
 
   function showResults(){
+    stopSpeaking();
     progressBar.style.width = '100%';
     scoreText.textContent = `You scored ${score} / ${total}`;
     resultBox.classList.add('show');
   }
 
   restartBtn.onclick = ()=>{
+    stopSpeaking();
     current=0; score=0; userAnswers.fill(null);
     nextBtn.disabled=true;
     renderQuestion(0);
   };
 
-  reviewBtn.onclick = ()=>{ current=0; renderQuestion(0); };
+  reviewBtn.onclick = ()=>{ stopSpeaking(); current=0; renderQuestion(0); };
 
   renderQuestion(0);
 }

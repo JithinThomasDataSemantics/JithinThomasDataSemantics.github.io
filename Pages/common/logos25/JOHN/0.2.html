@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>യോഹന്നാൻ 9–12 · Quiz Recall (ഭാഗം 3/3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#0f1826;
+    --deep-dark:#0a121d;
+    --water:#e6edef;
+    --water-soft:#f2f7f8;
+    --water-dim:#cddbe0;
+    --teal:#276e6e;
+    --teal-deep:#194848;
+    --gold:#c9a227;
+    --gold-light:#e8c85a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 520px at 90% -12%, rgba(39,110,110,.15), transparent 60%),
+      radial-gradient(ellipse 700px 460px at 0% 4%, rgba(201,162,39,.10), transparent 55%),
+      var(--water);
+    color:var(--deep-dark);
+    font-family:'Noto Sans Malayalam','Fraunces',serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 90px;}
+
+  .partbadge{
+    display:inline-block; background:var(--gold); color:var(--deep-dark);
+    font-family:'Fraunces',serif; font-weight:800; font-size:12.5px;
+    padding:5px 13px; border-radius:999px; margin-bottom:14px; letter-spacing:.03em;
+  }
+
+  /* ---------- HERO: light shining, water rippling ---------- */
+  .hero{
+    position:relative;
+    padding:40px 30px 34px;
+    border-radius:18px;
+    background:linear-gradient(165deg, var(--teal) 0%, var(--deep) 65%, var(--deep-dark) 100%);
+    color:var(--water-soft);
+    overflow:hidden;
+    box-shadow:0 18px 40px -18px rgba(0,0,0,.55);
+  }
+  .ripple-wrap{position:absolute; right:10px; top:-10px; width:180px; height:180px; z-index:0;}
+  .ripple{
+    position:absolute; border-radius:50%; border:1.5px solid rgba(232,200,90,.35);
+    left:50%; top:50%; transform:translate(-50%,-50%);
+    animation:ripple 3.6s ease-out infinite;
+  }
+  .ripple:nth-child(2){animation-delay:1.2s;}
+  .ripple:nth-child(3){animation-delay:2.4s;}
+  @keyframes ripple{
+    0%{width:16px;height:16px; opacity:.9;}
+    100%{width:170px;height:170px; opacity:0;}
+  }
+  .lightdot{
+    position:absolute; left:50%; top:50%; width:10px;height:10px; border-radius:50%;
+    background:radial-gradient(circle, var(--gold-light), var(--gold));
+    box-shadow:0 0 16px 4px rgba(232,200,90,.6);
+    transform:translate(-50%,-50%); z-index:1;
+  }
+  .eyebrow{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    letter-spacing:.04em; font-size:13px; color:var(--gold-light);
+    text-transform:uppercase; margin:0 0 6px; position:relative; z-index:1;
+  }
+  h1.title{
+    margin:0; font-family:'Noto Serif Malayalam',serif;
+    font-weight:700; font-size:clamp(28px,5vw,42px); line-height:1.32;
+    position:relative; z-index:1; max-width:80%;
+  }
+  .subtitle{
+    margin:10px 0 0; max-width:56ch; color:var(--water-dim);
+    font-size:15.5px; line-height:1.65; position:relative; z-index:1;
+  }
+  .hero-stats{display:flex; gap:22px; margin-top:24px; flex-wrap:wrap; position:relative; z-index:1;}
+  .stat{font-family:'Fraunces',serif;}
+  .stat b{display:block; font-size:24px; font-weight:800; color:var(--gold-light);}
+  .stat span{font-size:12px; color:var(--water-dim); letter-spacing:.02em;}
+
+  /* ---------- MODE BAR ---------- */
+  .modebar{display:flex; gap:10px; margin:22px 0 18px; flex-wrap:wrap;}
+  .modebtn{
+    border:1.5px solid var(--teal); background:var(--water-soft);
+    color:var(--deep-dark); font-family:'Noto Sans Malayalam',sans-serif;
+    font-size:14px; font-weight:600; padding:9px 16px; border-radius:999px;
+    cursor:pointer; transition:.15s ease; display:flex; align-items:center; gap:7px;
+  }
+  .modebtn:hover{background:var(--gold-light); border-color:var(--gold);}
+  .modebtn.active{background:var(--teal-deep); color:var(--water-soft); border-color:var(--deep-dark);}
+
+  /* ---------- CHAPTER TABS (droplets) ---------- */
+  .tabs{display:flex; gap:10px; overflow-x:auto; padding:4px 2px 14px;}
+  .drop-tab{
+    flex:0 0 auto; width:52px;height:52px;border-radius:50% 50% 50% 4px;
+    transform:rotate(45deg);
+    background:radial-gradient(circle at 35% 65%, var(--gold-light), var(--teal) 65%);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    border:2px solid transparent; transition:.15s ease;
+    box-shadow:0 4px 10px -4px rgba(0,0,0,.4);
+  }
+  .drop-tab span{transform:rotate(-45deg); color:var(--deep-dark); font-family:'Fraunces',serif; font-weight:800; font-size:19px;}
+  .drop-tab:hover{transform:rotate(45deg) translateY(-2px);}
+  .drop-tab.active{border-color:var(--teal-deep); box-shadow:0 0 0 4px rgba(39,110,110,.18), 0 6px 14px -4px rgba(0,0,0,.4);}
+
+  /* ---------- CHAPTER PANEL ---------- */
+  .panel{
+    background:var(--water-soft);
+    border:1px solid var(--water-dim);
+    border-radius:16px; padding:26px 24px 22px;
+    box-shadow:0 10px 26px -20px rgba(0,0,0,.4);
+  }
+  .panel-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap;}
+  .panel-head h2{font-family:'Noto Serif Malayalam',serif; font-size:22px; margin:0; color:var(--teal-deep);}
+  .panel-head .num{font-family:'Fraunces',serif; font-style:italic; color:var(--gold); font-size:15px;}
+
+  details.sec{border-top:1px dashed var(--water-dim); padding:14px 0;}
+  details.sec:last-of-type{border-bottom:1px dashed var(--water-dim);}
+  details.sec summary{
+    cursor:pointer; list-style:none; font-family:'Noto Serif Malayalam',serif;
+    font-weight:600; font-size:16.5px; color:var(--deep-dark);
+    display:flex; align-items:center; gap:10px;
+  }
+  details.sec summary::-webkit-details-marker{display:none;}
+  details.sec summary::before{
+    content:"+"; font-family:'Fraunces',serif; font-weight:700; color:var(--teal);
+    width:20px; text-align:center; flex:0 0 auto; font-size:18px;
+  }
+  details.sec[open] summary::before{content:"–";}
+  details.sec ul{margin:12px 0 0; padding-left:0; list-style:none;}
+  details.sec li{position:relative; padding:5px 0 5px 20px; font-size:14.5px; line-height:1.75; color:#182028;}
+  details.sec li::before{content:"·"; position:absolute; left:2px; top:3px; color:var(--gold); font-size:22px; line-height:1;}
+
+  /* ---------- MEMORY RIPPLES ---------- */
+  .chain-block{margin-top:18px; padding-top:16px; border-top:2px solid var(--water-dim);}
+  .chain-block-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap;}
+  .chain-block-head h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--teal-deep); margin:0;
+  }
+  .quizbtn{
+    border:1px solid var(--teal-deep); background:transparent; color:var(--teal-deep);
+    font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:999px; cursor:pointer;
+    font-family:'Noto Sans Malayalam',sans-serif;
+  }
+  .quizbtn.on{background:var(--teal-deep); color:var(--water-soft);}
+  .chain-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 4px;}
+  .ripple-link{
+    background:linear-gradient(160deg, var(--water), var(--water-dim));
+    border:1.5px solid var(--teal); border-radius:999px;
+    padding:8px 14px; font-size:13.5px; font-weight:500; color:var(--deep-dark);
+    white-space:nowrap; position:relative; transition:.15s ease;
+  }
+  .ripple-link.hidden{
+    color:transparent; background:repeating-linear-gradient(135deg, var(--water-dim), var(--water-dim) 4px, var(--water) 4px, var(--water) 8px);
+    border-style:dashed; cursor:pointer;
+  }
+  .ripple-link.hidden::after{
+    content:"?"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--teal-deep); font-family:'Fraunces',serif; font-weight:700;
+  }
+  .ripple-link.revealed{background:linear-gradient(160deg, var(--gold-light), var(--gold)); border-color:var(--teal-deep); color:var(--deep-dark); font-weight:700;}
+  .chain-arrow{color:var(--gold); font-size:13px; margin:0 -2px;}
+
+  /* ---------- FACTS GRID ---------- */
+  .factgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px;}
+  .factcard{background:var(--water-soft); border:1px solid var(--water-dim); border-radius:12px; padding:14px 16px;}
+  .factcard .n{font-family:'Fraunces',serif; font-weight:800; font-size:26px; color:var(--teal-deep);}
+  .factcard .l{font-size:13px; color:var(--teal); margin-top:2px; line-height:1.5;}
+  .factcard .c{font-size:11px; color:var(--gold); font-weight:700; margin-top:6px; letter-spacing:.03em;}
+
+  /* ---------- SIGNS STRIP (John-specific) ---------- */
+  .signs{margin-top:22px; padding-top:16px; border-top:2px solid var(--water-dim);}
+  .signs h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--teal-deep); margin:0 0 12px;
+  }
+  .signs-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .sign-card{
+    flex:1 1 220px; background:var(--water); border:1px solid var(--water-dim); border-radius:12px;
+    padding:12px 14px; font-size:13px; color:var(--deep-dark); line-height:1.6;
+  }
+  .sign-card b{display:block; font-family:'Noto Serif Malayalam',serif; color:var(--teal-deep); font-size:14.5px; margin-bottom:3px;}
+
+  /* ---------- FLASHCARD ---------- */
+  .fc-wrap{display:flex; flex-direction:column; align-items:center; gap:18px;}
+  .fc-progress{font-size:13px; color:var(--teal-deep); font-family:'Fraunces',serif; font-style:italic;}
+  .flashcard{width:100%; max-width:520px; min-height:220px; perspective:1400px; cursor:pointer;}
+  .flashcard-inner{position:relative; width:100%; height:100%; min-height:220px; transition:transform .5s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;}
+  .flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+  .fc-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; padding:26px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:10px; box-shadow:0 14px 30px -16px rgba(0,0,0,.4);}
+  .fc-front{background:var(--teal-deep); color:var(--water-soft); border:2px solid var(--deep-dark);}
+  .fc-back{background:var(--water-soft); color:var(--deep-dark); border:2px solid var(--gold); transform:rotateY(180deg);}
+  .fc-tag{font-family:'Fraunces',serif; font-style:italic; font-size:12px; letter-spacing:.05em; text-transform:uppercase; opacity:.85;}
+  .fc-front .fc-text{font-family:'Noto Serif Malayalam',serif; font-size:20px; font-weight:600; line-height:1.6;}
+  .fc-back .fc-text{font-family:'Noto Sans Malayalam',sans-serif; font-size:15.5px; line-height:1.8;}
+  .fc-hint{font-size:12px; opacity:.7;}
+  .fc-controls{display:flex; gap:12px;}
+  .fc-controls button{font-family:'Noto Sans Malayalam',sans-serif; font-weight:600; font-size:13.5px; padding:10px 20px; border-radius:999px; border:1.5px solid var(--teal); background:var(--water-soft); cursor:pointer;}
+  .fc-controls button.primary{background:var(--teal-deep); color:var(--water-soft); border-color:var(--deep-dark);}
+
+  footer.note{text-align:center; margin-top:26px; font-size:12px; color:var(--teal-deep); font-style:italic; font-family:'Fraunces',serif;}
+
+  @media (max-width:520px){
+    .hero{padding:28px 18px;}
+    .panel{padding:20px 16px;}
+    .ripple-wrap{width:120px;height:120px;}
+    h1.title{max-width:100%;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="ripple-wrap">
+      <div class="ripple"></div><div class="ripple"></div><div class="ripple"></div>
+      <div class="lightdot"></div>
+    </div>
+    <span class="partbadge">ഭാഗം 3 / 3 · അധ്യായം 9–12 · സമാപനം</span><br>
+    <p class="eyebrow">Logos Quiz &middot; Quick Recall</p>
+    <h1 class="title">യോഹന്നാൻ — കാഴ്ച, ഇടയൻ, ഉയിർപ്പ്, മഹത്വീകരണം</h1>
+    <p class="subtitle">ജന്മനാ അന്ധന് കാഴ്ച; “ഞാനാണ് നല്ല ഇടയൻ”; ലാസറിന്റെ ഉയിർപ്പ്; രാജകീയപ്രവേശനവും ഗോതമ്പുമണിയുടെ ഉപമയും. 4 അധ്യായങ്ങൾ ഒറ്റനോട്ടത്തിൽ — ഓർമ്മ അലകൾ ടാപ്പ് ചെയ്ത് സ്വയം പരീക്ഷിക്കൂ.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>4</b><span>അധ്യായങ്ങൾ</span></div>
+      <div class="stat"><b>18</b><span>വിഭാഗങ്ങൾ</span></div>
+      <div class="stat"><b>36</b><span>ഓർമ്മ അലകൾ</span></div>
+    </div>
+  </div>
+
+  <div class="modebar">
+    <button class="modebtn active" data-mode="read">📖 വായന മോഡ്</button>
+    <button class="modebtn" data-mode="facts">🔢 പ്രധാന അക്കങ്ങൾ</button>
+    <button class="modebtn" data-mode="flash">🃏 ഫ്ലാഷ്കാർഡ് പരിശോധന</button>
+  </div>
+
+  <div id="view-read">
+    <div class="tabs" id="tabs"></div>
+    <div class="panel" id="panel"></div>
+  </div>
+
+  <div id="view-facts" style="display:none;">
+    <div class="panel">
+      <div class="panel-head"><h2>അക്കങ്ങളും പേരുകളും — വേഗ ഓർമ്മ</h2></div>
+      <div class="factgrid" id="factgrid"></div>
+      <div class="signs">
+        <h3>അടയാളങ്ങളും പ്രഖ്യാപനങ്ങളും</h3>
+        <div class="signs-row">
+          <div class="sign-card"><b>ജന്മനാ അന്ധന് കാഴ്ച</b>ചെളി + സീലോഹാ കുളം — അധ്യായം 9</div>
+          <div class="sign-card"><b>“ഞാനാണ്” പ്രഖ്യാപനങ്ങൾ</b>നല്ല ഇടയൻ (10) · പുനരുത്ഥാനവും ജീവനും (11)</div>
+          <div class="sign-card"><b>ലാസറിന്റെ ഉയിർപ്പ്</b>അവസാനത്തെയും ഏറ്റവും വലിയതുമായ അടയാളം — അധ്യായം 11</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-flash" style="display:none;">
+    <div class="panel">
+      <div class="fc-wrap">
+        <div class="fc-progress" id="fcProgress">1 / 36</div>
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-tag" id="fcChapTag">അധ്യായം 9</div>
+              <div class="fc-text" id="fcFront"></div>
+              <div class="fc-hint">ടാപ്പ് ചെയ്ത് ഉത്തരം കാണുക →</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-tag">വിശദീകരണം</div>
+              <div class="fc-text" id="fcBack"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button id="fcShuffle">🔀 ഷഫിൾ</button>
+          <button id="fcPrev">← മുമ്പത്തേത്</button>
+          <button class="primary" id="fcNext">അടുത്തത് →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="note">"ഞാനാണ് പുനരുത്ഥാനവും ജീവനും" — യോഹന്നാൻ 11:25</footer>
+</div>
+
+<script>
+const DATA = [
+{num:9, sections:[
+  {h:"അന്ധനെ സുഖപ്പെടുത്തുന്നു", pts:[
+    "ജന്മനാ അന്ധനായ ഒരാളെ യേശു കണ്ടു; ശിഷ്യർ അവന്റെ അന്ധതയ്ക്ക് ആരുടെ പാപമാണെന്ന് ചോദിച്ചു.",
+    "യേശു അവന്റെ പാപമോ മാതാപിതാക്കളുടെ പാപമോ കാരണമല്ല, ദൈവത്തിന്റെ പ്രവൃത്തികൾ അവനിൽ പ്രകടമാകേണ്ടതിനാണെന്ന് പറഞ്ഞു.",
+    "യേശു ചെളിയുണ്ടാക്കി കണ്ണുകളിൽ പൂശി സീലോഹാ കുളത്തിൽ കഴുകാൻ പറഞ്ഞു; അവൻ കഴുകി കാഴ്ചയോടെ തിരിച്ചുവന്നു.",
+    "“സീലോഹാ” എന്നതിന് “അയയ്ക്കപ്പെട്ടവൻ” എന്നർത്ഥം."]},
+  {h:"ഫരിസേയരുടെ ചോദ്യം", pts:[
+    "അവൻ സംഭവിച്ചത് യേശു ചെളി പുരട്ടി സീലോഹായിൽ കഴുകാൻ പറഞ്ഞതും അതിലൂടെ കാഴ്ച ലഭിച്ചതുമാണെന്ന് പറഞ്ഞു.",
+    "സംഭവം സാബത്തിൽ നടന്നതിനാൽ ഫരിസേയരിൽ ഭിന്നതയുണ്ടായി; ചിലർ യേശു ദൈവത്തിൽനിന്നുള്ളവനല്ലെന്ന് പറഞ്ഞു, മറ്റുചിലർ പാപിയായ ഒരാൾക്ക് ഇത്തരം അടയാളങ്ങൾ ചെയ്യാനാകുമോ എന്നു ചോദിച്ചു.",
+    "മുമ്പ് അന്ധനായിരുന്നവൻ യേശുവിനെ ഒരു പ്രവാചകൻ എന്നു പറഞ്ഞു."]},
+  {h:"മാതാപിതാക്കളുടെ സാക്ഷ്യം", pts:[
+    "യഹൂദർ മാതാപിതാക്കളെ വിളിച്ചു ചോദിച്ചു; മകൻ ജന്മനാ അന്ധനാണെന്ന് അവർ സമ്മതിച്ചു, ഇപ്പോൾ എങ്ങനെ കാണുന്നു എന്നറിയില്ലെന്ന് പറഞ്ഞു.",
+    "യേശുവിനെ ക്രിസ്തു എന്നു പരസ്യമായി ഏറ്റുപറയുന്നവരെ സിനഗോഗിൽനിന്ന് പുറത്താക്കുമെന്ന് തീരുമാനിച്ചതിനാൽ അവർ ഭയപ്പെട്ടു."]},
+  {h:"അന്ധന്റെ ധൈര്യമുള്ള സാക്ഷ്യം", pts:[
+    "വീണ്ടും ചോദ്യം ചെയ്തപ്പോൾ “ഞാൻ അന്ധനായിരുന്നു; ഇപ്പോൾ ഞാൻ കാണുന്നു” എന്നത് തനിക്ക് അറിയാമെന്ന് പറഞ്ഞു.",
+    "ജന്മനാ അന്ധന്റെ കണ്ണ് തുറന്നതായി ലോകാരംഭം മുതൽ കേട്ടിട്ടില്ലെന്നും യേശു ദൈവത്തിൽനിന്നുള്ളവനല്ലെങ്കിൽ ഒന്നും ചെയ്യാനാകില്ലെന്നും പറഞ്ഞു; അവർ അവനെ പുറത്താക്കി."]},
+  {h:"ആത്മീയാന്ധത", pts:[
+    "യേശു അവനെ കണ്ടു മനുഷ്യപുത്രനിൽ വിശ്വസിക്കുന്നുവോ എന്നു ചോദിച്ചു; യേശു തന്നെയാണ് അവൻ എന്നു മനസ്സിലാക്കിയപ്പോൾ “കർത്താവേ, ഞാൻ വിശ്വസിക്കുന്നു” എന്നു പറഞ്ഞു പ്രണമിച്ചു.",
+    "കാഴ്ചയില്ലാത്തവർ കാണുകയും കാഴ്ചയുള്ളവർ അന്ധരാകുകയും ചെയ്യേണ്ടതിന് ന്യായവിധിക്കായി താൻ വന്നതായി യേശു പറഞ്ഞു; “ഞങ്ങൾ കാണുന്നു” എന്നു പറയുന്ന ഫരിസേയരിൽ പാപം നിലനിൽക്കുന്നു എന്നു വ്യക്തമാക്കി."]}
+], chain:["ജന്മനാ അന്ധൻ","ചെളി","സീലോഹാ","കാഴ്ച ലഭിച്ചു","ഫരിസേയരുടെ ചോദ്യം","മാതാപിതാക്കളുടെ ഭയം","ധൈര്യമുള്ള സാക്ഷ്യം","പുറത്താക്കൽ","“ഞാൻ വിശ്വസിക്കുന്നു”"]},
+
+{num:10, sections:[
+  {h:"ആട്ടിൻകൂട്ടത്തിന്റെ ഉപമ", pts:[
+    "ആട്ടിൻതൊഴുത്തിലേക്ക് വാതിലിലൂടെയല്ലാതെ കടക്കുന്നവൻ കള്ളനും കവർച്ചക്കാരനുമാണ്; വാതിലിലൂടെ പ്രവേശിക്കുന്നവൻ ഇടയനാണ്.",
+    "ആടുകൾ ഇടയന്റെ സ്വരം കേൾക്കുകയും അവൻ അവയെ പേരുചൊല്ലി വിളിക്കുകയും ചെയ്യുന്നു; അപരിചിതന്റെ സ്വരം അവ അറിയാത്തതിനാൽ അവനെ അനുഗമിക്കുകയില്ല."]},
+  {h:"നല്ല ഇടയൻ", pts:[
+    "“ഞാനാണ് ആടുകളുടെ വാതിൽ” എന്നു യേശു പറഞ്ഞു; തനിലൂടെ പ്രവേശിക്കുന്നവൻ രക്ഷപ്പെടുകയും മേച്ചിൽസ്ഥലം കണ്ടെത്തുകയും ചെയ്യും.",
+    "കള്ളൻ മോഷ്ടിക്കാനും കൊല്ലാനും നശിപ്പിക്കാനും വരുന്നു; യേശു സമൃദ്ധമായ ജീവൻ നൽകാനാണ് വന്നത്.",
+    "“ഞാനാണ് നല്ല ഇടയൻ”; നല്ല ഇടയൻ ആടുകൾക്കുവേണ്ടി ജീവൻ അർപ്പിക്കുന്നു; കൂലിക്കാരൻ ചെന്നായെ കണ്ടാൽ ആടുകളെ ഉപേക്ഷിച്ച് ഓടുന്നു.",
+    "യേശു തന്റെ ആടുകളെ അറിയുന്നു; ഈ തൊഴുത്തിൽപ്പെടാത്ത മറ്റു ആടുകളെയും കൊണ്ടുവരേണ്ടതുണ്ടെന്നും ഒരാട്ടിൻപറ്റവും ഒരിടയനും ആകുമെന്നും പറഞ്ഞു.",
+    "ജീവൻ സ്വമനസ്സാ സമർപ്പിക്കാനും തിരികെ എടുക്കാനും തനിക്ക് അധികാരമുണ്ടെന്ന് വ്യക്തമാക്കി."]},
+  {h:"യേശു ദൈവപുത്രൻ", pts:[
+    "പ്രതിഷ്ഠയുടെ തിരുനാളിൽ യഹൂദർ യേശുവിനോട് താൻ ക്രിസ്തുവാണോ എന്ന് വ്യക്തമായി പറയാൻ ആവശ്യപ്പെട്ടു; പിതാവിന്റെ നാമത്തിൽ ചെയ്യുന്ന പ്രവൃത്തികളാണ് തനിക്ക് സാക്ഷ്യം നൽകുന്നതെന്ന് പറഞ്ഞു.",
+    "തന്റെ ആടുകൾ തന്റെ സ്വരം കേൾക്കുന്നു; അവയ്ക്ക് നിത്യജീവൻ നൽകുന്നു; ആരും അവയെ തന്റെ കൈയിൽനിന്നും പിതാവിന്റെ കൈയിൽനിന്നും പിടിച്ചെടുക്കുകയില്ല.",
+    "“ഞാനും പിതാവും ഒന്നാണ്” എന്നു പറഞ്ഞു; യഹൂദർ ദൈവദൂഷണം ആരോപിച്ച് കല്ലെടുക്കുകയും അവനെ ബന്ധിക്കാൻ ശ്രമിക്കുകയും ചെയ്തു.",
+    "പിന്നീട് ജോർദാന്റെ മറുകരയിൽ യോഹന്നാൻ ആദ്യം സ്നാനം നൽകിയ സ്ഥലത്തേക്ക് പോയി; അവിടെ പലരും അവനിൽ വിശ്വസിച്ചു."]}
+], chain:["തൊഴുത്ത്","ഇടയന്റെ സ്വരം","ആടുകളുടെ വാതിൽ","നല്ല ഇടയൻ","ജീവൻ അർപ്പിക്കുന്നു","മറ്റു ആടുകൾ","നിത്യജീവൻ","“ഞാനും പിതാവും ഒന്നാണ്”"]},
+
+{num:11, sections:[
+  {h:"ലാസറിന്റെ മരണം", pts:[
+    "ബഥാനിയായിലെ ലാസർ രോഗബാധിതനായി; മർത്തായും മറിയവും “അങ്ങു സ്നേഹിക്കുന്നവൻ രോഗിയായിരിക്കുന്നു” എന്ന് അറിയിച്ചു.",
+    "രോഗം ദൈവത്തിന്റെ മഹത്വത്തിനും ദൈവപുത്രന്റെ മഹത്വത്തിനും വേണ്ടിയാണെന്ന് യേശു പറഞ്ഞു; സ്നേഹിച്ചിരുന്നിട്ടും യേശു രണ്ടു ദിവസം കൂടി അവിടെയിരുന്നു.",
+    "പിന്നീട് യൂദയായിലേക്ക് പോകാമെന്ന് പറഞ്ഞു; ലാസർ ഉറങ്ങുന്നു എന്നു പറഞ്ഞെങ്കിലും ശിഷ്യർ നിദ്രയെക്കുറിച്ചാണെന്ന് കരുതി — യേശു വ്യക്തമായി “ലാസർ മരിച്ചുപോയി” എന്നു പറഞ്ഞു.",
+    "തോമസ് “അവനോടൊപ്പം മരിക്കാൻ നമുക്കും പോകാം” എന്നു പറഞ്ഞു."]},
+  {h:"യേശു പുനരുത്ഥാനവും ജീവനും", pts:[
+    "ലാസർ സംസ്കരിക്കപ്പെട്ടിട്ട് നാലു ദിവസമായിരുന്നു; മർത്താ യേശുവിനെ സ്വീകരിച്ചു — “നീ ഇവിടെ ഉണ്ടായിരുന്നെങ്കിൽ എന്റെ സഹോദരൻ മരിക്കുമായിരുന്നില്ല” എന്നു പറഞ്ഞു.",
+    "യേശു “നിന്റെ സഹോദരൻ ഉയിർത്തെഴുന്നേൽക്കും” എന്നു പറഞ്ഞു; മർത്താ അന്ത്യദിനത്തിലെ പുനരുത്ഥാനത്തെപ്പറ്റി പറഞ്ഞു.",
+    "യേശു “ഞാനാണ് പുനരുത്ഥാനവും ജീവനും” എന്നു പ്രഖ്യാപിച്ചു; തന്നിൽ വിശ്വസിക്കുന്നവൻ മരിച്ചാലും ജീവിക്കും; മർത്താ യേശുവിനെ ദൈവപുത്രനായ ക്രിസ്തുവായി വിശ്വസിച്ചു."]},
+  {h:"യേശു കരയുന്നു", pts:[
+    "മറിയം യേശുവിന്റെ അടുത്തെത്തി കാൽക്കൽ വീണു; അവളും യഹൂദരും കരയുന്നത് കണ്ട യേശു നെടുവീർപ്പിട്ടു.",
+    "കല്ലറ എവിടെയെന്ന് ചോദിച്ചു; “യേശു കണ്ണീർ പൊഴിച്ചു”; യഹൂദർ അവൻ ലാസറിനെ എത്ര സ്നേഹിച്ചിരുന്നുവെന്ന് പറഞ്ഞു."]},
+  {h:"ലാസറിനെ ഉയിർപ്പിക്കുന്നു", pts:[
+    "ഗുഹയായ കല്ലറയുടെ വാതിലിലെ കല്ല് മാറ്റാൻ യേശു പറഞ്ഞു; നാലാം ദിവസമായതിനാൽ മർത്താ ദുർഗന്ധത്തെക്കുറിച്ച് പറഞ്ഞു.",
+    "വിശ്വസിച്ചാൽ ദൈവമഹത്വം കാണുമെന്ന് യേശു ഓർമ്മിപ്പിച്ചു; കല്ല് മാറ്റിയശേഷം പിതാവിനോട് നന്ദി പറഞ്ഞു.",
+    "“ലാസറേ, പുറത്തു വരുക” എന്നു വിളിച്ചപ്പോൾ ലാസർ പുറത്തുവന്നു; കെട്ടുകളഴിക്കുവാൻ യേശു പറഞ്ഞു."]},
+  {h:"യേശുവിനെ വധിക്കാൻ ആലോചന", pts:[
+    "ലാസറിന്റെ ഉയിർപ്പു കണ്ട പല യഹൂദരും യേശുവിൽ വിശ്വസിച്ചു; ചിലർ വിവരം ഫരിസേയരോട് അറിയിച്ചു.",
+    "പുരോഹിതപ്രമുഖരും ഫരിസേയരും ആലോചനാസംഘം വിളിച്ചു; യേശുവിനെ വിട്ടാൽ എല്ലാവരും വിശ്വസിക്കുകയും റോമാക്കാർ വിശുദ്ധസ്ഥലവും ജനവും നശിപ്പിക്കുകയും ചെയ്യുമെന്ന ഭയം ഉണ്ടായി.",
+    "പ്രധാനപുരോഹിതനായ കയ്യാഫാസ് ജനത്തിനുവേണ്ടി ഒരുവൻ മരിക്കുന്നത് യുക്തമാണെന്ന് പറഞ്ഞു; ഇത് യേശു ജനത്തിനുവേണ്ടി മരിക്കേണ്ടതിന്റെ പ്രവചനമായി രേഖപ്പെടുത്തുന്നു.",
+    "അന്നുമുതൽ അവനെ വധിക്കാൻ അവർ ആലോചിച്ചു; യേശു എഫ്രായിമിൽ ശിഷ്യരോടൊപ്പം താമസിച്ചു."]}
+], chain:["ലാസർ രോഗം","2 ദിവസം താമസം","4 ദിവസം കല്ലറയിൽ","“ഞാനാണ് പുനരുത്ഥാനവും ജീവനും”","യേശുവിന്റെ കണ്ണീർ","“ലാസറേ, പുറത്തു വരുക”","പലരുടെ വിശ്വാസം","കയ്യാഫാസ്","വധിക്കാനുള്ള ആലോചന"]},
+
+{num:12, sections:[
+  {h:"തൈലാഭിഷേകം", pts:[
+    "പെസഹായ്ക്ക് ആറു ദിവസം മുമ്പ് യേശു ബഥാനിയായിലെത്തി; മർത്താ പരിചരിച്ചു, ലാസർ യേശുവിനോടൊപ്പം ഭക്ഷണത്തിനിരുന്നു.",
+    "മറിയം വിലയേറിയ നാർദിൻ സുഗന്ധതൈലം യേശുവിന്റെ പാദങ്ങളിൽ പൂശി തലമുടികൊണ്ട് തുടച്ചു; വീടു പരിമളത്തോടെ നിറഞ്ഞു.",
+    "യൂദാസ് സ്‌കറിയോത്താ അത് മുന്നൂറു ദനാറയ്ക്ക് വിറ്റ് ദരിദ്രർക്കു കൊടുക്കാത്തതിനെ ചോദ്യം ചെയ്തു; യൂദാസ് കള്ളനായിരുന്നെന്നും പണസഞ്ചിയിൽനിന്ന് എടുത്തിരുന്നെന്നും പറയുന്നു.",
+    "യേശു മറിയത്തെ തടയരുതെന്നും അവൾ ഇത് തന്റെ ശവസംസ്‌കാരദിനത്തിനായി ചെയ്തതായി കരുതാമെന്നും പറഞ്ഞു.",
+    "ലാസറിനെ കാണാനും വലിയ ജനക്കൂട്ടം വന്നു; ലാസറിനെയും കൊല്ലാൻ പുരോഹിതപ്രമുഖർ ആലോചിച്ചു."]},
+  {h:"രാജകീയപ്രവേശനം", pts:[
+    "അടുത്ത ദിവസം വലിയ ജനക്കൂട്ടം ഈന്തപ്പനക്കൈകളുമായി യേശുവിനെ എതിരേറ്റു; “ഹോസാന! കര്‍ത്താവിന്റെ നാമത്തിൽ വരുന്നവനും ഇസ്രായേലിന്റെ രാജാവുമായവൻ വാഴ്ത്തപ്പെട്ടവൻ” എന്നു വിളിച്ചു.",
+    "യേശു കഴുതക്കുട്ടിയുടെ പുറത്തു കയറി; ലാസറിന്റെ ഉയിർപ്പിന്റെ സാക്ഷ്യം കാരണം ജനക്കൂട്ടം കൂടിയെത്തി.",
+    "ഫരിസേയർ “ലോകം അവന്റെ പിന്നാലെ പോയിക്കഴിഞ്ഞു” എന്നു പറഞ്ഞു."]},
+  {h:"ഗ്രീക്കുകാർ യേശുവിനെ തേടുന്നു", pts:[
+    "ചില ഗ്രീക്കുകാർ പീലിപ്പോസിനോട് യേശുവിനെ കാണണമെന്ന് പറഞ്ഞു; പീലിപ്പോസും അന്ത്രയോസും യേശുവിനെ അറിയിച്ചു.",
+    "മനുഷ്യപുത്രൻ മഹത്വപ്പെടാനുള്ള സമയം വന്നെന്ന് യേശു പറഞ്ഞു; ഗോതമ്പുമണി നിലത്തുവീണ് അഴിയുമ്പോൾ വളരെ ഫലം പുറപ്പെടുവിക്കും എന്ന ഉപമ പറഞ്ഞു.",
+    "തന്റെ ജീവനെ ഈ ലോകത്തിൽ സ്നേഹിക്കുന്നവൻ അത് നഷ്ടപ്പെടുത്തും; യേശുവിനെ ശുശ്രൂഷിക്കുന്നവൻ അവനെ അനുഗമിക്കണം."]},
+  {h:"മനുഷ്യപുത്രൻ ഉയർത്തപ്പെടണം", pts:[
+    "യേശുവിന്റെ ആത്മാവ് അസ്വസ്ഥമായിരുന്നെങ്കിലും ഈ മണിക്കൂറിനുവേണ്ടിയാണ് താൻ വന്നതെന്ന് പറഞ്ഞു; പിതാവിന്റെ നാമത്തെ മഹത്വപ്പെടുത്താൻ പ്രാർത്ഥിച്ചു.",
+    "സ്വർഗത്തിൽനിന്ന് “ഞാൻ മഹത്വപ്പെടുത്തിയിരിക്കുന്നു; ഇനിയും മഹത്വപ്പെടുത്തും” എന്ന സ്വരം ഉണ്ടായി.",
+    "യേശു ഭൂമിയിൽനിന്ന് ഉയർത്തപ്പെടുമ്പോൾ എല്ലാവരെയും തന്നിലേക്കാകർഷിക്കുമെന്ന് പറഞ്ഞു; ഏതു വിധത്തിലുള്ള മരണമാണ് വരാനിരിക്കുന്നതെന്ന് ഇതിലൂടെ സൂചിപ്പിച്ചു.",
+    "പ്രകാശമുള്ളപ്പോൾ പ്രകാശത്തിൽ വിശ്വസിച്ച് നടക്കണമെന്ന് ഉപദേശിച്ചു."]},
+  {h:"യഹൂദരുടെ അവിശ്വാസം", pts:[
+    "വളരെ അടയാളങ്ങൾ കണ്ടിട്ടും പലരും വിശ്വസിച്ചില്ല; ഏശയ്യായുടെ പ്രവചനങ്ങൾ ഇതുമായി ബന്ധപ്പെടുത്തി പറയുന്നു.",
+    "അധികാരികളിൽ പലരും വിശ്വസിച്ചെങ്കിലും ഫരിസേയരെ ഭയന്ന് അത് ഏറ്റുപറഞ്ഞില്ല; മനുഷ്യരുടെ പ്രശംസയെ ദൈവത്തിൽനിന്നുള്ള മഹത്വത്തേക്കാൾ അവർ ആഗ്രഹിച്ചു.",
+    "യേശുവിൽ വിശ്വസിക്കുന്നവൻ അവനെ അയച്ചവനിലും വിശ്വസിക്കുന്നു; യേശുവിനെ കാണുന്നവൻ പിതാവിനെ കാണുന്നു; വിശ്വസിക്കുന്നവർ അന്ധകാരത്തിൽ വസിക്കാതിരിക്കാനാണ് വെളിച്ചമായി വന്നത്.",
+    "അവന്റെ വചനത്തെ നിരസിക്കുന്നവനെ അന്ത്യദിനത്തിൽ അതേ വചനം വിധിക്കും; പിതാവാണ് യേശുവിന് എന്തു പറയണമെന്ന് കൽപിച്ചത് — അവിടുത്തെ കൽപന നിത്യജീവനാണ്."]}
+], chain:["ബഥാനിയ","മറിയത്തിന്റെ തൈലാഭിഷേകം","യൂദാസ്/300 ദനാർ","ലാസറിനെ കൊല്ലാനുള്ള ആലോചന","ഈന്തപ്പന/കഴുതക്കുട്ടി","ഗ്രീക്കുകാർ","ഗോതമ്പുമണി","മനുഷ്യപുത്രൻ ഉയർത്തപ്പെടും","പ്രകാശം","അവിശ്വാസം"]}
+];
+
+const FACTS = [
+  {n:"4", l:"ദിവസം ലാസർ കല്ലറയിൽ ആയിരുന്നു — “ഇപ്പോൾ ദുർഗന്ധം” എന്ന് മർത്താ", c:"അധ്യായം 11"},
+  {n:"2", l:"ദിവസം കൂടി യേശു താമസിച്ചിട്ടാണ് ബഥാനിയായിലേക്ക് പോയത്", c:"അധ്യായം 11"},
+  {n:"1", l:"ആട്ടിൻപറ്റവും 1 ഇടയനും ആകുമെന്ന് യേശു പറഞ്ഞു", c:"അധ്യായം 10"},
+  {n:"300", l:"ദനാറയ്ക്ക് തൈലം വിൽക്കാമായിരുന്നു എന്ന് യൂദാസ് പറഞ്ഞു", c:"അധ്യായം 12"},
+  {n:"6", l:"ദിവസം പെസഹായ്ക്കു മുമ്പ് യേശു ബഥാനിയായിലെത്തി", c:"അധ്യായം 12"},
+  {n:"1", l:"ഗോതമ്പുമണി നിലത്തുവീണ് അഴിയുമ്പോൾ വളരെ ഫലം പുറപ്പെടുവിക്കും", c:"അധ്യായം 12"}
+];
+
+let mode = "read";
+let activeChapter = 9;
+const quizState = {};
+
+const tabsEl = document.getElementById('tabs');
+const panelEl = document.getElementById('panel');
+
+function renderTabs(){
+  tabsEl.innerHTML = "";
+  DATA.forEach(ch=>{
+    const b = document.createElement('div');
+    b.className = 'drop-tab' + (ch.num===activeChapter ? ' active':'');
+    b.innerHTML = `<span>${ch.num}</span>`;
+    b.onclick = ()=>{ activeChapter = ch.num; renderTabs(); renderPanel(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function renderPanel(){
+  const ch = DATA.find(c=>c.num===activeChapter);
+  const quizOn = !!quizState[ch.num];
+  let html = `<div class="panel-head"><h2>യോഹന്നാൻ — അധ്യായം ${ch.num}</h2><span class="num">Ch. ${ch.num} (Part 3/3)</span></div>`;
+  ch.sections.forEach((s,i)=>{
+    html += `<details class="sec" ${i===0?'open':''}><summary>${s.h}</summary><ul>`;
+    s.pts.forEach(p=> html += `<li>${p}</li>`);
+    html += `</ul></details>`;
+  });
+  html += `<div class="chain-block">
+    <div class="chain-block-head">
+      <h3>ഓർമ്മിക്കാൻ — അലകൾ</h3>
+      <button class="quizbtn ${quizOn?'on':''}" id="quizToggle">${quizOn ? '✓ ക്വിസ് മോഡ് ഓണ്‍' : '🔒 ക്വിസ് മോഡ്'}</button>
+    </div>
+    <div class="chain-row" id="chainRow"></div>
+  </div>`;
+  panelEl.innerHTML = html;
+
+  const row = document.getElementById('chainRow');
+  ch.chain.forEach((item,i)=>{
+    if(i>0){
+      const arrow = document.createElement('span');
+      arrow.className = 'chain-arrow';
+      arrow.textContent = '→';
+      row.appendChild(arrow);
+    }
+    const link = document.createElement('span');
+    link.className = 'ripple-link' + (quizOn ? ' hidden' : '');
+    link.textContent = item;
+    if(quizOn){
+      link.onclick = ()=>{
+        link.classList.remove('hidden');
+        link.classList.add('revealed');
+        link.onclick = null;
+      };
+    }
+    row.appendChild(link);
+  });
+
+  document.getElementById('quizToggle').onclick = ()=>{
+    quizState[ch.num] = !quizState[ch.num];
+    renderPanel();
+  };
+}
+
+function renderFacts(){
+  const grid = document.getElementById('factgrid');
+  grid.innerHTML = "";
+  FACTS.forEach(f=>{
+    const d = document.createElement('div');
+    d.className = 'factcard';
+    d.innerHTML = `<div class="n">${f.n}</div><div class="l">${f.l}</div><div class="c">${f.c}</div>`;
+    grid.appendChild(d);
+  });
+}
+
+// ---------- Flashcards ----------
+let cardPool = [];
+DATA.forEach(ch=>{
+  ch.chain.forEach(item=>{
+    let back = "";
+    for(const s of ch.sections){
+      const key = item.split('/')[0].split(' ')[0].replace(/[“”]/g,'');
+      const found = s.pts.find(p=> p.includes(key));
+      if(found){ back = found; break; }
+    }
+    if(!back) back = ch.sections[0].pts[0];
+    cardPool.push({chap:ch.num, front:item, back:back});
+  });
+});
+let fcOrder = cardPool.map((_,i)=>i);
+let fcIndex = 0;
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function renderFlash(){
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  const idx = fcOrder[fcIndex];
+  const c = cardPool[idx];
+  document.getElementById('fcChapTag').textContent = 'അധ്യായം ' + c.chap;
+  document.getElementById('fcFront').textContent = c.front;
+  document.getElementById('fcBack').textContent = c.back;
+  document.getElementById('fcProgress').textContent = (fcIndex+1) + ' / ' + cardPool.length;
+}
+
+document.getElementById('flashcard').onclick = function(){
+  this.classList.toggle('flipped');
+};
+document.getElementById('fcNext').onclick = ()=>{
+  fcIndex = (fcIndex+1) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcPrev').onclick = ()=>{
+  fcIndex = (fcIndex-1+fcOrder.length) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcShuffle').onclick = ()=>{
+  fcOrder = shuffle(cardPool.map((_,i)=>i));
+  fcIndex = 0;
+  renderFlash();
+};
+
+document.querySelectorAll('.modebtn').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('.modebtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    document.getElementById('view-read').style.display = mode==='read' ? 'block':'none';
+    document.getElementById('view-facts').style.display = mode==='facts' ? 'block':'none';
+    document.getElementById('view-flash').style.display = mode==='flash' ? 'block':'none';
+    if(mode==='facts') renderFacts();
+    if(mode==='flash') renderFlash();
+  };
+});
+
+renderTabs();
+renderPanel();
+</script>
+</body>
+</html>

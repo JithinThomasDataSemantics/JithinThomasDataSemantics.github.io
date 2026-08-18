@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>സഭാപ്രസംഗകന്‍ 1–6 · Quiz Recall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ash:#262521;
+    --ash-deep:#1a1916;
+    --mist:#e4e1d6;
+    --mist-soft:#f1efe6;
+    --mist-dim:#d1ccbc;
+    --wind:#5b6b6f;
+    --wind-deep:#404d50;
+    --sun:#b98a3e;
+    --sun-light:#dbb469;
+    --ok:#4a6b52;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 88% -12%, rgba(185,138,62,.14), transparent 60%),
+      radial-gradient(ellipse 700px 460px at 0% 6%, rgba(91,107,111,.14), transparent 55%),
+      var(--mist);
+    color:var(--ash-deep);
+    font-family:'Noto Sans Malayalam','Fraunces',serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 90px;}
+
+  /* ---------- HERO: sun that hurries back to where it rises ---------- */
+  .hero{
+    position:relative;
+    padding:40px 30px 34px;
+    border-radius:18px;
+    background:linear-gradient(165deg, var(--wind) 0%, var(--wind-deep) 100%);
+    color:var(--mist-soft);
+    overflow:hidden;
+    box-shadow:0 18px 40px -18px rgba(0,0,0,.5);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; right:-60px; top:-60px; width:220px; height:220px;
+    border-radius:50%;
+    border:1.5px dashed rgba(219,180,105,.35);
+    animation:spin 22s linear infinite;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; right:-20px; top:-20px; width:140px; height:140px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 32%, var(--sun-light), var(--sun) 60%, transparent 75%);
+    opacity:.55; filter:blur(1px);
+    animation:spin 22s linear infinite reverse;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .sunmark{display:flex; align-items:center; gap:8px; margin-bottom:18px; position:relative; z-index:1;}
+  .sundisc{
+    width:20px;height:20px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--sun-light), var(--sun));
+    box-shadow:0 0 14px 2px rgba(185,138,62,.5);
+  }
+  .sunring{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(219,180,105,.5); margin-left:-25px;}
+  .eyebrow{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    letter-spacing:.04em; font-size:13px; color:var(--sun-light);
+    text-transform:uppercase; margin:0 0 6px; position:relative; z-index:1;
+  }
+  h1.title{
+    margin:0; font-family:'Noto Serif Malayalam',serif;
+    font-weight:700; font-size:clamp(28px,5vw,42px); line-height:1.3;
+    position:relative; z-index:1;
+  }
+  .subtitle{
+    margin:10px 0 0; max-width:57ch; color:var(--mist-dim);
+    font-size:15.5px; line-height:1.65; position:relative; z-index:1;
+  }
+  .hero-stats{display:flex; gap:22px; margin-top:24px; flex-wrap:wrap; position:relative; z-index:1;}
+  .stat{font-family:'Fraunces',serif;}
+  .stat b{display:block; font-size:24px; font-weight:800; color:var(--sun-light);}
+  .stat span{font-size:12px; color:var(--mist-dim); letter-spacing:.02em;}
+
+  /* ---------- MODE BAR ---------- */
+  .modebar{display:flex; gap:10px; margin:22px 0 18px; flex-wrap:wrap;}
+  .modebtn{
+    border:1.5px solid var(--wind); background:var(--mist-soft);
+    color:var(--ash-deep); font-family:'Noto Sans Malayalam',sans-serif;
+    font-size:14px; font-weight:600; padding:9px 16px; border-radius:999px;
+    cursor:pointer; transition:.15s ease; display:flex; align-items:center; gap:7px;
+  }
+  .modebtn:hover{background:var(--sun-light); border-color:var(--sun);}
+  .modebtn.active{background:var(--wind); color:var(--mist-soft); border-color:var(--wind-deep);}
+
+  /* ---------- CHAPTER TABS (suns) ---------- */
+  .tabs{display:flex; gap:10px; overflow-x:auto; padding:4px 2px 14px;}
+  .sun-tab{
+    flex:0 0 auto; width:52px;height:52px;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, var(--sun-light), var(--sun) 60%, #7a5a26 100%);
+    color:var(--ash-deep); font-family:'Fraunces',serif; font-weight:800; font-size:19px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    border:2px solid transparent; transition:.15s ease;
+    box-shadow:0 4px 10px -4px rgba(0,0,0,.4);
+  }
+  .sun-tab:hover{transform:translateY(-2px);}
+  .sun-tab.active{border-color:var(--wind); box-shadow:0 0 0 4px rgba(91,107,111,.18), 0 6px 14px -4px rgba(0,0,0,.4);}
+
+  /* ---------- CHAPTER PANEL ---------- */
+  .panel{
+    background:var(--mist-soft);
+    border:1px solid var(--mist-dim);
+    border-radius:16px; padding:26px 24px 22px;
+    box-shadow:0 10px 26px -20px rgba(0,0,0,.4);
+  }
+  .panel-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap;}
+  .panel-head h2{font-family:'Noto Serif Malayalam',serif; font-size:22px; margin:0; color:var(--wind-deep);}
+  .panel-head .num{font-family:'Fraunces',serif; font-style:italic; color:var(--sun); font-size:15px;}
+
+  details.sec{border-top:1px dashed var(--mist-dim); padding:14px 0;}
+  details.sec:last-of-type{border-bottom:1px dashed var(--mist-dim);}
+  details.sec summary{
+    cursor:pointer; list-style:none; font-family:'Noto Serif Malayalam',serif;
+    font-weight:600; font-size:16.5px; color:var(--ash-deep);
+    display:flex; align-items:center; gap:10px;
+  }
+  details.sec summary::-webkit-details-marker{display:none;}
+  details.sec summary::before{
+    content:"+"; font-family:'Fraunces',serif; font-weight:700; color:var(--wind);
+    width:20px; text-align:center; flex:0 0 auto; font-size:18px;
+  }
+  details.sec[open] summary::before{content:"–";}
+  details.sec ul{margin:12px 0 0; padding-left:0; list-style:none;}
+  details.sec li{position:relative; padding:5px 0 5px 20px; font-size:14.5px; line-height:1.75; color:#28251d;}
+  details.sec li::before{content:"·"; position:absolute; left:2px; top:3px; color:var(--sun); font-size:22px; line-height:1;}
+
+  /* ---------- MEMORY MIST-WISPS ---------- */
+  .chain-block{margin-top:18px; padding-top:16px; border-top:2px solid var(--mist-dim);}
+  .chain-block-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap;}
+  .chain-block-head h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--wind); margin:0;
+  }
+  .quizbtn{
+    border:1px solid var(--wind); background:transparent; color:var(--wind);
+    font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:999px; cursor:pointer;
+    font-family:'Noto Sans Malayalam',sans-serif;
+  }
+  .quizbtn.on{background:var(--wind); color:var(--mist-soft);}
+  .chain-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 4px;}
+  .wisp-link{
+    background:linear-gradient(160deg, var(--mist), var(--mist-dim));
+    border:1.5px solid var(--wind); border-radius:999px 999px 999px 4px;
+    padding:8px 14px; font-size:13.5px; font-weight:500; color:var(--ash-deep);
+    white-space:nowrap; position:relative; transition:.15s ease;
+  }
+  .wisp-link.hidden{
+    color:transparent; background:repeating-linear-gradient(135deg, var(--mist-dim), var(--mist-dim) 4px, var(--mist) 4px, var(--mist) 8px);
+    border-style:dashed; cursor:pointer;
+  }
+  .wisp-link.hidden::after{
+    content:"?"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--wind); font-family:'Fraunces',serif; font-weight:700;
+  }
+  .wisp-link.revealed{background:linear-gradient(160deg, var(--sun-light), var(--sun)); border-color:var(--wind); color:var(--ash-deep); font-weight:700;}
+  .chain-arrow{color:var(--sun); font-size:13px; margin:0 -2px;}
+
+  /* ---------- FACTS GRID ---------- */
+  .factgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px;}
+  .factcard{background:var(--mist-soft); border:1px solid var(--mist-dim); border-radius:12px; padding:14px 16px;}
+  .factcard .n{font-family:'Fraunces',serif; font-weight:800; font-size:26px; color:var(--wind-deep);}
+  .factcard .l{font-size:13px; color:var(--wind); margin-top:2px; line-height:1.5;}
+  .factcard .c{font-size:11px; color:var(--sun); font-weight:700; margin-top:6px; letter-spacing:.03em;}
+
+  /* ---------- TIMES WHEEL (Ecc-specific extra, ch.3) ---------- */
+  .wheel-block{margin-top:22px; padding-top:16px; border-top:2px solid var(--mist-dim);}
+  .wheel-block h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--wind); margin:0 0 12px;
+  }
+  .wheel-pairs{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px;}
+  .wheel-pair{
+    background:var(--mist); border:1px solid var(--mist-dim); border-radius:10px;
+    padding:9px 12px; font-size:13px; text-align:center; color:var(--ash-deep);
+  }
+  .wheel-pair b{color:var(--wind-deep); font-weight:700;}
+
+  /* ---------- FLASHCARD ---------- */
+  .fc-wrap{display:flex; flex-direction:column; align-items:center; gap:18px;}
+  .fc-progress{font-size:13px; color:var(--wind); font-family:'Fraunces',serif; font-style:italic;}
+  .flashcard{width:100%; max-width:520px; min-height:220px; perspective:1400px; cursor:pointer;}
+  .flashcard-inner{position:relative; width:100%; height:100%; min-height:220px; transition:transform .5s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;}
+  .flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+  .fc-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; padding:26px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:10px; box-shadow:0 14px 30px -16px rgba(0,0,0,.4);}
+  .fc-front{background:var(--wind); color:var(--mist-soft); border:2px solid var(--wind-deep);}
+  .fc-back{background:var(--mist-soft); color:var(--ash-deep); border:2px solid var(--sun); transform:rotateY(180deg);}
+  .fc-tag{font-family:'Fraunces',serif; font-style:italic; font-size:12px; letter-spacing:.05em; text-transform:uppercase; opacity:.85;}
+  .fc-front .fc-text{font-family:'Noto Serif Malayalam',serif; font-size:20px; font-weight:600; line-height:1.6;}
+  .fc-back .fc-text{font-family:'Noto Sans Malayalam',sans-serif; font-size:15.5px; line-height:1.8;}
+  .fc-hint{font-size:12px; opacity:.7;}
+  .fc-controls{display:flex; gap:12px;}
+  .fc-controls button{font-family:'Noto Sans Malayalam',sans-serif; font-weight:600; font-size:13.5px; padding:10px 20px; border-radius:999px; border:1.5px solid var(--wind); background:var(--mist-soft); cursor:pointer;}
+  .fc-controls button.primary{background:var(--wind); color:var(--mist-soft); border-color:var(--wind-deep);}
+
+  footer.note{text-align:center; margin-top:26px; font-size:12px; color:var(--wind); font-style:italic; font-family:'Fraunces',serif;}
+
+  @media (max-width:520px){
+    .hero{padding:28px 18px;}
+    .panel{padding:20px 16px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="sunmark">
+      <div class="sundisc"></div><div class="sunring"></div>
+    </div>
+    <p class="eyebrow">Logos Quiz &middot; Quick Recall</p>
+    <h1 class="title">സഭാപ്രസംഗകന്‍ 1–6 — സൂര്യനു കീഴേ ഒരു അന്വേഷണം</h1>
+    <p class="subtitle">"മിഥ്യകളില്‍ മിഥ്യ" — സൂര്യന്‍ ഉദിക്കുകയും അസ്തമിക്കുകയും വീണ്ടും ഉദിക്കാന്‍ ധൃതിപ്പെടുകയും ചെയ്യുന്നു. 6 അധ്യായങ്ങൾ ഒറ്റനോട്ടത്തിൽ — ഓർമ്മ മൂടല്‍മഞ്ഞ് ടാപ്പ് ചെയ്ത് സ്വയം പരീക്ഷിക്കൂ.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>6</b><span>അധ്യായങ്ങൾ</span></div>
+      <div class="stat"><b>13</b><span>വിഭാഗങ്ങൾ</span></div>
+      <div class="stat"><b>48</b><span>ഓർമ്മ മൂടല്‍മഞ്ഞ് കണങ്ങൾ</span></div>
+    </div>
+  </div>
+
+  <div class="modebar">
+    <button class="modebtn active" data-mode="read">📖 വായന മോഡ്</button>
+    <button class="modebtn" data-mode="facts">🔢 പ്രധാന അക്കങ്ങൾ</button>
+    <button class="modebtn" data-mode="flash">🃏 ഫ്ലാഷ്കാർഡ് പരിശോധന</button>
+  </div>
+
+  <div id="view-read">
+    <div class="tabs" id="tabs"></div>
+    <div class="panel" id="panel"></div>
+  </div>
+
+  <div id="view-facts" style="display:none;">
+    <div class="panel">
+      <div class="panel-head"><h2>അക്കങ്ങളും ജോഡികളും — വേഗ ഓർമ്മ</h2></div>
+      <div class="factgrid" id="factgrid"></div>
+      <div class="wheel-block">
+        <h3>ഓരോന്നിനുമുണ്ട് സമയം (3:1-8)</h3>
+        <div class="wheel-pairs" id="wheelPairs"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-flash" style="display:none;">
+    <div class="panel">
+      <div class="fc-wrap">
+        <div class="fc-progress" id="fcProgress">1 / 48</div>
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-tag" id="fcChapTag">അധ്യായം 1</div>
+              <div class="fc-text" id="fcFront"></div>
+              <div class="fc-hint">ടാപ്പ് ചെയ്ത് ഉത്തരം കാണുക →</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-tag">വിശദീകരണം</div>
+              <div class="fc-text" id="fcBack"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button id="fcShuffle">🔀 ഷഫിൾ</button>
+          <button id="fcPrev">← മുമ്പത്തേത്</button>
+          <button class="primary" id="fcNext">അടുത്തത് →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="note">"സൂര്യനു കീഴേ പുതുതായൊന്നുമില്ല" — സഭാപ്രസംഗകന്‍ 1:9</footer>
+</div>
+
+<script>
+const DATA = [
+{num:1, sections:[
+  {h:"മിഥ്യകളില്‍ മിഥ്യ", pts:[
+    "ജറുസലെമില്‍ രാജാവും ദാവീദിന്റെ പുത്രനുമായ സഭാപ്രസംഗകന്റെ വാക്കുകള്‍: “മിഥ്യകളില്‍ മിഥ്യ, സകലവും മിഥ്യ.”",
+    "തലമുറകള്‍ വരുന്നു, പോകുന്നു; ഭൂമി എന്നേക്കും നിലനില്‍ക്കുന്നു.",
+    "സൂര്യന്‍, കാറ്റ്, നദികള്‍ — എല്ലാം തുടര്‍ച്ചയായി ചുറ്റിക്കറങ്ങുന്നു; ഉണ്ടായതുതന്നെ വീണ്ടും ഉണ്ടാകുന്നു; സൂര്യനു കീഴേ പുതുതായൊന്നുമില്ല.",
+    "കഴിഞ്ഞതും വരാനിരിക്കുന്നതും ഓര്‍മിക്കപ്പെടുന്നില്ല."]},
+  {h:"ജ്ഞാനത്തിന്റെ വ്യര്‍ഥത", pts:[
+    "സഭാപ്രസംഗകന്‍ ജറുസലെമില്‍ ഇസ്രായേലിന്റെ രാജാവായിരുന്നു; ആകാശത്തിന്‍കീഴുള്ളതെല്ലാം ജ്ഞാനത്തോടെ ആരാഞ്ഞറിയാന്‍ ശ്രമിച്ചു.",
+    "സൂര്യനു കീഴേ നടക്കുന്ന പ്രവൃത്തികള്‍ എല്ലാം മിഥ്യയും പാഴ്‌വേലയുമായി കണ്ടു.",
+    "ജ്ഞാനം വര്‍ദ്ധിക്കുമ്പോള്‍ ദുഃഖവും അറിവ് വര്‍ദ്ധിക്കുമ്പോള്‍ വ്യസനവും വര്‍ദ്ധിക്കുന്നു."]}
+], chain:["മിഥ്യ","തലമുറകള്‍","സൂര്യന്‍/കാറ്റ്/നദികള്‍","പുതുതായൊന്നുമില്ല","ജറുസലെമിലെ രാജാവ്","ജ്ഞാനം","ദുഃഖം"]},
+
+{num:2, sections:[
+  {h:"സുഖഭോഗങ്ങള്‍ മിഥ്യ", pts:[
+    "സുഖഭോഗങ്ങള്‍ പരീക്ഷിച്ചു; ചിരിയും സുഖഭോഗങ്ങളും നിഷ്ഫലമെന്ന് കണ്ടു.",
+    "മാളികകള്‍, മുന്തിരിത്തോട്ടങ്ങള്‍, ഉദ്യാനങ്ങള്‍, ഉപവനങ്ങള്‍, കുളങ്ങള്‍ ഉണ്ടാക്കി; ദാസന്മാര്‍, ആടുമാടുകള്‍, സ്വര്‍ണം, വെള്ളി, ഗായകര്‍ എന്നിവ സമ്പാദിച്ചു.",
+    "കണ്ണുകള്‍ അഭിലഷിച്ചതൊന്നും നിഷേധിച്ചില്ല; എങ്കിലും എല്ലാം മിഥ്യയും പാഴ്‌വേലയുമായി കണ്ടു."]},
+  {h:"ജ്ഞാനവും ഭോഷത്തവും മിഥ്യ", pts:[
+    "ജ്ഞാനം ഭോഷത്തത്തെ പ്രകാശം അന്ധകാരത്തെപ്പോലെ അതിശയിക്കുന്നു; ജ്ഞാനിക്കു കാണാന്‍ കണ്ണുണ്ട്, ഭോഷന്‍ ഇരുട്ടില്‍ നടക്കുന്നു.",
+    "എങ്കിലും ഇരുവര്‍ക്കും ഗതി ഒന്നുതന്നെ; ജ്ഞാനിയും ഭോഷനും മരിക്കുന്നു — അതുകൊണ്ട് ജീവിതം വെറുത്തു."]},
+  {h:"അധ്വാനം വ്യര്‍ഥം", pts:[
+    "അധ്വാനത്തിന്റെ ഫലം പിന്‍ഗാമിക്കു വിട്ടുപോകുന്നു; അവന്‍ ജ്ഞാനിയോ ഭോഷനോ ആകുമോ അറിയില്ല.",
+    "തിന്നുകുടിച്ച് സ്വന്തം പ്രയത്‌നത്തില്‍ ആനന്ദിക്കുന്നത് ദൈവത്തിന്റെ ദാനമെന്ന് ഗ്രഹിച്ചു; ദൈവത്തില്‍നിന്ന് അകന്ന് ഭക്ഷിക്കാനോ ആനന്ദിക്കാനോ ആര്‍ക്കും കഴിയില്ല."]}
+], chain:["സുഖഭോഗം","മാളിക/തോട്ടം","ധനം","മിഥ്യ","ജ്ഞാനി/ഭോഷന്‍","മരണം","അധ്വാനം","പിന്‍ഗാമി","ആനന്ദം"]},
+
+{num:3, sections:[
+  {h:"ഓരോന്നിനുമുണ്ട് സമയം", pts:[
+    "എല്ലാറ്റിനും ഒരു സമയമുണ്ട്: ജനനം/മരണം, നടല്‍/പറിക്കല്‍, കൊല്ലല്‍/സൗഖ്യമാക്കല്‍, തകര്‍ക്കല്‍/പണിതുയര്‍ത്തല്‍.",
+    "കരയാന്‍, ചിരിക്കാന്‍, വിലപിക്കാന്‍, നൃത്തംചെയ്യാന്‍; സമ്പാദിക്കാന്‍, നഷ്ടപ്പെടുത്താന്‍, സൂക്ഷിക്കാന്‍, എറിഞ്ഞുകളയാന്‍ ഓരോ കാലമുണ്ട്.",
+    "സ്‌നേഹിക്കാനും ദ്വേഷിക്കാനും, യുദ്ധത്തിനും സമാധാനത്തിനും സമയം ഉണ്ട്.",
+    "ദൈവം സമസ്തവും അതതിന്റെ കാലത്ത് ഭംഗിയായി സൃഷ്ടിച്ചു; ദൈവത്തിന്റെ പ്രവൃത്തികള്‍ ആദ്യന്തം ഗ്രഹിക്കാന്‍ മനുഷ്യന് കഴിയില്ല.",
+    "ഭക്ഷണം, പാനം, അധ്വാനഫലം ആസ്വദിക്കല്‍ ദൈവത്തിന്റെ ദാനമാണ്."]},
+  {h:"എവിടെയും അനീതി", pts:[
+    "ന്യായപീഠത്തില്‍ നീതി പുലരേണ്ടിടത്തും തിന്മ കാണപ്പെട്ടു; ദൈവം നീതിമാനെയും ദുഷ്ടനെയും വിധിക്കും.",
+    "മനുഷ്യന്റെയും മൃഗത്തിന്റെയും ഗതി ഒന്നുതന്നെ; രണ്ടും ചാകുന്നു, പൊടിയിലേക്കു മടങ്ങുന്നു.",
+    "മനുഷ്യന് തന്റെ പ്രവൃത്തി ആസ്വദിക്കുന്നതിനെക്കാള്‍ മെച്ചമായി ഒന്നുമില്ല."]}
+], chain:["സമയം","ജനനം/മരണം","നടല്‍/പറിക്കല്‍","സ്‌നേഹം/ദ്വേഷം","യുദ്ധം/സമാധാനം","ദൈവത്തിന്റെ പ്രവൃത്തി","അനീതി","മനുഷ്യന്‍/മൃഗം","പൊടി"]},
+
+{num:4, sections:[
+  {h:"മർദനവും ഏകാന്തതയും", pts:[
+    "മർദിതരുടെ കണ്ണീരു കണ്ടു; അവരെ ആശ്വസിപ്പിക്കാന്‍ ആരുമില്ല.",
+    "ജീവിച്ചിരിക്കുന്നവരെക്കാള്‍ മരിച്ചവര്‍ ഭാഗ്യവാന്മാരെന്നും, ഇരുകൂട്ടരെയുംക്കാള്‍ ജനിച്ചിട്ടില്ലാത്തവര്‍ ഭാഗ്യവാന്മാരെന്നും വിചാരിച്ചു.",
+    "അധ്വാനവും വൈദഗ്ധ്യവും മനുഷ്യരുടെ പരസ്പരസ്പര്‍ധയുടെ ഫലമെന്ന് കണ്ടു; ഒരുപിടി സ്വസ്ഥത ഇരുകൈകളും നിറയെ അധ്വാനത്തെക്കാള്‍ ഉത്തമം.",
+    "പുത്രനോ സഹോദരനോ ഇല്ലാത്തവന് ധനം എത്രയായാലും മതിവരുന്നില്ല."]},
+  {h:"കൂട്ടായ്മയുടെ പ്രാധാന്യം", pts:[
+    "രണ്ടുപേര്‍ ഒരാളെക്കാള്‍ മെച്ചം; ഒരുവന്‍ വീണാല്‍ അപരന് താങ്ങാം; രണ്ടുപേര്‍ ഒരുമിച്ചു കിടന്നാല്‍ ചൂടുകിട്ടും.",
+    "ഒരാളെ കീഴ്‌പ്പെടുത്താന്‍ കഴിയാം; രണ്ടുപേര്‍ ചെറുക്കും — മുപ്പിരിച്ചരട് വേഗം പൊട്ടുകയില്ല."]},
+  {h:"അധികാരത്തിന്റെ മിഥ്യ", pts:[
+    "നിര്‍ധനനും ബുദ്ധിമാനുമായ യുവാവ് ഉപദേശം നിരസിക്കുന്ന വിഡ്ഢിയും വൃദ്ധനുമായ രാജാവിനെക്കാള്‍ ഭേദം.",
+    "കാരാഗൃഹത്തില്‍നിന്ന് സിംഹാസനത്തിലെത്താന്‍ ഒരുവന് കഴിയാം; അനേകം പ്രജകളുള്ള രാജാവിനും പിന്നീട് വരുന്നവരുടെ പ്രീതി ലഭിക്കണമെന്നില്ല."]}
+], chain:["മർദനം","കണ്ണീർ","ഏകാന്തത","ഒരുപിടി സ്വസ്ഥത","രണ്ടുപേർ","മുപ്പിരിച്ചരട്","ബുദ്ധിമാനായ യുവാവ്","രാജാവ്"]},
+
+{num:5, sections:[
+  {h:"ദൈവഭക്തി", pts:[
+    "ദേവാലയത്തിലേക്കു പോകുമ്പോള്‍ സൂക്ഷ്മതയുള്ളവനായിരിക്കുക; ശ്രദ്ധിച്ചു കേള്‍ക്കുക.",
+    "ദൈവസന്നിധിയില്‍ തിടുക്കത്തില്‍ പ്രതിജ്ഞ ചെയ്യരുത്; വാക്കുകള്‍ ചുരുക്കമായിരിക്കണം.",
+    "നേര്‍ച്ച നേര്‍ന്നാല്‍ നിറവേറ്റാന്‍ താമസിക്കരുത്; നേര്‍ന്നിട്ട് നിറവേറ്റാത്തതിനെക്കാള്‍ നേരാതിരിക്കുന്നതാണ് ഭേദം.",
+    "വാക്കുകളാല്‍ ദൈവത്തെ പ്രകോപിപ്പിക്കാതിരിക്കുക; ദൈവത്തെ ഭയപ്പെടുക."]},
+  {h:"ദാരിദ്ര്യവും സമ്പത്തും", pts:[
+    "ദരിദ്രന്‍ മര്‍ദിക്കപ്പെടുകയും നീതിയും ന്യായവും നിഷേധിക്കപ്പെടുകയും ചെയ്യുന്നത് കണ്ടു.",
+    "ദ്രവ്യാഗ്രഹിക്ക് ദ്രവ്യംകൊണ്ട് തൃപ്തിയില്ല; ധനം കൂടുമ്പോള്‍ അതു തിന്നൊടുക്കുന്നവരുടെ എണ്ണവും കൂടുന്നു.",
+    "അധ്വാനിക്കുന്നവന് സുഖനിദ്ര; അമിതസമ്പാദ്യം ധനികന്റെ ഉറക്കം കെടുത്തുന്നു; ധനികന്‍ തന്റെ തന്നെ നാശത്തിനായി സൂക്ഷിച്ച സമ്പത്ത് നഷ്ടപ്പെടാം.",
+    "മനുഷ്യന്‍ അമ്മയുടെ ഉദരത്തില്‍നിന്നു വന്നതുപോലെ നഗ്നനായിത്തന്നെ പോകുന്നു; പ്രയത്‌നഫലത്തില്‍നിന്ന് ഒന്നും കൊണ്ടുപോകുന്നില്ല.",
+    "ദൈവദത്തമായ ഹ്രസ്വജീവിതത്തില്‍ തിന്നുകുടിച്ച് അധ്വാനഫലം ആസ്വദിക്കുന്നത് ഉത്തമം; സമ്പത്തും അവ അനുഭവിക്കാനുള്ള കഴിവും ദൈവത്തിന്റെ ദാനമാണ്."]}
+], chain:["ദേവാലയം","ചുരുക്കവാക്ക്","നേർച്ച","ദൈവഭയം","ദ്രവ്യാഗ്രഹം","ധനം","സുഖനിദ്ര","ഒന്നും കൊണ്ടുപോകില്ല","ദൈവത്തിന്റെ ദാനം"]},
+
+{num:6, sections:[
+  {h:"സമ്പത്തും ജീവിതസുഖവും", pts:[
+    "ഒരുവന് സമ്പത്തും ഐശ്വര്യവും കീര്‍ത്തിയും ലഭിച്ചിട്ടും അവ അനുഭവിക്കാനുള്ള കഴിവ് ലഭിക്കാതിരിക്കാം; അന്യന്‍ അവ അനുഭവിക്കുന്നു.",
+    "നൂറു മക്കളും ദീര്‍ഘായുസും ഉണ്ടായാലും ജീവിതസുഖം ആസ്വദിക്കാനാകാതെ ഒടുക്കം സംസ്‌കാരം ലഭിക്കാത്ത അവസ്ഥയെക്കാള്‍ ചാപിള്ളയായി പിറക്കുന്നത് ഭേദമെന്ന് പറയുന്നു.",
+    "രണ്ടായിരം വര്‍ഷം ജീവിച്ചാലും ഒരു ഭാഗ്യവും അനുഭവിക്കുന്നില്ലെങ്കില്‍ എല്ലാവരും ഒരിടത്തേക്കാണ് പോകുന്നത്.",
+    "മനുഷ്യന്റെ അധ്വാനം ഉദരപൂരണത്തിനായിട്ടും അവന്റെ വിശപ്പടങ്ങുന്നില്ല; കണ്‍മുന്‍പിലുള്ളതുകൊണ്ട് തൃപ്തിപ്പെടുന്നത് സങ്കല്‍പങ്ങളില്‍ അലയുന്നതിനെക്കാള്‍ നല്ലത്.",
+    "മനുഷ്യന് തനിക്കുശേഷം സൂര്യനു കീഴേ എന്തു സംഭവിക്കുമെന്ന് അറിയില്ല."]}
+], chain:["സമ്പത്ത്","അനുഭവിക്കാനാകില്ല","100 മക്കള്‍","ചാപിള്ള","2000 വര്‍ഷം","വിശപ്പ്","കണ്‍മുന്‍പുള്ളത്","ഭാവി അറിയില്ല"]}
+];
+
+const FACTS = [
+  {n:"100", l:"മക്കൾ ഉണ്ടായാലും ജീവിതസുഖം ആസ്വദിക്കാനാകാതെ പോകാം", c:"അധ്യായം 6"},
+  {n:"2000", l:"വർഷം ജീവിച്ചാലും ഒരു ഭാഗ്യവും അനുഭവിക്കുന്നില്ലെങ്കിൽ എല്ലാവരും ഒരിടത്തേക്ക്", c:"അധ്യായം 6"},
+  {n:"2", l:"പേർ ഒരാളെക്കാൾ മെച്ചം — വീണാൽ അപരൻ താങ്ങും", c:"അധ്യായം 4"},
+  {n:"3", l:"മുപ്പിരിച്ചരട് (ത്രിവേണി) വേഗം പൊട്ടുകയില്ല", c:"അധ്യായം 4"},
+  {n:"1", l:"സൂര്യനു കീഴേ പുതുതായൊന്നുമില്ല", c:"അധ്യായം 1"},
+  {n:"14", l:"ജോഡികളായി പട്ടികപ്പെടുത്തിയ ജീവിത സമയങ്ങൾ", c:"അധ്യായം 3"}
+];
+
+const WHEEL = [
+  ["ജനനം","മരണം"],["നടല്‍","പറിക്കല്‍"],["കൊല്ലല്‍","സൗഖ്യമാക്കല്‍"],["തകര്‍ക്കല്‍","പണിതുയര്‍ത്തല്‍"],
+  ["കരയല്‍","ചിരി"],["വിലാപം","നൃത്തം"],["സമ്പാദിക്കല്‍","നഷ്ടപ്പെടുത്തല്‍"],["സൂക്ഷിക്കല്‍","എറിഞ്ഞുകളയല്‍"],
+  ["സ്‌നേഹം","ദ്വേഷം"],["യുദ്ധം","സമാധാനം"]
+];
+
+let mode = "read";
+let activeChapter = 1;
+const quizState = {};
+
+const tabsEl = document.getElementById('tabs');
+const panelEl = document.getElementById('panel');
+
+function renderTabs(){
+  tabsEl.innerHTML = "";
+  DATA.forEach(ch=>{
+    const b = document.createElement('div');
+    b.className = 'sun-tab' + (ch.num===activeChapter ? ' active':'');
+    b.textContent = ch.num;
+    b.onclick = ()=>{ activeChapter = ch.num; renderTabs(); renderPanel(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function renderPanel(){
+  const ch = DATA.find(c=>c.num===activeChapter);
+  const quizOn = !!quizState[ch.num];
+  let html = `<div class="panel-head"><h2>സഭാപ്രസംഗകന്‍ — അധ്യായം ${ch.num}</h2><span class="num">Ch. ${ch.num} of 6</span></div>`;
+  ch.sections.forEach((s,i)=>{
+    html += `<details class="sec" ${i===0?'open':''}><summary>${s.h}</summary><ul>`;
+    s.pts.forEach(p=> html += `<li>${p}</li>`);
+    html += `</ul></details>`;
+  });
+  html += `<div class="chain-block">
+    <div class="chain-block-head">
+      <h3>ഓർമ്മിക്കാൻ — മൂടല്‍മഞ്ഞ്</h3>
+      <button class="quizbtn ${quizOn?'on':''}" id="quizToggle">${quizOn ? '✓ ക്വിസ് മോഡ് ഓണ്‍' : '🔒 ക്വിസ് മോഡ്'}</button>
+    </div>
+    <div class="chain-row" id="chainRow"></div>
+  </div>`;
+  panelEl.innerHTML = html;
+
+  const row = document.getElementById('chainRow');
+  ch.chain.forEach((item,i)=>{
+    if(i>0){
+      const arrow = document.createElement('span');
+      arrow.className = 'chain-arrow';
+      arrow.textContent = '→';
+      row.appendChild(arrow);
+    }
+    const link = document.createElement('span');
+    link.className = 'wisp-link' + (quizOn ? ' hidden' : '');
+    link.textContent = item;
+    if(quizOn){
+      link.onclick = ()=>{
+        link.classList.remove('hidden');
+        link.classList.add('revealed');
+        link.onclick = null;
+      };
+    }
+    row.appendChild(link);
+  });
+
+  document.getElementById('quizToggle').onclick = ()=>{
+    quizState[ch.num] = !quizState[ch.num];
+    renderPanel();
+  };
+}
+
+function renderFacts(){
+  const grid = document.getElementById('factgrid');
+  grid.innerHTML = "";
+  FACTS.forEach(f=>{
+    const d = document.createElement('div');
+    d.className = 'factcard';
+    d.innerHTML = `<div class="n">${f.n}</div><div class="l">${f.l}</div><div class="c">${f.c}</div>`;
+    grid.appendChild(d);
+  });
+  const wheel = document.getElementById('wheelPairs');
+  wheel.innerHTML = "";
+  WHEEL.forEach(pair=>{
+    const d = document.createElement('div');
+    d.className = 'wheel-pair';
+    d.innerHTML = `<b>${pair[0]}</b> / ${pair[1]}`;
+    wheel.appendChild(d);
+  });
+}
+
+// ---------- Flashcards ----------
+let cardPool = [];
+DATA.forEach(ch=>{
+  ch.chain.forEach(item=>{
+    let back = "";
+    for(const s of ch.sections){
+      const key = item.split('/')[0].split(' ')[0];
+      const found = s.pts.find(p=> p.includes(key));
+      if(found){ back = found; break; }
+    }
+    if(!back) back = ch.sections[0].pts[0];
+    cardPool.push({chap:ch.num, front:item, back:back});
+  });
+});
+let fcOrder = cardPool.map((_,i)=>i);
+let fcIndex = 0;
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function renderFlash(){
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  const idx = fcOrder[fcIndex];
+  const c = cardPool[idx];
+  document.getElementById('fcChapTag').textContent = 'അധ്യായം ' + c.chap;
+  document.getElementById('fcFront').textContent = c.front;
+  document.getElementById('fcBack').textContent = c.back;
+  document.getElementById('fcProgress').textContent = (fcIndex+1) + ' / ' + cardPool.length;
+}
+
+document.getElementById('flashcard').onclick = function(){
+  this.classList.toggle('flipped');
+};
+document.getElementById('fcNext').onclick = ()=>{
+  fcIndex = (fcIndex+1) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcPrev').onclick = ()=>{
+  fcIndex = (fcIndex-1+fcOrder.length) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcShuffle').onclick = ()=>{
+  fcOrder = shuffle(cardPool.map((_,i)=>i));
+  fcIndex = 0;
+  renderFlash();
+};
+
+document.querySelectorAll('.modebtn').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('.modebtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    document.getElementById('view-read').style.display = mode==='read' ? 'block':'none';
+    document.getElementById('view-facts').style.display = mode==='facts' ? 'block':'none';
+    document.getElementById('view-flash').style.display = mode==='flash' ? 'block':'none';
+    if(mode==='facts') renderFacts();
+    if(mode==='flash') renderFlash();
+  };
+});
+
+renderTabs();
+renderPanel();
+</script>
+</body>
+</html>

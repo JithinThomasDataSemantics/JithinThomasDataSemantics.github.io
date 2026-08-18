@@ -30,6 +30,41 @@
           .filter(sub => /^\d+$/.test(sub))       // keep only plain integers, skip "Intro", "Intro1", "1.1", etc.
           .sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
 
+
+        const introChapters = group.subgroups
+          .filter(sub => /^Intro\d*$/.test(sub))
+          .sort((a, b) => {
+            const numA = a === "Intro" ? 0 : parseInt(a.replace("Intro", ""), 10);
+            const numB = b === "Intro" ? 0 : parseInt(b.replace("Intro", ""), 10);
+            return numA - numB;
+          });
+
+        // Convert JSON value to the existing filename:
+        // "Intro"  -> "0"
+        // "Intro1" -> "0.1"
+        // "Intro2" -> "0.2"
+        function introFilename(sub) {
+          if (sub === "Intro") return "0";
+
+          const suffix = sub.replace("Intro", "");
+          return `0.${parseInt(suffix, 10)}`;
+        }
+
+        introChapters.forEach(sub => {
+          const btn = document.createElement("button");
+          btn.className = "list-btn";
+          btn.textContent = sub;
+
+          const filename = introFilename(sub);
+
+          btn.onclick = () => {
+            window.location.href = `${groupKey}/${filename}.html`;
+          };
+
+          subgroupsList.appendChild(btn);
+        });
+
+          
         integerChapters.forEach(sub => {
           const btn = document.createElement("button");
           btn.className = "list-btn";

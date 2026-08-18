@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>യോഹന്നാൻ 1–4 · Quiz Recall (ഭാഗം 1/3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#0f1826;
+    --deep-dark:#0a121d;
+    --water:#e6edef;
+    --water-soft:#f2f7f8;
+    --water-dim:#cddbe0;
+    --teal:#276e6e;
+    --teal-deep:#194848;
+    --gold:#c9a227;
+    --gold-light:#e8c85a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 520px at 90% -12%, rgba(39,110,110,.15), transparent 60%),
+      radial-gradient(ellipse 700px 460px at 0% 4%, rgba(201,162,39,.10), transparent 55%),
+      var(--water);
+    color:var(--deep-dark);
+    font-family:'Noto Sans Malayalam','Fraunces',serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 90px;}
+
+  .partbadge{
+    display:inline-block; background:var(--gold); color:var(--deep-dark);
+    font-family:'Fraunces',serif; font-weight:800; font-size:12.5px;
+    padding:5px 13px; border-radius:999px; margin-bottom:14px; letter-spacing:.03em;
+  }
+
+  /* ---------- HERO: light shining, water rippling ---------- */
+  .hero{
+    position:relative;
+    padding:40px 30px 34px;
+    border-radius:18px;
+    background:linear-gradient(165deg, var(--teal) 0%, var(--deep) 65%, var(--deep-dark) 100%);
+    color:var(--water-soft);
+    overflow:hidden;
+    box-shadow:0 18px 40px -18px rgba(0,0,0,.55);
+  }
+  .ripple-wrap{position:absolute; right:10px; top:-10px; width:180px; height:180px; z-index:0;}
+  .ripple{
+    position:absolute; border-radius:50%; border:1.5px solid rgba(232,200,90,.35);
+    left:50%; top:50%; transform:translate(-50%,-50%);
+    animation:ripple 3.6s ease-out infinite;
+  }
+  .ripple:nth-child(2){animation-delay:1.2s;}
+  .ripple:nth-child(3){animation-delay:2.4s;}
+  @keyframes ripple{
+    0%{width:16px;height:16px; opacity:.9;}
+    100%{width:170px;height:170px; opacity:0;}
+  }
+  .lightdot{
+    position:absolute; left:50%; top:50%; width:10px;height:10px; border-radius:50%;
+    background:radial-gradient(circle, var(--gold-light), var(--gold));
+    box-shadow:0 0 16px 4px rgba(232,200,90,.6);
+    transform:translate(-50%,-50%); z-index:1;
+  }
+  .eyebrow{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    letter-spacing:.04em; font-size:13px; color:var(--gold-light);
+    text-transform:uppercase; margin:0 0 6px; position:relative; z-index:1;
+  }
+  h1.title{
+    margin:0; font-family:'Noto Serif Malayalam',serif;
+    font-weight:700; font-size:clamp(28px,5vw,42px); line-height:1.32;
+    position:relative; z-index:1; max-width:80%;
+  }
+  .subtitle{
+    margin:10px 0 0; max-width:56ch; color:var(--water-dim);
+    font-size:15.5px; line-height:1.65; position:relative; z-index:1;
+  }
+  .hero-stats{display:flex; gap:22px; margin-top:24px; flex-wrap:wrap; position:relative; z-index:1;}
+  .stat{font-family:'Fraunces',serif;}
+  .stat b{display:block; font-size:24px; font-weight:800; color:var(--gold-light);}
+  .stat span{font-size:12px; color:var(--water-dim); letter-spacing:.02em;}
+
+  /* ---------- MODE BAR ---------- */
+  .modebar{display:flex; gap:10px; margin:22px 0 18px; flex-wrap:wrap;}
+  .modebtn{
+    border:1.5px solid var(--teal); background:var(--water-soft);
+    color:var(--deep-dark); font-family:'Noto Sans Malayalam',sans-serif;
+    font-size:14px; font-weight:600; padding:9px 16px; border-radius:999px;
+    cursor:pointer; transition:.15s ease; display:flex; align-items:center; gap:7px;
+  }
+  .modebtn:hover{background:var(--gold-light); border-color:var(--gold);}
+  .modebtn.active{background:var(--teal-deep); color:var(--water-soft); border-color:var(--deep-dark);}
+
+  /* ---------- CHAPTER TABS (droplets) ---------- */
+  .tabs{display:flex; gap:10px; overflow-x:auto; padding:4px 2px 14px;}
+  .drop-tab{
+    flex:0 0 auto; width:52px;height:52px;border-radius:50% 50% 50% 4px;
+    transform:rotate(45deg);
+    background:radial-gradient(circle at 35% 65%, var(--gold-light), var(--teal) 65%);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    border:2px solid transparent; transition:.15s ease;
+    box-shadow:0 4px 10px -4px rgba(0,0,0,.4);
+  }
+  .drop-tab span{transform:rotate(-45deg); color:var(--deep-dark); font-family:'Fraunces',serif; font-weight:800; font-size:19px;}
+  .drop-tab:hover{transform:rotate(45deg) translateY(-2px);}
+  .drop-tab.active{border-color:var(--teal-deep); box-shadow:0 0 0 4px rgba(39,110,110,.18), 0 6px 14px -4px rgba(0,0,0,.4);}
+
+  /* ---------- CHAPTER PANEL ---------- */
+  .panel{
+    background:var(--water-soft);
+    border:1px solid var(--water-dim);
+    border-radius:16px; padding:26px 24px 22px;
+    box-shadow:0 10px 26px -20px rgba(0,0,0,.4);
+  }
+  .panel-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap;}
+  .panel-head h2{font-family:'Noto Serif Malayalam',serif; font-size:22px; margin:0; color:var(--teal-deep);}
+  .panel-head .num{font-family:'Fraunces',serif; font-style:italic; color:var(--gold); font-size:15px;}
+
+  details.sec{border-top:1px dashed var(--water-dim); padding:14px 0;}
+  details.sec:last-of-type{border-bottom:1px dashed var(--water-dim);}
+  details.sec summary{
+    cursor:pointer; list-style:none; font-family:'Noto Serif Malayalam',serif;
+    font-weight:600; font-size:16.5px; color:var(--deep-dark);
+    display:flex; align-items:center; gap:10px;
+  }
+  details.sec summary::-webkit-details-marker{display:none;}
+  details.sec summary::before{
+    content:"+"; font-family:'Fraunces',serif; font-weight:700; color:var(--teal);
+    width:20px; text-align:center; flex:0 0 auto; font-size:18px;
+  }
+  details.sec[open] summary::before{content:"–";}
+  details.sec ul{margin:12px 0 0; padding-left:0; list-style:none;}
+  details.sec li{position:relative; padding:5px 0 5px 20px; font-size:14.5px; line-height:1.75; color:#182028;}
+  details.sec li::before{content:"·"; position:absolute; left:2px; top:3px; color:var(--gold); font-size:22px; line-height:1;}
+
+  /* ---------- MEMORY RIPPLES ---------- */
+  .chain-block{margin-top:18px; padding-top:16px; border-top:2px solid var(--water-dim);}
+  .chain-block-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap;}
+  .chain-block-head h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--teal-deep); margin:0;
+  }
+  .quizbtn{
+    border:1px solid var(--teal-deep); background:transparent; color:var(--teal-deep);
+    font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:999px; cursor:pointer;
+    font-family:'Noto Sans Malayalam',sans-serif;
+  }
+  .quizbtn.on{background:var(--teal-deep); color:var(--water-soft);}
+  .chain-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 4px;}
+  .ripple-link{
+    background:linear-gradient(160deg, var(--water), var(--water-dim));
+    border:1.5px solid var(--teal); border-radius:999px;
+    padding:8px 14px; font-size:13.5px; font-weight:500; color:var(--deep-dark);
+    white-space:nowrap; position:relative; transition:.15s ease;
+  }
+  .ripple-link.hidden{
+    color:transparent; background:repeating-linear-gradient(135deg, var(--water-dim), var(--water-dim) 4px, var(--water) 4px, var(--water) 8px);
+    border-style:dashed; cursor:pointer;
+  }
+  .ripple-link.hidden::after{
+    content:"?"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--teal-deep); font-family:'Fraunces',serif; font-weight:700;
+  }
+  .ripple-link.revealed{background:linear-gradient(160deg, var(--gold-light), var(--gold)); border-color:var(--teal-deep); color:var(--deep-dark); font-weight:700;}
+  .chain-arrow{color:var(--gold); font-size:13px; margin:0 -2px;}
+
+  /* ---------- FACTS GRID ---------- */
+  .factgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px;}
+  .factcard{background:var(--water-soft); border:1px solid var(--water-dim); border-radius:12px; padding:14px 16px;}
+  .factcard .n{font-family:'Fraunces',serif; font-weight:800; font-size:26px; color:var(--teal-deep);}
+  .factcard .l{font-size:13px; color:var(--teal); margin-top:2px; line-height:1.5;}
+  .factcard .c{font-size:11px; color:var(--gold); font-weight:700; margin-top:6px; letter-spacing:.03em;}
+
+  /* ---------- SIGNS STRIP (John-specific) ---------- */
+  .signs{margin-top:22px; padding-top:16px; border-top:2px solid var(--water-dim);}
+  .signs h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--teal-deep); margin:0 0 12px;
+  }
+  .signs-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .sign-card{
+    flex:1 1 220px; background:var(--water); border:1px solid var(--water-dim); border-radius:12px;
+    padding:12px 14px; font-size:13px; color:var(--deep-dark); line-height:1.6;
+  }
+  .sign-card b{display:block; font-family:'Noto Serif Malayalam',serif; color:var(--teal-deep); font-size:14.5px; margin-bottom:3px;}
+
+  /* ---------- FLASHCARD ---------- */
+  .fc-wrap{display:flex; flex-direction:column; align-items:center; gap:18px;}
+  .fc-progress{font-size:13px; color:var(--teal-deep); font-family:'Fraunces',serif; font-style:italic;}
+  .flashcard{width:100%; max-width:520px; min-height:220px; perspective:1400px; cursor:pointer;}
+  .flashcard-inner{position:relative; width:100%; height:100%; min-height:220px; transition:transform .5s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;}
+  .flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+  .fc-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; padding:26px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:10px; box-shadow:0 14px 30px -16px rgba(0,0,0,.4);}
+  .fc-front{background:var(--teal-deep); color:var(--water-soft); border:2px solid var(--deep-dark);}
+  .fc-back{background:var(--water-soft); color:var(--deep-dark); border:2px solid var(--gold); transform:rotateY(180deg);}
+  .fc-tag{font-family:'Fraunces',serif; font-style:italic; font-size:12px; letter-spacing:.05em; text-transform:uppercase; opacity:.85;}
+  .fc-front .fc-text{font-family:'Noto Serif Malayalam',serif; font-size:20px; font-weight:600; line-height:1.6;}
+  .fc-back .fc-text{font-family:'Noto Sans Malayalam',sans-serif; font-size:15.5px; line-height:1.8;}
+  .fc-hint{font-size:12px; opacity:.7;}
+  .fc-controls{display:flex; gap:12px;}
+  .fc-controls button{font-family:'Noto Sans Malayalam',sans-serif; font-weight:600; font-size:13.5px; padding:10px 20px; border-radius:999px; border:1.5px solid var(--teal); background:var(--water-soft); cursor:pointer;}
+  .fc-controls button.primary{background:var(--teal-deep); color:var(--water-soft); border-color:var(--deep-dark);}
+
+  footer.note{text-align:center; margin-top:26px; font-size:12px; color:var(--teal-deep); font-style:italic; font-family:'Fraunces',serif;}
+
+  @media (max-width:520px){
+    .hero{padding:28px 18px;}
+    .panel{padding:20px 16px;}
+    .ripple-wrap{width:120px;height:120px;}
+    h1.title{max-width:100%;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="ripple-wrap">
+      <div class="ripple"></div><div class="ripple"></div><div class="ripple"></div>
+      <div class="lightdot"></div>
+    </div>
+    <span class="partbadge">ഭാഗം 1 / 3 · അധ്യായം 1–4</span><br>
+    <p class="eyebrow">Logos Quiz &middot; Quick Recall</p>
+    <h1 class="title">യോഹന്നാൻ — വചനം, വെളിച്ചം, ജീവജലം</h1>
+    <p class="subtitle">വചനം മാംസമായി; ആദ്യ അടയാളം കാനായിൽ; വീണ്ടും ജനനവും ജീവജലവും. 4 അധ്യായങ്ങൾ ഒറ്റനോട്ടത്തിൽ — ഓർമ്മ അലകൾ ടാപ്പ് ചെയ്ത് സ്വയം പരീക്ഷിക്കൂ.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>4</b><span>അധ്യായങ്ങൾ</span></div>
+      <div class="stat"><b>9</b><span>വിഭാഗങ്ങൾ</span></div>
+      <div class="stat"><b>27</b><span>ഓർമ്മ അലകൾ</span></div>
+    </div>
+  </div>
+
+  <div class="modebar">
+    <button class="modebtn active" data-mode="read">📖 വായന മോഡ്</button>
+    <button class="modebtn" data-mode="facts">🔢 പ്രധാന അക്കങ്ങൾ</button>
+    <button class="modebtn" data-mode="flash">🃏 ഫ്ലാഷ്കാർഡ് പരിശോധന</button>
+  </div>
+
+  <div id="view-read">
+    <div class="tabs" id="tabs"></div>
+    <div class="panel" id="panel"></div>
+  </div>
+
+  <div id="view-facts" style="display:none;">
+    <div class="panel">
+      <div class="panel-head"><h2>അക്കങ്ങളും പേരുകളും — വേഗ ഓർമ്മ</h2></div>
+      <div class="factgrid" id="factgrid"></div>
+      <div class="signs">
+        <h3>ആദ്യ അടയാളങ്ങൾ (Signs)</h3>
+        <div class="signs-row">
+          <div class="sign-card"><b>1. വെള്ളം വീഞ്ഞായി</b>കാനായിലെ വിവാഹവിരുന്നിൽ — അധ്യായം 2</div>
+          <div class="sign-card"><b>2. രാജസേവകന്റെ മകൻ സൗഖ്യമായി</b>കഫർണാമിൽ, ഏഴാം മണിക്കൂറിൽ — അധ്യായം 4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-flash" style="display:none;">
+    <div class="panel">
+      <div class="fc-wrap">
+        <div class="fc-progress" id="fcProgress">1 / 27</div>
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-tag" id="fcChapTag">അധ്യായം 1</div>
+              <div class="fc-text" id="fcFront"></div>
+              <div class="fc-hint">ടാപ്പ് ചെയ്ത് ഉത്തരം കാണുക →</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-tag">വിശദീകരണം</div>
+              <div class="fc-text" id="fcBack"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button id="fcShuffle">🔀 ഷഫിൾ</button>
+          <button id="fcPrev">← മുമ്പത്തേത്</button>
+          <button class="primary" id="fcNext">അടുത്തത് →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="note">"വചനം മാംസമായി നമ്മുടെ ഇടയിൽ വസിച്ചു" — യോഹന്നാൻ 1:14</footer>
+</div>
+
+<script>
+const DATA = [
+{num:1, sections:[
+  {h:"വചനം മനുഷ്യനായി", pts:[
+    "ആദിയിൽ വചനം ഉണ്ടായിരുന്നു; വചനം ദൈവത്തോടുകൂടെയും ദൈവവുമായിരുന്നു. എല്ലാം അവനിലൂടെ സൃഷ്ടിക്കപ്പെട്ടു.",
+    "അവനിൽ ജീവനും ആ ജീവൻ മനുഷ്യരുടെ വെളിച്ചവുമായിരുന്നു; ഇരുളിന് ആ വെളിച്ചത്തെ കീഴടക്കാനായില്ല.",
+    "വചനം മാംസമായി മനുഷ്യരുടെ ഇടയിൽ വസിച്ചു; കൃപയും സത്യവും നിറഞ്ഞ മഹത്വം വെളിപ്പെട്ടു.",
+    "നിയമം മോശവഴി ലഭിച്ചു; കൃപയും സത്യവും യേശുക്രിസ്തുവഴി വന്നു."]},
+  {h:"സ്‌നാപകയോഹന്നാന്റെ സാക്ഷ്യം", pts:[
+    "യോഹന്നാൻ താൻ ക്രിസ്തുവല്ല, ഏലിയായല്ല, പ്രവാചകനല്ലെന്നും, കർത്താവിന്റെ വഴി നേരേയാക്കുന്ന മരുഭൂമിയിലെ ശബ്ദമാണെന്നും പറഞ്ഞു.",
+    "താൻ ജലംകൊണ്ട് സ്നാനം നൽകുന്നു; തന്റെ പിന്നാലെ വരുന്നവന്റെ ചെരിപ്പിന്റെ വാറഴിക്കുവാൻ പോലും താൻ യോഗ്യനല്ലെന്നും പറഞ്ഞു."]},
+  {h:"ദൈവത്തിന്റെ കുഞ്ഞാട്", pts:[
+    "യേശുവിനെ കണ്ടപ്പോൾ യോഹന്നാൻ അവനെ “ലോകത്തിന്റെ പാപം നീക്കുന്ന ദൈവത്തിന്റെ കുഞ്ഞാട്” എന്നു വിളിച്ചു.",
+    "ആത്മാവ് പ്രാവിനെപ്പോലെ യേശുവിന്റെ മേൽ ഇറങ്ങി ആവസിക്കുന്നത് അവൻ കണ്ടു; യേശു പരിശുദ്ധാത്മാവുകൊണ്ട് സ്നാനം നൽകുന്നവനും ദൈവപുത്രനുമാണെന്ന് സാക്ഷ്യപ്പെടുത്തി."]},
+  {h:"ആദ്യശിഷ്യന്മാർ", pts:[
+    "യോഹന്നാന്റെ സാക്ഷ്യം കേട്ട് രണ്ടു ശിഷ്യർ യേശുവിനെ അനുഗമിച്ചു; അവരിൽ അന്ത്രയോസും ഉണ്ടായിരുന്നു.",
+    "അന്ത്രയോസ് സഹോദരൻ ശിമയോനെ യേശുവിന്റെ അടുക്കൽ കൊണ്ടുവന്നു; യേശു അവന് കേപ്പാ/പാറ എന്ന പേര് നൽകി."]},
+  {h:"പീലിപ്പോസും നഥാനയേലും", pts:[
+    "യേശു പീലിപ്പോസിനെ വിളിച്ചു; പീലിപ്പോസ് നഥാനയേലിനെ യേശുവിന്റെ അടുക്കൽ കൊണ്ടുവന്നു.",
+    "നസറത്തിൽനിന്ന് നന്മ ഉണ്ടാകുമോ എന്ന സംശയത്തിന് “വന്നു കാണുക” എന്ന മറുപടി ലഭിച്ചു.",
+    "യേശു അത്തിമരത്തിന്റെ ചുവട്ടിൽ തന്നെ കണ്ടതായി പറഞ്ഞപ്പോൾ നഥാനയേൽ യേശുവിനെ ദൈവപുത്രനും ഇസ്രായേലിന്റെ രാജാവുമായി ഏറ്റുപറഞ്ഞു."]}
+], chain:["വചനം","യോഹന്നാന്റെ സാക്ഷ്യം","ദൈവത്തിന്റെ കുഞ്ഞാട്","അന്ത്രയോസ്/പത്രോസ്","പീലിപ്പോസ്/നഥാനയേൽ"]},
+
+{num:2, sections:[
+  {h:"കാനായിലെ വിവാഹവിരുന്ന്", pts:[
+    "കാനായിലെ വിവാഹവിരുന്നിൽ വീഞ്ഞ് തീർന്നപ്പോൾ യേശുവിന്റെ അമ്മ കാര്യം അറിയിച്ചു.",
+    "യേശുവിന്റെ നിർദേശപ്രകാരം ആറു കൽഭരണികളിൽ വെള്ളം വക്കോളം നിറച്ചു; അത് വീഞ്ഞായി മാറി.",
+    "ഇത് യേശു ചെയ്ത അടയാളങ്ങളുടെ ആരംഭമായിരുന്നു; ശിഷ്യന്മാർ അവനിൽ വിശ്വസിച്ചു.",
+    "തുടർന്ന് യേശു കഫർണാമിൽ ഏതാനും ദിവസം താമസിച്ചു."]},
+  {h:"യേശു ദേവാലയം ശുദ്ധീകരിക്കുന്നു", pts:[
+    "പെസഹാ അടുത്തപ്പോൾ യേശു ജറുസലെമിലെ ദേവാലയത്തിൽ എത്തി; കാള, ആട്, പ്രാവ് വിൽക്കുന്നവരെയും നാണയം മാറ്റുന്നവരെയും പുറത്താക്കി.",
+    "ദേവാലയം കച്ചവടസ്ഥലമാക്കരുതെന്ന് പറഞ്ഞു; അടയാളം ചോദിച്ചപ്പോൾ “ഈ ദേവാലയം നശിപ്പിക്കുക; മൂന്നു ദിവസത്തിനകം ഞാൻ പുനരുദ്ധരിക്കും” എന്നു പറഞ്ഞു.",
+    "ഉദ്ദേശിച്ചത് തന്റെ ശരീരമാകുന്ന ആലയത്തെക്കുറിച്ചായിരുന്നു; ഉയിർപ്പിനുശേഷം ശിഷ്യർ ഇത് ഓർത്തു വിശ്വസിച്ചു.",
+    "അടയാളങ്ങൾ കണ്ട് പലരും വിശ്വസിച്ചെങ്കിലും യേശു അവരെ വിശ്വസിച്ചില്ല; മനുഷ്യനിലുള്ളത് അവന് അറിയാമായിരുന്നു."]}
+], chain:["കാനാ","വെള്ളം വീഞ്ഞായി","ആദ്യ അടയാളം","ദേവാലയ ശുദ്ധീകരണം","മൂന്നു ദിവസം/ശരീരം","പലരുടെ വിശ്വാസം"]},
+
+{num:3, sections:[
+  {h:"യേശുവും നിക്കൊദേമോസും", pts:[
+    "ഫരിസേയനും യഹൂദപ്രമാണിയുമായ നിക്കൊദേമോസ് രാത്രി യേശുവിന്റെ അടുത്തുവന്നു.",
+    "വീണ്ടും ജനിക്കാതെ ദൈവരാജ്യം കാണാനോ ജലത്താലും ആത്മാവിനാലും ജനിക്കാതെ അതിൽ പ്രവേശിക്കാനോ കഴിയില്ലെന്ന് യേശു പറഞ്ഞു.",
+    "മോശ മരുഭൂമിയിൽ സർപ്പത്തെ ഉയർത്തിയതുപോലെ മനുഷ്യപുത്രനും ഉയർത്തപ്പെടണം.",
+    "ദൈവം ലോകത്തെ സ്നേഹിച്ചതിനാൽ ഏകജാതനെ നൽകി; അവനിൽ വിശ്വസിക്കുന്നവർ നശിക്കാതെ നിത്യജീവൻ പ്രാപിക്കുന്നു.",
+    "പുത്രനെ അയച്ചത് ലോകത്തെ ശിക്ഷിക്കാനല്ല, രക്ഷിക്കാനാണ്; പ്രകാശം വന്നിട്ടും മനുഷ്യർ തിന്മ കാരണം അന്ധകാരത്തെ സ്നേഹിച്ചു."]},
+  {h:"സ്‌നാപകന്റെ ദൗത്യം", pts:[
+    "യേശുവും ശിഷ്യരും യൂദയായിൽ സ്നാനം നൽകി; യോഹന്നാനും ഏനോനിൽ സ്നാനം നൽകി.",
+    "യേശുവിന്റെ അടുത്തേക്ക് എല്ലാവരും പോകുന്നു എന്ന പരാതിക്ക്, സ്വർഗത്തിൽനിന്നു നൽകപ്പെടുന്നില്ലെങ്കിൽ ആരും ഒന്നും സ്വീകരിക്കുകയില്ലെന്ന് യോഹന്നാൻ പറഞ്ഞു.",
+    "താൻ ക്രിസ്തുവല്ല, അവനുമുമ്പേ അയക്കപ്പെട്ടവനാണെന്ന് വ്യക്തമാക്കി; “അവൻ വളരുകയും ഞാൻ കുറയുകയും വേണം” എന്നു പറഞ്ഞു.",
+    "പുത്രനിൽ വിശ്വസിക്കുന്നവന് നിത്യജീവൻ; പുത്രനെ അനുസരിക്കാത്തവന് ജീവൻ ദർശിക്കുകയില്ല."]}
+], chain:["നിക്കൊദേമോസ്","വീണ്ടും ജനനം","ജലം/ആത്മാവ്","ദൈവത്തിന്റെ സ്നേഹം","പ്രകാശം/അന്ധകാരം","“അവൻ വളരട്ടെ, ഞാൻ കുറയട്ടെ”"]},
+
+{num:4, sections:[
+  {h:"യേശുവും സമരിയാക്കാരിയും", pts:[
+    "യേശു സിക്കാറിലെ യാക്കോബിന്റെ കിണറ്റിനരികിലെത്തി; ഒരു സമരിയാക്കാരി വെള്ളം കോരാൻ വന്നപ്പോൾ യേശു അവളോട് വെള്ളം ചോദിച്ചു.",
+    "അവൾക്ക് “ജീവജലം” വാഗ്ദാനം ചെയ്തു; അത് നിത്യജീവനിലേക്കുള്ള അരുവിയാകും എന്നു പറഞ്ഞു.",
+    "അവളുടെ അഞ്ചു ഭർത്താക്കന്മാരെയും ഇപ്പോഴുള്ള ബന്ധത്തെയും യേശു അറിഞ്ഞിരുന്നു; യഥാർത്ഥ ആരാധകർ ആത്മാവിലും സത്യത്തിലും പിതാവിനെ ആരാധിക്കുമെന്ന് പറഞ്ഞു.",
+    "മിശിഹാ വരുമെന്ന് അവൾ പറഞ്ഞപ്പോൾ സംസാരിക്കുന്ന താൻ തന്നെയാണ് അവൻ എന്ന് യേശു വെളിപ്പെടുത്തി.",
+    "സ്ത്രീ പട്ടണത്തിൽ പോയി ആളുകളെ വിളിച്ചു; അവളുടെ സാക്ഷ്യം മൂലം പലരും വിശ്വസിച്ചു.",
+    "യേശു രണ്ടു ദിവസം അവിടെ താമസിച്ചു; സമരിയാക്കാർ അവനെ “ലോക രക്ഷകൻ” എന്നു തിരിച്ചറിഞ്ഞു."]},
+  {h:"രാജസേവകന്റെ പുത്രനെ സുഖപ്പെടുത്തുന്നു", pts:[
+    "കഫർണാമിലെ ഒരു രാജസേവകൻ രോഗിയായ മകനെ സുഖപ്പെടുത്താൻ അപേക്ഷിച്ചു; യേശു “പോയിക്കൊള്ളുക; നിന്റെ മകൻ ജീവിക്കും” എന്നു പറഞ്ഞു.",
+    "ആ മനുഷ്യൻ വചനം വിശ്വസിച്ച് പോയി; ഭൃത്യന്മാർ മകൻ സുഖപ്പെട്ടതായി അറിയിച്ചു — പനി വിട്ട സമയം യേശു വചനം പറഞ്ഞ അതേ ഏഴാം മണിക്കൂറാണെന്ന് മനസ്സിലായി.",
+    "അവനും കുടുംബം മുഴുവനും വിശ്വസിച്ചു; ഇത് രണ്ടാമത്തെ അടയാളമായിരുന്നു."]}
+], chain:["സിക്കാർ","യാക്കോബിന്റെ കിണർ","ജീവജലം","ആത്മാവിലും സത്യത്തിലും ആരാധന","മിശിഹാ","സമരിയാക്കാരുടെ വിശ്വാസം","രാജസേവകന്റെ മകൻ","ഏഴാം മണിക്കൂർ"]}
+];
+
+const FACTS = [
+  {n:"6", l:"കൽഭരണികളിലെ വെള്ളം വീഞ്ഞായി മാറി", c:"അധ്യായം 2"},
+  {n:"3", l:"ദിവസത്തിനകം ദേവാലയം (ശരീരം) പുനരുദ്ധരിക്കുമെന്ന് യേശു പറഞ്ഞു", c:"അധ്യായം 2"},
+  {n:"2", l:"ശിഷ്യർ ആദ്യം യേശുവിനെ അനുഗമിച്ചു — അന്ത്രയോസ് ഉൾപ്പെടെ", c:"അധ്യായം 1"},
+  {n:"5", l:"ഭർത്താക്കന്മാർ സമരിയാക്കാരിക്ക് ഉണ്ടായിരുന്നു", c:"അധ്യായം 4"},
+  {n:"2", l:"ദിവസം യേശു സമരിയയിൽ താമസിച്ചു", c:"അധ്യായം 4"},
+  {n:"7", l:"ാം മണിക്കൂറിൽ രാജസേവകന്റെ മകന് പനി വിട്ടു", c:"അധ്യായം 4"}
+];
+
+let mode = "read";
+let activeChapter = 1;
+const quizState = {};
+
+const tabsEl = document.getElementById('tabs');
+const panelEl = document.getElementById('panel');
+
+function renderTabs(){
+  tabsEl.innerHTML = "";
+  DATA.forEach(ch=>{
+    const b = document.createElement('div');
+    b.className = 'drop-tab' + (ch.num===activeChapter ? ' active':'');
+    b.innerHTML = `<span>${ch.num}</span>`;
+    b.onclick = ()=>{ activeChapter = ch.num; renderTabs(); renderPanel(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function renderPanel(){
+  const ch = DATA.find(c=>c.num===activeChapter);
+  const quizOn = !!quizState[ch.num];
+  let html = `<div class="panel-head"><h2>യോഹന്നാൻ — അധ്യായം ${ch.num}</h2><span class="num">Ch. ${ch.num} of 4 (Part 1/3)</span></div>`;
+  ch.sections.forEach((s,i)=>{
+    html += `<details class="sec" ${i===0?'open':''}><summary>${s.h}</summary><ul>`;
+    s.pts.forEach(p=> html += `<li>${p}</li>`);
+    html += `</ul></details>`;
+  });
+  html += `<div class="chain-block">
+    <div class="chain-block-head">
+      <h3>ഓർമ്മിക്കാൻ — അലകൾ</h3>
+      <button class="quizbtn ${quizOn?'on':''}" id="quizToggle">${quizOn ? '✓ ക്വിസ് മോഡ് ഓണ്‍' : '🔒 ക്വിസ് മോഡ്'}</button>
+    </div>
+    <div class="chain-row" id="chainRow"></div>
+  </div>`;
+  panelEl.innerHTML = html;
+
+  const row = document.getElementById('chainRow');
+  ch.chain.forEach((item,i)=>{
+    if(i>0){
+      const arrow = document.createElement('span');
+      arrow.className = 'chain-arrow';
+      arrow.textContent = '→';
+      row.appendChild(arrow);
+    }
+    const link = document.createElement('span');
+    link.className = 'ripple-link' + (quizOn ? ' hidden' : '');
+    link.textContent = item;
+    if(quizOn){
+      link.onclick = ()=>{
+        link.classList.remove('hidden');
+        link.classList.add('revealed');
+        link.onclick = null;
+      };
+    }
+    row.appendChild(link);
+  });
+
+  document.getElementById('quizToggle').onclick = ()=>{
+    quizState[ch.num] = !quizState[ch.num];
+    renderPanel();
+  };
+}
+
+function renderFacts(){
+  const grid = document.getElementById('factgrid');
+  grid.innerHTML = "";
+  FACTS.forEach(f=>{
+    const d = document.createElement('div');
+    d.className = 'factcard';
+    d.innerHTML = `<div class="n">${f.n}</div><div class="l">${f.l}</div><div class="c">${f.c}</div>`;
+    grid.appendChild(d);
+  });
+}
+
+// ---------- Flashcards ----------
+let cardPool = [];
+DATA.forEach(ch=>{
+  ch.chain.forEach(item=>{
+    let back = "";
+    for(const s of ch.sections){
+      const key = item.split('/')[0].split(' ')[0].replace(/[“”]/g,'');
+      const found = s.pts.find(p=> p.includes(key));
+      if(found){ back = found; break; }
+    }
+    if(!back) back = ch.sections[0].pts[0];
+    cardPool.push({chap:ch.num, front:item, back:back});
+  });
+});
+let fcOrder = cardPool.map((_,i)=>i);
+let fcIndex = 0;
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function renderFlash(){
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  const idx = fcOrder[fcIndex];
+  const c = cardPool[idx];
+  document.getElementById('fcChapTag').textContent = 'അധ്യായം ' + c.chap;
+  document.getElementById('fcFront').textContent = c.front;
+  document.getElementById('fcBack').textContent = c.back;
+  document.getElementById('fcProgress').textContent = (fcIndex+1) + ' / ' + cardPool.length;
+}
+
+document.getElementById('flashcard').onclick = function(){
+  this.classList.toggle('flipped');
+};
+document.getElementById('fcNext').onclick = ()=>{
+  fcIndex = (fcIndex+1) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcPrev').onclick = ()=>{
+  fcIndex = (fcIndex-1+fcOrder.length) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcShuffle').onclick = ()=>{
+  fcOrder = shuffle(cardPool.map((_,i)=>i));
+  fcIndex = 0;
+  renderFlash();
+};
+
+document.querySelectorAll('.modebtn').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('.modebtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    document.getElementById('view-read').style.display = mode==='read' ? 'block':'none';
+    document.getElementById('view-facts').style.display = mode==='facts' ? 'block':'none';
+    document.getElementById('view-flash').style.display = mode==='flash' ? 'block':'none';
+    if(mode==='facts') renderFacts();
+    if(mode==='flash') renderFlash();
+  };
+});
+
+renderTabs();
+renderPanel();
+</script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>റൂത്ത് 1–4 · Quiz Recall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --soil:#2e2417;
+    --soil-deep:#211a10;
+    --wheat:#f1e7c9;
+    --wheat-soft:#f8f1dd;
+    --wheat-dim:#e2d3a4;
+    --dusk:#3d5a4a;
+    --dusk-deep:#2b4136;
+    --grain:#c99a3d;
+    --grain-light:#e3bd6a;
+    --redeem:#8b3a3a;
+    --ok:#4a6b52;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 850px 500px at 90% -10%, rgba(201,154,61,.16), transparent 60%),
+      radial-gradient(ellipse 700px 480px at 0% 5%, rgba(61,90,74,.14), transparent 55%),
+      var(--wheat);
+    color:var(--soil-deep);
+    font-family:'Noto Sans Malayalam','Fraunces',serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 90px;}
+
+  /* ---------- HERO: barley field at dusk ---------- */
+  .hero{
+    position:relative;
+    padding:40px 30px 34px;
+    border-radius:18px;
+    background:linear-gradient(165deg, var(--dusk) 0%, var(--dusk-deep) 100%);
+    color:var(--wheat-soft);
+    overflow:hidden;
+    box-shadow:0 18px 40px -18px rgba(0,0,0,.5);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 22px);
+    pointer-events:none;
+  }
+  .stalks{display:flex; align-items:flex-end; gap:5px; margin-bottom:18px;}
+  .stalk{
+    width:3px; border-radius:2px; background:var(--grain-light);
+    transform-origin:bottom center;
+    animation:sway 3.4s ease-in-out infinite;
+  }
+  .stalk:nth-child(1){height:22px; animation-delay:0s;}
+  .stalk:nth-child(2){height:30px; animation-delay:.3s;}
+  .stalk:nth-child(3){height:25px; animation-delay:.6s;}
+  .ear{
+    width:9px;height:14px;border-radius:50% 50% 50% 50% / 65% 65% 35% 35%;
+    background:linear-gradient(180deg, var(--grain-light), var(--grain));
+    margin-bottom:-2px; margin-left:-3px;
+  }
+  @keyframes sway{
+    0%,100%{transform:rotate(-3deg);}
+    50%{transform:rotate(3deg);}
+  }
+  .eyebrow{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    letter-spacing:.04em; font-size:13px; color:var(--grain-light);
+    text-transform:uppercase; margin:0 0 6px;
+  }
+  h1.title{
+    margin:0; font-family:'Noto Serif Malayalam',serif;
+    font-weight:700; font-size:clamp(30px,5.2vw,44px); line-height:1.28;
+  }
+  .subtitle{
+    margin:10px 0 0; max-width:56ch; color:var(--wheat-dim);
+    font-size:15.5px; line-height:1.65;
+  }
+  .hero-stats{display:flex; gap:22px; margin-top:24px; flex-wrap:wrap;}
+  .stat{font-family:'Fraunces',serif;}
+  .stat b{display:block; font-size:24px; font-weight:800; color:var(--grain-light);}
+  .stat span{font-size:12px; color:var(--wheat-dim); letter-spacing:.02em;}
+
+  /* ---------- MODE BAR ---------- */
+  .modebar{display:flex; gap:10px; margin:22px 0 18px; flex-wrap:wrap;}
+  .modebtn{
+    border:1.5px solid var(--dusk); background:var(--wheat-soft);
+    color:var(--soil-deep); font-family:'Noto Sans Malayalam',sans-serif;
+    font-size:14px; font-weight:600; padding:9px 16px; border-radius:999px;
+    cursor:pointer; transition:.15s ease; display:flex; align-items:center; gap:7px;
+  }
+  .modebtn:hover{background:var(--grain-light); border-color:var(--grain);}
+  .modebtn.active{background:var(--dusk); color:var(--wheat-soft); border-color:var(--dusk-deep);}
+
+  /* ---------- CHAPTER TABS (sheaves) ---------- */
+  .tabs{display:flex; gap:10px; overflow-x:auto; padding:4px 2px 14px;}
+  .sheaf-tab{
+    flex:0 0 auto; width:52px;height:52px;border-radius:50% 50% 42% 42% / 58% 58% 42% 42%;
+    background:radial-gradient(circle at 32% 28%, var(--grain-light), var(--grain) 60%, #8a6a26 100%);
+    color:var(--soil-deep); font-family:'Fraunces',serif; font-weight:800; font-size:19px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    border:2px solid transparent; transition:.15s ease;
+    box-shadow:0 4px 10px -4px rgba(0,0,0,.4);
+  }
+  .sheaf-tab:hover{transform:translateY(-2px);}
+  .sheaf-tab.active{border-color:var(--dusk); box-shadow:0 0 0 4px rgba(61,90,74,.18), 0 6px 14px -4px rgba(0,0,0,.4);}
+
+  /* ---------- CHAPTER PANEL ---------- */
+  .panel{
+    background:var(--wheat-soft);
+    border:1px solid var(--wheat-dim);
+    border-radius:16px; padding:26px 24px 22px;
+    box-shadow:0 10px 26px -20px rgba(0,0,0,.4);
+  }
+  .panel-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap;}
+  .panel-head h2{font-family:'Noto Serif Malayalam',serif; font-size:22px; margin:0; color:var(--dusk-deep);}
+  .panel-head .num{font-family:'Fraunces',serif; font-style:italic; color:var(--grain); font-size:15px;}
+
+  details.sec{border-top:1px dashed var(--wheat-dim); padding:14px 0;}
+  details.sec:last-of-type{border-bottom:1px dashed var(--wheat-dim);}
+  details.sec summary{
+    cursor:pointer; list-style:none; font-family:'Noto Serif Malayalam',serif;
+    font-weight:600; font-size:16.5px; color:var(--soil-deep);
+    display:flex; align-items:center; gap:10px;
+  }
+  details.sec summary::-webkit-details-marker{display:none;}
+  details.sec summary::before{
+    content:"+"; font-family:'Fraunces',serif; font-weight:700; color:var(--redeem);
+    width:20px; text-align:center; flex:0 0 auto; font-size:18px;
+  }
+  details.sec[open] summary::before{content:"–";}
+  details.sec ul{margin:12px 0 0; padding-left:0; list-style:none;}
+  details.sec li{position:relative; padding:5px 0 5px 20px; font-size:14.5px; line-height:1.75; color:#2c2418;}
+  details.sec li::before{content:"·"; position:absolute; left:2px; top:3px; color:var(--grain); font-size:22px; line-height:1;}
+
+  /* ---------- MEMORY GRAIN-EARS ---------- */
+  .chain-block{margin-top:18px; padding-top:16px; border-top:2px solid var(--wheat-dim);}
+  .chain-block-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap;}
+  .chain-block-head h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--dusk); margin:0;
+  }
+  .quizbtn{
+    border:1px solid var(--dusk); background:transparent; color:var(--dusk);
+    font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:999px; cursor:pointer;
+    font-family:'Noto Sans Malayalam',sans-serif;
+  }
+  .quizbtn.on{background:var(--dusk); color:var(--wheat-soft);}
+  .chain-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 4px;}
+  .grain-link{
+    background:linear-gradient(160deg, var(--wheat), var(--wheat-dim));
+    border:1.5px solid var(--grain); border-radius:16px 16px 6px 6px;
+    padding:8px 13px; font-size:13.5px; font-weight:500; color:var(--soil-deep);
+    white-space:nowrap; position:relative; transition:.15s ease;
+  }
+  .grain-link.hidden{
+    color:transparent; background:repeating-linear-gradient(135deg, var(--wheat-dim), var(--wheat-dim) 4px, var(--wheat) 4px, var(--wheat) 8px);
+    border-style:dashed; cursor:pointer;
+  }
+  .grain-link.hidden::after{
+    content:"?"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--redeem); font-family:'Fraunces',serif; font-weight:700;
+  }
+  .grain-link.revealed{background:linear-gradient(160deg, var(--grain-light), var(--grain)); border-color:var(--dusk); color:var(--soil-deep); font-weight:700;}
+  .chain-arrow{color:var(--grain); font-size:13px; margin:0 -2px;}
+
+  /* ---------- FACTS GRID ---------- */
+  .factgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px;}
+  .factcard{background:var(--wheat-soft); border:1px solid var(--wheat-dim); border-radius:12px; padding:14px 16px;}
+  .factcard .n{font-family:'Fraunces',serif; font-weight:800; font-size:26px; color:var(--redeem);}
+  .factcard .l{font-size:13px; color:var(--dusk); margin-top:2px; line-height:1.5;}
+  .factcard .c{font-size:11px; color:var(--grain); font-weight:700; margin-top:6px; letter-spacing:.03em;}
+
+  /* ---------- GENEALOGY STRIP (Ruth-specific extra) ---------- */
+  .genea{
+    margin-top:22px; padding-top:16px; border-top:2px solid var(--wheat-dim);
+  }
+  .genea h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--dusk); margin:0 0 12px;
+  }
+  .genea-row{display:flex; align-items:center; flex-wrap:wrap; gap:0;}
+  .genea-node{
+    background:var(--dusk); color:var(--wheat-soft); font-family:'Noto Serif Malayalam',serif;
+    font-weight:600; font-size:13px; padding:8px 14px; border-radius:999px; margin:4px 0;
+  }
+  .genea-node.king{background:var(--redeem);}
+  .genea-arrow{color:var(--grain); margin:0 6px; font-size:14px;}
+
+  /* ---------- FLASHCARD ---------- */
+  .fc-wrap{display:flex; flex-direction:column; align-items:center; gap:18px;}
+  .fc-progress{font-size:13px; color:var(--dusk); font-family:'Fraunces',serif; font-style:italic;}
+  .flashcard{width:100%; max-width:520px; min-height:220px; perspective:1400px; cursor:pointer;}
+  .flashcard-inner{position:relative; width:100%; height:100%; min-height:220px; transition:transform .5s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;}
+  .flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+  .fc-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; padding:26px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:10px; box-shadow:0 14px 30px -16px rgba(0,0,0,.4);}
+  .fc-front{background:var(--dusk); color:var(--wheat-soft); border:2px solid var(--dusk-deep);}
+  .fc-back{background:var(--wheat-soft); color:var(--soil-deep); border:2px solid var(--grain); transform:rotateY(180deg);}
+  .fc-tag{font-family:'Fraunces',serif; font-style:italic; font-size:12px; letter-spacing:.05em; text-transform:uppercase; opacity:.85;}
+  .fc-front .fc-text{font-family:'Noto Serif Malayalam',serif; font-size:20px; font-weight:600; line-height:1.6;}
+  .fc-back .fc-text{font-family:'Noto Sans Malayalam',sans-serif; font-size:15.5px; line-height:1.8;}
+  .fc-hint{font-size:12px; opacity:.7;}
+  .fc-controls{display:flex; gap:12px;}
+  .fc-controls button{font-family:'Noto Sans Malayalam',sans-serif; font-weight:600; font-size:13.5px; padding:10px 20px; border-radius:999px; border:1.5px solid var(--dusk); background:var(--wheat-soft); cursor:pointer;}
+  .fc-controls button.primary{background:var(--dusk); color:var(--wheat-soft); border-color:var(--dusk-deep);}
+
+  footer.note{text-align:center; margin-top:26px; font-size:12px; color:var(--dusk); font-style:italic; font-family:'Fraunces',serif;}
+
+  @media (max-width:520px){
+    .hero{padding:28px 18px;}
+    .panel{padding:20px 16px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="stalks">
+      <div class="stalk"><div class="ear"></div></div>
+      <div class="stalk"><div class="ear"></div></div>
+      <div class="stalk"><div class="ear"></div></div>
+    </div>
+    <p class="eyebrow">Logos Quiz &middot; Quick Recall</p>
+    <h1 class="title">റൂത്ത് — വിളവെടുപ്പിലെ വിശ്വസ്തത</h1>
+    <p class="subtitle">ക്ഷാമത്തില്‍നിന്ന് വിളവെടുപ്പിലേക്ക്; ഒരു മൊവാബ്യസ്ത്രീയുടെ വിശ്വസ്തതയില്‍നിന്ന് ദാവീദിന്റെ വംശാവലിയിലേക്ക്. 4 അധ്യായങ്ങൾ ഒറ്റനോട്ടത്തിൽ — ഓർമ്മക്കതിരുകൾ ടാപ്പ് ചെയ്ത് സ്വയം പരീക്ഷിക്കൂ.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>4</b><span>അധ്യായങ്ങൾ</span></div>
+      <div class="stat"><b>8</b><span>വിഭാഗങ്ങൾ</span></div>
+      <div class="stat"><b>29</b><span>ഓർമ്മക്കതിരുകൾ</span></div>
+    </div>
+  </div>
+
+  <div class="modebar">
+    <button class="modebtn active" data-mode="read">📖 വായന മോഡ്</button>
+    <button class="modebtn" data-mode="facts">🔢 പ്രധാന അക്കങ്ങൾ</button>
+    <button class="modebtn" data-mode="flash">🃏 ഫ്ലാഷ്കാർഡ് പരിശോധന</button>
+  </div>
+
+  <div id="view-read">
+    <div class="tabs" id="tabs"></div>
+    <div class="panel" id="panel"></div>
+  </div>
+
+  <div id="view-facts" style="display:none;">
+    <div class="panel">
+      <div class="panel-head"><h2>അക്കങ്ങളും പേരുകളും — വേഗ ഓർമ്മ</h2></div>
+      <div class="factgrid" id="factgrid"></div>
+      <div class="genea">
+        <h3>പേരെസിന്റെ പിൻതലമുറക്കാർ (4:18-22)</h3>
+        <div class="genea-row" id="geneaRow"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-flash" style="display:none;">
+    <div class="panel">
+      <div class="fc-wrap">
+        <div class="fc-progress" id="fcProgress">1 / 29</div>
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-tag" id="fcChapTag">അധ്യായം 1</div>
+              <div class="fc-text" id="fcFront"></div>
+              <div class="fc-hint">ടാപ്പ് ചെയ്ത് ഉത്തരം കാണുക →</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-tag">വിശദീകരണം</div>
+              <div class="fc-text" id="fcBack"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button id="fcShuffle">🔀 ഷഫിൾ</button>
+          <button id="fcPrev">← മുമ്പത്തേത്</button>
+          <button class="primary" id="fcNext">അടുത്തത് →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="note">"നീ പോകുന്നിടത്തു ഞാനും വരും" — റൂത്ത് 1:16</footer>
+</div>
+
+<script>
+const DATA = [
+{num:1, sections:[
+  {h:"എലിമെലെക്കും കുടുംബവും മൊവാബില്‍", pts:[
+    "ന്യായാധിപന്മാരുടെ ഭരണകാലത്ത് ക്ഷാമമുണ്ടായി; യൂദായിലെ ബേത്‌ലെഹംകാരനായ എലിമെലെക്ക് ഭാര്യ നവോമിയോടും പുത്രന്മാരായ മഹ്‌ലോന്‍, കിലിയോന്‍ എന്നിവരോടും കൂടി മൊവാബില്‍ കുടിയേറി.",
+    "എലിമെലെക്ക് മരിച്ചു; പുത്രന്മാര്‍ മൊവാബ്യസ്ത്രീകളായ ഓര്‍ഫാ, റൂത്ത് എന്നിവരെ വിവാഹം ചെയ്തു; പത്തുവര്‍ഷം അവിടെ കഴിഞ്ഞു.",
+    "മഹ്‌ലോനും കിലിയോനും മരിച്ചു; നവോമിക്ക് ഭര്‍ത്താവും പുത്രന്മാരും നഷ്ടപ്പെട്ടു."]},
+  {h:"നവോമിയും റൂത്തും ബേത്‌ലെഹെമിലേക്ക്", pts:[
+    "കര്‍ത്താവ് തന്റെ ജനത്തെ ഭക്ഷണം നൽകി അനുഗ്രഹിക്കുന്നു എന്നു കേട്ട് നവോമി മൊവാബില്‍നിന്ന് യൂദായിലേക്കു മടങ്ങാന്‍ പുറപ്പെട്ടു.",
+    "ഓര്‍ഫാ മടങ്ങി; റൂത്ത് നവോമിയോടൊപ്പം നിന്നു: “അമ്മയുടെ ചാര്‍ച്ചക്കാര്‍ എന്റെ ചാര്‍ച്ചക്കാരും അമ്മയുടെ ദൈവം എന്റെ ദൈവവുമായിരിക്കും.”",
+    "അവർ ബേത്‌ലെഹെമില്‍ എത്തി; നവോമി: “എന്നെ നവോമിയെന്നല്ല മാറാ എന്നാണു വിളിക്കേണ്ടത്.”",
+    "ബാർലിക്കൊയ്ത്തു തുടങ്ങിയപ്പോഴാണ് അവർ ബേത്‌ലെഹെമിൽ എത്തിയത്."]}
+], chain:["ക്ഷാമം","മൊവാബ്","എലിമെലെക്ക് മരിച്ചു","മഹ്‌ലോന്‍/കിലിയോന്‍ മരിച്ചു","ഓര്‍ഫാ പിരിഞ്ഞു","റൂത്ത് കൂടെ","ബേത്‌ലെഹെം","മാറാ","ബാർലിക്കൊയ്ത്ത്"]},
+
+{num:2, sections:[
+  {h:"റൂത്ത് ബോവാസിന്റെ വയലിൽ", pts:[
+    "നവോമിയുടെ ഭർത്തൃകുടുംബത്തിൽ ബോവാസ് എന്ന ധനികൻ ഉണ്ടായിരുന്നു.",
+    "റൂത്ത് കാലാപെറുക്കാൻ പോയി; എലിമെലെക്കിന്റെ കുടുംബത്തിൽപ്പെട്ട ബോവാസിന്റെ വയലിലാണ് എത്തിയത്.",
+    "ബോവാസ് റൂത്തിനോട് തന്റെ ദാസിമാരോടൊപ്പം കാലാപെറുക്കാനും ദാഹിക്കുമ്പോള്‍ വെള്ളം കുടിക്കാനും പറഞ്ഞു.",
+    "ഭക്ഷണസമയത്ത് അപ്പം വീഞ്ഞില്‍ മുക്കി ഭക്ഷിച്ചു; ബോവാസ് അവള്‍ക്ക് മലര്‍ കൊടുത്തു.",
+    "റൂത്ത് സന്ധ്യവരെ കാലാപെറുക്കി; ഏകദേശം ഒരു ഏഫാ ബാര്‍ലി ലഭിച്ചു.",
+    "റൂത്ത് താന്‍ ശേഖരിച്ച ധാന്യം നവോമിയെ കാണിച്ചു; ബാക്കിവന്ന ആഹാരവും നല്‍കി; നവോമി ബോവാസ് ഉറ്റബന്ധു ആണെന്ന് പറഞ്ഞു.",
+    "ബാര്‍ലിയുടെയും ഗോതമ്പിന്റെയും വിളവെടുപ്പ് കഴിയുന്നതുവരെ റൂത്ത് ബോവാസിന്റെ ദാസിമാരോടൊപ്പം കാലാപെറുക്കി."]}
+], chain:["ബോവാസ്","വയൽ","കാലാപെറുക്കൽ","അപ്പം/വീഞ്ഞ്","ഒരു ഏഫാ ബാർലി","ഉറ്റബന്ധു","ബാർലി/ഗോതമ്പ് വിളവെടുപ്പ്"]},
+
+{num:3, sections:[
+  {h:"ബോവാസിന്റെ മെതിക്കളത്തിൽ", pts:[
+    "നവോമി റൂത്തിനോട് ബോവാസ് ബന്ധുവാണെന്ന് പറഞ്ഞു; ബോവാസ് ആ രാത്രി മെതിക്കളത്തില്‍ ബാര്‍ലി പാറ്റാന്‍ വരും.",
+    "റൂത്ത് കുളിച്ച് തൈലം പൂശി നല്ല വസ്ത്രം ധരിച്ചു മെതിക്കളത്തിലേക്കു പോയി.",
+    "ബോവാസ് അത്താഴം കഴിഞ്ഞ് ധാന്യക്കൂമ്പാരത്തിനരികില്‍ കിടന്നു; റൂത്ത് അവന്റെ കാലില്‍നിന്നു പുതപ്പുമാറ്റി അവിടെ കിടന്നു.",
+    "അര്‍ധരാത്രിയില്‍ ബോവാസ് ഉണര്‍ന്നു; റൂത്ത് തന്റെ അടുത്ത ബന്ധുവാണെന്ന് പറഞ്ഞു.",
+    "ബോവാസ് റൂത്തിനെ ആശ്വസിപ്പിച്ചു; അവള്‍ ഉത്തമസ്ത്രീയാണെന്ന് നഗരത്തിലെ പരിചയക്കാര്‍ക്ക് അറിയാമെന്ന് പറഞ്ഞു.",
+    "ബോവാസിനെക്കാള്‍ അടുത്ത മറ്റൊരു ചാര്‍ച്ചക്കാരന്‍ ഉണ്ടെന്ന് പറഞ്ഞു; ആ ചാര്‍ച്ചക്കാരന്‍ കടമ നിര്‍വഹിച്ചില്ലെങ്കില്‍ ബോവാസ് അത് നിര്‍വഹിക്കും.",
+    "ബോവാസ് റൂത്തിന് ആറ് അളവ് ബാര്‍ലി നല്‍കി; നവോമി: “ഇന്നു തന്നെ തീരുമാനമാകും.”"]}
+], chain:["നവോമിയുടെ നിര്‍ദ്ദേശം","മെതിക്കളം","അര്‍ധരാത്രി","റൂത്ത്","അടുത്ത ചാര്‍ച്ചക്കാരന്‍","ബോവാസ്","6 അളവ് ബാര്‍ലി","തീരുമാനം"]},
+
+{num:4, sections:[
+  {h:"റൂത്തിന്റെ വിവാഹം", pts:[
+    "ബോവാസ് നഗരവാതില്‍ക്കല്‍ ചെന്നു; അടുത്ത ബന്ധുവിനെയും പത്തുപേര്‍ ശ്രേഷ്ഠന്മാരെയും വിളിച്ചു.",
+    "അടുത്ത ബന്ധു ആദ്യം എലിമെലെക്കിന്റെ നിലം വീണ്ടെടുക്കാന്‍ സമ്മതിച്ചു; നവോമിയില്‍നിന്നു വയല്‍ വാങ്ങുന്ന ദിവസം തന്നെ റൂത്തിനെയും സ്വീകരിക്കണമെന്ന് പറഞ്ഞപ്പോള്‍ ബന്ധു പിന്മാറി.",
+    "ബന്ധു ചെരിപ്പൂരി കൈമാറ്റം ഉറപ്പിച്ചു; ബോവാസ് എലിമെലെക്കിന്റെയും മഹ്‌ലോന്റെയും കിലിയോന്റെയും എല്ലാം നവോമിയില്‍നിന്ന് വാങ്ങിയതിനു സാക്ഷികളായി ശ്രേഷ്ഠന്മാരെ നിര്‍ത്തി.",
+    "ബോവാസ് മൊവാബ്യയും മഹ്‌ലോന്റെ വിധവയുമായ റൂത്തിനെ ഭാര്യയായി സ്വീകരിച്ചു.",
+    "റൂത്ത് ഗര്‍ഭിണിയായി ഒരു പുത്രനെ പ്രസവിച്ചു; ഓബദ് എന്നു പേരിട്ടു — ഓബദ് ജസ്സെയുടെ പിതാവും ജസ്സെ ദാവീദിന്റെ പിതാവുമാണ്."]},
+  {h:"പേരെസിന്റെ പിൻതലമുറക്കാർ", pts:[
+    "പേരെസ് → ഹെബ്രോൺ → രാം → അമീനാദാബ് → നഹ്‌ഷോൻ → സൽമോൻ → ബോവാസ് → ഓബദ് → ജസ്സെ → ദാവീദ്."]}
+], chain:["നഗരവാതിൽ","10 ശ്രേഷ്ഠന്മാർ","അടുത്ത ബന്ധു","ചെരിപ്പ്","ബോവാസ്/റൂത്ത്","ഓബദ്","ജസ്സെ","ദാവീദ്"]}
+];
+
+const FACTS = [
+  {n:"10", l:"വര്‍ഷം എലിമെലെക്കിന്റെ കുടുംബം മൊവാബില്‍ കഴിഞ്ഞു", c:"അധ്യായം 1"},
+  {n:"1", l:"ഏഫാ ബാര്‍ലി റൂത്ത് ആദ്യദിവസം കാലാപെറുക്കി നേടി", c:"അധ്യായം 2"},
+  {n:"6", l:"അളവ് ബാര്‍ലി ബോവാസ് റൂത്തിന് മെതിക്കളത്തില്‍ നല്‍കി", c:"അധ്യായം 3"},
+  {n:"10", l:"നഗരശ്രേഷ്ഠന്മാരെ ബോവാസ് സാക്ഷികളായി നിര്‍ത്തി", c:"അധ്യായം 4"},
+  {n:"2", l:"സ്ത്രീകള്‍ നവോമിയോടൊപ്പം മൊവാബില്‍നിന്ന് — ഓര്‍ഫായും റൂത്തും", c:"അധ്യായം 1"},
+  {n:"3", l:"പേരുകള്‍ മരിച്ചു: എലിമെലെക്ക്, മഹ്‌ലോന്‍, കിലിയോന്‍", c:"അധ്യായം 1"}
+];
+
+let mode = "read";
+let activeChapter = 1;
+const quizState = {};
+
+const tabsEl = document.getElementById('tabs');
+const panelEl = document.getElementById('panel');
+
+function renderTabs(){
+  tabsEl.innerHTML = "";
+  DATA.forEach(ch=>{
+    const b = document.createElement('div');
+    b.className = 'sheaf-tab' + (ch.num===activeChapter ? ' active':'');
+    b.textContent = ch.num;
+    b.onclick = ()=>{ activeChapter = ch.num; renderTabs(); renderPanel(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function renderPanel(){
+  const ch = DATA.find(c=>c.num===activeChapter);
+  const quizOn = !!quizState[ch.num];
+  let html = `<div class="panel-head"><h2>റൂത്ത് — അധ്യായം ${ch.num}</h2><span class="num">Ch. ${ch.num} of 4</span></div>`;
+  ch.sections.forEach((s,i)=>{
+    html += `<details class="sec" ${i===0?'open':''}><summary>${s.h}</summary><ul>`;
+    s.pts.forEach(p=> html += `<li>${p}</li>`);
+    html += `</ul></details>`;
+  });
+  html += `<div class="chain-block">
+    <div class="chain-block-head">
+      <h3>ഓർമ്മിക്കാൻ — കതിരുകൾ</h3>
+      <button class="quizbtn ${quizOn?'on':''}" id="quizToggle">${quizOn ? '✓ ക്വിസ് മോഡ് ഓണ്‍' : '🔒 ക്വിസ് മോഡ്'}</button>
+    </div>
+    <div class="chain-row" id="chainRow"></div>
+  </div>`;
+  panelEl.innerHTML = html;
+
+  const row = document.getElementById('chainRow');
+  ch.chain.forEach((item,i)=>{
+    if(i>0){
+      const arrow = document.createElement('span');
+      arrow.className = 'chain-arrow';
+      arrow.textContent = '→';
+      row.appendChild(arrow);
+    }
+    const link = document.createElement('span');
+    link.className = 'grain-link' + (quizOn ? ' hidden' : '');
+    link.textContent = item;
+    if(quizOn){
+      link.onclick = ()=>{
+        link.classList.remove('hidden');
+        link.classList.add('revealed');
+        link.onclick = null;
+      };
+    }
+    row.appendChild(link);
+  });
+
+  document.getElementById('quizToggle').onclick = ()=>{
+    quizState[ch.num] = !quizState[ch.num];
+    renderPanel();
+  };
+}
+
+function renderFacts(){
+  const grid = document.getElementById('factgrid');
+  grid.innerHTML = "";
+  FACTS.forEach(f=>{
+    const d = document.createElement('div');
+    d.className = 'factcard';
+    d.innerHTML = `<div class="n">${f.n}</div><div class="l">${f.l}</div><div class="c">${f.c}</div>`;
+    grid.appendChild(d);
+  });
+  const genea = document.getElementById('geneaRow');
+  genea.innerHTML = "";
+  const line = ["പേരെസ്","ഹെബ്രോൺ","രാം","അമീനാദാബ്","നഹ്‌ഷോൻ","സൽമോൻ","ബോവാസ്","ഓബദ്","ജസ്സെ","ദാവീദ്"];
+  line.forEach((name,i)=>{
+    if(i>0){
+      const a = document.createElement('span');
+      a.className = 'genea-arrow';
+      a.textContent = '→';
+      genea.appendChild(a);
+    }
+    const n = document.createElement('span');
+    n.className = 'genea-node' + (name==="ദാവീദ്" ? ' king':'');
+    n.textContent = name;
+    genea.appendChild(n);
+  });
+}
+
+// ---------- Flashcards ----------
+let cardPool = [];
+DATA.forEach(ch=>{
+  ch.chain.forEach(item=>{
+    let back = "";
+    for(const s of ch.sections){
+      const key = item.split('/')[0].split(' ')[0];
+      const found = s.pts.find(p=> p.includes(key));
+      if(found){ back = found; break; }
+    }
+    if(!back) back = ch.sections[0].pts[0];
+    cardPool.push({chap:ch.num, front:item, back:back});
+  });
+});
+let fcOrder = cardPool.map((_,i)=>i);
+let fcIndex = 0;
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function renderFlash(){
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  const idx = fcOrder[fcIndex];
+  const c = cardPool[idx];
+  document.getElementById('fcChapTag').textContent = 'അധ്യായം ' + c.chap;
+  document.getElementById('fcFront').textContent = c.front;
+  document.getElementById('fcBack').textContent = c.back;
+  document.getElementById('fcProgress').textContent = (fcIndex+1) + ' / ' + cardPool.length;
+}
+
+document.getElementById('flashcard').onclick = function(){
+  this.classList.toggle('flipped');
+};
+document.getElementById('fcNext').onclick = ()=>{
+  fcIndex = (fcIndex+1) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcPrev').onclick = ()=>{
+  fcIndex = (fcIndex-1+fcOrder.length) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcShuffle').onclick = ()=>{
+  fcOrder = shuffle(cardPool.map((_,i)=>i));
+  fcIndex = 0;
+  renderFlash();
+};
+
+document.querySelectorAll('.modebtn').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('.modebtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    document.getElementById('view-read').style.display = mode==='read' ? 'block':'none';
+    document.getElementById('view-facts').style.display = mode==='facts' ? 'block':'none';
+    document.getElementById('view-flash').style.display = mode==='flash' ? 'block':'none';
+    if(mode==='facts') renderFacts();
+    if(mode==='flash') renderFlash();
+  };
+});
+
+renderTabs();
+renderPanel();
+</script>
+</body>
+</html>

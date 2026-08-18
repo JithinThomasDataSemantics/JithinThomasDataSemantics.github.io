@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1 സാമുവേൽ 1–7 · Quiz Recall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#161c22;
+    --night-deep:#0e1216;
+    --stone:#e7e1d1;
+    --stone-soft:#f3efe1;
+    --stone-dim:#d6cdb4;
+    --slate:#3c4a52;
+    --bronze:#9a7a3f;
+    --bronze-light:#d3ab5f;
+    --flame:#e8a13a;
+    --flame-glow:#f6c877;
+    --blood:#6e2f2a;
+    --ok:#4a6b52;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 800px 500px at 85% -8%, rgba(154,122,63,.14), transparent 60%),
+      radial-gradient(ellipse 700px 450px at 0% 0%, rgba(60,74,82,.16), transparent 55%),
+      var(--stone);
+    color:var(--night-deep);
+    font-family:'Noto Sans Malayalam','Fraunces',serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 90px;}
+
+  /* ---------- HERO: the lamp that had not gone out ---------- */
+  .hero{
+    position:relative;
+    padding:40px 30px 34px;
+    border-radius:18px;
+    background:radial-gradient(620px 300px at 82% 8%, rgba(232,161,58,.20), transparent 60%),
+               linear-gradient(165deg, var(--night) 0%, var(--night-deep) 100%);
+    color:var(--stone-soft);
+    overflow:hidden;
+    box-shadow:0 18px 40px -18px rgba(0,0,0,.55);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.25), transparent),
+                      radial-gradient(1px 1px at 65% 15%, rgba(255,255,255,.18), transparent),
+                      radial-gradient(1px 1px at 40% 60%, rgba(255,255,255,.15), transparent),
+                      radial-gradient(1.5px 1.5px at 88% 40%, rgba(255,255,255,.22), transparent),
+                      radial-gradient(1px 1px at 12% 75%, rgba(255,255,255,.18), transparent);
+    pointer-events:none;
+  }
+  .lampmark{display:flex; align-items:flex-end; gap:4px; margin-bottom:18px;}
+  .flame{
+    width:8px; height:16px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    background:radial-gradient(circle at 50% 70%, var(--flame-glow), var(--flame) 70%);
+    box-shadow:0 0 12px 3px rgba(232,161,58,.55);
+    animation:flicker 2.6s ease-in-out infinite;
+  }
+  @keyframes flicker{
+    0%,100%{transform:scaleY(1) translateX(0); opacity:1;}
+    30%{transform:scaleY(1.12) translateX(.5px); opacity:.92;}
+    55%{transform:scaleY(.9) translateX(-.5px); opacity:1;}
+    80%{transform:scaleY(1.05); opacity:.95;}
+  }
+  .wick{width:14px;height:5px;background:var(--slate);border-radius:2px 2px 6px 6px;}
+  .eyebrow{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    letter-spacing:.04em; font-size:13px; color:var(--flame-glow);
+    text-transform:uppercase; margin:0 0 6px;
+  }
+  h1.title{
+    margin:0; font-family:'Noto Serif Malayalam',serif;
+    font-weight:700; font-size:clamp(28px,5vw,42px); line-height:1.3;
+  }
+  .subtitle{
+    margin:10px 0 0; max-width:58ch; color:var(--stone-dim);
+    font-size:15.5px; line-height:1.65;
+  }
+  .hero-stats{display:flex; gap:22px; margin-top:24px; flex-wrap:wrap;}
+  .stat{font-family:'Fraunces',serif;}
+  .stat b{display:block; font-size:24px; font-weight:800; color:var(--flame-glow);}
+  .stat span{font-size:12px; color:var(--stone-dim); letter-spacing:.02em;}
+
+  /* ---------- MODE BAR ---------- */
+  .modebar{display:flex; gap:10px; margin:22px 0 18px; flex-wrap:wrap;}
+  .modebtn{
+    border:1.5px solid var(--slate); background:var(--stone-soft);
+    color:var(--night-deep); font-family:'Noto Sans Malayalam',sans-serif;
+    font-size:14px; font-weight:600; padding:9px 16px; border-radius:999px;
+    cursor:pointer; transition:.15s ease; display:flex; align-items:center; gap:7px;
+  }
+  .modebtn:hover{background:var(--bronze-light); border-color:var(--bronze);}
+  .modebtn.active{background:var(--night); color:var(--stone-soft); border-color:var(--night-deep);}
+
+  /* ---------- CHAPTER TABS (lamps) ---------- */
+  .tabs{display:flex; gap:10px; overflow-x:auto; padding:4px 2px 14px;}
+  .lamp-tab{
+    flex:0 0 auto; width:52px;height:52px;border-radius:14px 14px 20px 20px;
+    background:linear-gradient(160deg, var(--bronze-light), var(--bronze) 65%, #6e5528 100%);
+    color:var(--night-deep); font-family:'Fraunces',serif; font-weight:800; font-size:19px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    border:2px solid transparent; transition:.15s ease;
+    box-shadow:0 4px 10px -4px rgba(0,0,0,.4);
+  }
+  .lamp-tab:hover{transform:translateY(-2px);}
+  .lamp-tab.active{border-color:var(--night); box-shadow:0 0 0 4px rgba(22,28,34,.14), 0 6px 14px -4px rgba(0,0,0,.45);}
+
+  /* ---------- CHAPTER PANEL ---------- */
+  .panel{
+    background:var(--stone-soft);
+    border:1px solid var(--stone-dim);
+    border-radius:16px; padding:26px 24px 22px;
+    box-shadow:0 10px 26px -20px rgba(0,0,0,.4);
+  }
+  .panel-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap;}
+  .panel-head h2{font-family:'Noto Serif Malayalam',serif; font-size:22px; margin:0; color:var(--night);}
+  .panel-head .num{font-family:'Fraunces',serif; font-style:italic; color:var(--bronze); font-size:15px;}
+
+  details.sec{border-top:1px dashed var(--stone-dim); padding:14px 0;}
+  details.sec:last-of-type{border-bottom:1px dashed var(--stone-dim);}
+  details.sec summary{
+    cursor:pointer; list-style:none; font-family:'Noto Serif Malayalam',serif;
+    font-weight:600; font-size:16.5px; color:var(--night-deep);
+    display:flex; align-items:center; gap:10px;
+  }
+  details.sec summary::-webkit-details-marker{display:none;}
+  details.sec summary::before{
+    content:"+"; font-family:'Fraunces',serif; font-weight:700; color:var(--bronze);
+    width:20px; text-align:center; flex:0 0 auto; font-size:18px;
+  }
+  details.sec[open] summary::before{content:"–";}
+  details.sec ul{margin:12px 0 0; padding-left:0; list-style:none;}
+  details.sec li{position:relative; padding:5px 0 5px 20px; font-size:14.5px; line-height:1.75; color:#262019;}
+  details.sec li::before{content:"·"; position:absolute; left:2px; top:3px; color:var(--bronze); font-size:22px; line-height:1;}
+
+  /* ---------- MEMORY STONES ---------- */
+  .chain-block{margin-top:18px; padding-top:16px; border-top:2px solid var(--stone-dim);}
+  .chain-block-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap;}
+  .chain-block-head h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--slate); margin:0;
+  }
+  .quizbtn{
+    border:1px solid var(--night); background:transparent; color:var(--night);
+    font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:999px; cursor:pointer;
+    font-family:'Noto Sans Malayalam',sans-serif;
+  }
+  .quizbtn.on{background:var(--night); color:var(--stone-soft);}
+  .chain-row{display:flex; flex-wrap:wrap; align-items:center; gap:8px 4px;}
+  .stone-link{
+    background:linear-gradient(160deg, var(--stone), var(--stone-dim));
+    border:1.5px solid var(--slate); border-radius:8px;
+    padding:8px 13px; font-size:13.5px; font-weight:500; color:var(--night-deep);
+    white-space:nowrap; position:relative; box-shadow:0 2px 0 rgba(0,0,0,.08) inset;
+    transition:.15s ease;
+  }
+  .stone-link.hidden{
+    color:transparent; background:repeating-linear-gradient(135deg, var(--stone-dim), var(--stone-dim) 4px, var(--stone) 4px, var(--stone) 8px);
+    border-style:dashed; cursor:pointer;
+  }
+  .stone-link.hidden::after{
+    content:"?"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--bronze); font-family:'Fraunces',serif; font-weight:700;
+  }
+  .stone-link.revealed{background:linear-gradient(160deg, var(--flame-glow), var(--bronze-light)); border-color:var(--bronze); color:var(--night-deep); font-weight:700;}
+  .chain-arrow{color:var(--bronze); font-size:13px; margin:0 -2px;}
+
+  /* ---------- FACTS GRID ---------- */
+  .factgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px;}
+  .factcard{background:var(--stone-soft); border:1px solid var(--stone-dim); border-radius:12px; padding:14px 16px;}
+  .factcard .n{font-family:'Fraunces',serif; font-weight:800; font-size:26px; color:var(--night);}
+  .factcard .l{font-size:13px; color:var(--slate); margin-top:2px; line-height:1.5;}
+  .factcard .c{font-size:11px; color:var(--bronze); font-weight:700; margin-top:6px; letter-spacing:.03em;}
+
+  /* ---------- FLASHCARD ---------- */
+  .fc-wrap{display:flex; flex-direction:column; align-items:center; gap:18px;}
+  .fc-progress{font-size:13px; color:var(--slate); font-family:'Fraunces',serif; font-style:italic;}
+  .flashcard{width:100%; max-width:520px; min-height:220px; perspective:1400px; cursor:pointer;}
+  .flashcard-inner{position:relative; width:100%; height:100%; min-height:220px; transition:transform .5s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;}
+  .flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+  .fc-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:16px; padding:26px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:10px; box-shadow:0 14px 30px -16px rgba(0,0,0,.4);}
+  .fc-front{background:var(--night); color:var(--stone-soft); border:2px solid var(--night-deep);}
+  .fc-back{background:var(--stone-soft); color:var(--night-deep); border:2px solid var(--bronze); transform:rotateY(180deg);}
+  .fc-tag{font-family:'Fraunces',serif; font-style:italic; font-size:12px; letter-spacing:.05em; text-transform:uppercase; opacity:.85;}
+  .fc-front .fc-text{font-family:'Noto Serif Malayalam',serif; font-size:20px; font-weight:600; line-height:1.6;}
+  .fc-back .fc-text{font-family:'Noto Sans Malayalam',sans-serif; font-size:15.5px; line-height:1.8;}
+  .fc-hint{font-size:12px; opacity:.7;}
+  .fc-controls{display:flex; gap:12px;}
+  .fc-controls button{font-family:'Noto Sans Malayalam',sans-serif; font-weight:600; font-size:13.5px; padding:10px 20px; border-radius:999px; border:1.5px solid var(--slate); background:var(--stone-soft); cursor:pointer;}
+  .fc-controls button.primary{background:var(--night); color:var(--stone-soft); border-color:var(--night-deep);}
+
+  footer.note{text-align:center; margin-top:26px; font-size:12px; color:var(--slate); font-style:italic; font-family:'Fraunces',serif;}
+
+  @media (max-width:520px){
+    .hero{padding:28px 18px;}
+    .panel{padding:20px 16px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="lampmark">
+      <div class="flame"></div><div class="wick"></div>
+    </div>
+    <p class="eyebrow">Logos Quiz &middot; Quick Recall</p>
+    <h1 class="title">1 സാമുവേൽ 1–7 — ദൈവം കേൾക്കുന്നു, വിളിക്കുന്നു, സഹായിക്കുന്നു</h1>
+    <p class="subtitle">"ദൈവത്തിന്റെ ദീപം അണഞ്ഞിരുന്നില്ല" — ഹന്നായുടെ പ്രാർഥന മുതൽ ഏബനേസർ കല്ല് വരെ. 7 അധ്യായങ്ങൾ ഒറ്റനോട്ടത്തിൽ — ഓർമ്മക്കല്ലുകൾ ടാപ്പ് ചെയ്ത് സ്വയം പരീക്ഷിക്കൂ.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>7</b><span>അധ്യായങ്ങൾ</span></div>
+      <div class="stat"><b>19</b><span>വിഭാഗങ്ങൾ</span></div>
+      <div class="stat"><b>63</b><span>ഓർമ്മക്കല്ലുകൾ</span></div>
+    </div>
+  </div>
+
+  <div class="modebar">
+    <button class="modebtn active" data-mode="read">📖 വായന മോഡ്</button>
+    <button class="modebtn" data-mode="facts">🔢 പ്രധാന അക്കങ്ങൾ</button>
+    <button class="modebtn" data-mode="flash">🃏 ഫ്ലാഷ്കാർഡ് പരിശോധന</button>
+  </div>
+
+  <div id="view-read">
+    <div class="tabs" id="tabs"></div>
+    <div class="panel" id="panel"></div>
+  </div>
+
+  <div id="view-facts" style="display:none;">
+    <div class="panel">
+      <div class="panel-head"><h2>അക്കങ്ങളും പേരുകളും — വേഗ ഓർമ്മ</h2></div>
+      <div class="factgrid" id="factgrid"></div>
+    </div>
+  </div>
+
+  <div id="view-flash" style="display:none;">
+    <div class="panel">
+      <div class="fc-wrap">
+        <div class="fc-progress" id="fcProgress">1 / 63</div>
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-tag" id="fcChapTag">അധ്യായം 1</div>
+              <div class="fc-text" id="fcFront"></div>
+              <div class="fc-hint">ടാപ്പ് ചെയ്ത് ഉത്തരം കാണുക →</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-tag">വിശദീകരണം</div>
+              <div class="fc-text" id="fcBack"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button id="fcShuffle">🔀 ഷഫിൾ</button>
+          <button id="fcPrev">← മുമ്പത്തേത്</button>
+          <button class="primary" id="fcNext">അടുത്തത് →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="note">"ഇതുവരെ കര്‍ത്താവ് ഞങ്ങളെ സഹായിച്ചു" — ഏബനേസർ, 1 സാമുവേൽ 7:12</footer>
+</div>
+
+<script>
+const DATA = [
+{num:1, sections:[
+  {h:"സാമുവലിന്റെ ജനനം", pts:[
+    "എഫ്രായിം മലനാട്ടിലെ റാമാത്തയിമില്‍ സൂഫ്‌വംശജനായ എല്ക്കാന; പിതാവ് യറോഹാം.",
+    "ഭാര്യമാര്‍: ഹന്നാ, പെനീന്നാ. പെനീന്നായ്ക്ക് മക്കളുണ്ടായിരുന്നു; ഹന്നായ്ക്ക് മക്കളില്ലായിരുന്നു.",
+    "എല്ക്കാന വര്‍ഷംതോറും ഷീലോയിലേക്ക് കര്‍ത്താവിനെ ആരാധിക്കാനും ബലിയര്‍പ്പിക്കാനും പോയി; ഏലിയുടെ പുത്രന്മാരായ ഹോഫ്‌നിയും ഫിനെഹാസും അവിടെ പുരോഹിതന്മാരായിരുന്നു.",
+    "പെനീന്നാ ഹന്നായെ പ്രകോപിപ്പിച്ചു; ഹന്നാ കരയുകയും ഭക്ഷണം കഴിക്കാതിരിക്കുകയും ചെയ്തു.",
+    "ഹന്നാ പുത്രനുവേണ്ടി പ്രാര്‍ഥിച്ച് നേര്‍ച്ച നേര്‍ന്നു: പുത്രനെ നല്‍കിയാല്‍ ജീവിതകാലം മുഴുവന്‍ കര്‍ത്താവിനു സമര്‍പ്പിക്കും; ക്ഷൗരക്കത്തി ശിരസ്സില്‍ സ്പര്‍ശിക്കുകയില്ല.",
+    "ഏലി ആദ്യം ഹന്നാ മദ്യപിച്ചെന്ന് കരുതി; വിശദീകരണം കേട്ട് “സമാധാനമായി പോവുക” എന്നു പറഞ്ഞു.",
+    "കര്‍ത്താവ് ഹന്നായെ അനുസ്മരിച്ചു; അവള്‍ പുത്രനെ പ്രസവിച്ചു — സാമുവല്‍ (“കര്‍ത്താവിനോടു ചോദിച്ചു വാങ്ങിയത്”) എന്നു പേരിട്ടു.",
+    "മുലകുടി മാറിയശേഷം ഹന്നാ സാമുവലിനെ ഷീലോയിലേക്കു കൊണ്ടുവന്നു — 3 വയസ്സുള്ള കാളക്കുട്ടി, ഒരു ഏഫാ മാവ്, ഒരു കുടം വീഞ്ഞ് സഹിതം; ബലിക്കുശേഷം ആജീവനാന്തം സമര്‍പ്പിച്ചു."]}
+], chain:["എല്ക്കാന","ഹന്നാ/പെനീന്നാ","ഷീലോ","ഹന്നായുടെ പ്രാര്‍ഥന","ഏലി","സാമുവല്‍ ജനനം","സാമുവല്‍ സമര്‍പ്പണം"]},
+
+{num:2, sections:[
+  {h:"ഹന്നായുടെ കീര്‍ത്തനം", pts:[
+    "ഹന്നാ കര്‍ത്താവില്‍ ആനന്ദിക്കുന്നു; കര്‍ത്താവ് പരിശുദ്ധനും സുസ്ഥിരമായ ആശ്രയവുമാണ്.",
+    "കര്‍ത്താവ് ബലഹീനരെ ശക്തരാക്കുകയും താഴ്ത്തുകയും ഉയര്‍ത്തുകയും ചെയ്യുന്നു; ദരിദ്രനെ ധൂളിയില്‍നിന്നും അഗതിയെ കുപ്പയില്‍നിന്നും ഉയര്‍ത്തുന്നു.",
+    "കര്‍ത്താവ് പ്രതിയോഗികളെ ഛിന്നഭിന്നമാക്കുകയും തന്റെ അഭിഷിക്തന് ശക്തി നല്‍കുകയും ചെയ്യും.",
+    "എല്ക്കാന റാമായിലേക്ക് മടങ്ങി; ബാലനായ സാമുവല്‍ ഏലിയുടെ സാന്നിധ്യത്തില്‍ കര്‍ത്താവിനു ശുശ്രൂഷ ചെയ്തു."]},
+  {h:"ഏലിയുടെ പുത്രന്മാര്‍", pts:[
+    "ഹോഫ്‌നിയും ഫിനെഹാസും ദുര്‍മാര്‍ഗികളും കര്‍ത്താവിനെ ബഹുമാനിക്കാത്തവരുമായിരുന്നു; ബലിമാംസത്തിന്റെ വിഹിതനിയമം ലംഘിച്ചു.",
+    "സാമുവല്‍ ചണനൂല്‍കൊണ്ടുള്ള വിശേഷവസ്ത്രം ധരിച്ച് കര്‍ത്താവിനു ശുശ്രൂഷ ചെയ്തു.",
+    "ഏലി എല്ക്കാനയെയും ഹന്നായെയും അനുഗ്രഹിച്ചു; ഹന്നായ്ക്ക് 3 പുത്രന്മാരും 2 പുത്രിമാരും ജനിച്ചു.",
+    "ഏലി പുത്രന്മാരെ ശാസിച്ചെങ്കിലും അവര്‍ കേട്ടില്ല; സാമുവല്‍ കര്‍ത്താവിന്റെയും മനുഷ്യരുടെയും പ്രീതിയില്‍ വളര്‍ന്നു."]},
+  {h:"ഏലിയുടെ കുടുംബത്തിനെതിരായ പ്രവചനം", pts:[
+    "കര്‍ത്താവ് അയച്ച ഒരാള്‍ ഏലിയോട് കുടുംബത്തിനെതിരായ വിധി അറിയിച്ചു: “എന്നെ ആദരിക്കുന്നവരെ ഞാനും ആദരിക്കും; നിന്ദിക്കുന്നവര്‍ നിന്ദിക്കപ്പെടും.”",
+    "ഏലിയുടെ കുടുംബത്തില്‍ വൃദ്ധരായി ആരും ശേഷിക്കുകയില്ല; ഹോഫ്‌നിയും ഫിനെഹാസും ഒരേ ദിവസം മരിക്കും.",
+    "കര്‍ത്താവ് വിശ്വസ്തനായ ഒരു പുരോഹിതനെ തിരഞ്ഞെടുക്കും; ശേഷിച്ചവര്‍ അപ്പത്തിനുവേണ്ടി യാചിക്കും."]}
+], chain:["ഹന്നായുടെ കീര്‍ത്തനം","ഹോഫ്‌നി/ഫിനെഹാസ്","ബലിമാംസത്തിലെ പാപം","സാമുവലിന്റെ ശുശ്രൂഷ","3 പുത്രന്മാര്‍ + 2 പുത്രിമാര്‍","ഏലിയുടെ ശാസനം","കുടുംബത്തിനെതിരായ വിധി"]},
+
+{num:3, sections:[
+  {h:"സാമുവലിനെ വിളിക്കുന്നു", pts:[
+    "ബാലനായ സാമുവല്‍ ഏലിയുടെ സാന്നിധ്യത്തില്‍ ശുശ്രൂഷ ചെയ്തു; അരുളപ്പാടുകളും ദര്‍ശനങ്ങളും വിരളമായിരുന്നു.",
+    "കാഴ്ച മങ്ങിയ ഏലി മുറിയില്‍ കിടന്നു; ദൈവത്തിന്റെ ദീപം അണഞ്ഞിരുന്നില്ല.",
+    "കര്‍ത്താവ് സാമുവലിനെ 3 പ്രാവശ്യം വിളിച്ചു; ഓരോ തവണയും അവന്‍ ഏലിയുടെ അടുക്കലേക്ക് ഓടി; മൂന്നാമത്തെ വിളിക്കുശേഷം കര്‍ത്താവാണെന്ന് ഏലി മനസ്സിലാക്കി.",
+    "ഏലി പറഞ്ഞു: “കര്‍ത്താവേ, അരുളിച്ചെയ്താലും, അങ്ങയുടെ ദാസന്‍ ഇതാ ശ്രവിക്കുന്നു.”",
+    "കര്‍ത്താവ് ഏലിയുടെ കുടുംബത്തിനെതിരായ വിധി അറിയിച്ചു — അവരുടെ പാപത്തിന് ബലികളും കാഴ്ചകളും പരിഹാരമാകുകയില്ല.",
+    "സാമുവല്‍ ദര്‍ശനം ഏലിയോട് പറയാന്‍ ഭയപ്പെട്ടെങ്കിലും ഒന്നും മറച്ചുവച്ചില്ല; ഏലി: “അതു കര്‍ത്താവാണ്; യുക്തമെന്നു തോന്നുന്നത് പ്രവര്‍ത്തിക്കട്ടെ.”",
+    "കര്‍ത്താവ് സാമുവലിനോടുകൂടെ ഉണ്ടായിരുന്നു; ദാന്‍ മുതല്‍ ബേര്‍ഷെബ വരെ അവന്‍ പ്രവാചകനായെന്ന് അറിഞ്ഞു; ഷീലോയില്‍ കര്‍ത്താവ് വീണ്ടും പ്രത്യക്ഷപ്പെട്ടു."]}
+], chain:["സാമുവല്‍","3 പ്രാവശ്യം വിളി","ഏലിയുടെ നിര്‍ദേശം","“ദാസന്‍ ശ്രവിക്കുന്നു”","ഏലിയുടെ കുടുംബത്തിനെതിരായ വിധി","സാമുവല്‍ എല്ലാം അറിയിച്ചു","പ്രവാചകനായി","ദാന്‍–ബേര്‍ഷെബ","ഷീലോ"]},
+
+{num:4, sections:[
+  {h:"യുദ്ധം: ഇസ്രായേലിന്റെ പരാജയം", pts:[
+    "ഫിലിസ്ത്യര്‍ യുദ്ധത്തിനുവന്നു; ഇസ്രായേല്‍ എബനേസറില്‍, ഫിലിസ്ത്യര്‍ അഫെക്കില്‍ പാളയമടിച്ചു.",
+    "ഇസ്രായേല്‍ പരാജയപ്പെട്ടു; ഏകദേശം 4,000 പേര്‍ കൊല്ലപ്പെട്ടു.",
+    "ഇസ്രായേല്യര്‍ ഷീലോയില്‍നിന്ന് ഉടമ്പടിയുടെ പേടകം കൊണ്ടുവന്നു; ഹോഫ്‌നിയും ഫിനെഹാസും പേടകത്തോടൊപ്പം ഉണ്ടായിരുന്നു.",
+    "പേടകം എത്തിയപ്പോള്‍ ഇസ്രായേല്‍ വലിയ ആര്‍പ്പുവിളി നടത്തി."]},
+  {h:"വാഗ്ദാനപേടകം നഷ്ടപ്പെടുന്നു", pts:[
+    "ഫിലിസ്ത്യര്‍ ഭയന്നെങ്കിലും ധീരമായി യുദ്ധം ചെയ്തു; ഇസ്രായേല്‍ വീണ്ടും പരാജയപ്പെട്ടു — 30,000 പടയാളികള്‍ കൊല്ലപ്പെട്ടു.",
+    "ദൈവത്തിന്റെ പേടകം പിടിക്കപ്പെട്ടു; ഹോഫ്‌നിയും ഫിനെഹാസും കൊല്ലപ്പെട്ടു.",
+    "ഒരു ബെഞ്ചമിന്‍ ഗോത്രക്കാരന്‍ ഷീലോയിലെത്തി വസ്ത്രം കീറി തലയില്‍ പൂഴി വിതറി; ഏലി (98 വയസ്സ്, മിക്കവാറും അന്ധന്‍) വാര്‍ത്ത കേട്ട് വീണ് മരിച്ചു — 40 വര്‍ഷം ന്യായാധിപനായിരുന്നു.",
+    "ഫിനെഹാസിന്റെ ഭാര്യ ആണ്‍കുഞ്ഞിനെ പ്രസവിച്ചു; ഇക്കാബോദ് എന്നു പേരിട്ടു — “മഹത്വം ഇസ്രായേലില്‍നിന്നു വിട്ടുപോയിരിക്കുന്നു.”"]}
+], chain:["എബനേസര്‍/അഫെക്ക്","4,000 മരണം","പേടകം ഷീലോയില്‍നിന്ന്","30,000 മരണം","പേടകം പിടിക്കപ്പെട്ടു","ഹോഫ്‌നി/ഫിനെഹാസ് മരണം","ഏലി മരണം","ഇക്കാബോദ്"]},
+
+{num:5, sections:[
+  {h:"പേടകം ഫിലിസ്ത്യരുടെ ഇടയില്‍", pts:[
+    "ഫിലിസ്ത്യര്‍ പേടകം എബ്‌നേസറില്‍നിന്ന് അഷ്‌ദോദിലേക്ക് കൊണ്ടുപോയി ദാഗോന്റെ ക്ഷേത്രത്തില്‍ സ്ഥാപിച്ചു.",
+    "ദാഗോന്റെ ബിംബം പേടകത്തിനു മുമ്പില്‍ വീണുകിടന്നു; അടുത്ത ദിവസം തലയും കൈകളും അറ്റ് വാതില്‍പ്പടിയില്‍ കിടന്നു.",
+    "കര്‍ത്താവിന്റെ കരം അഷ്‌ദോദിലെ ജനങ്ങള്‍ക്കെതിരെ പ്രബലമായി; കുരുക്കള്‍ ബാധിച്ചു.",
+    "പേടകം ഗത്തിലേക്കും പിന്നീട് എക്രോണിലേക്കും അയച്ചു; അവിടെയും ജനങ്ങള്‍ക്ക് കുരുക്കളും ഭയവും ഉണ്ടായി; നിലവിളി ആകാശത്തോളം ഉയര്‍ന്നു."]}
+], chain:["എബ്‌നേസര്‍","അഷ്‌ദോദ്","ദാഗോന്‍ വീണു","തല/കൈകള്‍ അറ്റു","കുരുക്കള്‍","ഗത്ത്","കുരുക്കള്‍","എക്രോണ്‍","നിലവിളി"]},
+
+{num:6, sections:[
+  {h:"പേടകം തിരിച്ചെത്തുന്നു", pts:[
+    "കര്‍ത്താവിന്റെ പേടകം 7 മാസം ഫിലിസ്ത്യരുടെ രാജ്യത്തായിരുന്നു.",
+    "പുരോഹിതന്മാരും ജ്യോത്സ്യന്മാരും 5 സ്വര്‍ണക്കുരുക്കളും 5 സ്വര്‍ണയെലികളും പ്രായശ്ചിത്തബലിയായി നല്‍കാന്‍ നിര്‍ദേശിച്ചു.",
+    "പുതിയ വണ്ടിയും നുകം വച്ചിട്ടില്ലാത്ത 2 കറവപ്പശുക്കളും തയ്യാറാക്കി; കിടാക്കളെ വീട്ടില്‍ നിര്‍ത്തി; പേടകവും സ്വര്‍ണയുരുപ്പടികളും വണ്ടിയില്‍ വച്ചു.",
+    "പശുക്കള്‍ ഇടംവലം നോക്കാതെ ബത്‌ഷെമെശിലേക്കു നേരെ പോയി; ജനങ്ങള്‍ ഗോതമ്പ് കൊയ്യുകയായിരുന്നു, പേടകം കണ്ടു സന്തോഷിച്ചു.",
+    "ജോഷ്വയുടെ വയലില്‍ വണ്ടി നിന്നു; പശുക്കളെ ദഹനബലിയായി സമര്‍പ്പിച്ചു; ലേവ്യര്‍ പേടകം വലിയ കല്ലിന്മേല്‍ വച്ചു.",
+    "5 ഫിലിസ്ത്യ പ്രഭുക്കന്മാര്‍ എക്രോണിലേക്കു മടങ്ങി; സ്വര്‍ണക്കുരുക്കുകള്‍ അഷ്‌ദോദ്, ഗാസാ, അഷ്‌ക്കലോന്‍, ഗത്ത്, എക്രോണ്‍ എന്നിവയ്ക്കുവേണ്ടി.",
+    "പേടകത്തിലേക്ക് എത്തിനോക്കിയ 70 ബത്‌ഷെമെശുകാരെ കര്‍ത്താവ് വധിച്ചു; പേടകം കിരിയാത്ത്‌യയാറിമിലേക്ക് കൊണ്ടുപോകാന്‍ ദൂതന്മാരെ അയച്ചു."]}
+], chain:["7 മാസം","5 കുരുക്കള്‍ + 5 എലികള്‍","പുതിയ വണ്ടി","2 കറവപ്പശുക്കള്‍","ബത്‌ഷെമെശ്","ജോഷ്വയുടെ വയല്‍","70 മരണം","കിരിയാത്ത്‌യയാറിം"]},
+
+{num:7, sections:[
+  {h:"സാമുവല്‍ ന്യായാധിപന്‍", pts:[
+    "പേടകം കിരിയാത്ത്‌യയാറിമിലെ അബിനാദാബിന്റെ ഭവനത്തില്‍; എലെയാസര്‍ അത് സൂക്ഷിക്കാന്‍ അഭിഷിക്തനായി; 20 വര്‍ഷം അവിടെ ഉണ്ടായിരുന്നു.",
+    "സാമുവല്‍ ബാലിന്റെയും അസ്താര്‍ത്തെയുടെയും ബിംബങ്ങള്‍ ഉപേക്ഷിച്ച് കര്‍ത്താവിനെ മാത്രം ആരാധിക്കാന്‍ പറഞ്ഞു.",
+    "മിസ്പായില്‍ ഉപവസിച്ച് പാപം ഏറ്റുപറഞ്ഞു; സാമുവല്‍ അവിടെ ന്യായപാലനം ആരംഭിച്ചു.",
+    "ഫിലിസ്ത്യര്‍ വന്നപ്പോള്‍ സാമുവല്‍ ഒരാട്ടിന്‍കുട്ടിയെ ദഹനബലിയര്‍പ്പിച്ച് പ്രാര്‍ഥിച്ചു; കര്‍ത്താവ് ഇടിനാദം മുഴക്കി ഫിലിസ്ത്യരെ സംഭ്രാന്തരാക്കി — ഇസ്രായേല്‍ ബത്ത്കാര്‍വരെ പിന്തുടര്‍ന്നു.",
+    "സാമുവല്‍ കല്ല് സ്ഥാപിച്ച് എബ്‌നേസര്‍ എന്നു പേരിട്ടു; ഫിലിസ്ത്യര്‍ കീഴടങ്ങി, എക്രോണ്‍ മുതല്‍ ഗത്ത് വരെ പ്രദേശങ്ങള്‍ ഇസ്രായേലിന് തിരികെ ലഭിച്ചു.",
+    "സാമുവല്‍ ജീവിതകാലം മുഴുവന്‍ ന്യായപാലനം നടത്തി — ബഥേല്‍, ഗില്‍ഗാല്‍, മിസ്പാ, റാമാ എന്നിവിടങ്ങളില്‍; റാമായില്‍ ഒരു ബലിപീഠം നിര്‍മിച്ചു."]}
+], chain:["20 വര്‍ഷം","മിസ്പാ","പാപസമ്മതം","ഫിലിസ്ത്യര്‍","ഇടിനാദം","ബത്ത്കാര്‍","എബ്‌നേസര്‍","പ്രദേശങ്ങള്‍ തിരിച്ചുകിട്ടി","സാമുവല്‍ ന്യായാധിപന്‍"]}
+];
+
+const FACTS = [
+  {n:"3", l:"പ്രാവശ്യം കര്‍ത്താവ് ബാലനായ സാമുവലിനെ വിളിച്ചു", c:"അധ്യായം 3"},
+  {n:"4,000", l:"ഇസ്രായേല്യര്‍ ആദ്യ യുദ്ധത്തില്‍ കൊല്ലപ്പെട്ടു", c:"അധ്യായം 4"},
+  {n:"30,000", l:"ഇസ്രായേല്യര്‍ പേടകം പിടിക്കപ്പെട്ട യുദ്ധത്തില്‍ കൊല്ലപ്പെട്ടു", c:"അധ്യായം 4"},
+  {n:"98", l:"വയസ്സില്‍ ഏലി മരിച്ചു (40 വര്‍ഷം ന്യായാധിപനായിരുന്നു)", c:"അധ്യായം 4"},
+  {n:"7", l:"മാസം പേടകം ഫിലിസ്ത്യരുടെ രാജ്യത്തായിരുന്നു", c:"അധ്യായം 6"},
+  {n:"5+5", l:"സ്വര്‍ണക്കുരുക്കളും സ്വര്‍ണയെലികളും പ്രായശ്ചിത്തബലിയായി", c:"അധ്യായം 6"},
+  {n:"70", l:"ബത്‌ഷെമെശുകാര്‍ പേടകത്തിലേക്ക് എത്തിനോക്കി വധിക്കപ്പെട്ടു", c:"അധ്യായം 6"},
+  {n:"20", l:"വര്‍ഷം പേടകം കിരിയാത്ത്‌യയാറിമില്‍ ഉണ്ടായിരുന്നു", c:"അധ്യായം 7"}
+];
+
+let mode = "read";
+let activeChapter = 1;
+const quizState = {};
+
+const tabsEl = document.getElementById('tabs');
+const panelEl = document.getElementById('panel');
+
+function renderTabs(){
+  tabsEl.innerHTML = "";
+  DATA.forEach(ch=>{
+    const b = document.createElement('div');
+    b.className = 'lamp-tab' + (ch.num===activeChapter ? ' active':'');
+    b.textContent = ch.num;
+    b.onclick = ()=>{ activeChapter = ch.num; renderTabs(); renderPanel(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function renderPanel(){
+  const ch = DATA.find(c=>c.num===activeChapter);
+  const quizOn = !!quizState[ch.num];
+  let html = `<div class="panel-head"><h2>1 സാമുവേൽ — അധ്യായം ${ch.num}</h2><span class="num">Ch. ${ch.num} of 7</span></div>`;
+  ch.sections.forEach((s,i)=>{
+    html += `<details class="sec" ${i===0?'open':''}><summary>${s.h}</summary><ul>`;
+    s.pts.forEach(p=> html += `<li>${p}</li>`);
+    html += `</ul></details>`;
+  });
+  html += `<div class="chain-block">
+    <div class="chain-block-head">
+      <h3>ഓർമ്മിക്കാൻ — കല്ലുകൾ</h3>
+      <button class="quizbtn ${quizOn?'on':''}" id="quizToggle">${quizOn ? '✓ ക്വിസ് മോഡ് ഓണ്‍' : '🔒 ക്വിസ് മോഡ്'}</button>
+    </div>
+    <div class="chain-row" id="chainRow"></div>
+  </div>`;
+  panelEl.innerHTML = html;
+
+  const row = document.getElementById('chainRow');
+  ch.chain.forEach((item,i)=>{
+    if(i>0){
+      const arrow = document.createElement('span');
+      arrow.className = 'chain-arrow';
+      arrow.textContent = '→';
+      row.appendChild(arrow);
+    }
+    const link = document.createElement('span');
+    link.className = 'stone-link' + (quizOn ? ' hidden' : '');
+    link.textContent = item;
+    if(quizOn){
+      link.onclick = ()=>{
+        link.classList.remove('hidden');
+        link.classList.add('revealed');
+        link.onclick = null;
+      };
+    }
+    row.appendChild(link);
+  });
+
+  document.getElementById('quizToggle').onclick = ()=>{
+    quizState[ch.num] = !quizState[ch.num];
+    renderPanel();
+  };
+}
+
+function renderFacts(){
+  const grid = document.getElementById('factgrid');
+  grid.innerHTML = "";
+  FACTS.forEach(f=>{
+    const d = document.createElement('div');
+    d.className = 'factcard';
+    d.innerHTML = `<div class="n">${f.n}</div><div class="l">${f.l}</div><div class="c">${f.c}</div>`;
+    grid.appendChild(d);
+  });
+}
+
+// ---------- Flashcards ----------
+let cardPool = [];
+DATA.forEach(ch=>{
+  ch.chain.forEach(item=>{
+    let back = "";
+    for(const s of ch.sections){
+      const key = item.split('/')[0].split(' ')[0];
+      const found = s.pts.find(p=> p.includes(key));
+      if(found){ back = found; break; }
+    }
+    if(!back) back = ch.sections[0].pts[0];
+    cardPool.push({chap:ch.num, front:item, back:back});
+  });
+});
+let fcOrder = cardPool.map((_,i)=>i);
+let fcIndex = 0;
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function renderFlash(){
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  const idx = fcOrder[fcIndex];
+  const c = cardPool[idx];
+  document.getElementById('fcChapTag').textContent = 'അധ്യായം ' + c.chap;
+  document.getElementById('fcFront').textContent = c.front;
+  document.getElementById('fcBack').textContent = c.back;
+  document.getElementById('fcProgress').textContent = (fcIndex+1) + ' / ' + cardPool.length;
+}
+
+document.getElementById('flashcard').onclick = function(){
+  this.classList.toggle('flipped');
+};
+document.getElementById('fcNext').onclick = ()=>{
+  fcIndex = (fcIndex+1) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcPrev').onclick = ()=>{
+  fcIndex = (fcIndex-1+fcOrder.length) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcShuffle').onclick = ()=>{
+  fcOrder = shuffle(cardPool.map((_,i)=>i));
+  fcIndex = 0;
+  renderFlash();
+};
+
+document.querySelectorAll('.modebtn').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('.modebtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    document.getElementById('view-read').style.display = mode==='read' ? 'block':'none';
+    document.getElementById('view-facts').style.display = mode==='facts' ? 'block':'none';
+    document.getElementById('view-flash').style.display = mode==='flash' ? 'block':'none';
+    if(mode==='facts') renderFacts();
+    if(mode==='flash') renderFlash();
+  };
+});
+
+renderTabs();
+renderPanel();
+</script>
+</body>
+</html>

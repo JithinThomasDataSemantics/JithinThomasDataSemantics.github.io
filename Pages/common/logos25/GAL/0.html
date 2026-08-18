@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ഗലാത്തിയർ · Quiz Recall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#211a12;
+    --parchment:#eee1c2;
+    --parchment-soft:#f7f0dc;
+    --parchment-dim:#ddcda1;
+    --wine:#7d2c2c;
+    --wine-deep:#5c1f1f;
+    --gold:#af8a3f;
+    --gold-light:#d9b869;
+    --chain:#4a3e2c;
+    --ok:#3f6b4a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(175,138,63,.14), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 0%, rgba(125,44,44,.10), transparent 55%),
+      var(--parchment);
+    color:var(--ink);
+    font-family:'Noto Sans Malayalam','Fraunces',serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:28px 20px 90px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:38px 30px 34px;
+    border-radius:18px;
+    background:linear-gradient(160deg, var(--wine) 0%, var(--wine-deep) 100%);
+    color:var(--parchment-soft);
+    overflow:hidden;
+    box-shadow:0 18px 40px -18px rgba(60,20,20,.55);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.035) 0 2px, transparent 2px 26px);
+    pointer-events:none;
+  }
+  .chainmark{display:flex; align-items:center; gap:6px; margin-bottom:18px;}
+  .link{
+    width:26px;height:16px;border:3px solid var(--gold-light);
+    border-radius:9px; margin-right:-9px;
+    box-shadow:0 0 0 2px var(--wine) inset;
+  }
+  .link:nth-child(3){
+    border-color:var(--parchment-soft);
+    opacity:.55;
+    transform:translateY(1px) rotate(4deg);
+    border-style:dashed;
+  }
+  .eyebrow{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    letter-spacing:.04em; font-size:13px; color:var(--gold-light);
+    text-transform:uppercase; margin:0 0 6px;
+  }
+  h1.title{
+    margin:0; font-family:'Noto Serif Malayalam',serif;
+    font-weight:700; font-size:clamp(30px,5.2vw,44px); line-height:1.25;
+  }
+  .subtitle{
+    margin:10px 0 0; max-width:56ch; color:var(--parchment-dim);
+    font-size:15.5px; line-height:1.6;
+  }
+  .hero-stats{display:flex; gap:22px; margin-top:24px; flex-wrap:wrap;}
+  .stat{font-family:'Fraunces',serif;}
+  .stat b{display:block; font-size:24px; font-weight:800; color:var(--gold-light);}
+  .stat span{font-size:12px; color:var(--parchment-dim); letter-spacing:.02em;}
+
+  /* ---------- MODE BAR ---------- */
+  .modebar{
+    display:flex; gap:10px; margin:22px 0 18px; flex-wrap:wrap;
+  }
+  .modebtn{
+    border:1.5px solid var(--chain); background:var(--parchment-soft);
+    color:var(--ink); font-family:'Noto Sans Malayalam',sans-serif;
+    font-size:14px; font-weight:600; padding:9px 16px; border-radius:999px;
+    cursor:pointer; transition:.15s ease; display:flex; align-items:center; gap:7px;
+  }
+  .modebtn:hover{background:var(--gold-light); border-color:var(--gold);}
+  .modebtn.active{background:var(--wine); color:var(--parchment-soft); border-color:var(--wine-deep);}
+
+  /* ---------- CHAPTER TABS ---------- */
+  .tabs{display:flex; gap:10px; overflow-x:auto; padding:4px 2px 14px; scrollbar-width:thin;}
+  .seal{
+    flex:0 0 auto; width:52px;height:52px;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, var(--gold-light), var(--gold) 55%, #8a672a 100%);
+    color:var(--wine-deep); font-family:'Fraunces',serif; font-weight:800; font-size:19px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    border:2px solid transparent; transition:.15s ease;
+    box-shadow:0 4px 10px -4px rgba(0,0,0,.4);
+  }
+  .seal:hover{transform:translateY(-2px);}
+  .seal.active{border-color:var(--wine); box-shadow:0 0 0 4px rgba(125,44,44,.18), 0 6px 14px -4px rgba(0,0,0,.45);}
+  .seal small{display:none;}
+
+  /* ---------- CHAPTER PANEL ---------- */
+  .panel{
+    background:var(--parchment-soft);
+    border:1px solid var(--parchment-dim);
+    border-radius:16px; padding:26px 24px 22px;
+    box-shadow:0 10px 26px -20px rgba(0,0,0,.4);
+  }
+  .panel-head{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap;}
+  .panel-head h2{
+    font-family:'Noto Serif Malayalam',serif; font-size:22px; margin:0; color:var(--wine-deep);
+  }
+  .panel-head .num{
+    font-family:'Fraunces',serif; font-style:italic; color:var(--gold); font-size:15px;
+  }
+
+  details.sec{
+    border-top:1px dashed var(--parchment-dim);
+    padding:14px 0;
+  }
+  details.sec:last-of-type{border-bottom:1px dashed var(--parchment-dim);}
+  details.sec summary{
+    cursor:pointer; list-style:none; font-family:'Noto Serif Malayalam',serif;
+    font-weight:600; font-size:16.5px; color:var(--ink);
+    display:flex; align-items:center; gap:10px;
+  }
+  details.sec summary::-webkit-details-marker{display:none;}
+  details.sec summary::before{
+    content:"+"; font-family:'Fraunces',serif; font-weight:700; color:var(--wine);
+    width:20px; text-align:center; flex:0 0 auto; font-size:18px;
+  }
+  details.sec[open] summary::before{content:"–";}
+  details.sec ul{margin:12px 0 0; padding-left:0; list-style:none;}
+  details.sec li{
+    position:relative; padding:5px 0 5px 20px; font-size:14.5px; line-height:1.75; color:#2c2418;
+  }
+  details.sec li::before{
+    content:"·"; position:absolute; left:2px; top:3px; color:var(--gold); font-size:22px; line-height:1;
+  }
+
+  /* ---------- CHAIN ---------- */
+  .chain-block{margin-top:18px; padding-top:16px; border-top:2px solid var(--parchment-dim);}
+  .chain-block-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap;}
+  .chain-block-head h3{
+    font-family:'Fraunces',serif; font-style:italic; font-size:13.5px; letter-spacing:.03em;
+    text-transform:uppercase; color:var(--chain); margin:0;
+  }
+  .quizbtn{
+    border:1px solid var(--wine); background:transparent; color:var(--wine);
+    font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:999px; cursor:pointer;
+    font-family:'Noto Sans Malayalam',sans-serif;
+  }
+  .quizbtn.on{background:var(--wine); color:var(--parchment-soft);}
+  .chain-row{display:flex; flex-wrap:wrap; align-items:center; gap:0;}
+  .chain-link{
+    background:var(--parchment); border:1.5px solid var(--chain);
+    border-radius:14px; padding:7px 13px; margin:4px -7px 4px 0;
+    font-size:13.5px; font-weight:500; color:var(--ink); white-space:nowrap;
+    position:relative; z-index:1; transition:.15s ease;
+  }
+  .chain-link.hidden{
+    color:transparent; background:repeating-linear-gradient(135deg, var(--parchment-dim), var(--parchment-dim) 4px, var(--parchment) 4px, var(--parchment) 8px);
+    border-style:dashed; cursor:pointer;
+  }
+  .chain-link.hidden::after{
+    content:"?"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    color:var(--wine); font-family:'Fraunces',serif; font-weight:700;
+  }
+  .chain-link.revealed{
+    background:var(--gold-light); border-color:var(--gold); color:var(--wine-deep); font-weight:700;
+  }
+  .chain-arrow{color:var(--gold); font-size:13px; margin:0 2px; z-index:2; position:relative;}
+
+  /* ---------- FACTS GRID (mode 2) ---------- */
+  .factgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:12px;}
+  .factcard{
+    background:var(--parchment-soft); border:1px solid var(--parchment-dim);
+    border-radius:12px; padding:14px 16px;
+  }
+  .factcard .n{font-family:'Fraunces',serif; font-weight:800; font-size:26px; color:var(--wine);}
+  .factcard .l{font-size:13px; color:var(--chain); margin-top:2px; line-height:1.5;}
+  .factcard .c{font-size:11px; color:var(--gold); font-weight:700; margin-top:6px; letter-spacing:.03em;}
+
+  /* ---------- FLASHCARD (mode 3) ---------- */
+  .fc-wrap{display:flex; flex-direction:column; align-items:center; gap:18px;}
+  .fc-progress{font-size:13px; color:var(--chain); font-family:'Fraunces',serif; font-style:italic;}
+  .flashcard{
+    width:100%; max-width:520px; min-height:220px; perspective:1400px; cursor:pointer;
+  }
+  .flashcard-inner{
+    position:relative; width:100%; height:100%; min-height:220px;
+    transition:transform .5s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d;
+  }
+  .flashcard.flipped .flashcard-inner{transform:rotateY(180deg);}
+  .fc-face{
+    position:absolute; inset:0; backface-visibility:hidden;
+    border-radius:16px; padding:26px; display:flex; flex-direction:column;
+    justify-content:center; align-items:center; text-align:center; gap:10px;
+    box-shadow:0 14px 30px -16px rgba(0,0,0,.4);
+  }
+  .fc-front{background:var(--wine); color:var(--parchment-soft); border:2px solid var(--wine-deep);}
+  .fc-back{background:var(--parchment-soft); color:var(--ink); border:2px solid var(--gold); transform:rotateY(180deg);}
+  .fc-tag{font-family:'Fraunces',serif; font-style:italic; font-size:12px; letter-spacing:.05em; text-transform:uppercase; opacity:.8;}
+  .fc-front .fc-text{font-family:'Noto Serif Malayalam',serif; font-size:20px; font-weight:600; line-height:1.6;}
+  .fc-back .fc-text{font-family:'Noto Sans Malayalam',sans-serif; font-size:15.5px; line-height:1.8;}
+  .fc-hint{font-size:12px; opacity:.7;}
+  .fc-controls{display:flex; gap:12px;}
+  .fc-controls button{
+    font-family:'Noto Sans Malayalam',sans-serif; font-weight:600; font-size:13.5px;
+    padding:10px 20px; border-radius:999px; border:1.5px solid var(--chain); background:var(--parchment-soft);
+    cursor:pointer;
+  }
+  .fc-controls button.primary{background:var(--wine); color:var(--parchment-soft); border-color:var(--wine-deep);}
+
+  footer.note{text-align:center; margin-top:26px; font-size:12px; color:var(--chain); font-style:italic; font-family:'Fraunces',serif;}
+
+  @media (max-width:520px){
+    .hero{padding:28px 18px;}
+    .panel{padding:20px 16px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="chainmark">
+      <div class="link"></div><div class="link"></div><div class="link"></div>
+    </div>
+    <p class="eyebrow">Logos Quiz &middot; Quick Recall</p>
+    <h1 class="title">ഗലാത്തിയർ — സ്വാതന്ത്ര്യത്തിന്റെ ലേഖനം</h1>
+    <p class="subtitle">നിയമത്തിന്റെ ചങ്ങല പൊട്ടിച്ച്, വിശ്വാസത്തിലൂടെ സ്വാതന്ത്ര്യത്തിലേക്ക്. 6 അധ്യായങ്ങൾ ഒറ്റനോട്ടത്തിൽ — ഓർമ്മശൃംഖല ടാപ്പ് ചെയ്ത് സ്വയം പരീക്ഷിക്കൂ.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>6</b><span>അധ്യായങ്ങൾ</span></div>
+      <div class="stat"><b>17</b><span>വിഭാഗങ്ങൾ</span></div>
+      <div class="stat"><b>60</b><span>ഓർമ്മ ചങ്ങല-കണ്ണികൾ</span></div>
+    </div>
+  </div>
+
+  <div class="modebar">
+    <button class="modebtn active" data-mode="read">📖 വായന മോഡ്</button>
+    <button class="modebtn" data-mode="facts">🔢 പ്രധാന അക്കങ്ങൾ</button>
+    <button class="modebtn" data-mode="flash">🃏 ഫ്ലാഷ്കാർഡ് പരിശോധന</button>
+  </div>
+
+  <!-- READ MODE -->
+  <div id="view-read">
+    <div class="tabs" id="tabs"></div>
+    <div class="panel" id="panel"></div>
+  </div>
+
+  <!-- FACTS MODE -->
+  <div id="view-facts" style="display:none;">
+    <div class="panel">
+      <div class="panel-head"><h2>അക്കങ്ങളും പേരുകളും — വേഗ ഓർമ്മ</h2></div>
+      <div class="factgrid" id="factgrid"></div>
+    </div>
+  </div>
+
+  <!-- FLASHCARD MODE -->
+  <div id="view-flash" style="display:none;">
+    <div class="panel">
+      <div class="fc-wrap">
+        <div class="fc-progress" id="fcProgress">1 / 60</div>
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-inner">
+            <div class="fc-face fc-front">
+              <div class="fc-tag" id="fcChapTag">അധ്യായം 1</div>
+              <div class="fc-text" id="fcFront"></div>
+              <div class="fc-hint">ടാപ്പ് ചെയ്ത് ഉത്തരം കാണുക →</div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-tag">വിശദീകരണം</div>
+              <div class="fc-text" id="fcBack"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls">
+          <button id="fcShuffle">🔀 ഷഫിൾ</button>
+          <button id="fcPrev">← മുമ്പത്തേത്</button>
+          <button class="primary" id="fcNext">അടുത്തത് →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="note">"ക്രിസ്തു സ്വാതന്ത്ര്യത്തിലേക്ക് മോചിപ്പിച്ചു" — ഗലാത്തിയർ 5:1</footer>
+</div>
+
+<script>
+const DATA = [
+{num:1, sections:[
+  {h:"അഭിവാദനം", pts:[
+    "പൗലോസ് മനുഷ്യരില്‍നിന്നോ മനുഷ്യന്‍ മുഖേനയോ അല്ല, യേശുക്രിസ്തുവും അവനെ ഉയിര്‍പ്പിച്ച പിതാവും മുഖേന അപ്പസ്‌തോലനായി.",
+    "ഗലാത്തിയായിലെ സഭകള്‍ക്ക് പൗലോസും കൂടെയുള്ള സഹോദരരും എഴുതുന്നു.",
+    "യേശു നമ്മുടെ പാപങ്ങള്‍ക്കുവേണ്ടി തന്നെത്തന്നെ ബലിയര്‍പ്പിച്ച് തിന്‍മ നിറഞ്ഞ ഈയുഗത്തില്‍നിന്ന് നമ്മെ മോചിപ്പിച്ചു."]},
+  {h:"മറ്റൊരു സുവിശേഷമില്ല", pts:[
+    "ക്രിസ്തുവിന്റെ കൃപയില്‍നിന്ന് ഗലാത്തിയര്‍ പെട്ടെന്ന് വ്യത്യസ്തമായ സുവിശേഷത്തിലേക്ക് തിരിഞ്ഞതില്‍ പൗലോസ് ആശ്ചര്യപ്പെട്ടു.",
+    "മറ്റൊരു സുവിശേഷമില്ല; വ്യത്യസ്തമായ സുവിശേഷം പ്രസംഗിക്കുന്നവന്‍ ശപിക്കപ്പെട്ടവനാകട്ടെ.",
+    "പൗലോസ് മനുഷ്യരുടെ പ്രീതിയല്ല, ദൈവത്തിന്റേതാണ് അന്വേഷിക്കുന്നത്."]},
+  {h:"അപ്പസ്‌തോലനാകാനുള്ള വിളി", pts:[
+    "പൗലോസിന്റെ സുവിശേഷം മാനുഷികമല്ല; യേശുക്രിസ്തുവിന്റെ വെളിപാടിലൂടെയാണ് ലഭിച്ചത്.",
+    "മുമ്പ് യഹൂദമതത്തില്‍ സഭയെ കഠിനമായി പീഡിപ്പിക്കുകയും ഉന്മൂലനം ചെയ്യാന്‍ ശ്രമിക്കുകയും ചെയ്തു.",
+    "മാതാവിന്റെ ഉദരത്തില്‍ ആയിരിക്കുമ്പോള്‍ത്തന്നെ ദൈവം തെരഞ്ഞെടുത്ത് വിജാതീയരുടെയിടയില്‍ പുത്രനെ പ്രസംഗിക്കാന്‍ വിളിച്ചു.",
+    "അറേബ്യയിലേക്കും ദമാസ്‌ക്കസിലേക്കും പോയി; 3 വര്‍ഷത്തിനുശേഷം ജറുസലെമില്‍ കേപ്പായെ കണ്ടു, 15 ദിവസം താമസിച്ചു; കര്‍ത്താവിന്റെ സഹോദരനായ യാക്കോബിനെയും കണ്ടു.",
+    "തുടര്‍ന്ന് സിറിയാ, കിലിക്യാ പ്രദേശങ്ങളിലേക്ക് പോയി; ഒരിക്കല്‍ പീഡിപ്പിച്ചിരുന്നവന്‍ ഇപ്പോള്‍ വിശ്വാസം പ്രസംഗിക്കുന്നു എന്നു കേട്ട് ജനം ദൈവത്തെ മഹത്വപ്പെടുത്തി."]}
+], chain:["പൗലോസ്","ഗലാത്തിയ","മറ്റൊരു സുവിശേഷമില്ല","യേശുക്രിസ്തുവിന്റെ വെളിപാട്","സഭയെ പീഡിപ്പിച്ചവന്‍","വിജാതീയര്‍","അറേബ്യ","ദമാസ്‌ക്കസ്","3 വര്‍ഷം","കേപ്പാ/15 ദിവസം","യാക്കോബ്","സിറിയാ/കിലിക്യാ"]},
+
+{num:2, sections:[
+  {h:"പൗലോസിന് അംഗീകാരം", pts:[
+    "14 വര്‍ഷത്തിനുശേഷം പൗലോസ് ബാര്‍ണബാസിനോടും തീത്തോസിനോടും കൂടെ ജറുസലെമിലേക്ക് പോയി.",
+    "ഗ്രീക്കുകാരനായ തീത്തോസ് പരിച്ഛേദനത്തിന് നിര്‍ബന്ധിക്കപ്പെട്ടില്ല.",
+    "പൗലോസിന് അപരിച്ഛേദിതര്‍ക്കുള്ള സുവിശേഷവും പത്രോസിന് പരിച്ഛേദിതര്‍ക്കുള്ള സുവിശേഷവും ഏല്‍പിക്കപ്പെട്ടതായി അംഗീകരിച്ചു.",
+    "യാക്കോബ്, കേപ്പാ, യോഹന്നാന്‍ പൗലോസിനും ബാര്‍ണബാസിനും കൂട്ടായ്മയുടെ വലത്തുകരം നീട്ടി.",
+    "പാവങ്ങളെ ഓര്‍ക്കണം എന്ന ആവശ്യം മാത്രം അവര്‍ ഉന്നയിച്ചു."]},
+  {h:"അഭിപ്രായഭിന്നത", pts:[
+    "അന്ത്യോക്യയില്‍ കേപ്പാ വിജാതീയരോടൊപ്പം ഭക്ഷിച്ചിരുന്നെങ്കിലും ചിലര്‍ വന്നപ്പോള്‍ പരിച്ഛേദിതരെ ഭയന്ന് പിന്‍മാറി.",
+    "യഹൂദന്മാരും കപടമായി പെരുമാറി; ബാര്‍ണബാസ് പോലും വഴിതെറ്റിക്കപ്പെട്ടു.",
+    "പൗലോസ് കേപ്പായെ എല്ലാവരുടെയും മുമ്പില്‍ എതിര്‍ത്തു; അവരുടെ പെരുമാറ്റം സുവിശേഷസത്യവുമായി പൊരുത്തപ്പെടുന്നില്ലെന്ന് പറഞ്ഞു."]},
+  {h:"വിശ്വാസത്തിലൂടെ നീതീകരണം", pts:[
+    "നിയമത്തിന്റെ അനുഷ്ഠാനത്തിലൂടെയല്ല, യേശുക്രിസ്തുവിലുള്ള വിശ്വാസത്തിലൂടെയാണ് നീതീകരണം.",
+    "പൗലോസ്: “ഞാന്‍ ക്രിസ്തുവിനോടുകൂടെ ക്രൂശിതനായിരിക്കുന്നു”; ഇനിമേല്‍ ഞാനല്ല, ക്രിസ്തുവാണ് എന്നില്‍ ജീവിക്കുന്നത്.",
+    "നിയമത്തിലൂടെയാണ് നീതിയെങ്കില്‍ ക്രിസ്തുവിന്റെ മരണം വ്യര്‍ഥമാകും."]}
+], chain:["14 വര്‍ഷം","ജറുസലെം","ബാര്‍ണബാസ്/തീത്തോസ്","തീത്തോസ് പരിച്ഛേദനമില്ല","പൗലോസ്/വിജാതീയര്‍","പത്രോസ്/പരിച്ഛേദിതര്‍","യാക്കോബ്/കേപ്പാ/യോഹന്നാന്‍","അന്ത്യോക്യ","കേപ്പായെ എതിര്‍ത്തു","വിശ്വാസത്തിലൂടെ നീതീകരണം","ക്രിസ്തുവിനോടുകൂടെ ക്രൂശിതന്‍"]},
+
+{num:3, sections:[
+  {h:"നിയമമോ വിശ്വാസമോ?", pts:[
+    "ആത്മാവിനെ സ്വീകരിച്ചത് നിയമാനുഷ്ഠാനത്താല്‍ അല്ല, വിശ്വാസത്തിന്റെ അനുസരണത്താല്‍.",
+    "അബ്രാഹം ദൈവത്തെ വിശ്വസിച്ചു; അത് അവനു നീതിയായി പരിഗണിക്കപ്പെട്ടു.",
+    "വിശ്വാസമുള്ളവര്‍ അബ്രാഹത്തിന്റെ മക്കള്‍; അബ്രാഹത്തോടൊപ്പം അനുഗ്രഹം പ്രാപിക്കുന്നു.",
+    "നിയമാനുഷ്ഠാനത്തില്‍ ആശ്രയിക്കുന്നവര്‍ ശാപത്തിന് വിധേയരാണ്; ക്രിസ്തു നിയമത്തിന്റെ ശാപത്തില്‍നിന്ന് നമ്മെ രക്ഷിച്ചു."]},
+  {h:"നിയമവും വാഗ്ദാനവും", pts:[
+    "വാഗ്ദാനങ്ങള്‍ അബ്രാഹത്തിനും അവന്റെ സന്തതിക്കും; “നിന്റെ സന്തതിക്ക്” എന്നത് ക്രിസ്തുവിനെ ഉദ്ദേശിച്ചാണ്.",
+    "430 വര്‍ഷങ്ങള്‍ക്കുശേഷം വന്ന നിയമം ദൈവം സ്ഥിരീകരിച്ച വാഗ്ദാനത്തെ അസാധുവാക്കുന്നില്ല.",
+    "സന്തതി ലഭിക്കുന്നതുവരെ പാപങ്ങള്‍ നിമിത്തം നിയമം നല്‍കപ്പെട്ടു; ദൈവദൂതന്മാര്‍ വഴി ഒരു മധ്യവര്‍ത്തിയിലൂടെ വിളംബരം ചെയ്യപ്പെട്ടു."]},
+  {h:"നിയമത്തിന്റെ ഉദ്ദേശ്യം", pts:[
+    "വിശ്വാസം ആവിര്‍ഭവിക്കുന്നതിനുമുമ്പ് നമ്മള്‍ നിയമത്തിന്റെ കാവലിലായിരുന്നു.",
+    "ക്രിസ്തുവിന്റെ ആഗമനംവരെ നിയമം നമ്മുടെ പാലകനായിരുന്നു; വിശ്വാസം സമാഗതമായശേഷം പാലകന് അധീനരല്ല."]},
+  {h:"പുത്രത്വവും അവകാശവും", pts:[
+    "യേശുക്രിസ്തുവിലുള്ള വിശ്വാസംവഴി എല്ലാവരും ദൈവപുത്രന്മാര്‍; സ്‌നാനം സ്വീകരിച്ചവര്‍ ക്രിസ്തുവിനെ ധരിച്ചിരിക്കുന്നു.",
+    "യഹൂദന്‍/ഗ്രീക്കുകാരന്‍, അടിമ/സ്വതന്ത്രന്‍, പുരുഷന്‍/സ്ത്രീ എന്ന വ്യത്യാസമില്ല; എല്ലാവരും യേശുക്രിസ്തുവില്‍ ഒന്നാണ്.",
+    "ക്രിസ്തുവിനുള്ളവര്‍ അബ്രാഹത്തിന്റെ സന്തതികളും വാഗ്ദാനത്തിന്റെ അവകാശികളും."]}
+], chain:["വിശ്വാസം","അബ്രാഹം","അനുഗ്രഹം","നിയമത്തിന്റെ ശാപം","ക്രിസ്തു രക്ഷിച്ചു","430 വര്‍ഷം","നിയമം/പാലകന്‍","വിശ്വാസം","ദൈവപുത്രന്മാര്‍","ക്രിസ്തുവില്‍ ഒന്നാണ്","അബ്രാഹത്തിന്റെ സന്തതി/അവകാശികള്‍"]},
+
+{num:4, sections:[
+  {h:"പുത്രത്വവും അവകാശവും", pts:[
+    "പിന്തുടര്‍ച്ചാവകാശി ബാലനായിരിക്കുമ്പോള്‍ അടിമയില്‍നിന്ന് വിഭിന്നനല്ല; പിതാവ് നിശ്ചയിച്ച കാലംവരെ രക്ഷകര്‍ത്താക്കളുടെ സംരക്ഷണത്തിലാണ്.",
+    "കാലസമ്പൂര്‍ണതയില്‍ ദൈവം തന്റെ പുത്രനെ അയച്ചു; അവന്‍ സ്ത്രീയില്‍നിന്ന് ജാതനായി, നിയമത്തിന് അധീനനായി ജനിച്ചു.",
+    "നിയമത്തിന് അധീനരായിരുന്നവരെ വിമുക്തരാക്കി പുത്രന്മാരായി ദത്തെടുക്കുക എന്നതാണ് ലക്ഷ്യം.",
+    "ദൈവം പുത്രന്റെ ആത്മാവിനെ ഹൃദയത്തിലേക്ക് അയച്ചു; “ആബ്ബാ! പിതാവേ!” എന്നു വിളിക്കുന്നു — ഇനി ദാസനല്ല, പുത്രനും അവകാശിയും."]},
+  {h:"ഗലാത്തിയരെക്കുറിച്ചു വ്യഗ്രത", pts:[
+    "മുമ്പ് ദൈവത്തെ അറിയാതിരുന്നപ്പോള്‍ ദൈവമല്ലാത്തവയെ സേവിച്ചു; ഇപ്പോള്‍ ബലഹീനവും വ്യര്‍ഥവുമായ പ്രപഞ്ചശക്തികളിലേക്ക് മടങ്ങുന്നു.",
+    "ദിവസങ്ങളും മാസങ്ങളും ഋതുക്കളും വര്‍ഷങ്ങളും ആചരിക്കുന്നതില്‍ പൗലോസ് ആശങ്കപ്പെടുന്നു.",
+    "പൗലോസ് ആദ്യം ശാരീരികാസ്വാസ്ഥ്യമുള്ളപ്പോഴാണ് സുവിശേഷം പ്രസംഗിച്ചത്; ഗലാത്തിയര്‍ അവനെ ദൈവദൂതനെപ്പോലെ സ്വീകരിച്ചു.",
+    "സത്യം പറഞ്ഞതുകൊണ്ട് ശത്രുവായോ എന്നു ചോദിക്കുന്നു; ക്രിസ്തു അവരില്‍ രൂപപ്പെടുന്നതുവരെ വീണ്ടും ഈറ്റുനോവ് അനുഭവിക്കുന്നു."]},
+  {h:"ഹാഗാറും സാറായും", pts:[
+    "അബ്രാഹത്തിന് 2 പുത്രന്മാര്‍: ഒരുവന്‍ ദാസിയില്‍നിന്നും (ശാരീരികരീതി) മറ്റൊരുവന്‍ സ്വതന്ത്രയില്‍നിന്നും (വാഗ്ദാനപ്രകാരം).",
+    "ഹാഗാര്‍ സീനായ്മലയെയും ദാസ്യവൃത്തിയെയും ഇന്നത്തെ ജറുസലെമിനെയും പ്രതിനിധീകരിക്കുന്നു; സ്വര്‍ഗീയ ജറുസലെം സ്വതന്ത്രയാണ്, അവളാണ് നമ്മുടെ അമ്മ.",
+    "നമ്മള്‍ ഇസഹാക്കിനെപ്പോലെ വാഗ്ദാനത്തിന്റെ മക്കള്‍; ദാസിയുടെ പുത്രന്‍ സ്വതന്ത്രയുടെ പുത്രനോടൊപ്പം അവകാശിയാകില്ല."]}
+], chain:["പുത്രന്‍ അയക്കപ്പെട്ടു","നിയമത്തില്‍നിന്ന് വിമുക്തി","ആബ്ബാ പിതാവേ","പുത്രന്‍/അവകാശി","പ്രപഞ്ചശക്തികളിലേക്ക് മടങ്ങുന്നു","ഹാഗാര്‍/സാറാ","2 പുത്രന്മാര്‍","സീനായ്മല","സ്വര്‍ഗീയ ജറുസലെം","ഇസഹാക്ക്/വാഗ്ദാനത്തിന്റെ മക്കള്‍"]},
+
+{num:5, sections:[
+  {h:"ക്രിസ്തീയ സ്വാതന്ത്ര്യം", pts:[
+    "ക്രിസ്തു സ്വാതന്ത്ര്യത്തിലേക്ക് മോചിപ്പിച്ചു; അടിമത്തത്തിന്റെ നുകത്തിന് വീണ്ടും വിധേയരാകരുത്.",
+    "പരിച്ഛേദനം സ്വീകരിച്ചാല്‍ ക്രിസ്തു പ്രയോജനപ്പെടുകയില്ല; നിയമം മുഴുവനും പാലിക്കേണ്ടിവരും.",
+    "നിയമത്തിലൂടെ നീതീകരണം തേടുന്നവര്‍ ക്രിസ്തുവിനോടുള്ള ബന്ധം വിച്ഛേദിക്കപ്പെട്ടവരും കൃപാവരത്തില്‍നിന്ന് വീണവരുമാണ്.",
+    "പരിച്ഛേദനമോ അപരിച്ഛേദനമോ കാര്യമല്ല; സ്‌നേഹത്തിലൂടെ പ്രവര്‍ത്തിക്കുന്ന വിശ്വാസമാണ് പ്രധാനം.",
+    "നിയമം മുഴുവന്‍ “നിന്നെപ്പോലെ നിന്റെ അയല്‍ക്കാരനെയും സ്‌നേഹിക്കുക” എന്ന കല്‍പനയില്‍ അടങ്ങിയിരിക്കുന്നു."]},
+  {h:"ജഡത്തിന്റെ വ്യാപാരങ്ങളും ആത്മാവിന്റെ ഫലങ്ങളും", pts:[
+    "ആത്മാവിന്റെ പ്രേരണയനുസരിച്ച് ജീവിക്കുക; ജഡമോഹങ്ങള്‍ തൃപ്തിപ്പെടുത്തരുത് — ജഡവും ആത്മാവും പരസ്പരം എതിരാണ്.",
+    "ജഡത്തിന്റെ വ്യാപാരങ്ങള്‍: വ്യഭിചാരം, അശുദ്ധി, ദുര്‍വൃത്തി, വിഗ്രഹാരാധന, ആഭിചാരം, ശത്രുത, കലഹം, അസൂയ, കോപം, മാത്‌സര്യം, ഭിന്നത, വിഭാഗീയചിന്ത, വിദ്വേഷം, മദ്യപാനം എന്നിവ; ഇവ ചെയ്യുന്നവര്‍ ദൈവരാജ്യം അവകാശപ്പെടുത്തുകയില്ല.",
+    "ആത്മാവിന്റെ ഫലങ്ങള്‍ (9): സ്‌നേഹം, ആനന്ദം, സമാധാനം, ക്ഷമ, ദയ, നന്മ, വിശ്വസ്തത, സൗമ്യത, ആത്മസംയമനം.",
+    "ക്രിസ്തുവിനുള്ളവര്‍ ജഡത്തെ അതിന്റെ വികാരങ്ങളോടും മോഹങ്ങളോടുംകൂടെ ക്രൂശിച്ചിരിക്കുന്നു."]}
+], chain:["സ്വാതന്ത്ര്യം","പരിച്ഛേദനം വേണ്ട","വിശ്വാസം/സ്‌നേഹം","പരസ്പരം സേവിക്കുക","ആത്മാവില്‍ നടക്കുക","ജഡത്തിന്റെ വ്യാപാരങ്ങള്‍","ദൈവരാജ്യം അവകാശമില്ല","ആത്മാവിന്റെ 9 ഫലങ്ങള്‍","ജഡത്തെ ക്രൂശിച്ചു"]},
+
+{num:6, sections:[
+  {h:"പരസ്പരം സഹായിക്കുക", pts:[
+    "തെറ്റിലകപ്പെട്ടവനെ ആത്മീയരായവര്‍ സൗമ്യതയോടെ വീണ്ടെടുക്കണം; പരസ്പരം ഭാരങ്ങള്‍ വഹിക്കണം.",
+    "ഓരോരുത്തരും സ്വന്തം ചെയ്തികളും സ്വന്തം ഭാരവും വിലയിരുത്തണം; വചനം പഠിക്കുന്നവന്‍ അധ്യാപകനുമായി എല്ലാ നല്ല വസ്തുക്കളിലും പങ്കിടണം.",
+    "ദൈവത്തെ കബളിപ്പിക്കാനാവില്ല; മനുഷ്യന്‍ വിതയ്ക്കുന്നതുതന്നെ കൊയ്യും — ജഡത്തിനായി വിതയ്ക്കുന്നവന്‍ നാശവും ആത്മാവിനായി വിതയ്ക്കുന്നവന്‍ നിത്യജീവനും കൊയ്യും.",
+    "നന്മ ചെയ്യുന്നതില്‍ മടുപ്പരുത്; അവസരം ലഭിക്കുമ്പോള്‍ എല്ലാവര്‍ക്കും, പ്രത്യേകിച്ച് വിശ്വാസികള്‍ക്ക്, നന്മ ചെയ്യണം."]},
+  {h:"അന്തിമ നിര്‍ദേശങ്ങള്‍", pts:[
+    "പരിച്ഛേദനത്തിന് നിര്‍ബന്ധിക്കുന്നവര്‍ ക്രിസ്തുവിന്റെ കുരിശിനെപ്രതി പീഡിപ്പിക്കപ്പെടാതിരിക്കാനാണ് അങ്ങനെ ചെയ്യുന്നത്.",
+    "പൗലോസിന്റെ മേന്മ യേശുക്രിസ്തുവിന്റെ കുരിശില്‍ മാത്രം; പരിച്ഛേദനമോ അപരിച്ഛേദനമോ അല്ല, പുതിയ സൃഷ്ടിയാവുക എന്നതാണ് പ്രധാനം.",
+    "ഈ നിയമം അനുസരിക്കുന്നവര്‍ക്കും ദൈവത്തിന്റെ ഇസ്രായേലിനും സമാധാനവും കാരുണ്യവും.",
+    "പൗലോസ് തന്റെ ശരീരത്തില്‍ യേശുവിന്റെ അടയാളങ്ങള്‍ ധരിക്കുന്നു; അവസാന ആശംസ — കര്‍ത്താവായ യേശുക്രിസ്തുവിന്റെ കൃപ, ആമേന്‍."]}
+], chain:["തെറ്റിലകപ്പെട്ടവനെ വീണ്ടെടുക്കുക","ഭാരങ്ങള്‍ വഹിക്കുക","വിതയ്ക്കുന്നതുതന്നെ കൊയ്യും","ആത്മാവിനായി വിതയ്ക്കുക","നന്മ ചെയ്യുക","കുരിശില്‍ മേന്മ","പുതിയ സൃഷ്ടി","ദൈവത്തിന്റെ ഇസ്രായേല്‍","യേശുവിന്റെ അടയാളങ്ങള്‍","കൃപ/ആമേന്‍"]}
+];
+
+const FACTS = [
+  {n:"14", l:"വര്‍ഷത്തിനുശേഷം പൗലോസ് ജറുസലെമിലേക്ക് (ബാര്‍ണബാസ്/തീത്തോസുമായി)", c:"അധ്യായം 2"},
+  {n:"15", l:"ദിവസം പൗലോസ് കേപ്പായോടൊപ്പം താമസിച്ചു", c:"അധ്യായം 1"},
+  {n:"3", l:"വര്‍ഷത്തിനുശേഷം പൗലോസ് ജറുസലെമില്‍ കേപ്പായെ ആദ്യം കണ്ടു", c:"അധ്യായം 1"},
+  {n:"430", l:"വര്‍ഷങ്ങള്‍ക്കുശേഷമാണ് നിയമം വന്നത് (വാഗ്ദാനത്തിനുശേഷം)", c:"അധ്യായം 3"},
+  {n:"9", l:"ആത്മാവിന്റെ ഫലങ്ങള്‍: സ്‌നേഹം, ആനന്ദം, സമാധാനം, ക്ഷമ, ദയ, നന്മ, വിശ്വസ്തത, സൗമ്യത, ആത്മസംയമനം", c:"അധ്യായം 5"},
+  {n:"2", l:"അബ്രാഹത്തിന്റെ പുത്രന്മാര്‍ — ഹാഗാറിന്റെയും സാറായുടെയും", c:"അധ്യായം 4"},
+  {n:"3", l:"പേര്‍ കൂട്ടായ്മയുടെ വലത്തുകരം നീട്ടി — യാക്കോബ്, കേപ്പാ, യോഹന്നാന്‍", c:"അധ്യായം 2"},
+  {n:"1", l:"ആവശ്യം മാത്രം: പാവങ്ങളെ ഓര്‍ക്കണം", c:"അധ്യായം 2"}
+];
+
+let mode = "read";
+let activeChapter = 1;
+const quizState = {}; // {chapNum: true/false}
+
+const tabsEl = document.getElementById('tabs');
+const panelEl = document.getElementById('panel');
+
+function renderTabs(){
+  tabsEl.innerHTML = "";
+  DATA.forEach(ch=>{
+    const b = document.createElement('div');
+    b.className = 'seal' + (ch.num===activeChapter ? ' active':'');
+    b.textContent = ch.num;
+    b.onclick = ()=>{ activeChapter = ch.num; renderTabs(); renderPanel(); };
+    tabsEl.appendChild(b);
+  });
+}
+
+function renderPanel(){
+  const ch = DATA.find(c=>c.num===activeChapter);
+  const quizOn = !!quizState[ch.num];
+  let html = `<div class="panel-head"><h2>ഗലാത്തിയർ — അധ്യായം ${ch.num}</h2><span class="num">Ch. ${ch.num} of 6</span></div>`;
+  ch.sections.forEach((s,i)=>{
+    html += `<details class="sec" ${i===0?'open':''}><summary>${s.h}</summary><ul>`;
+    s.pts.forEach(p=> html += `<li>${p}</li>`);
+    html += `</ul></details>`;
+  });
+  html += `<div class="chain-block">
+    <div class="chain-block-head">
+      <h3>ഓർമ്മിക്കാൻ — ചങ്ങല</h3>
+      <button class="quizbtn ${quizOn?'on':''}" id="quizToggle">${quizOn ? '✓ ക്വിസ് മോഡ് ഓണ്‍' : '🔒 ക്വിസ് മോഡ്'}</button>
+    </div>
+    <div class="chain-row" id="chainRow"></div>
+  </div>`;
+  panelEl.innerHTML = html;
+
+  const row = document.getElementById('chainRow');
+  ch.chain.forEach((item,i)=>{
+    if(i>0){
+      const arrow = document.createElement('span');
+      arrow.className = 'chain-arrow';
+      arrow.textContent = '→';
+      row.appendChild(arrow);
+    }
+    const link = document.createElement('span');
+    const revealed = !quizOn; // if quiz off, always show
+    link.className = 'chain-link' + (quizOn ? ' hidden' : '');
+    link.textContent = item;
+    link.dataset.text = item;
+    if(quizOn){
+      link.onclick = ()=>{
+        link.classList.remove('hidden');
+        link.classList.add('revealed');
+        link.onclick = null;
+      };
+    }
+    row.appendChild(link);
+  });
+
+  document.getElementById('quizToggle').onclick = ()=>{
+    quizState[ch.num] = !quizState[ch.num];
+    renderPanel();
+  };
+}
+
+function renderFacts(){
+  const grid = document.getElementById('factgrid');
+  grid.innerHTML = "";
+  FACTS.forEach(f=>{
+    const d = document.createElement('div');
+    d.className = 'factcard';
+    d.innerHTML = `<div class="n">${f.n}</div><div class="l">${f.l}</div><div class="c">${f.c}</div>`;
+    grid.appendChild(d);
+  });
+}
+
+// ---------- Flashcards ----------
+let cardPool = [];
+DATA.forEach(ch=>{
+  ch.chain.forEach(item=>{
+    // find a related point for back-of-card context
+    let back = "";
+    for(const s of ch.sections){
+      const found = s.pts.find(p=> p.includes(item.split('/')[0].split(' ')[0]));
+      if(found){ back = found; break; }
+    }
+    if(!back) back = ch.sections[0].pts[0];
+    cardPool.push({chap:ch.num, front:item, back:back});
+  });
+});
+let fcOrder = cardPool.map((_,i)=>i);
+let fcIndex = 0;
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function renderFlash(){
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped');
+  const idx = fcOrder[fcIndex];
+  const c = cardPool[idx];
+  document.getElementById('fcChapTag').textContent = 'അധ്യായം ' + c.chap;
+  document.getElementById('fcFront').textContent = c.front;
+  document.getElementById('fcBack').textContent = c.back;
+  document.getElementById('fcProgress').textContent = (fcIndex+1) + ' / ' + cardPool.length;
+}
+
+document.getElementById('flashcard').onclick = function(){
+  this.classList.toggle('flipped');
+};
+document.getElementById('fcNext').onclick = ()=>{
+  fcIndex = (fcIndex+1) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcPrev').onclick = ()=>{
+  fcIndex = (fcIndex-1+fcOrder.length) % fcOrder.length;
+  renderFlash();
+};
+document.getElementById('fcShuffle').onclick = ()=>{
+  fcOrder = shuffle(cardPool.map((_,i)=>i));
+  fcIndex = 0;
+  renderFlash();
+};
+
+// ---------- Mode switching ----------
+document.querySelectorAll('.modebtn').forEach(btn=>{
+  btn.onclick = ()=>{
+    document.querySelectorAll('.modebtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    document.getElementById('view-read').style.display = mode==='read' ? 'block':'none';
+    document.getElementById('view-facts').style.display = mode==='facts' ? 'block':'none';
+    document.getElementById('view-flash').style.display = mode==='flash' ? 'block':'none';
+    if(mode==='facts') renderFacts();
+    if(mode==='flash') renderFlash();
+  };
+});
+
+// init
+renderTabs();
+renderPanel();
+</script>
+</body>
+</html>
