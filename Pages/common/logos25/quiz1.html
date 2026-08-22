@@ -112,14 +112,11 @@ function startQuiz(){
   const subgroup = params.get('subgroup');
   const part = parseInt(params.get('part') || "1");
 
-  // configurable chunk size (set on index page), default 30
-  const chunkSize = parseInt(localStorage.getItem("questionsPerPart"), 10) || 30;
-
   const ALL_QUESTIONS = quizData[group][subgroup];
 
-  // split into chunks of chunkSize
-  const startIndex = (part - 1) * chunkSize;
-  const QUESTIONS = ALL_QUESTIONS.slice(startIndex, startIndex + chunkSize);
+  // split into chunks of 30
+  const startIndex = (part - 1) * 30;
+  const QUESTIONS = ALL_QUESTIONS.slice(startIndex, startIndex + 30);
 
   if (!QUESTIONS.length) {
   alert("No questions found for this quiz.");

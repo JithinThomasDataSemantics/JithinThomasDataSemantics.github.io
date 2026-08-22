@@ -12,6 +12,38 @@
     <div id="subgroups-list"></div>
   </div>
 
+  <!-- <script src="groups.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const groupKey = urlParams.get("group");
+      const group = groupsData[groupKey];
+
+      const title = document.getElementById("group-title");
+      if (group) {
+        title.textContent = group.display;
+        const subgroupsList = document.getElementById("subgroups-list");
+        group.subgroups.forEach(sub => {
+          const btn = document.createElement("button");
+          btn.className = "list-btn";
+          if(sub=="Intro"){
+            btn.textContent = "ആമുഖം";
+          }
+          else{
+              btn.textContent = "അധ്യായം " + sub;
+          } 
+          btn.onclick = () => {
+            // go to quiz page
+            window.location.href = `quiz.html?group=${groupKey}&subgroup=${sub}`;
+          };
+          subgroupsList.appendChild(btn);
+        });
+      } else {
+        title.textContent = "Group not found!";
+      }
+    });
+  </script> -->
+
   <script src="groups.js"></script>
 
 <script>
@@ -30,9 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   title.textContent = group.display;
 
-  // configurable chunk size (set on index page), default 30
-  const chunkSize = parseInt(localStorage.getItem("questionsPerPart"), 10) || 30;
-
   // 🔹 dynamically load questions file for this group
   const qScript = document.createElement("script");
   qScript.src = `questions_${groupKey}.js`;
@@ -40,11 +69,39 @@ document.addEventListener("DOMContentLoaded", () => {
   qScript.onload = () => {
     group.subgroups.forEach(sub => {
 
+      // INTRO (no splitting)
+      // if (sub === "Intro") {
+      //   const btn = document.createElement("button");
+      //   btn.className = "list-btn";
+      //   btn.textContent = "ആമുഖം";
+      //   btn.onclick = () => {
+      //     window.location.href =
+      //       `quiz.html?group=${groupKey}&subgroup=${sub}&part=1`;
+      //   };
+        
+      //   subgroupsList.appendChild(btn);
+      //   return;
+      // }
+
+
+      // if (sub === "Intro1") {
+      //   const btn = document.createElement("button");
+      //   btn.className = "list-btn";
+      //   btn.textContent = "ആമുഖം-2";
+      //   btn.onclick = () => {
+      //     window.location.href =
+      //       `quiz.html?group=${groupKey}&subgroup=${sub}&part=1`;
+      //   };
+        
+      //   subgroupsList.appendChild(btn);
+      //   return;
+      // }
+
       // 🔹 chapter questions
       const questions = quizData[groupKey]?.[sub];
       if (!questions || questions.length === 0) return;
 
-      const totalParts = Math.ceil(questions.length / chunkSize);
+      const totalParts = Math.ceil(questions.length / 30);
 
       for (let i = 0; i < totalParts; i++) {
         const part = i + 1;

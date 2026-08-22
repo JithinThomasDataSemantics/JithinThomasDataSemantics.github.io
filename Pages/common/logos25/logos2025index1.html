@@ -8,43 +8,20 @@
   <script src="groups.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>📖 Quiz Groups</h1>
+<div class="container">
+  <h1>📖 Quiz Groups</h1>
 
-    <div style="margin-bottom:14px; display:flex; align-items:center; gap:8px;">
-      <label for="chunkSizeInput">Questions per part:</label>
-      <input
-        type="number"
-        id="chunkSizeInput"
-        min="1"
-        style="width:70px; padding:4px 6px; border-radius:6px; border:1px solid #ccc;"
-      />
-    </div>
-
-    <div id="groups-list"></div>
+  <div style="margin-bottom:12px;">
+    <label for="chunkSizeInput">Questions per part:</label>
+    <input type="number" id="chunkSizeInput" min="1" style="width:70px;" />
   </div>
 
+  <div id="groups-list"></div>
+</div>
+
+  
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // ---- configurable chunk size ----
-      const chunkInput = document.getElementById("chunkSizeInput");
-
-      const saved = parseInt(localStorage.getItem("questionsPerPart"), 10);
-      chunkInput.value = (saved && saved > 0) ? saved : 30;
-
-      // save default immediately if nothing was stored yet
-      if (!saved) {
-        localStorage.setItem("questionsPerPart", chunkInput.value);
-      }
-
-      chunkInput.addEventListener("change", () => {
-        let val = parseInt(chunkInput.value, 10);
-        if (!val || val < 1) val = 30;
-        chunkInput.value = val;
-        localStorage.setItem("questionsPerPart", val);
-      });
-
-      // ---- existing groups list ----
       const groupsList = document.getElementById("groups-list");
       for (const key in groupsData) {
         const group = groupsData[key];
