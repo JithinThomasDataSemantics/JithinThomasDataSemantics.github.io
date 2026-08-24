@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ബൈബിൾ ക്വിസ്</title>
+<style>
+  :root{--bg:#0f172a;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8;--correct:#16a34a;--wrong:#dc2626}
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans Malayalam',"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,#071129 0%,#071827 100%);display:flex;align-items:center;justify-content:center;padding:16px}
+  .container{width:100%;max-width:640px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:14px;padding:16px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+  header{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+  .logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:#012;flex-shrink:0}
+  h1{font-size:1rem;margin:0}
+  p.desc{margin:2px 0 0;color:var(--muted);font-size:0.82rem}
+
+  .card{background:var(--card);padding:14px;border-radius:12px;margin-top:8px}
+  .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px}
+  .progress{height:8px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;flex:1;margin-left:10px}
+  .progress > span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#7c3aed);width:0%;transition:width .25s ease}
+  .qnum{font-size:0.82rem;color:var(--muted);white-space:nowrap}
+
+  .question{font-size:1.05rem;line-height:1.5;margin:6px 0 14px}
+
+  .options{display:grid;grid-template-columns:1fr;gap:10px}
+  button.opt{padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);color:inherit;font-size:0.98rem;text-align:left;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:52px;line-height:1.4}
+  button.opt:active{transform:translateY(1px)}
+  button.opt .label{flex-shrink:0;width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem}
+  button.opt:disabled{cursor:default}
+
+  .footer{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:16px;flex-wrap:wrap}
+  button.primary{background:var(--accent);color:#022;padding:10px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:700;font-size:0.95rem}
+  button.primary:disabled{opacity:0.4;cursor:default}
+  button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:10px 14px;border-radius:10px;color:var(--muted);cursor:pointer;font-size:0.9rem}
+
+  .result{padding:16px;border-radius:10px;margin-top:10px;background:linear-gradient(90deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:none;text-align:center}
+  .result.show{display:block}
+  .score{font-weight:700;font-size:1.4rem;margin-bottom:4px}
+  .score-sub{color:var(--muted);font-size:0.88rem;margin-bottom:14px}
+
+  .correct{border-color:rgba(34,197,94,0.4)!important;background:linear-gradient(90deg,rgba(34,197,94,0.1),rgba(34,197,94,0.03))!important}
+  .wrong{border-color:rgba(220,38,38,0.4)!important;background:linear-gradient(90deg,rgba(220,38,38,0.1),rgba(220,38,38,0.03))!important}
+
+  @media (max-width:400px){
+    .question{font-size:1rem}
+    button.opt{font-size:0.92rem;padding:11px 12px}
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="application" aria-labelledby="quiztitle">
+    <header>
+      <div class="logo">📖</div>
+      <div>
+        <h1 id="quiztitle">ബൈബിൾ ക്വിസ്</h1>
+        <p class="desc">ഓരോ തവണയും ചോദ്യങ്ങളും ഉത്തരങ്ങളും ക്രമരഹിതമായി മാറും</p>
+      </div>
+    </header>
+
+    <div class="card" id="quizCard">
+      <div class="meta">
+        <div class="qnum" id="qNumber">Question 1 / 1</div>
+        <div class="progress"><span id="progressBar"></span></div>
+      </div>
+
+      <div class="question" id="questionText">...</div>
+      <div class="options" id="options"></div>
+
+      <div class="footer">
+        <button class="ghost" id="prevBtn" disabled>Previous</button>
+        <button class="primary" id="nextBtn" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="result" id="resultBox">
+      <div class="score" id="scoreText">0 / 0</div>
+      <div class="score-sub" id="scoreSub"></div>
+      <button class="primary" id="restartBtn">Restart (Reshuffled)</button>
+    </div>
+  </div>
+
+<script>
+const RAW_QUESTIONS = [{
+    "Question": "നീ ആരാണെന്ന് ചോദിക്കാൻ യഹൂദർ ജറുസലേമിൽ നിന്ന് ആരെയാണ് അയച്ചത്?",
+    "A": "പരീശന്മാരെ", "B": "പുരോഹിതൻമാരെയും ലേവ്യരെയും", "C": "ശാസ്ത്രിമാരെ", "D": "സദൂക്യരെ", "Ans": "B"
+  },
+  {
+    "Question": "പുരോഹിതരും ലേവ്യരും യോഹന്നാനോട് എത്ര ചോദ്യങ്ങൾ ചോദിച്ചു?",
+    "A": "രണ്ട്", "B": "നാല്", "C": "മൂന്ന്", "D": "അഞ്ച്", "Ans": "C"
+  },
+  {
+    "Question": "വിശുദ്ധ ലിഖിതവും യേശു പ്രസ്താവിച്ച വചനവും വിശ്വസിച്ചതാര്?",
+    "A": "പുരോഹിതന്മാർ", "B": "ശിഷ്യന്മാർ", "C": "പരീശന്മാർ", "D": "ജനക്കൂട്ടം", "Ans": "B"
+  },
+  {
+    "Question": "\"നീ ഇസ്രായേലിലെ ഗുരുവല്ലേ\" എന്ന് യേശു ആരോടാണ് ചോദിച്ചത്?",
+    "A": "പരീശന്മാരോട്", "B": "നിക്കൊദേമോസിനോട്", "C": "ശാസ്ത്രിമാരോട്", "D": "പുരോഹിതന്മാരോട്", "Ans": "B"
+  },
+  {
+    "Question": "ആര് തമ്മിലാണ് ശുദ്ധീകരണത്തെപ്പറ്റി തർക്കമുണ്ടായത്?",
+    "A": "പരീശരും ശിഷ്യരും", "B": "അവന്റെ ശിഷ്യന്മാരും ഒരു യഹൂദനും", "C": "പുരോഹിതരും ലേവ്യരും", "D": "ജനക്കൂട്ടവും ശിഷ്യരും", "Ans": "B"
+  },
+  {
+    "Question": "ആസന്നമരണനായ മകനെ സുഖപ്പെടുത്തണമെന്ന് പറഞ്ഞത് ആരാണ്?",
+    "A": "ഒരു ശതാധിപൻ", "B": "ഒരു പരീശൻ", "C": "കഫർണാമിലെ ഒരു രാജസേവകൻ", "D": "ഒരു പുരോഹിതൻ", "Ans": "C"
+  },
+  {
+    "Question": "പോകും വഴി മകൻ സുഖം പ്രാപിച്ചിരിക്കുന്നു എന്ന വാർത്തയുമായി ആരാണ് എതിരെ വന്നത്?",
+    "A": "ബന്ധുക്കൾ", "B": "ശിഷ്യന്മാർ", "C": "സുഹൃത്തുക്കൾ", "D": "ഭൃത്യന്മാർ", "Ans": "D"
+  },
+  {
+    "Question": "\"ലോകത്തിലേക്ക് വരാനിരുന്ന പ്രവാചകൻ സത്യമായും ഇവനാണ്\" എന്ന് ആരാണ് പറഞ്ഞത്?",
+    "A": "ശിഷ്യന്മാർ", "B": "ഫരിസേയർ", "C": "പുരോഹിതന്മാർ", "D": "ജനങ്ങൾ", "Ans": "D"
+  },
+  {
+    "Question": "\"അവനെവിടെ\" എന്ന് ചോദിച്ചുകൊണ്ട് ആരാണ് യേശുവിനെ തിരക്കിയത്?",
+    "A": "ജനക്കൂട്ടം", "B": "യഹൂദർ", "C": "ശിഷ്യന്മാർ", "D": "ഫരിസേയർ", "Ans": "B"
+  },
+  {
+    "Question": "ആളുകൾ യേശുവിനെപ്പറ്റി പരസ്യമായി സംസാരിക്കാതിരുന്നത് എന്തുകൊണ്ട്?",
+    "A": "ജനക്കൂട്ടത്തെ ഭയന്ന്", "B": "റോമക്കാരെ ഭയന്ന്", "C": "യഹൂദരെ ഭയന്ന്", "D": "പുരോഹിതരെ ഭയന്ന്", "Ans": "C"
+  },
+  {
+    "Question": "\"ഇവനെയല്ലേ അവർ കൊല്ലാൻ അന്വേഷിക്കുന്നത്\" എന്ന് ആരാണ് ചോദിച്ചത്?",
+    "A": "ഫരിസേയർ", "B": "പുരോഹിതന്മാർ", "C": "ജനക്കൂട്ടം", "D": "ജറുസലേം നിവാസികളിൽ ചിലർ", "Ans": "D"
+  },
+  {
+    "Question": "\"ഇവൻ തന്നെയാണ് ക്രിസ്തുവെന്ന് ഒരു പക്ഷേ യഥാർത്ഥത്തിൽ അറിഞ്ഞിരിക്കുമോ?\"",
+    "A": "ജനങ്ങൾ", "B": "ശിഷ്യന്മാർ", "C": "അധികാരികൾ", "D": "പുരോഹിതർ", "Ans": "C"
+  },
+  {
+    "Question": "ജനക്കൂട്ടം യേശുവിനെക്കുറിച്ച് പിറുപിറുക്കുന്നത് കേട്ടത് ആര്?",
+    "A": "ശിഷ്യന്മാർ", "B": "ഫരിസേയർ", "C": "സദൂക്യർ", "D": "ലേവ്യർ", "Ans": "B"
+  },
+  {
+    "Question": "യേശുവിനെ ബന്ധിക്കാൻ സേവകരെ അയച്ചത് ആര്?",
+    "A": "യഹൂദർ", "B": "റോമക്കാർ", "C": "പുരോഹിതപ്രമുഖന്മാരും ഫരിസേയരും", "D": "സൻഹെദ്രിൻ", "Ans": "C"
+  },
+  {
+    "Question": "\"നിങ്ങളും വഞ്ചിതരായോ?\" ഇത് ആരുടെ ചോദ്യമാണ്?",
+    "A": "പുരോഹിതപ്രമുഖന്മാർ", "B": "ഫരിസേയർ", "C": "സദൂക്യർ", "D": "നിയമജ്ഞർ", "Ans": "B"
+  },
+  {
+    "Question": "\"അവനെപ്പോലെ ആരും ഇതുവരെ സംസാരിച്ചിട്ടില്ല\" എന്ന് ആരാണ് പറഞ്ഞത്?",
+    "A": "ജനക്കൂട്ടം", "B": "സേവകന്മാർ", "C": "ശിഷ്യന്മാർ", "D": "ഫരിസേയർ", "Ans": "B"
+  },
+  {
+    "Question": "\"ഒരുവന് പറയാനുള്ളത് ആദ്യം കേൾക്കാതെയും അവനെന്താണ് ചെയ്യുന്നതെന്ന് അറിയാതെയും അവനെ വിധിക്കാൻ നമ്മുടെ നിയമം അനുവദിക്കുന്നുണ്ടോ?\" ആരാണ് ചോദിച്ചത്?",
+    "A": "ഗമാലിയേൽ", "B": "യോസേപ്പ്", "C": "നിക്കൊദേമോസ്", "D": "പീലാത്തോസ്", "Ans": "C"
+  },
+  {
+    "Question": "വ്യഭിചാരത്തിൽ പിടിക്കപ്പെട്ട ഒരു സ്ത്രീയെ യേശുവിന്റെ അടുക്കൽ കൊണ്ടുവന്നത് ആരാണ്?",
+    "A": "ശിഷ്യന്മാർ", "B": "നിയമജ്ഞരും ഫരിസേയരും", "C": "പുരോഹിതന്മാർ", "D": "ജനക്കൂട്ടം", "Ans": "B"
+  },
+  {
+    "Question": "\"നീ തന്നെ നിനക്ക് സാക്ഷ്യം നൽകുന്നു. നിന്റെ സാക്ഷ്യം സത്യമല്ല.\" ആരുടെ വാക്കുകളാണ് ഇത്?",
+    "A": "ശാസ്ത്രിമാർ", "B": "ഫരിസേയർ", "C": "ജനക്കൂട്ടം", "D": "പുരോഹിതന്മാർ", "Ans": "B"
+  },
+  {
+    "Question": "മുമ്പ് അന്ധനായിരുന്നവനെ ആരുടെ അടുത്താണ് കൊണ്ടുവന്നത്?",
+    "A": "പുരോഹിതരുടെ", "B": "ഫരിസേയരുടെ", "C": "ശിഷ്യന്മാരുടെ", "D": "സൻഹെദ്രിന്റെ", "Ans": "B"
+  },
+  {
+    "Question": "\"ഈ മനുഷ്യൻ ദൈവത്തിൽ നിന്നുള്ളവനല്ല. എന്തെന്നാൽ അവൻ സാബത്ത് ആചരിക്കുന്നില്ല.\" ആരാണ് ഇത് പറഞ്ഞത്?",
+    "A": "ശാസ്ത്രിമാർ", "B": "യഹൂദർ", "C": "ഫരിസേയരിൽ ചിലർ", "D": "പുരോഹിതപ്രമുഖർ", "Ans": "C"
+  },
+  {
+    "Question": "അവൻ അന്ധനായിരുന്നെന്നും കാഴ്ച പ്രാപിച്ചെന്നും മാതാപിതാക്കളെ വിളിച്ച് ചോദിക്കുവോളം വിശ്വസിക്കാതിരുന്നവർ ആര്?",
+    "A": "യഹൂദർ", "B": "ഫരിസേയർ", "C": "ശിഷ്യന്മാർ", "D": "പുരോഹിതർ", "Ans": "A"
+  },
+  {
+    "Question": "\"നിങ്ങളും അവന്റെ ശിഷ്യരാകാൻ ആഗ്രഹിക്കുന്നുവോ?\" ആരാണ് ചോദിച്ചത്?",
+    "A": "യേശു", "B": "അന്ധൻ", "C": "ഫരിസേയർ", "D": "മാതാപിതാക്കൾ", "Ans": "B"
+  },
+  {
+    "Question": "യേശുവിന്റെ വാക്കുകൾ മൂലം ആരുടെ ഇടയിലാണ് ഭിന്നതയുണ്ടായത്?",
+    "A": "ശിഷ്യരുടെ", "B": "പുരോഹിതരുടെ", "C": "യഹൂദരുടെ", "D": "ഫരിസേയരുടെ", "Ans": "C"
+  },
+  {
+    "Question": "ആരാണ് മർത്തായെയും മറിയത്തെയും അവരുടെ സഹോദരനെ പ്രതി ആശ്വസിപ്പിക്കാൻ വന്നത്?",
+    "A": "ശിഷ്യന്മാർ", "B": "അനേകം യഹൂദർ", "C": "പുരോഹിതർ", "D": "ഫരിസേയർ", "Ans": "B"
+  },
+  {
+    "Question": "മറിയത്തിന്റെ അടുക്കൽ വന്നിരുന്നവരിൽ ചിലർ യേശു പ്രവർത്തിച്ച കാര്യങ്ങൾ ആരോടാണ് പറഞ്ഞത്?",
+    "A": "പുരോഹിതന്മാരോട്", "B": "ഫരിസേയരോട്", "C": "ശിഷ്യന്മാരോട്", "D": "റോമാക്കാരോട്", "Ans": "B"
+  },
+  {
+    "Question": "ജനത്തിനുവേണ്ടി യേശു മരിക്കേണ്ടിയിരിക്കുന്നുവെന്ന് പ്രവചിച്ചത് ആര്?",
+    "A": "അന്നാസ്", "B": "കയ്യാഫാസ്", "C": "നിക്കൊദേമോസ്", "D": "ഗമാലിയേൽ", "Ans": "B"
+  },
+  {
+    "Question": "യേശു ആരുടെ ഇടയിലാണ് പരസ്യമായി സഞ്ചരിക്കാതിരുന്നത്?",
+    "A": "സമരിയാക്കാരുടെ", "B": "യഹൂദരുടെ", "C": "ഗലീലിയരുടെ", "D": "ഫരിസേയരുടെ", "Ans": "B"
+  },
+  {
+    "Question": "ലാസറിനെ ഉയിർപ്പിച്ച അടയാളം കേട്ടതുകൊണ്ട് ആരാണ് യേശുവിനെ സ്വീകരിക്കാൻ വന്നത്?",
+    "A": "പുരോഹിതർ", "B": "ഫരിസേയർ", "C": "ശിഷ്യന്മാർ", "D": "ജനക്കൂട്ടം", "Ans": "D"
+  },
+  {
+    "Question": "\"നമുക്ക് ഒന്നും ചെയ്യാൻ സാധിക്കുന്നില്ലെന്ന് കാണുന്നില്ലേ?\" ആരാണ് ചോദിച്ചത്?",
+    "A": "ഫരിസേയർ", "B": "ജനക്കൂട്ടം", "C": "ശിഷ്യന്മാർ", "D": "പുരോഹിതർ", "Ans": "A"
+  },
+  {
+    "Question": "യേശു ജറുസലേമിലേക്ക് വരുന്നെന്നു കേട്ട് ഈന്തപ്പനയുടെ കൈകൾ എടുത്തുകൊണ്ട് അവനെ എതിരേൽക്കാൻ പുറപ്പെട്ടതാര്?",
+    "A": "ശിഷ്യന്മാർ", "B": "ഗ്രീക്കുകാർ", "C": "ഒരു വലിയ ജനക്കൂട്ടം", "D": "ഫരിസേയർ", "Ans": "C"
+  },
+  {
+    "Question": "\"പ്രഭോ, ഞങ്ങൾ യേശുവിനെ കാണാൻ ആഗ്രഹിക്കുന്നു\" ആര് ആരോട് പറഞ്ഞു?",
+    "A": "ജനക്കൂട്ടം അന്ത്രയോസിനോട്", "B": "ഗ്രീക്കുകാർ ഫിലിപ്പോസിനോട്", "C": "ഫരിസേയർ പത്രോസിനോട്", "D": "ശിഷ്യന്മാർ യോഹന്നാനോട്", "Ans": "B"
+  },
+  {
+    "Question": "\"ക്രിസ്തു എന്നേക്കും നിലനിൽക്കുമെന്നാണല്ലോ നിയമത്തിൽ കേട്ടിട്ടുള്ളത്\" ആരാണ് ചോദിച്ചത്?",
+    "A": "ഫരിസേയർ", "B": "ജനക്കൂട്ടം", "C": "ശിഷ്യന്മാർ", "D": "പുരോഹിതർ", "Ans": "B"
+  },
+  {
+    "Question": "അധികാരികളിൽ പലരും യേശുവിൽ വിശ്വസിച്ചെങ്കിലും ആരെ ഭയന്നാണ് അവരാരും അത് ഏറ്റുപറയാതിരുന്നത്?",
+    "A": "പുരോഹിതപ്രമുഖരെ", "B": "ജനക്കൂട്ടത്തെ", "C": "ഫരിസേയരെ", "D": "റോമക്കാരെ", "Ans": "C"
+  },
+  {
+    "Question": "ആരെയാണ് വിശ്വാസം വഴി നീതീകരിക്കുന്നത്?",
+    "A": "യഹൂദരെ", "B": "വിജാതീയരെ", "C": "പരിച്ഛേദിതരെ", "D": "പുരോഹിതരെ", "Ans": "B"
+  },
+  {
+    "Question": "ആരുടെ പാദങ്ങളെയാണ് അവിടുന്ന് കാക്കുന്നത്?",
+    "A": "നീതിമാന്മാരുടെ", "B": "ദരിദ്രരുടെ", "C": "വിശ്വസ്തരുടെ", "D": "പുരോഹിതരുടെ", "Ans": "C"
+  },
+  {
+    "Question": "സ്വർഗത്തിൽനിന്ന് ഇറങ്ങിവന്ന അപ്പം ഞാനാണ് എന്ന് പറഞ്ഞതിനാൽ യേശുവിനെതിരേ പിറുപിറുത്തത് ആര്?",
+    "A": "ശിഷ്യന്മാർ", "B": "ജനക്കൂട്ടം", "C": "യഹൂദർ", "D": "ഫരിസേയർ", "Ans": "C"
+  },
+  {
+    "Question": "\"ലോകത്തിന്റെ ജീവനുവേണ്ടി ഞാൻ നൽകുന്ന അപ്പം എന്റെ ശരീരമാണ്\" എന്ന് യേശു പറഞ്ഞപ്പോൾ ആരുടെ ഇടയിലാണ് തർക്കമുണ്ടായത്?",
+    "A": "യഹൂദർക്കിടയിൽ", "B": "ശിഷ്യർക്കിടയിൽ", "C": "ഫരിസേയർക്കിടയിൽ", "D": "ജനക്കൂട്ടത്തിനിടയിൽ", "Ans": "A"
+  },
+  {
+    "Question": "\"എന്റെ വചനത്തിൽ നിലനിൽക്കുമെങ്കിൽ നിങ്ങൾ യഥാർത്ഥത്തിൽ എന്റെ ശിഷ്യരാണ്.\" യേശു ആരോടാണ് ഇത് പറഞ്ഞത്?",
+    "A": "ശിഷ്യന്മാരോട്", "B": "ഫരിസേയരോട്", "C": "തന്നിൽ വിശ്വസിച്ച യഹൂദരോട്", "D": "ജനക്കൂട്ടത്തോട്", "Ans": "C"
+  },
+  {
+    "Question": "\"നോക്കൂ, അവൻ എത്രമാത്രം അവനെ സ്നേഹിച്ചിരുന്നു\" ആരാണ് പറഞ്ഞത്?",
+    "A": "ശിഷ്യന്മാർ", "B": "യഹൂദർ", "C": "മർത്താ", "D": "മറിയം", "Ans": "B"
+  },
+  {
+    "Question": "ആരുടെ കൂടാരത്തിൽ നിന്ന് പുറപ്പെടുന്ന ഉഗ്രഘോഷത്തിന്റെ സൂചനയെന്തെന്നതാണ് ഫിലിസ്ത്യർ തിരക്കിയത്?",
+    "A": "ഇസ്രായേല്യരുടെ", "B": "ഹെബ്രായരുടെ", "C": "യഹൂദരുടെ", "D": "ലേവ്യരുടെ", "Ans": "B"
+  }
+];
+
+// ---- DOM refs ----
+const qNumber = document.getElementById('qNumber');
+const progressBar = document.getElementById('progressBar');
+const questionText = document.getElementById('questionText');
+const optionsWrap = document.getElementById('options');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const resultBox = document.getElementById('resultBox');
+const scoreText = document.getElementById('scoreText');
+const scoreSub = document.getElementById('scoreSub');
+const restartBtn = document.getElementById('restartBtn');
+const quizCard = document.getElementById('quizCard');
+
+let QUESTIONS = [];
+let current = 0;
+let score = 0;
+let userAnswers = [];
+const total = RAW_QUESTIONS.length;
+
+function shuffleArray(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Build a fresh shuffled run: question order shuffled, and each question's
+// option order shuffled independently.
+function buildQuiz(){
+  const shuffledQuestions = shuffleArray(RAW_QUESTIONS);
+  QUESTIONS = shuffledQuestions.map(q => {
+    const keys = shuffleArray(['A','B','C','D']);
+    return {
+      Question: q.Question,
+      optionText: keys.map(k => q[k]),
+      correctText: q[q.Ans]    // correct answer identified by TEXT (order-independent)
+    };
+  });
+  current = 0;
+  score = 0;
+  userAnswers = new Array(total).fill(null);
+  quizCard.style.display = '';
+  resultBox.classList.remove('show');
+  nextBtn.disabled = true;
+  renderQuestion(0);
+}
+
+function renderQuestion(index){
+  const q = QUESTIONS[index];
+
+  qNumber.textContent = `Question ${index+1} / ${total}`;
+  const pct = Math.round((index/total)*100);
+  progressBar.style.width = pct + '%';
+  questionText.textContent = q.Question;
+
+  optionsWrap.innerHTML = '';
+  const labels = ['A','B','C','D'];
+  q.optionText.forEach((text, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.type = 'button';
+    btn.dataset.idx = i;
+    btn.innerHTML = `<span class="label">${labels[i]}</span><span>${text}</span>`;
+    btn.addEventListener('click', onOptionClick);
+    optionsWrap.appendChild(btn);
+  });
+
+  if(userAnswers[index] !== null){
+    applyFeedback(index);
+  }
+
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = userAnswers[index] === null;
+}
+
+function onOptionClick(e){
+  const btn = e.currentTarget;
+  const idx = parseInt(btn.dataset.idx, 10);
+  if(userAnswers[current] !== null) return;
+
+  const q = QUESTIONS[current];
+  const chosenText = q.optionText[idx];
+  userAnswers[current] = idx;
+
+  if(chosenText === q.correctText){
+    score += 1;
+  }
+
+  applyFeedback(current);
+  nextBtn.disabled = false;
+
+  if(current === total - 1){
+    setTimeout(showResults, 500);
+  }
+}
+
+function applyFeedback(index){
+  const q = QUESTIONS[index];
+  const nodes = optionsWrap.querySelectorAll('button.opt');
+  const chosenIdx = userAnswers[index];
+  nodes.forEach(node => {
+    const i = parseInt(node.dataset.idx, 10);
+    const isCorrect = q.optionText[i] === q.correctText;
+    if(i === chosenIdx){
+      node.classList.add(isCorrect ? 'correct' : 'wrong');
+    }
+    if(isCorrect){
+      node.classList.add('correct');
+    }
+    node.disabled = true;
+  });
+}
+
+function showResults(){
+  progressBar.style.width = '100%';
+  quizCard.style.display = 'none';
+  scoreText.textContent = `${score} / ${total}`;
+  const pct = Math.round((score/total)*100);
+  scoreSub.textContent = `${pct}% correct`;
+  resultBox.classList.add('show');
+}
+
+prevBtn.onclick = () => { if(current > 0){ current--; renderQuestion(current); } };
+nextBtn.onclick = () => {
+  if(current < total - 1){
+    current++;
+    renderQuestion(current);
+  } else {
+    showResults();
+  }
+};
+restartBtn.onclick = buildQuiz;
+
+buildQuiz();
+</script>
+</body>
+</html>

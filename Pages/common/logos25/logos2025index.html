@@ -82,6 +82,23 @@
         };
         groupsList.appendChild(btn1);
 
+
+        const btn2 = document.createElement("button");
+        btn2.className = "list-btn";
+        btn2.textContent = "People Study";
+        btn2.onclick = () => {
+          window.location.href = `peoplestudy.html`;
+        };
+        groupsList.appendChild(btn2);
+
+        const btn3 = document.createElement("button");
+        btn3.className = "list-btn";
+        btn3.textContent = "People";
+        btn3.onclick = () => {
+          window.location.href = `people.html`;
+        };
+        groupsList.appendChild(btn3);
+
     });
   </script>
 </body>

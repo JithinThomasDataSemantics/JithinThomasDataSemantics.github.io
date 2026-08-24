@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>വിളക്കിന്റെ വചനങ്ങൾ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@500;700;800&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2A2013;
+    --parchment:#F3E9D2;
+    --parchment-deep:#E9DAB8;
+    --night:#141A2E;
+    --night-deep:#0D1120;
+    --gold:#E3B24E;
+    --gold-deep:#B9852A;
+    --sage:#5B7065;
+    --moss:#5E7F45;
+    --brick:#9B3E2C;
+    --line: rgba(42,32,19,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Noto Sans Malayalam', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .grain{
+    position:fixed; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:multiply; z-index:2;
+    background-image:radial-gradient(circle at 1px 1px, #000 1px, transparent 0);
+    background-size:3px 3px;
+  }
+
+  .hero{
+    position:relative;
+    background:radial-gradient(ellipse at 50% 120%, #24304F 0%, var(--night) 55%, var(--night-deep) 100%);
+    color:var(--parchment);
+    padding:56px 20px 44px;
+    overflow:hidden;
+    text-align:center;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(227,178,78,0.18), transparent 60%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-size:11px;
+    color:var(--gold);
+    font-weight:600;
+    margin-bottom:18px;
+    opacity:0.85;
+  }
+  .lamp-wrap{ width:120px; margin:0 auto 8px; }
+  .flame{ transform-origin:60px 78px; animation:flicker 2.6s ease-in-out infinite; }
+  @keyframes flicker{
+    0%,100%{ transform:scaleY(1) scaleX(1) rotate(0deg); }
+    25%{ transform:scaleY(1.06) scaleX(0.97) rotate(-1.5deg); }
+    50%{ transform:scaleY(0.95) scaleX(1.03) rotate(1deg); }
+    75%{ transform:scaleY(1.03) scaleX(0.98) rotate(-0.5deg); }
+  }
+  .glow{ animation:glowpulse 2.6s ease-in-out infinite; }
+  @keyframes glowpulse{
+    0%,100%{ opacity:0.55; }
+    50%{ opacity:0.9; }
+  }
+  h1.title{
+    font-family:'Noto Serif Malayalam', serif;
+    font-weight:800;
+    font-size:clamp(28px,5vw,42px);
+    margin:14px 0 10px;
+    color:var(--parchment);
+    letter-spacing:0.01em;
+  }
+  .title .accent{ color:var(--gold); }
+  .subtitle{
+    max-width:540px;
+    margin:0 auto 30px;
+    color:#C9D0E0;
+    font-size:15px;
+    line-height:1.8;
+  }
+  .mode-row{
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+  }
+  .mode-btn{
+    font-family:'Noto Sans Malayalam',sans-serif;
+    font-weight:700;
+    font-size:15px;
+    padding:13px 26px;
+    border-radius:999px;
+    border:1.5px solid rgba(227,178,78,0.55);
+    background:rgba(227,178,78,0.08);
+    color:var(--parchment);
+    cursor:pointer;
+    transition:all 0.25s ease;
+    letter-spacing:0.01em;
+  }
+  .mode-btn:hover{ background:rgba(227,178,78,0.18); transform:translateY(-1px); }
+  .mode-btn.active{
+    background:var(--gold);
+    color:var(--night-deep);
+    border-color:var(--gold);
+  }
+
+  .lamp-progress{
+    max-width:420px; margin:26px auto 0;
+    display:flex; align-items:center; gap:10px;
+  }
+  .lamp-progress .track{
+    flex:1; height:6px; border-radius:4px; background:rgba(255,255,255,0.12); overflow:hidden;
+  }
+  .lamp-progress .fill{
+    height:100%; border-radius:4px;
+    background:linear-gradient(90deg,var(--gold-deep),var(--gold));
+    width:0%;
+    transition:width 0.6s cubic-bezier(.4,1.4,.6,1);
+    box-shadow:0 0 10px rgba(227,178,78,0.7);
+  }
+  .lamp-progress .pct{ font-size:12px; color:var(--gold); font-weight:700; min-width:34px; text-align:right;}
+
+  main{ max-width:900px; margin:0 auto; padding:34px 18px 80px; position:relative; z-index:1;}
+
+  .who-badge{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:11px; font-weight:700; letter-spacing:0.03em;
+    padding:4px 10px; border-radius:999px; margin-bottom:8px;
+  }
+
+  .scroll{
+    border:1px solid var(--line);
+    border-radius:14px;
+    margin-bottom:16px;
+    background:linear-gradient(180deg,#FBF5E4,var(--parchment-deep));
+    box-shadow:0 1px 0 rgba(255,255,255,0.6) inset, 0 8px 18px -14px rgba(42,32,19,0.4);
+    overflow:hidden;
+    border-left:5px solid var(--group-color, var(--gold-deep));
+  }
+  .scroll-head{
+    display:flex; align-items:center; gap:14px;
+    padding:18px 20px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .scroll-icon{
+    font-size:20px;
+    width:38px; height:38px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    background:color-mix(in srgb, var(--group-color, var(--gold-deep)) 16%, white);
+    flex-shrink:0;
+  }
+  .scroll-title{
+    font-family:'Noto Serif Malayalam',serif;
+    font-weight:700;
+    font-size:17px;
+    flex:1;
+    color:var(--ink);
+  }
+  .scroll-sub{ font-size:12px; color:var(--sage); font-weight:500; margin-top:2px;}
+  .scroll-count{ font-size:12px; color:var(--sage); font-weight:600; white-space:nowrap;}
+  .chevron{ transition:transform 0.3s ease; color:var(--gold-deep); flex-shrink:0;}
+  .scroll.open .chevron{ transform:rotate(180deg); }
+  .scroll-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease;
+  }
+  .scroll.open .scroll-body{ max-height:6000px; }
+  .card-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:14px; padding:0 18px 20px;
+  }
+
+  .flip-card{ perspective:1200px; height:180px; cursor:pointer; }
+  .flip-inner{
+    position:relative; width:100%; height:100%;
+    transition:transform 0.55s cubic-bezier(.4,.2,.2,1);
+    transform-style:preserve-3d;
+  }
+  .flip-card.flipped .flip-inner{ transform:rotateY(180deg); }
+  .flip-face{
+    position:absolute; inset:0;
+    backface-visibility:hidden;
+    border-radius:11px;
+    padding:15px;
+    display:flex; flex-direction:column;
+    border:1px solid var(--line);
+  }
+  .flip-front{
+    background:var(--parchment);
+    box-shadow:0 4px 10px -6px rgba(42,32,19,0.35);
+  }
+  .flip-front .qn{ font-size:10px; font-weight:700; color:var(--gold-deep); letter-spacing:0.08em; margin-bottom:6px;}
+  .flip-front .qtext{ font-size:13.5px; line-height:1.6; font-weight:600; color:var(--ink); flex:1; overflow:auto;}
+  .flip-hint{ font-size:11px; color:var(--sage); text-align:center; margin-top:6px; opacity:0.8;}
+  .flip-back{
+    background:linear-gradient(160deg,#2E4A3A,#1E3428);
+    color:#F0EBD8;
+    transform:rotateY(180deg);
+    justify-content:center;
+    box-shadow:0 4px 14px -6px rgba(20,30,20,0.5);
+  }
+  .flip-back .ans-label{ font-size:10px; letter-spacing:0.1em; color:#9FD6AE; font-weight:700; margin-bottom:6px;}
+  .flip-back .ans-text{ font-size:16px; font-weight:700; line-height:1.5;}
+
+  .quiz-panel{ }
+  .quiz-top{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:18px; flex-wrap:wrap; gap:10px;
+  }
+  .quiz-stat{
+    font-size:13px; font-weight:700; color:var(--sage);
+    background:#fff; border:1px solid var(--line); padding:7px 13px; border-radius:999px;
+  }
+  .quiz-stat.streak{ color:var(--gold-deep); }
+  .qcard{
+    background:linear-gradient(180deg,#FBF5E4,var(--parchment-deep));
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:26px 22px;
+    box-shadow:0 10px 24px -18px rgba(42,32,19,0.5);
+  }
+  .qcard .glabel{
+    display:inline-block;
+    font-size:11px; font-weight:700; color:#fff; letter-spacing:0.04em; margin-bottom:12px;
+    background:var(--group-color, var(--gold-deep));
+    padding:5px 12px; border-radius:999px;
+  }
+  .qcard .qbody{
+    font-family:'Noto Serif Malayalam',serif;
+    font-weight:700; font-size:19px; line-height:1.7; color:var(--ink); margin-bottom:20px;
+  }
+  .opt-list{ display:grid; gap:10px; }
+  .opt{
+    display:flex; align-items:center; gap:12px;
+    text-align:left;
+    background:#fff;
+    border:1.5px solid var(--line);
+    border-radius:11px;
+    padding:13px 15px;
+    font-family:'Noto Sans Malayalam',sans-serif;
+    font-size:14.5px; font-weight:600; color:var(--ink);
+    cursor:pointer; transition:all 0.18s ease;
+  }
+  .opt:hover:not(:disabled){ border-color:var(--gold); background:#FFFCF3; }
+  .opt .letter{
+    width:26px; height:26px; border-radius:50%; background:var(--parchment-deep);
+    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; flex-shrink:0;
+    color:var(--gold-deep);
+  }
+  .opt.correct{ background:#EAF3E4; border-color:var(--moss); }
+  .opt.correct .letter{ background:var(--moss); color:#fff; }
+  .opt.wrong{ background:#F7E7E2; border-color:var(--brick); }
+  .opt.wrong .letter{ background:var(--brick); color:#fff; }
+  .opt:disabled{ cursor:default; }
+  .feedback{
+    margin-top:16px; font-size:13.5px; font-weight:600; min-height:20px;
+  }
+  .feedback.good{ color:var(--moss); }
+  .feedback.bad{ color:var(--brick); }
+  .quiz-nav{ display:flex; justify-content:flex-end; margin-top:18px;}
+  .next-btn{
+    background:var(--night); color:var(--parchment); border:none; border-radius:999px;
+    padding:11px 24px; font-weight:700; font-size:14px; cursor:pointer;
+    opacity:0; pointer-events:none; transition:opacity 0.2s ease;
+  }
+  .next-btn.show{ opacity:1; pointer-events:auto; }
+  .next-btn:hover{ background:#1E2A4A; }
+
+  .quiz-end{ text-align:center; padding:30px 10px; }
+  .quiz-end .score-big{
+    font-family:'Noto Serif Malayalam',serif; font-weight:800; font-size:44px; color:var(--gold-deep);
+  }
+  .quiz-end .score-sub{ color:var(--sage); font-weight:600; margin-top:6px; font-size:14px;}
+  .restart-btn{
+    margin-top:22px; background:var(--gold); color:var(--night-deep); border:none;
+    padding:12px 26px; border-radius:999px; font-weight:700; cursor:pointer; font-size:14px;
+  }
+  .restart-btn:hover{ background:var(--gold-deep); color:#fff; }
+  .restart-btn.secondary{
+    background:transparent; border:1.5px solid var(--line); color:var(--ink); margin-left:10px;
+  }
+
+  .filter-row{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px;
+  }
+  .filter-chip{
+    font-size:12.5px; font-weight:700; padding:7px 14px; border-radius:999px;
+    border:1.5px solid var(--line); background:#fff; cursor:pointer; color:var(--ink);
+    transition:all 0.15s ease;
+  }
+  .filter-chip.active{ color:#fff; border-color:transparent; }
+
+  .hidden{ display:none !important; }
+  footer{ text-align:center; padding:26px; font-size:12px; color:var(--sage); }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="hero">
+  <div class="eyebrow">യോഹന്നാൻ സുവിശേഷം · ആരു പറഞ്ഞു? ആരോടു പറഞ്ഞു?</div>
+  <div class="lamp-wrap">
+    <svg viewBox="0 0 120 100" width="120" height="100">
+      <ellipse cx="60" cy="86" rx="26" ry="5" fill="#000" opacity="0.25"/>
+      <path d="M40 70 Q60 84 80 70 L74 60 Q60 66 46 60 Z" fill="#8A6A2E"/>
+      <ellipse cx="60" cy="60" rx="20" ry="9" fill="#B9852A"/>
+      <ellipse cx="60" cy="58" rx="16" ry="7" fill="#E3B24E"/>
+      <rect x="56" y="46" width="8" height="14" rx="2" fill="#8A6A2E"/>
+      <circle class="glow" cx="60" cy="34" r="20" fill="url(#g1)"/>
+      <path class="flame" d="M60 44 C52 36 54 26 60 18 C66 26 68 36 60 44 Z" fill="#F4C86A"/>
+      <path class="flame" d="M60 40 C56 35 57 29 60 24 C63 29 64 35 60 40 Z" fill="#FFF3D0"/>
+      <defs>
+        <radialGradient id="g1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#F4C86A" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#F4C86A" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+    </svg>
+  </div>
+  <h1 class="title">വിളക്കിന്റെ <span class="accent">വചനങ്ങൾ</span></h1>
+  <p class="subtitle">41 ചോദ്യങ്ങൾ — ആരു പറഞ്ഞു, ആരോടു പറഞ്ഞു എന്നതനുസരിച്ച് ഗ്രൂപ്പ് ചെയ്തിരിക്കുന്നു. എല്ലാ ഫരിസേയ ചോദ്യങ്ങളും ഒരുമിച്ച്, എല്ലാ യഹൂദ ചോദ്യങ്ങളും ഒരുമിച്ച് — അങ്ങനെ ഓർമ്മിക്കാൻ എളുപ്പം.</p>
+  <div class="mode-row">
+    <button class="mode-btn active" id="btnStudy" onclick="setMode('study')">📜 പഠനമോഡ്</button>
+    <button class="mode-btn" id="btnQuiz" onclick="setMode('quiz')">🕯️ പരീക്ഷാമോഡ്</button>
+  </div>
+  <div class="lamp-progress">
+    <div class="track"><div class="fill" id="progFill"></div></div>
+    <div class="pct" id="progPct">0%</div>
+  </div>
+</div>
+
+<main>
+  <section id="studyView"></section>
+  <section id="quizView" class="hidden"></section>
+</main>
+
+<footer>ഓരോ കാർഡിലും ടാപ്പ് ചെയ്ത് ഉത്തരം കാണുക · നിറം = ആരാണ് ഉത്തരം എന്നതിന്റെ സൂചന</footer>
+
+<script>
+// Each item: g = group key, gname = display name, icon, color, q = question, o = options, a = correct key
+const GROUPS = [
+  {key:"pharisees", name:"ഫരിസേയർ", sub:"പരീശന്മാർ പറഞ്ഞതും ചെയ്തതും", icon:"🧎", color:"#9B3E2C"},
+  {key:"jews", name:"യഹൂദർ", sub:"യഹൂദജനത പറഞ്ഞതും അവരെക്കുറിച്ചുള്ളതും", icon:"✡️", color:"#2E5C8A"},
+  {key:"crowd", name:"ജനക്കൂട്ടം / ജനങ്ങൾ", sub:"പൊതുജനം പറഞ്ഞതും ചെയ്തതും", icon:"👥", color:"#5E7F45"},
+  {key:"priests", name:"പുരോഹിതരും അധികാരികളും", sub:"പുരോഹിതപ്രമുഖരും ഭരണാധികാരികളും", icon:"🕎", color:"#6B4A8A"},
+  {key:"disciples", name:"ശിഷ്യന്മാരും സേവകരും", sub:"യേശുവിന്റെ ശിഷ്യരും ഭൃത്യരും ഉദ്യോഗസ്ഥരും", icon:"🕯️", color:"#B9852A"},
+  {key:"individuals", name:"പേരുള്ള വ്യക്തികൾ", sub:"നിക്കൊദേമോസ്, കയ്യാഫാസ്, അന്ധൻ, ഗ്രീക്കുകാർ...", icon:"👤", color:"#2E7D6B"},
+  {key:"other", name:"മറ്റു തിരുവെഴുത്തുകൾ", sub:"യോഹന്നാൻ സുവിശേഷത്തിന് പുറത്തുനിന്ന്", icon:"📖", color:"#7A6A50"}
+];
+
+const DATA = [
+{g:"priests", q:"നീ ആരാണെന്ന് ചോദിക്കാൻ യഹൂദർ ജറുസലേമിൽ നിന്ന് ആരെയാണ് അയച്ചത്?", o:{A:"പരീശന്മാരെ",B:"പുരോഹിതൻമാരെയും ലേവ്യരെയും",C:"ശാസ്ത്രിമാരെ",D:"സദൂക്യരെ"}, a:"B"},
+{g:"priests", q:"പുരോഹിതരും ലേവ്യരും യോഹന്നാനോട് എത്ര ചോദ്യങ്ങൾ ചോദിച്ചു?", o:{A:"രണ്ട്",B:"നാല്",C:"മൂന്ന്",D:"അഞ്ച്"}, a:"C"},
+{g:"priests", q:"\"ഇവൻ തന്നെയാണ് ക്രിസ്തുവെന്ന് ഒരു പക്ഷേ യഥാർത്ഥത്തിൽ അറിഞ്ഞിരിക്കുമോ?\" ഇത് ആരുടെ സംശയം?", o:{A:"ജനങ്ങൾ",B:"ശിഷ്യന്മാർ",C:"അധികാരികൾ",D:"പുരോഹിതർ"}, a:"C"},
+{g:"priests", q:"ജനത്തിനുവേണ്ടി യേശു മരിക്കേണ്ടിയിരിക്കുന്നുവെന്ന് പ്രവചിച്ചത് ആര്?", o:{A:"അന്നാസ്",B:"കയ്യാഫാസ്",C:"നിക്കൊദേമോസ്",D:"ഗമാലിയേൽ"}, a:"B"},
+
+{g:"pharisees", q:"ജനക്കൂട്ടം യേശുവിനെക്കുറിച്ച് പിറുപിറുക്കുന്നത് കേട്ടത് ആര്?", o:{A:"ശിഷ്യന്മാർ",B:"ഫരിസേയർ",C:"സദൂക്യർ",D:"ലേവ്യർ"}, a:"B"},
+{g:"pharisees", q:"യേശുവിനെ ബന്ധിക്കാൻ സേവകരെ അയച്ചത് ആര്?", o:{A:"യഹൂദർ",B:"റോമക്കാർ",C:"പുരോഹിതപ്രമുഖന്മാരും ഫരിസേയരും",D:"സൻഹെദ്രിൻ"}, a:"C"},
+{g:"pharisees", q:"\"നിങ്ങളും വഞ്ചിതരായോ?\" ഇത് ആരുടെ ചോദ്യമാണ്?", o:{A:"പുരോഹിതപ്രമുഖന്മാർ",B:"ഫരിസേയർ",C:"സദൂക്യർ",D:"നിയമജ്ഞർ"}, a:"B"},
+{g:"pharisees", q:"വ്യഭിചാരത്തിൽ പിടിക്കപ്പെട്ട ഒരു സ്ത്രീയെ യേശുവിന്റെ അടുക്കൽ കൊണ്ടുവന്നത് ആരാണ്?", o:{A:"ശിഷ്യന്മാർ",B:"നിയമജ്ഞരും ഫരിസേയരും",C:"പുരോഹിതന്മാർ",D:"ജനക്കൂട്ടം"}, a:"B"},
+{g:"pharisees", q:"\"നീ തന്നെ നിനക്ക് സാക്ഷ്യം നൽകുന്നു. നിന്റെ സാക്ഷ്യം സത്യമല്ല.\" ആരുടെ വാക്കുകളാണ് ഇത്?", o:{A:"ശാസ്ത്രിമാർ",B:"ഫരിസേയർ",C:"ജനക്കൂട്ടം",D:"പുരോഹിതന്മാർ"}, a:"B"},
+{g:"pharisees", q:"മുമ്പ് അന്ധനായിരുന്നവനെ ആരുടെ അടുത്താണ് കൊണ്ടുവന്നത്?", o:{A:"പുരോഹിതരുടെ",B:"ഫരിസേയരുടെ",C:"ശിഷ്യന്മാരുടെ",D:"സൻഹെദ്രിന്റെ"}, a:"B"},
+{g:"pharisees", q:"\"ഈ മനുഷ്യൻ ദൈവത്തിൽ നിന്നുള്ളവനല്ല. എന്തെന്നാൽ അവൻ സാബത്ത് ആചരിക്കുന്നില്ല.\" ആരാണ് ഇത് പറഞ്ഞത്?", o:{A:"ശാസ്ത്രിമാർ",B:"യഹൂദർ",C:"ഫരിസേയരിൽ ചിലർ",D:"പുരോഹിതപ്രമുഖർ"}, a:"C"},
+{g:"pharisees", q:"മറിയത്തിന്റെ അടുക്കൽ വന്നിരുന്നവരിൽ ചിലർ യേശു പ്രവർത്തിച്ച കാര്യങ്ങൾ ആരോടാണ് പറഞ്ഞത്?", o:{A:"പുരോഹിതന്മാരോട്",B:"ഫരിസേയരോട്",C:"ശിഷ്യന്മാരോട്",D:"റോമാക്കാരോട്"}, a:"B"},
+{g:"pharisees", q:"\"നമുക്ക് ഒന്നും ചെയ്യാൻ സാധിക്കുന്നില്ലെന്ന് കാണുന്നില്ലേ?\" ആരാണ് ചോദിച്ചത്?", o:{A:"ഫരിസേയർ",B:"ജനക്കൂട്ടം",C:"ശിഷ്യന്മാർ",D:"പുരോഹിതർ"}, a:"A"},
+{g:"pharisees", q:"അധികാരികളിൽ പലരും യേശുവിൽ വിശ്വസിച്ചെങ്കിലും ആരെ ഭയന്നാണ് അവരാരും അത് ഏറ്റുപറയാതിരുന്നത്?", o:{A:"പുരോഹിതപ്രമുഖരെ",B:"ജനക്കൂട്ടത്തെ",C:"ഫരിസേയരെ",D:"റോമക്കാരെ"}, a:"C"},
+
+{g:"jews", q:"\"അവനെവിടെ\" എന്ന് ചോദിച്ചുകൊണ്ട് ആരാണ് യേശുവിനെ തിരക്കിയത്?", o:{A:"ജനക്കൂട്ടം",B:"യഹൂദർ",C:"ശിഷ്യന്മാർ",D:"ഫരിസേയർ"}, a:"B"},
+{g:"jews", q:"ആളുകൾ യേശുവിനെപ്പറ്റി പരസ്യമായി സംസാരിക്കാതിരുന്നത് എന്തുകൊണ്ട്?", o:{A:"ജനക്കൂട്ടത്തെ ഭയന്ന്",B:"റോമക്കാരെ ഭയന്ന്",C:"യഹൂദരെ ഭയന്ന്",D:"പുരോഹിതരെ ഭയന്ന്"}, a:"C"},
+{g:"jews", q:"\"ഇവനെയല്ലേ അവർ കൊല്ലാൻ അന്വേഷിക്കുന്നത്\" എന്ന് ആരാണ് ചോദിച്ചത്?", o:{A:"ഫരിസേയർ",B:"പുരോഹിതന്മാർ",C:"ജനക്കൂട്ടം",D:"ജറുസലേം നിവാസികളിൽ ചിലർ"}, a:"D"},
+{g:"jews", q:"അവൻ അന്ധനായിരുന്നെന്നും കാഴ്ച പ്രാപിച്ചെന്നും മാതാപിതാക്കളെ വിളിച്ച് ചോദിക്കുവോളം വിശ്വസിക്കാതിരുന്നവർ ആര്?", o:{A:"യഹൂദർ",B:"ഫരിസേയർ",C:"ശിഷ്യന്മാർ",D:"പുരോഹിതർ"}, a:"A"},
+{g:"jews", q:"യേശുവിന്റെ വാക്കുകൾ മൂലം ആരുടെ ഇടയിലാണ് ഭിന്നതയുണ്ടായത്? (10-ാം അധ്യായം)", o:{A:"ശിഷ്യരുടെ",B:"പുരോഹിതരുടെ",C:"യഹൂദരുടെ",D:"ഫരിസേയരുടെ"}, a:"C"},
+{g:"jews", q:"ആരാണ് മർത്തായെയും മറിയത്തെയും അവരുടെ സഹോദരനെ പ്രതി ആശ്വസിപ്പിക്കാൻ വന്നത്?", o:{A:"ശിഷ്യന്മാർ",B:"അനേകം യഹൂദർ",C:"പുരോഹിതർ",D:"ഫരിസേയർ"}, a:"B"},
+{g:"jews", q:"യേശു ആരുടെ ഇടയിലാണ് പരസ്യമായി സഞ്ചരിക്കാതിരുന്നത്?", o:{A:"സമരിയാക്കാരുടെ",B:"യഹൂദരുടെ",C:"ഗലീലിയരുടെ",D:"ഫരിസേയരുടെ"}, a:"B"},
+{g:"jews", q:"സ്വർഗത്തിൽനിന്ന് ഇറങ്ങിവന്ന അപ്പം ഞാനാണ് എന്ന് പറഞ്ഞതിനാൽ യേശുവിനെതിരേ പിറുപിറുത്തത് ആര്?", o:{A:"ശിഷ്യന്മാർ",B:"ജനക്കൂട്ടം",C:"യഹൂദർ",D:"ഫരിസേയർ"}, a:"C"},
+{g:"jews", q:"\"ലോകത്തിന്റെ ജീവനുവേണ്ടി ഞാൻ നൽകുന്ന അപ്പം എന്റെ ശരീരമാണ്\" എന്ന് യേശു പറഞ്ഞപ്പോൾ ആരുടെ ഇടയിലാണ് തർക്കമുണ്ടായത്?", o:{A:"യഹൂദർക്കിടയിൽ",B:"ശിഷ്യർക്കിടയിൽ",C:"ഫരിസേയർക്കിടയിൽ",D:"ജനക്കൂട്ടത്തിനിടയിൽ"}, a:"A"},
+{g:"jews", q:"\"എന്റെ വചനത്തിൽ നിലനിൽക്കുമെങ്കിൽ നിങ്ങൾ യഥാർത്ഥത്തിൽ എന്റെ ശിഷ്യരാണ്.\" യേശു ആരോടാണ് ഇത് പറഞ്ഞത്?", o:{A:"ശിഷ്യന്മാരോട്",B:"ഫരിസേയരോട്",C:"തന്നിൽ വിശ്വസിച്ച യഹൂദരോട്",D:"ജനക്കൂട്ടത്തോട്"}, a:"C"},
+{g:"jews", q:"\"നോക്കൂ, അവൻ എത്രമാത്രം അവനെ സ്നേഹിച്ചിരുന്നു\" ആരാണ് പറഞ്ഞത്?", o:{A:"ശിഷ്യന്മാർ",B:"യഹൂദർ",C:"മർത്താ",D:"മറിയം"}, a:"B"},
+
+{g:"crowd", q:"\"ലോകത്തിലേക്ക് വരാനിരുന്ന പ്രവാചകൻ സത്യമായും ഇവനാണ്\" എന്ന് ആരാണ് പറഞ്ഞത്?", o:{A:"ശിഷ്യന്മാർ",B:"ഫരിസേയർ",C:"പുരോഹിതന്മാർ",D:"ജനങ്ങൾ"}, a:"D"},
+{g:"crowd", q:"ലാസറിനെ ഉയിർപ്പിച്ച അടയാളം കേട്ടതുകൊണ്ട് ആരാണ് യേശുവിനെ സ്വീകരിക്കാൻ വന്നത്?", o:{A:"പുരോഹിതർ",B:"ഫരിസേയർ",C:"ശിഷ്യന്മാർ",D:"ജനക്കൂട്ടം"}, a:"D"},
+{g:"crowd", q:"യേശു ജറുസലേമിലേക്ക് വരുന്നെന്നു കേട്ട് ഈന്തപ്പനയുടെ കൈകൾ എടുത്തുകൊണ്ട് അവനെ എതിരേൽക്കാൻ പുറപ്പെട്ടതാര്?", o:{A:"ശിഷ്യന്മാർ",B:"ഗ്രീക്കുകാർ",C:"ഒരു വലിയ ജനക്കൂട്ടം",D:"ഫരിസേയർ"}, a:"C"},
+{g:"crowd", q:"\"ക്രിസ്തു എന്നേക്കും നിലനിൽക്കുമെന്നാണല്ലോ നിയമത്തിൽ കേട്ടിട്ടുള്ളത്\" ആരാണ് ചോദിച്ചത്?", o:{A:"ഫരിസേയർ",B:"ജനക്കൂട്ടം",C:"ശിഷ്യന്മാർ",D:"പുരോഹിതർ"}, a:"B"},
+
+{g:"disciples", q:"വിശുദ്ധ ലിഖിതവും യേശു പ്രസ്താവിച്ച വചനവും വിശ്വസിച്ചതാര്?", o:{A:"പുരോഹിതന്മാർ",B:"ശിഷ്യന്മാർ",C:"പരീശന്മാർ",D:"ജനക്കൂട്ടം"}, a:"B"},
+{g:"disciples", q:"ആര് തമ്മിലാണ് ശുദ്ധീകരണത്തെപ്പറ്റി തർക്കമുണ്ടായത്?", o:{A:"പരീശരും ശിഷ്യരും",B:"അവന്റെ ശിഷ്യന്മാരും ഒരു യഹൂദനും",C:"പുരോഹിതരും ലേവ്യരും",D:"ജനക്കൂട്ടവും ശിഷ്യരും"}, a:"B"},
+{g:"disciples", q:"പോകും വഴി മകൻ സുഖം പ്രാപിച്ചിരിക്കുന്നു എന്ന വാർത്തയുമായി ആരാണ് എതിരെ വന്നത്?", o:{A:"ബന്ധുക്കൾ",B:"ശിഷ്യന്മാർ",C:"സുഹൃത്തുക്കൾ",D:"ഭൃത്യന്മാർ"}, a:"D"},
+{g:"disciples", q:"\"അവനെപ്പോലെ ആരും ഇതുവരെ സംസാരിച്ചിട്ടില്ല\" എന്ന് ആരാണ് പറഞ്ഞത്?", o:{A:"ജനക്കൂട്ടം",B:"സേവകന്മാർ",C:"ശിഷ്യന്മാർ",D:"ഫരിസേയർ"}, a:"B"},
+
+{g:"individuals", q:"\"നീ ഇസ്രായേലിലെ ഗുരുവല്ലേ\" എന്ന് യേശു ആരോടാണ് ചോദിച്ചത്?", o:{A:"പരീശന്മാരോട്",B:"നിക്കൊദേമോസിനോട്",C:"ശാസ്ത്രിമാരോട്",D:"പുരോഹിതന്മാരോട്"}, a:"B"},
+{g:"individuals", q:"ആസന്നമരണനായ മകനെ സുഖപ്പെടുത്തണമെന്ന് പറഞ്ഞത് ആരാണ്?", o:{A:"ഒരു ശതാധിപൻ",B:"ഒരു പരീശൻ",C:"കഫർണാമിലെ ഒരു രാജസേവകൻ",D:"ഒരു പുരോഹിതൻ"}, a:"C"},
+{g:"individuals", q:"\"ഒരുവന് പറയാനുള്ളത് ആദ്യം കേൾക്കാതെയും അവനെന്താണ് ചെയ്യുന്നതെന്ന് അറിയാതെയും അവനെ വിധിക്കാൻ നമ്മുടെ നിയമം അനുവദിക്കുന്നുണ്ടോ?\" ആരാണ് ചോദിച്ചത്?", o:{A:"ഗമാലിയേൽ",B:"യോസേപ്പ്",C:"നിക്കൊദേമോസ്",D:"പീലാത്തോസ്"}, a:"C"},
+{g:"individuals", q:"\"നിങ്ങളും അവന്റെ ശിഷ്യരാകാൻ ആഗ്രഹിക്കുന്നുവോ?\" ആരാണ് ചോദിച്ചത്?", o:{A:"യേശു",B:"അന്ധൻ",C:"ഫരിസേയർ",D:"മാതാപിതാക്കൾ"}, a:"B"},
+{g:"individuals", q:"\"പ്രഭോ, ഞങ്ങൾ യേശുവിനെ കാണാൻ ആഗ്രഹിക്കുന്നു\" ആര് ആരോട് പറഞ്ഞു?", o:{A:"ജനക്കൂട്ടം അന്ത്രയോസിനോട്",B:"ഗ്രീക്കുകാർ ഫിലിപ്പോസിനോട്",C:"ഫരിസേയർ പത്രോസിനോട്",D:"ശിഷ്യന്മാർ യോഹന്നാനോട്"}, a:"B"},
+
+{g:"other", q:"ആരെയാണ് വിശ്വാസം വഴി നീതീകരിക്കുന്നത്?", o:{A:"യഹൂദരെ",B:"വിജാതീയരെ",C:"പരിച്ഛേദിതരെ",D:"പുരോഹിതരെ"}, a:"B"},
+{g:"other", q:"ആരുടെ പാദങ്ങളെയാണ് അവിടുന്ന് കാക്കുന്നത്?", o:{A:"നീതിമാന്മാരുടെ",B:"ദരിദ്രരുടെ",C:"വിശ്വസ്തരുടെ",D:"പുരോഹിതരുടെ"}, a:"C"},
+{g:"other", q:"ആരുടെ കൂടാരത്തിൽ നിന്ന് പുറപ്പെടുന്ന ഉഗ്രഘോഷത്തിന്റെ സൂചനയെന്തെന്നതാണ് ഫിലിസ്ത്യർ തിരക്കിയത്?", o:{A:"ഇസ്രായേല്യരുടെ",B:"ഹെബ്രായരുടെ",C:"യഹൂദരുടെ",D:"ലേവ്യരുടെ"}, a:"B"}
+];
+
+DATA.forEach((item,i)=>{ item.idx = i; });
+
+let mode = 'study';
+let studiedSet = new Set();
+let quizOrder = [];
+let quizPos = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function groupOf(key){ return GROUPS.find(g=>g.key===key); }
+
+function setMode(m){
+  mode = m;
+  document.getElementById('btnStudy').classList.toggle('active', m==='study');
+  document.getElementById('btnQuiz').classList.toggle('active', m==='quiz');
+  document.getElementById('studyView').classList.toggle('hidden', m!=='study');
+  document.getElementById('quizView').classList.toggle('hidden', m!=='quiz');
+  if(m==='quiz' && quizOrder.length===0) startQuiz();
+  updateProgress();
+}
+
+function updateProgress(){
+  let pct;
+  if(mode==='study'){
+    pct = Math.round((studiedSet.size / DATA.length) * 100);
+  } else {
+    pct = quizOrder.length ? Math.round((quizPos / quizOrder.length) * 100) : 0;
+  }
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progPct').textContent = pct + '%';
+}
+
+function renderStudy(){
+  const el = document.getElementById('studyView');
+  el.innerHTML = GROUPS.map((grp, gi)=>{
+    const items = DATA.filter(d=>d.g===grp.key);
+    const cards = items.map(item=>{
+      return '<div class="flip-card" data-idx="'+item.idx+'" onclick="flipCard(this, '+item.idx+')">' +
+        '<div class="flip-inner">' +
+          '<div class="flip-face flip-front">' +
+            '<div class="qn">ചോദ്യം ' + (item.idx+1) + '</div>' +
+            '<div class="qtext">' + item.q + '</div>' +
+            '<div class="flip-hint">ടാപ്പ് ചെയ്യുക ↻</div>' +
+          '</div>' +
+          '<div class="flip-face flip-back">' +
+            '<div class="ans-label">ശരിയായ ഉത്തരം</div>' +
+            '<div class="ans-text">' + item.a + ') ' + item.o[item.a] + '</div>' +
+          '</div>' +
+        '</div></div>';
+    }).join('');
+    return '<div class="scroll" id="scroll-'+gi+'" style="--group-color:'+grp.color+'">' +
+      '<div class="scroll-head" onclick="toggleScroll('+gi+')">' +
+        '<div class="scroll-icon">'+grp.icon+'</div>' +
+        '<div style="flex:1">' +
+          '<div class="scroll-title">'+grp.name+'</div>' +
+          '<div class="scroll-sub">'+grp.sub+'</div>' +
+        '</div>' +
+        '<div class="scroll-count">'+items.length+' ചോദ്യങ്ങൾ</div>' +
+        '<svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+      '</div>' +
+      '<div class="scroll-body"><div class="card-grid">'+cards+'</div></div>' +
+    '</div>';
+  }).join('');
+}
+
+function toggleScroll(gi){
+  document.getElementById('scroll-'+gi).classList.toggle('open');
+}
+
+function flipCard(elCard, idx){
+  elCard.classList.toggle('flipped');
+  if(elCard.classList.contains('flipped')){
+    studiedSet.add(idx);
+    updateProgress();
+  }
+}
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function startQuiz(onlyIdx){
+  quizOrder = shuffle(onlyIdx && onlyIdx.length ? onlyIdx : DATA.map((_,i)=>i));
+  quizPos = 0; quizScore = 0; quizAnswered = false;
+  window.__missed = [];
+  renderQuizQuestion();
+}
+
+function scoreMsg(score, total){
+  const pct = score/total;
+  if(pct === 1) return 'മുഴുവൻ ശരി! വിളക്ക് പൂർണ്ണമായി തെളിഞ്ഞു. 🕯️';
+  if(pct >= 0.8) return 'മികച്ചത്! വെളിച്ചം ശക്തമായി തിളങ്ങുന്നു.';
+  if(pct >= 0.5) return 'നല്ല തുടക്കം — ഇനിയും തെളിയിക്കാം.';
+  return 'വീണ്ടും പഠിച്ച് ശ്രമിക്കുക — വിളക്ക് കാത്തിരിക്കുന്നു.';
+}
+
+function renderQuizQuestion(){
+  const el = document.getElementById('quizView');
+  if(quizPos >= quizOrder.length){
+    el.innerHTML = '<div class="qcard quiz-end">' +
+        '<div class="glabel" style="background:var(--gold-deep)">പരീക്ഷ പൂർത്തിയായി</div>' +
+        '<div class="score-big">'+quizScore+' / '+quizOrder.length+'</div>' +
+        '<div class="score-sub">'+scoreMsg(quizScore, quizOrder.length)+'</div>' +
+        '<div>' +
+          '<button class="restart-btn" onclick="startQuiz()">വീണ്ടും ശ്രമിക്കുക</button>' +
+          (window.__missed.length ? '<button class="restart-btn secondary" onclick="startQuiz(window.__missed)">തെറ്റിയവ മാത്രം ('+window.__missed.length+')</button>' : '') +
+        '</div>' +
+      '</div>';
+    updateProgress();
+    return;
+  }
+  const item = DATA[quizOrder[quizPos]];
+  const grp = groupOf(item.g);
+  quizAnswered = false;
+  const optsHtml = ['A','B','C','D'].map(k=>
+    '<button class="opt" data-key="'+k+'" onclick="answerQuiz(\''+k+'\')">' +
+      '<span class="letter">'+k+'</span><span>'+item.o[k]+'</span>' +
+    '</button>').join('');
+  el.innerHTML = '<div class="quiz-top">' +
+      '<div class="quiz-stat">ചോദ്യം '+(quizPos+1)+' / '+quizOrder.length+'</div>' +
+      '<div class="quiz-stat streak">സ്കോർ: '+quizScore+'</div>' +
+    '</div>' +
+    '<div class="qcard" style="--group-color:'+grp.color+'">' +
+      '<div class="glabel">'+grp.icon+' '+grp.name+'</div>' +
+      '<div class="qbody">'+item.q+'</div>' +
+      '<div class="opt-list">'+optsHtml+'</div>' +
+      '<div class="feedback" id="feedback"></div>' +
+      '<div class="quiz-nav"><button class="next-btn" id="nextBtn" onclick="nextQuiz()">അടുത്തത് →</button></div>' +
+    '</div>';
+}
+
+function answerQuiz(key){
+  if(quizAnswered) return;
+  quizAnswered = true;
+  const item = DATA[quizOrder[quizPos]];
+  const correct = item.a;
+  document.querySelectorAll('.opt').forEach(btn=>{
+    btn.disabled = true;
+    const k = btn.getAttribute('data-key');
+    if(k === correct) btn.classList.add('correct');
+    else if(k === key) btn.classList.add('wrong');
+  });
+  const fb = document.getElementById('feedback');
+  if(key === correct){
+    quizScore++;
+    fb.textContent = '✓ ശരിയാണ്!';
+    fb.className = 'feedback good';
+  } else {
+    fb.textContent = '✗ തെറ്റ്. ശരിയായ ഉത്തരം: ' + correct + ') ' + item.o[correct];
+    fb.className = 'feedback bad';
+    window.__missed.push(quizOrder[quizPos]);
+  }
+  document.getElementById('nextBtn').classList.add('show');
+}
+
+function nextQuiz(){
+  quizPos++;
+  updateProgress();
+  renderQuizQuestion();
+}
+
+renderStudy();
+document.getElementById('scroll-0').classList.add('open');
+updateProgress();
+</script>
+</body>
+</html>
